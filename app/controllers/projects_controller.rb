@@ -7,8 +7,7 @@ class ProjectsController < ApplicationController
   # If current user is admin returns all projects
   def index
 
-    projects = @current_user.projects
-    render json: projects
+    @projects = @current_user.projects
 
   end
 

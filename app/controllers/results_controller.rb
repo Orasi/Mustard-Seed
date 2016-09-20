@@ -1,6 +1,24 @@
 class ResultsController < ApplicationController
 
+  # ROUTE GET /results/
+  # Returns details of single result if project is viewable by current user
+  def show
 
+    result = Result.find_by_id(params[:id])
+
+    render json: {error: 'Result not found'},
+           status: :not_found and return unless result
+
+    render json: {error: 'Not authorized to access this resource'},
+           status: :unauthorized and return unless @current_user.projects.include? result.execution.project
+
+    render json: result
+
+  end
+
+  # ROUTE POST /results/
+  # Creates a result for project based on API KEY
+  # Does not require authentication
   def create
 
     ActiveRecord::Base.transaction do
@@ -103,6 +121,7 @@ class ResultsController < ApplicationController
 
   private
 
+
   # Verifies that the required parameters are present
   # Does not use normal Rails strong parameters due to these attributes being stored
   # in an arbitrary json column
@@ -128,6 +147,7 @@ class ResultsController < ApplicationController
 
     true
   end
+
 
   def find_or_create_testcase(identifier, project_id)
 
@@ -199,10 +219,12 @@ class ResultsController < ApplicationController
 
   end
 
+
   # Controls the columns that will be allowed to be written to the database
   # Extra care needs to be taken here to whitelist parameters that are allowed to avoid writing
   # arbitrary json to the database
   def parse_result_params
+
     params.require(:result).permit(:status,  #Required
                                    :project_id, #Required
                                    :environment_id, #Required
@@ -213,9 +235,7 @@ class ResultsController < ApplicationController
                                    :stacktrace,
                                    :link
     )
+
   end
 
-  def get_current_status(result)
-    return 'pass'
-  end
 end

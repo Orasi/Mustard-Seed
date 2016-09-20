@@ -15,10 +15,40 @@ class ExecutionsController < ApplicationController
     render json: {error: 'Not authorized to access this resource'},
            status: :unauthorized and return unless @current_user.projects.include? execution.project
 
-    render json: execution
+    execution.results.group(:current_status)
+
+    @execution = execution
+
+    @not_run = execution.project.testcases.not_run(@execution)
+    @pass = execution.project.testcases.passing(@execution)
+    @fail = execution.project.testcases.failing(@execution)
+    @skip = execution.project.testcases.skip(@execution)
+
+    render :testcases
 
   end
 
+
+  def testcase_detail
+
+    execution = Execution.find_by_id(params[:id])
+
+    render json: {error: 'Execution not found'},
+           status: :not_found and return unless execution
+
+    render json: {error: 'Not authorized to access this resource'},
+           status: :unauthorized and return unless @current_user.projects.include? execution.project
+
+    @testcase = Testcase.find_by_id(params[:testcase_id])
+
+    render json: {error: 'testcase not found'},
+           status: :not_found and return unless @testcase
+
+    @results = @testcase.results.where(execution_id: execution.id).joins('JOIN environments ON environments.id = results.environment_id')
+
+    render :testcase
+
+  end
 
   # ROUTE POST /executions/:id
   # Closes the specified execution and opens a new execution

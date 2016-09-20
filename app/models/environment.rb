@@ -5,7 +5,7 @@ class Environment < ApplicationRecord
   belongs_to :project
   has_many :results, dependent: :destroy
 
-  validates :uuid, presence: true, uniqueness: true
+  validates :uuid, presence: true, uniqueness: {scope: :project_id}
   validates :project_id, presence: true
 
 end

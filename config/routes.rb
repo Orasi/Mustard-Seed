@@ -19,8 +19,10 @@ Rails.application.routes.draw do
 
 
   get 'executions/:id', to: 'executions#show'
+  get 'executions/:id/testcases/:testcase_id', to: 'executions#testcase_detail'
   post 'executions/:id', to: 'executions#close'
   delete 'executions/:id', to: 'executions#destroy'
 
+  get 'results/:id', to: 'results#show'
   post 'results', to: 'results#create'
 end
