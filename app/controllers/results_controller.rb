@@ -1,6 +1,6 @@
 class ResultsController < ApplicationController
 
-  # ROUTE GET /results/
+  # ROUTE GET /results/:result_ud
   # Returns details of single result if project is viewable by current user
   def show
 
@@ -10,9 +10,9 @@ class ResultsController < ApplicationController
            status: :not_found and return unless result
 
     render json: {error: 'Not authorized to access this resource'},
-           status: :unauthorized and return unless @current_user.projects.include? result.execution.project
+           status: :unauthorized and return unless @current_user.li.include? result.execution.project
 
-    render json: result
+    render json: {result: result}
 
   end
 
@@ -23,11 +23,24 @@ class ResultsController < ApplicationController
 
     ActiveRecord::Base.transaction do
 
+
       # Validate Params has required Values
       return unless required_params_present?
 
+
       # Remove unknown values for security
       result_params = parse_result_params
+
+
+      # If Manual Result Type require User-Token Header
+      # If no token redirect with error
+      if result_params['result_type'] == 'manual'
+        authenticated = require_user_token
+        return unless authenticated
+        result_params['created_by_id'] = @current_user.id
+        result_params['created_by_name'] = "#{@current_user.first_name} #{@current_user.last_name}".titleize
+      end
+
 
       # Find project based on API Key
       # Return error if invalid Key
@@ -102,6 +115,10 @@ class ResultsController < ApplicationController
       result = find_or_create_result(execution.id, testcase_id, environment_id)
 
 
+      # Add Created At timestamp to Result
+      result_params[:created_at] = DateTime.now
+
+
       # Prepend the new result to the results list
       # Result current status because the status of the new result
       result.results.prepend(result_params)
@@ -113,7 +130,7 @@ class ResultsController < ApplicationController
              status: :bad_request and return unless result.save
 
       # Render new result as json
-      render json: result
+      render json: {result: result}
 
     end
 

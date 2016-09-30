@@ -1,6 +1,5 @@
 class Testcase < ApplicationRecord
 
-  has_many :steps, dependent: :destroy
   has_many :results, dependent: :destroy
 
   belongs_to :project
@@ -13,7 +12,8 @@ class Testcase < ApplicationRecord
                                       .joins("JOIN executions ON executions.project_id = testcases.project_id \
                                                 AND executions.id = #{execution.id} ")
                                       .where("NOT EXISTS (Select current_status from results \
-                                                          WHERE results.testcase_id = testcases.id)")
+                                                          WHERE results.testcase_id = testcases.id \
+                                                              AND results.execution_id = executions.id)")
   }
 
   scope :failing, -> (execution){select('testcases.id, testcases.name')
@@ -21,7 +21,8 @@ class Testcase < ApplicationRecord
                                                 AND executions.id = #{execution.id} ")
                                      .where("EXISTS (Select current_status from results \
                                                           WHERE results.testcase_id = testcases.id \
-                                                              AND results.current_status = 'fail')")
+                                                              AND results.current_status = 'fail' \
+                                                              AND results.execution_id = executions.id)")
   }
 
   scope :passing, -> (execution){select('testcases.id, testcases.name')
@@ -29,10 +30,12 @@ class Testcase < ApplicationRecord
                                                 AND executions.id = #{execution.id} ")
                                      .where("EXISTS (Select current_status from results \
                                                           WHERE results.testcase_id = testcases.id \
-                                                              AND results.current_status = 'pass')
+                                                              AND results.current_status = 'pass' \
+                                                              AND results.execution_id = executions.id)\
                                               AND NOT EXISTS(Select current_status from results \
                                                           WHERE results.testcase_id = testcases.id \
-                                                              AND results.current_status = 'fail')")
+                                                              AND results.current_status = 'fail'
+                                                              AND results.execution_id = executions.id)")
   }
 
   scope :skip, -> (execution){select('testcases.id, testcases.name')
@@ -40,10 +43,12 @@ class Testcase < ApplicationRecord
                                                 AND executions.id = #{execution.id} ")
                                      .where("EXISTS (Select current_status from results \
                                                           WHERE results.testcase_id = testcases.id \
-                                                              AND results.current_status = 'skip')
+                                                              AND results.current_status = 'skip'\
+                                                              AND results.execution_id = executions.id)\
                                               AND NOT EXISTS(Select current_status from results \
                                                           WHERE results.testcase_id = testcases.id \
-                                                              AND results.current_status IN ('pass', 'fail'))")
+                                                              AND results.current_status IN ('pass', 'fail')\
+                                                              AND results.execution_id = executions.id)")
   }
 
 

@@ -1,6 +1,6 @@
-class ProjectsController < ApplicationController
+class EnvironmentsController < ApplicationController
 
-  before_action :require_admin, only: [:create, :update, :destroy]
+  before_action :requires_admin, only: [:create, :update, :destroy]
 
   #TODO: Remove environments index route
 

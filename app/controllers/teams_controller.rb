@@ -31,8 +31,9 @@ class TeamsController < ApplicationController
     render json: {error: "Team not found"},
            status: :not_found and return unless @team
 
-    render json: {error: 'You do not have permission to access this resource'},
-           status: :unauthorized and return unless @current_user.teams.include? @team
+      render json: {error: 'You do not have permission to access this resource'},
+             status: :unauthorized and return unless @current_user.teams.include? @team
+
 
   end
 
@@ -75,7 +76,7 @@ class TeamsController < ApplicationController
 
     @team = Team.find_by_id(params[:id])
     if @team
-      @team.update(deleted: true)
+      @team.destroy
       render json: {team: 'Deleted'}
     else
       render json: {error: "Team not found"}, status: :not_found

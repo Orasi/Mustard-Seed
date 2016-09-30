@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   before_action :confirm_password, only: :create
 
 
-  before_action :require_admin, only: [:index, :create, :update, :destroy]
+  before_action :requires_admin, only: [:index, :create, :update, :destroy]
 
 
   # ROUTE GET /users
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
 
     @user = User.find_by_id(params[:id])
 
-    unless current_user.admin
+    unless @current_user.admin
       render json: {error: 'Not authorized to access this resource'},
              status: :unauthorized and return unless @current_user == @user
     end

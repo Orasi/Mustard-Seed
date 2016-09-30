@@ -1,0 +1,16 @@
+{
+  "resources": [
+    {
+      "name": "Users",
+      "examples": [
+        {
+          "description": "Getting a list of users",
+          "link": "users/getting_a_list_of_users.json",
+          "groups": "all",
+          "route": "/users",
+          "method": "get"
+        }
+      ]
+    }
+  ]
+}

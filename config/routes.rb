@@ -18,8 +18,13 @@ Rails.application.routes.draw do
   delete 'teams/:id/project/:project_id', to: 'teams#remove_project'
 
 
-  get 'executions/:id', to: 'executions#show'
+  get 'executions/:id/testcase_status', to: 'executions#testcase_status'
   get 'executions/:id/testcases/:testcase_id', to: 'executions#testcase_detail'
+  get 'executions/:id/environments/:environment_id', to: 'executions#environment_detail'
+  get 'executions/:id/testcase_summary', to: 'executions#testcase_summary'
+  get 'executions/:id/environment_summary', to: 'executions#environment_summary'
+
+  post 'executions/:id', to: 'executions#close'
   post 'executions/:id', to: 'executions#close'
   delete 'executions/:id', to: 'executions#destroy'
 

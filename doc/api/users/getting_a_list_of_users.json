@@ -1,0 +1,46 @@
+{
+  "resource": "Users",
+  "http_method": "GET",
+  "route": "/users",
+  "description": "Getting a list of users",
+  "explanation": null,
+  "parameters": [
+
+  ],
+  "response_fields": [
+
+  ],
+  "requests": [
+    {
+      "request_method": "GET",
+      "request_path": "/users",
+      "request_body": null,
+      "request_headers": {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "User-Token": "vkPtocjv97tHQRLmQeiNAAj6",
+        "Host": "example.org",
+        "Cookie": ""
+      },
+      "request_query_parameters": {
+      },
+      "request_content_type": "application/json",
+      "response_status": 200,
+      "response_status_text": "OK",
+      "response_body": "{\n  \"users\": [\n    {\n      \"id\": 351,\n      \"username\": \"paula_stokes@collinsbecker.biz\",\n      \"first_name\": \"Ena\",\n      \"last_name\": \"Larkin\",\n      \"company\": \"Pouros-Yost\",\n      \"admin\": null,\n      \"created_at\": \"2016-09-26T13:37:48.789Z\",\n      \"updated_at\": \"2016-09-26T13:37:48.789Z\"\n    },\n    {\n      \"id\": 352,\n      \"username\": \"vivianne@turcotte.biz\",\n      \"first_name\": \"Kaci\",\n      \"last_name\": \"Macejkovic\",\n      \"company\": \"Rosenbaum and Sons\",\n      \"admin\": null,\n      \"created_at\": \"2016-09-26T13:37:48.836Z\",\n      \"updated_at\": \"2016-09-26T13:37:48.836Z\"\n    },\n    {\n      \"id\": 353,\n      \"username\": \"jaime@kohler.io\",\n      \"first_name\": \"Russel\",\n      \"last_name\": \"Legros\",\n      \"company\": \"McKenzie-Zulauf\",\n      \"admin\": true,\n      \"created_at\": \"2016-09-26T13:37:48.858Z\",\n      \"updated_at\": \"2016-09-26T13:37:48.858Z\"\n    }\n  ]\n}",
+      "response_headers": {
+        "X-Frame-Options": "SAMEORIGIN",
+        "X-XSS-Protection": "1; mode=block",
+        "X-Content-Type-Options": "nosniff",
+        "Content-Type": "application/json; charset=utf-8",
+        "ETag": "W/\"8e14b8d58478775f4b04f77a6428de35\"",
+        "Cache-Control": "max-age=0, private, must-revalidate",
+        "X-Request-Id": "3dc1c4f2-1dc9-470b-98e5-5ca0cf15693e",
+        "X-Runtime": "0.037204",
+        "Content-Length": "642"
+      },
+      "response_content_type": "application/json; charset=utf-8",
+      "curl": "curl \"http://localhost:3000/users\" -X GET \\\n\t-H \"Accept: application/json\" \\\n\t-H \"Content-Type: application/json\" \\\n\t-H \"User-Token: vkPtocjv97tHQRLmQeiNAAj6\" \\\n\t-H \"Host: example.org\" \\\n\t-H \"Cookie: \""
+    }
+  ]
+}

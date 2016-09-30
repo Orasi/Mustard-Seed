@@ -12,6 +12,9 @@ class TestcasesController < ApplicationController
 
     testcase = Testcase.find_by_id(params[:id])
 
+    render json: {error: "Testcase not found"},
+           status: :not_found and return unless testcase
+
     render json: {error: 'Not authorized to access this resource'},
            status: :unauthorized and return unless @current_user.projects.include? testcase.project
 
@@ -58,7 +61,7 @@ class TestcasesController < ApplicationController
 
     testcase = Testcase.find_by_id(params[:id])
     if testcase
-      testcase.update(deleted: true)
+      testcase.destroy
       render json: {testcase: 'Deleted'}
     else
       render json: {error: "Testcase not found"}, status: :not_found

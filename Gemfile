@@ -38,3 +38,15 @@ gem 'pg'
 gem "paperclip", "~> 5.0.0"
 
 gem 'awesome_print'
+
+group :development, :test do
+
+  # Use RSpec for specs
+  gem 'rspec-rails', '3.5.0'
+  gem 'rspec_api_documentation'
+
+  # Use Factory Girl for generating random test data
+  gem 'factory_girl_rails'
+  gem 'faker'
+
+end

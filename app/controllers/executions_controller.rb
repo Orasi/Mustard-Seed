@@ -3,9 +3,10 @@ class ExecutionsController < ApplicationController
   before_action :requires_admin, only: [:destroy]
 
 
-  # ROUTE GET /executions/:id
-  # Shows details of execution if project is viewable by current user
-  def show
+  # ROUTE GET /executions/:id/testcase_summary
+  # Lists the pass, fail, and skip counts by testcase
+  # Only accessible if project is viewable by current user
+  def testcase_summary
 
     execution = Execution.find_by_id(params[:id])
 
@@ -15,7 +16,43 @@ class ExecutionsController < ApplicationController
     render json: {error: 'Not authorized to access this resource'},
            status: :unauthorized and return unless @current_user.projects.include? execution.project
 
-    execution.results.group(:current_status)
+    summary = execution.testcase_summary
+
+    render json: {summary: summary}
+  end
+
+
+  # ROUTE GET /executions/:id/environment_summary
+  # Lists the pass, fail, and skip counts by environment
+  # Only accessible if project is viewable by current user
+  def environment_summary
+
+    execution = Execution.find_by_id(params[:id])
+
+    render json: {error: 'Execution not found'},
+           status: :not_found and return unless execution
+
+    render json: {error: 'Not authorized to access this resource'},
+           status: :unauthorized and return unless @current_user.projects.include? execution.project
+
+    summary = execution.environment_summary
+
+    render json: {summary: summary}
+  end
+
+
+  # ROUTE GET /executions/:id
+  # Shows details of execution if project is viewable by current user
+  # Only accessible if project is viewable by current user
+  def testcase_status
+
+    execution = Execution.find_by_id(params[:id])
+
+    render json: {error: 'Execution not found'},
+           status: :not_found and return unless execution
+
+    render json: {error: 'Not authorized to access this resource'},
+           status: :unauthorized and return unless @current_user.projects.include? execution.project
 
     @execution = execution
 
@@ -28,7 +65,9 @@ class ExecutionsController < ApplicationController
 
   end
 
-
+  # ROUTE GET /executions/:id/testcases/:testcase_id
+  # Shows latest results in all environments for a given testcase
+  # Only accessible if project is viewable by current user
   def testcase_detail
 
     execution = Execution.find_by_id(params[:id])
@@ -41,7 +80,7 @@ class ExecutionsController < ApplicationController
 
     @testcase = Testcase.find_by_id(params[:testcase_id])
 
-    render json: {error: 'testcase not found'},
+    render json: {error: 'Testcase not found'},
            status: :not_found and return unless @testcase
 
     @results = @testcase.results.where(execution_id: execution.id).joins('JOIN environments ON environments.id = results.environment_id')
@@ -49,6 +88,32 @@ class ExecutionsController < ApplicationController
     render :testcase
 
   end
+
+
+  # ROUTE GET /executions/:id/environments/:environment_id
+  # Shows latest results in all environments for a given testcase
+  # Only accessible if project is viewable by current user
+  def environment_detail
+
+    execution = Execution.find_by_id(params[:id])
+
+    render json: {error: 'Execution not found'},
+           status: :not_found and return unless execution
+
+    render json: {error: 'Not authorized to access this resource'},
+           status: :unauthorized and return unless @current_user.projects.include? execution.project
+
+    @environment = Environment.find_by_id(params[:environment_id])
+
+    render json: {error: 'Environment not found'},
+           status: :not_found and return unless @environment
+
+    @results = @environment.results.where(execution_id: execution.id).joins('JOIN testcases ON testcases.id = results.testcase_id')
+
+    render :environment
+
+  end
+
 
   # ROUTE POST /executions/:id
   # Closes the specified execution and opens a new execution
@@ -69,7 +134,7 @@ class ExecutionsController < ApplicationController
 
     ActiveRecord::Base.transaction do
       execution.update!(closed: true)
-      @new_execution = project.executions.new!(closed: false)
+      @new_execution = project.executions.new(closed: false)
       @new_execution.save!
     end
 
