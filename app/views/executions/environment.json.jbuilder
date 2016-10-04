@@ -1,6 +1,7 @@
 json.environment do
   json.id @environment.id
   json.uuid @environment.uuid
+  json.environment_type @environment.environment_type
 
   json.results @results do |r|
     json.id r.id

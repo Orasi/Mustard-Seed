@@ -20,4 +20,17 @@ class Environment < ApplicationRecord
     execution.fin
 
   end
+
+  def display_name
+
+    return uuid unless options
+
+    if options['manufacturer'] && options['model'] && options['os_version']
+      return "#{options['manufacturer']} - #{options['model']} - #{options['os_version']}"
+    elsif options['os'] && options['browser'] && options['browser_version']
+      return "#{options['os']} - #{options['browser']} - #{options['browser_version']}"
+    end
+
+    uuid
+  end
 end

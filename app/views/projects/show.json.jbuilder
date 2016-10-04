@@ -14,11 +14,13 @@ json.project do
   json.environments @project.environments do |env|
     json.id env.id
     json.uuid env.uuid
+    json.display_name env.display_name
+    json.environment_type env.environment_type
     json.options env.options
     json.created_at env.created_at
     json.updated_at env.updated_at
   end
-  json.executions @project.executions do |exc|
+  json.executions @project.executions.reverse do |exc|
     json.id exc.id
     json.closed exc.closed
     json.created_at exc.created_at

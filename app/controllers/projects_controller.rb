@@ -36,7 +36,7 @@ class ProjectsController < ApplicationController
 
     @project = Project.new(project_params)
 
-    render json: {error: 'Bad Request', messages: @project.errors.full_messages},
+    render json: {error: @project.errors.full_messages},
            status: :bad_request and return unless @project.save
 
     render :show
@@ -70,8 +70,9 @@ class ProjectsController < ApplicationController
     render json: {error: "Project not found"},
            status: :not_found and return unless project
 
-    project.update(deleted: true)
-    render json: {project: 'Deleted'}
+    project.destroy
+    render json: {project: 'Deleted'} and return if project.destroy
+    render json: {error: "Failed to Delete Project [#{project.errors.full_messages}]"}
 
   end
 

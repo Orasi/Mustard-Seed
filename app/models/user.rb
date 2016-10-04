@@ -5,8 +5,6 @@ class User < ApplicationRecord
   validates :first_name, :last_name, :password_digest, :username,  presence: true
   validates :username, :uniqueness => true
 
-  default_scope{ where(deleted: [false, nil])}
-
   has_one :user_token, dependent: :destroy
   has_and_belongs_to_many :teams
 
@@ -25,9 +23,17 @@ class User < ApplicationRecord
     else
       projects = []
       self.teams.each do |t|
-        projects.append(t.projects)
+        projects.append(t.projects).flatten
       end
-      return projects.uniq
+      return projects.uniq.flatten
+    end
+  end
+
+  def user_teams
+    if admin
+      return Team.all
+    else
+      return teams
     end
   end
 

@@ -16,7 +16,7 @@ class TeamsController < ApplicationController
     if @current_user.admin
       @teams = Team.includes(:users, :projects).all
     else
-      @teams = @current_user.teams
+      @teams = @current_user.user_teams
     end
 
   end
@@ -32,7 +32,7 @@ class TeamsController < ApplicationController
            status: :not_found and return unless @team
 
       render json: {error: 'You do not have permission to access this resource'},
-             status: :unauthorized and return unless @current_user.teams.include? @team
+             status: :unauthorized and return unless @current_user.user_teams.include? @team
 
 
   end

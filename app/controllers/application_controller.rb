@@ -7,7 +7,7 @@ class ApplicationController < ActionController::API
   # Returns User-Token to be used in header request for all subsequent calls
   def authenticate
 
-    user = User.find_by_username(params[:username])
+    user = User.find_by_username(params[:username].downcase)
 
     render json: {error: 'Username or Password is invalid'},
            status: :unauthorized and return unless user && user.authenticate(params[:password])
@@ -20,7 +20,7 @@ class ApplicationController < ActionController::API
                   first_name: user.first_name,
                   last_name: user.last_name,
                   token: user.user_token.token,
-                  admin: true}
+                  admin: user.admin}
 
   end
 
@@ -52,9 +52,13 @@ class ApplicationController < ActionController::API
   # Used on routes that require admin access
   # Returns error if admin route is accessed by non-admin user
   def requires_admin
-    return true
+
+    require_user_token unless @current_user
+
     render json: {error: 'Not authorized to access this resource'},
            status: :unauthorized and return false unless @current_user.admin
+
+    return @current_user.admin
 
   end
 

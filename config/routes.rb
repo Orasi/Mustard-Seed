@@ -30,4 +30,8 @@ Rails.application.routes.draw do
 
   get 'results/:id', to: 'results#show'
   post 'results', to: 'results#create'
+  get 'results/:id/screenshot/:screenshot_id', to: 'results#screenshot'
+
+  get 'screenshot/:token', to: 'screenshots#show', as: :screenshot
+
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160919152418) do
+ActiveRecord::Schema.define(version: 20161004145905) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,8 +20,9 @@ ActiveRecord::Schema.define(version: 20160919152418) do
     t.integer  "project_id"
     t.boolean  "deleted"
     t.json     "options"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.string   "environment_type"
   end
 
   create_table "executions", force: :cascade do |t|
@@ -57,6 +58,14 @@ ActiveRecord::Schema.define(version: 20160919152418) do
     t.integer  "execution_id"
     t.json     "results"
     t.string   "current_status"
+  end
+
+  create_table "screenshot_tokens", force: :cascade do |t|
+    t.string   "token"
+    t.datetime "expiration"
+    t.integer  "screenshot_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "screenshots", force: :cascade do |t|

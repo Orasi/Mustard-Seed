@@ -45,6 +45,7 @@ class UsersController < ApplicationController
   # Only accessible by Admins
   def create
     @user = User.new(create_user_params)
+    @user.username = @user.username.downcase
     if @user.save
       render :show
     else
@@ -73,8 +74,9 @@ class UsersController < ApplicationController
   def destroy
     user = User.find_by_id(params[:id])
     if user
-      user.update(deleted: true)
-      render json: {user: 'Deleted'}
+      user.destroy
+      render json: {user: 'Deleted'} and return if user.destroy
+      render json: {error: "Failed to Delete User [#{user.errors.full_messages}]"}
     else
       render json: {error: "User not found"}, status: :not_found
     end

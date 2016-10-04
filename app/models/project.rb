@@ -1,8 +1,5 @@
 class Project < ApplicationRecord
 
-  default_scope{ where(deleted: [false, nil])}
-
-
   validates :name, presence: true, uniqueness: true
 
   before_save :generate_key

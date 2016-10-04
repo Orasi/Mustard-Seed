@@ -4,15 +4,37 @@ class ResultsController < ApplicationController
   # Returns details of single result if project is viewable by current user
   def show
 
-    result = Result.find_by_id(params[:id])
+    @result = Result.find_by_id(params[:id])
 
     render json: {error: 'Result not found'},
-           status: :not_found and return unless result
+           status: :not_found and return unless @result
 
     render json: {error: 'Not authorized to access this resource'},
-           status: :unauthorized and return unless @current_user.li.include? result.execution.project
+           status: :unauthorized and return unless @current_user.projects.include? @result.execution.project
 
-    render json: {result: result}
+
+  end
+
+  def screenshot
+
+    @result = Result.find_by_id(params[:id])
+
+    render json: {error: 'Result not found'},
+           status: :not_found and return unless @result
+
+    render json: {error: 'Not authorized to access this resource'},
+           status: :unauthorized and return unless @current_user.projects.include? @result.execution.project
+
+    @result.results.each do |r|
+      if r['screenshot_id'].to_s == params[:screenshot_id]
+        ss = Screenshot.find(params[:screenshot_id])
+        token = ss.screenshot_tokens.create(expiration: DateTime.now + 30.seconds)
+        render json: {screenshot: screenshot_url(token: token.token)} and return
+      end
+    end
+
+    render json: {error: 'Screenshot not found for result'},
+           status: :not_found and return
 
   end
 
@@ -106,6 +128,7 @@ class ResultsController < ApplicationController
                                testcase_name: testcase.name,
                                environment_uuid: environment.uuid,
                                project_name: project.name)
+        result_params[:screenshot] = nil
         result_params[:screenshot_id] = ss.id if ss.save
       end
 

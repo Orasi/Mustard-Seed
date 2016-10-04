@@ -159,7 +159,9 @@ class ExecutionsController < ApplicationController
 
     ActiveRecord::Base.transaction do
       if execution.closed
-        execution.update(deleted: true)
+        execution.destroy
+        render json: {execution: 'Deleted'} and return if execution.destroy
+        render json: {error: "Failed to Delete Execution [#{execution.errors.full_messages}]"}
       else
         execution.update!(deleted: true)
         project.executions.create!(closed: false)

@@ -1,6 +1,5 @@
 class Execution < ApplicationRecord
 
-  default_scope{ where(deleted: [false, nil])}
   scope :open_execution, ->() { find_by_closed(false) }
 
   belongs_to :project
@@ -23,7 +22,7 @@ class Execution < ApplicationRecord
                        ELSE NULL \
                      END) AS skip_count \
           FROM  results \
-          WHERE results.execution_id = #{11} \
+          WHERE results.execution_id = #{self.id} \
           GROUP  BY results.environment_id) results \
           where results.environment_id = environments.id"
 
@@ -47,7 +46,7 @@ class Execution < ApplicationRecord
                      ELSE NULL \
                    END) AS skip_count \
         FROM  results \
-        WHERE results.execution_id = #{11} \
+        WHERE results.execution_id = #{self.id} \
         GROUP  BY results.testcase_id) results \
         where results.testcase_id = testcases.id"
 
