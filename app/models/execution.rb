@@ -8,7 +8,7 @@ class Execution < ApplicationRecord
 
 
   def environment_summary
-    sql = "SELECT environments.id, environments.uuid, results.pass_count, results.fail_count, results.skip_count, results.updated_at from environments, \
+    sql = "SELECT environments.id, environments.uuid, environments.display_name, environments.environment_type, results.pass_count, results.fail_count, results.skip_count, results.updated_at from environments, \
           (SELECT results.environment_id, MAX(results.updated_at) updated_at, \
                Count(CASE \
                        WHEN results.current_status = 'pass' THEN 1\
