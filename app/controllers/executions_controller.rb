@@ -121,7 +121,15 @@ class ExecutionsController < ApplicationController
   # Displays details of NEW execution
   def close
 
-    execution = Execution.find_by_id(params[:id])
+    render json: {error: 'Either execution_id or execution_key must be provided to close executions'},
+           status: :bad_request and return unless params[:execution_id] || params[:execution_key]
+
+    if params[:execution_key]
+      execution = Project.find_by_api_key(params[:execution_key]).executions.find_by_closed(false)
+    else
+      execution = Execution.find_by_id(params[:execution_id])
+    end
+
 
     render json: {error: 'Execution not found'},
            status: :not_found and return unless execution

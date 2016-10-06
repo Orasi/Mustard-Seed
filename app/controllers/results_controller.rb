@@ -1,6 +1,6 @@
 class ResultsController < ApplicationController
 
-  # ROUTE GET /results/:result_ud
+  # ROUTE GET /results/:result_id
   # Returns details of single result if project is viewable by current user
   def show
 
@@ -12,8 +12,8 @@ class ResultsController < ApplicationController
     render json: {error: 'Not authorized to access this resource'},
            status: :unauthorized and return unless @current_user.projects.include? @result.execution.project
 
-
   end
+
 
   def screenshot
 

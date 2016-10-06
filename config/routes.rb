@@ -24,8 +24,7 @@ Rails.application.routes.draw do
   get 'executions/:id/testcase_summary', to: 'executions#testcase_summary'
   get 'executions/:id/environment_summary', to: 'executions#environment_summary'
 
-  post 'executions/:id', to: 'executions#close'
-  post 'executions/:id', to: 'executions#close'
+  post 'executions/close(/:execution_id)(/:execution_key)', to: 'executions#close'
   delete 'executions/:id', to: 'executions#destroy'
 
   get 'results/:id', to: 'results#show'
