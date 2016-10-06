@@ -1,7 +1,7 @@
 json.success @success do |s|
-  json.id s.id
+  json.validation_id s.validation_id
   json.name s.name
   json.reproduction_steps s.reproduction_steps
 end
 
-json.error @error
+json.fail @error

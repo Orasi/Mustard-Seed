@@ -64,7 +64,8 @@ class EnvironmentsController < ApplicationController
     render json: {error: "Environment not found"},
            status: :not_found and return unless environment
 
-    environment.update(deleted: true)
+    render json: {user: 'Deleted'} and return if environment.destroy
+    render json: {error: "Failed to Delete environment [#{environment.errors.full_messages}]"}
 
     render json: {environment: 'Deleted'}
 
@@ -75,7 +76,7 @@ class EnvironmentsController < ApplicationController
 
 
   def environment_params
-    params.require(:environment).permit(:uuid, :project_id, :options)
+    params.require(:environment).permit(:uuid, :project_id, :display_name, :environment_type)
   end
 
 end

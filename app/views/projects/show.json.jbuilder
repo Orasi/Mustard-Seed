@@ -16,7 +16,6 @@ json.project do
     json.uuid env.uuid
     json.display_name env.display_name
     json.environment_type env.environment_type
-    json.options env.options
     json.created_at env.created_at
     json.updated_at env.updated_at
   end

@@ -31,5 +31,10 @@ test:
    database: mustard2-test
 
 production:
-  <<: *default
-  database: db/production.sqlite3
+  adapter: postgresql
+  encoding: unicode
+  pool: 10
+  username: postgres
+  password: postgres
+  host: localhost
+  database: mustard

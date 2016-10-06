@@ -74,7 +74,6 @@ class UsersController < ApplicationController
   def destroy
     user = User.find_by_id(params[:id])
     if user
-      user.destroy
       render json: {user: 'Deleted'} and return if user.destroy
       render json: {error: "Failed to Delete User [#{user.errors.full_messages}]"}
     else

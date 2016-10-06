@@ -88,6 +88,8 @@ class TestcasesController < ApplicationController
     preview = params[:preview]
 
     csv = params[:csv]
+
+
     titles = []
     steps = []
     results = []
@@ -118,15 +120,17 @@ class TestcasesController < ApplicationController
           test_steps.append({step_number: j+1, action: steps[i][j], result: results[i][j]})
         end
 
-        tc = Testcase.create(project_id: project.id,
-                             name: titles[i],
-                             validation_id: test_ids[i],
-                             reproduction_steps: test_steps) unless preview
-
-        tc = Testcase.new(project_id: project.id,
-                             name: titles[i],
-                             validation_id: test_ids[i],
-                             reproduction_steps: test_steps) if preview
+        if preview.downcase == 'true'
+          tc = Testcase.new(project_id: project.id,
+                            name: titles[i],
+                            validation_id: test_ids[i],
+                            reproduction_steps: test_steps)
+        else
+          tc = Testcase.create(project_id: project.id,
+                               name: titles[i],
+                               validation_id: test_ids[i],
+                               reproduction_steps: test_steps)
+        end
         output[:success].append(tc)
       else
         output[:error].append(titles[i])
