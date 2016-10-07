@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   before_action :requires_admin, only: [:index, :create, :update, :destroy]
 
 
+
   # Param group for api documentation
   def_param_group :user do
     param :user, Hash, required: true, :action_aware => true do

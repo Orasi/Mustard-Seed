@@ -1,7 +1,27 @@
 class ResultsController < ApplicationController
 
-  # ROUTE GET /results/:result_id
-  # Returns details of single result if project is viewable by current user
+
+  # Param group for api documentation
+  def_param_group :result do
+    param :result, Hash, required: true, :action_aware => true do
+      param :status, ['pass', 'fail', 'skip'], 'Result status', required: true
+      param :environment_id, String, 'Environment UUID', :required => true
+      param :testcase_id, [String, :number], "Either the testcase validation id or the testcase name", required: true
+      param :result_type, ['automated', 'manual'], "Result type", required: true
+      param :project_id, String, 'Project API Key. Required for automated result type'
+      param :execution_id, :number, 'Execution ID. Required for Manual result type'
+      param :comment, String, 'Comment'
+      param :stacktrace, String, 'Stacktrace'
+      param :link, String, 'Link to external result'
+      param :execution_id, :number, 'Execution ID. Required for Manual result type'
+      param :screenshot, String, 'Base64 encoded screenshot'
+    end
+  end
+
+
+  api :GET, '/results/:id', 'Result details'
+  description 'Only accessible if parent project is viewable by current user'
+  param :id, :number, 'Result ID', required: true
   def show
 
     @result = Result.find_by_id(params[:id])
@@ -14,10 +34,14 @@ class ResultsController < ApplicationController
 
   end
 
-  # ROUTE GET /results/:id/screenshot/:screenshot_id
-  # Returns a temporary url to access the screenshot directly if viewable by current user
-  # Includes a screenshot token that is valid for 30 seconds from time of creation
-  # Screenshot token is invalidated after first use
+
+  api :GET, '/results/:id/screenshot/:screenshot_id', 'Access result screenshot'
+  description 'Returns a temporary url to access the screenshot directly. \
+               Includes a screenshot token that is valid for 30 seconds from \
+               time of creation and destroyed after first use.  Only accessible \
+               if parent project is viewable by current user'
+  param :id, :number, 'Result ID', required: true
+  param :screenshot_id, :number, 'Screenshot ID', required: true
   def screenshot
 
     @result = Result.find_by_id(params[:id])
@@ -41,9 +65,12 @@ class ResultsController < ApplicationController
 
   end
 
-  # ROUTE POST /results/
-  # Creates a result for project based on API KEY
-  # Does not require authentication
+
+  api :POST, '/results/', 'Create new result'
+  description 'Creates a result for project based on API KEY'
+  meta 'Unauthenticated path.  User-Token header is not required'
+  param 'User-Token', nil
+  param_group :result
   def create
 
     ActiveRecord::Base.transaction do

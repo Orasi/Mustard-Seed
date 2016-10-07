@@ -2,11 +2,20 @@ class EnvironmentsController < ApplicationController
 
   before_action :requires_admin, only: [:create, :update, :destroy]
 
-  #TODO: Remove environments index route
 
-  # ROUTE GET /environments/:id
-  # Shows details of a single environment
-  # Only accessible if current user can view parent project
+# Param group for api documentation
+  def_param_group :environment do
+    param :environment, Hash, required: true, :action_aware => true do
+      param :uuid, String, 'Unique Identifier for environment.  IE "Windows_8_1_Chrome_50"', :required => true
+      param :project_id, :number, 'Project ID', :required => true
+      param :display_name, String, "Name of environment to be displayed"
+      param :environment_type, ['Windows', 'Mac', 'Linux', 'Android', 'iOS', 'Windows Phone'], "Environment type"
+    end
+  end
+
+  api :GET, '/environments/:id', 'Environment details'
+  description 'Only accessible if current user can view parent project'
+  param :id, :number, 'Environment ID', required: true
   def show
 
     environment = Environment.find_by_id(params[:id])
@@ -22,9 +31,9 @@ class EnvironmentsController < ApplicationController
   end
 
 
-  # ROUTE POST /environments/
-  # Creates a new environment
-  # Only accessible by Admins
+  api :POST, '/environments/', 'Create new environment'
+  description 'Only accessible by admin users'
+  param_group :environment
   def create
 
     environment = Environment.new(environment_params)
@@ -37,9 +46,10 @@ class EnvironmentsController < ApplicationController
   end
 
 
-  # ROUTE PUT /environments/:id
-  # Updates properties of existing environment
-  # Only accessible by Admins
+  api :PUT, '/environments/:id', 'Update existing environment'
+  description 'Only accessible by admin users'
+  param :id, :number, 'Environment ID', required: true
+  param_group :environment
   def update
 
     environment = Environment.find_by_id(params[:id])
@@ -54,9 +64,9 @@ class EnvironmentsController < ApplicationController
   end
 
 
-  # ROUTE DELETE /environments/:id
-  # Deletes existing environment
-  # Only accessible by Admins
+  api :DELETE, '/environments/:id', 'Delete existing environment'
+  description 'Only accessible by admin users'
+  param :id, :number, 'Environment ID', required: true
   def destroy
 
     environment = Environment.find_by_id(params[:id])

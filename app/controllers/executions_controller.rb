@@ -3,9 +3,10 @@ class ExecutionsController < ApplicationController
   before_action :requires_admin, only: [:destroy]
 
 
-  # ROUTE GET /executions/:id/testcase_summary
-  # Lists the pass, fail, and skip counts by testcase
-  # Only accessible if project is viewable by current user
+  api :GET, '/executions/:id/testcase_summary', 'Testcase Summary'
+  description 'Lists the pass, fail, and skip counts by testcase'
+  param :id, :number, 'Execution ID', required: true
+  meta  'Only accessible if project is viewable by current user'
   def testcase_summary
 
     execution = Execution.find_by_id(params[:id])
@@ -22,9 +23,10 @@ class ExecutionsController < ApplicationController
   end
 
 
-  # ROUTE GET /executions/:id/environment_summary
-  # Lists the pass, fail, and skip counts by environment
-  # Only accessible if project is viewable by current user
+  api :GET, '/executions/:id/environment_summary', 'Environment Summary'
+  description 'Lists the pass, fail, and skip counts by environment'
+  meta 'Only accessible if project is viewable by current user'
+  param :id, :number, 'Execution ID', required: true
   def environment_summary
 
     execution = Execution.find_by_id(params[:id])
@@ -41,9 +43,10 @@ class ExecutionsController < ApplicationController
   end
 
 
-  # ROUTE GET /executions/:id
-  # Shows details of execution if project is viewable by current user
-  # Only accessible if project is viewable by current user
+  api :GET, '/executions/:id', 'Execution Details'
+  description 'Shows details of execution'
+  param :id, :number, 'Execution ID', required: true
+  meta 'Only accessible if project is viewable by current user'
   def testcase_status
 
     execution = Execution.find_by_id(params[:id])
@@ -65,9 +68,11 @@ class ExecutionsController < ApplicationController
 
   end
 
-  # ROUTE GET /executions/:id/testcases/:testcase_id
-  # Shows latest results in all environments for a given testcase
-  # Only accessible if project is viewable by current user
+  api :GET, '/executions/:id/testcases/:testcase_id', 'Testcase Detail'
+  description 'Shows latest results in all environments for a given testcase'
+  meta 'Only accessible if project is viewable by current user'
+  param :id, :number, 'Execution ID', required: true
+  param :testcase_id, :number, 'Testcase ID', required: true
   def testcase_detail
 
     execution = Execution.find_by_id(params[:id])
@@ -91,9 +96,11 @@ class ExecutionsController < ApplicationController
   end
 
 
-  # ROUTE GET /executions/:id/environments/:environment_id
-  # Shows latest results in all environments for a given testcase
-  # Only accessible if project is viewable by current user
+  api :GET, '/executions/:id/environments/:environment_id', 'Environment Detail'
+  description 'Shows latest results in all environments for a given testcase'
+  meta 'Only accessible if project is viewable by current user'
+  param :id, :number, 'Execution ID', required: true
+  param :environment_id, :number, 'Environment ID', required: true
   def environment_detail
 
     execution = Execution.find_by_id(params[:id])
@@ -129,15 +136,18 @@ class ExecutionsController < ApplicationController
     incomplete_tests = Testcase.not_run(execution)
 
     render json: {incomplete: incomplete_tests}
+
   end
 
 
-  # ROUTE POST /executions/:id?<execution_id || project_key>=<value>
-  # Closes the specified execution and opens a new execution
-  # User must provide either execution_id or project_key
-  # If project_key is provided the open execution will be closed
-  # Only accessible if project is viewable by current user
-  # Displays details of NEW execution
+  api :POST, '/executions/close', 'Close execution'
+  description 'Closes execution and opens a new execution'
+  meta 'User must provide either execution_id or project_key
+        If project_key is provided the open execution will be closed
+        Only accessible if project is viewable by current user
+        Displays details of NEW execution'
+  param :project_key, String, 'Project Key.  Required if execution_id is not present'
+  param :execution_id, :number, 'Execution ID. Required if project_key is not present'
   def close
 
     render json: {error: 'Either Execution Id or Project Key must be provided to close executions'},
@@ -172,11 +182,12 @@ class ExecutionsController < ApplicationController
   end
 
 
-  # ROUTE DELETE /executions/:id
-  # Deletes an existing execution
-  # If deleted execution was open it will create a new open execution
-  # Projects must have one open execution at all times
-  # Only accessible by Admins
+  api :DELETE, '/executions/:id', 'Delete execution'
+  description 'Deletes an existing execution'
+  meta 'If deleted execution was open it will create a new open execution
+        Projects must have one open execution at all times
+        Only accessible by Admins'
+  param :id, :number, 'Execution ID', required: true
   def destroy
 
     execution = Execution.find_by_id(params[:id])
@@ -201,9 +212,10 @@ class ExecutionsController < ApplicationController
 
   end
 
-  # ROUTE GET /executions/:id/next_test
-  # Returns the next incomplete test
-  # Marks the test as in use so it won't be retrieved by subsequent calls
+  api :GET, '/executions/:id/next_test', 'Next Incomplete Test'
+  description 'Returns the next incomplete test for this execution'
+  meta 'Marks the test as in use so it won\'t be retrieved by subsequent calls for 5 minutes'
+  param :id, :number, 'Execution ID', required: true
   def next_incomplete_test
 
     execution = Execution.find_by_id(params[:id])

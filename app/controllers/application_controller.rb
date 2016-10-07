@@ -2,9 +2,16 @@ class ApplicationController < ActionController::API
 
   before_action :require_user_token, except: [:authenticate, :create]
 
+  resource_description do
+    param 'User-Token', String, 'Authentication token.  Must be provided in the header of all calls unless otherwise indicated', required: true
+  end
 
-  # ROUTE POST /authenticate
-  # Returns User-Token to be used in header request for all subsequent calls
+  api :POST, '/authenticate', 'Login'
+  description 'Returns User-Token and current user details.'
+  meta 'Unauthenticated path.  User-Token header is not required'
+  param 'User-Token', nil
+  param :username, String, 'User username', required: true
+  param :password, String, 'User password', required: true
   def authenticate
 
     user = User.find_by_username(params[:username].downcase)
