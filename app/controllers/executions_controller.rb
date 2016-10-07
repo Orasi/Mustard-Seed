@@ -158,10 +158,12 @@ class ExecutionsController < ApplicationController
     render json: {error: 'Not authorized to access this resource'},
            status: :unauthorized and return unless @current_user.projects.include? project
 
+    # Name execution if name is provided
+    name = params[:execution] && params[:execution][:name] ? params[:execution][:name] : nil
 
     ActiveRecord::Base.transaction do
       execution.update!(closed: true)
-      @new_execution = project.executions.new(closed: false)
+      @new_execution = project.executions.new(closed: false, name: name)
       @new_execution.save!
     end
 

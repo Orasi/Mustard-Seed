@@ -2,10 +2,16 @@ class Execution < ApplicationRecord
 
   scope :open_execution, ->() { find_by_closed(false) }
 
+  before_save :default_name
+
   belongs_to :project
   has_many :results, dependent: :destroy
 
-
+  def default_name
+    if self.name.blank?
+      self.name = "Execution: #{DateTime.now.strftime('%m/%d/%Y')}"
+    end
+  end
 
   def environment_summary
     sql = "SELECT environments.id, environments.uuid, environments.display_name, environments.environment_type, results.pass_count, results.fail_count, results.skip_count, results.updated_at from environments, \

@@ -21,6 +21,7 @@ json.project do
   end
   json.executions @project.executions.reverse do |exc|
     json.id exc.id
+    json.name exc.name
     json.closed exc.closed
     json.created_at exc.created_at
     json.updated_at exc.updated_at
