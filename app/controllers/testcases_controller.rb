@@ -5,9 +5,23 @@ class TestcasesController < ApplicationController
   before_action :requires_admin, only: [:create, :update, :destroy, :import]
 
 
-  # ROUTE GET /testcases/:id
-  # Displays details about a single testcase
-  # Only displayed if project is viewable by current user
+  # Param group for api documentation
+  def_param_group :testcase do
+    param :testcase, Hash, required: true, :action_aware => true do
+      param :name, String, 'Testcase name', :required => true
+      param :project_id, :number, "Project ID", :required => true
+      param :validation_id, :number, 'Unique ID for testcase'
+      param :reproduction_steps, Array do
+        param :action, String, 'Action to perform'
+        param :result, String, 'Expected result'
+      end
+    end
+  end
+
+
+  api :GET, '/testcases/:id', 'Testcase details'
+  param :id, :number, required: true
+  description 'Only displayed if project is viewable by current user'
   def show
 
     testcase = Testcase.find_by_id(params[:id])
@@ -23,9 +37,9 @@ class TestcasesController < ApplicationController
   end
 
 
-  # ROUTE POST /testcases/
-  # Creates a new testcase
-  # Only accessible by Admins
+  api :POST, '/testcases/', 'Create new testcase'
+  description 'Only accessible by Admins'
+  param_group :testcase
   def create
 
     testcase = Testcase.new(testcase_params)
@@ -38,9 +52,9 @@ class TestcasesController < ApplicationController
   end
 
 
-  # ROUTE PUT /testcases/:id
-  # Updates properties of existing testcase
-  # Only accessible by Admins
+  api :PUT, '/testcases/', 'Update existing testcase'
+  description 'Only accessible by Admins'
+  param_group :testcase
   def update
 
     testcase = Testcase.find_by_id(params[:id])
@@ -54,9 +68,9 @@ class TestcasesController < ApplicationController
   end
 
 
-  # ROUTE DELETE /testcases/:id
-  # Deletes existing testcase
-  # Only accessbile by Admins
+  api :DELETE, '/testcases/:id', 'Delete existing testcase'
+  description 'Only accessbile by Admins'
+  param :id, :number, required: true
   def destroy
 
     testcase = Testcase.find_by_id(params[:id])
@@ -70,10 +84,11 @@ class TestcasesController < ApplicationController
   end
 
 
-
-  # ROUTE POST /projects/:id/import
-  # Import testcases from CSV string
-  # Only accessible by Admins
+  api :POST, '/projects/:id/import', 'Import testcases'
+  description 'Import testcases from CSV string.  Only accessible by admin users'
+  param :project_id, :number, required: true
+  param :csv, String, required: true
+  param :preview, :boolean
   def import
 
     project = Project.find_by_id(params[:project_id])
@@ -150,7 +165,7 @@ class TestcasesController < ApplicationController
 
   def testcase_params
 
-    params.require(:testcase).permit(:name, :validation_id, :project_id)
+    params.require(:testcase).permit(:name, :validation_id, :project_id, :reproduction_steps)
 
   end
 

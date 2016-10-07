@@ -38,7 +38,7 @@ gem 'pg'
 gem "paperclip", "~> 5.0.0"
 
 gem 'awesome_print'
-
+gem 'apipie-rails'
 group :development, :test do
 
   # Use RSpec for specs

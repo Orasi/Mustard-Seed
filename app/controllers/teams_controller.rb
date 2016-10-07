@@ -8,9 +8,18 @@ class TeamsController < ApplicationController
                                         :remove_user,
                                         :remove_project]
 
-  # ROUTE GET /teams/
-  # Returns all teams viewable by user
-  # If Admin returns all teams
+
+  # Param group for api documentation
+  def_param_group :team do
+    param :team, Hash, required: true, :action_aware => true do
+      param :name, String, 'Team name', :required => true
+      param :description, String, "Team Description", :required => true
+    end
+  end
+
+
+  api :GET, '/teams/', 'All teams'
+  description 'Returns all teams viewable by current user'
   def index
 
     if @current_user.admin
@@ -22,8 +31,9 @@ class TeamsController < ApplicationController
   end
 
 
-  # ROUTE GET /teams/:id
-  # Returns details of single team if viewable by current user
+  api :GET, '/teams/:id', 'Team details'
+  description 'Must be viewable by current user'
+  param :id, :number, required: true
   def show
 
     @team = Team.includes(:users, :projects).find_by_id(params[:id])
@@ -38,9 +48,9 @@ class TeamsController < ApplicationController
   end
 
 
-  # ROUTE POST /teams/
-  # Creates new team
-  # Only accessible by Admins
+  api :POST, '/teams/', 'Create new team'
+  description 'Only accessible by Admins'
+  param_group :team
   def create
 
     @team = Team.new(team_params)
@@ -53,9 +63,10 @@ class TeamsController < ApplicationController
   end
 
 
-  # ROUTE PUT /teams/:id
-  # Updates properties of existing team
-  # Only accessible by Admins
+  api :PUT, '/teams/:id', 'Update existing team'
+  description 'Only accessible by Admins'
+  param :id, :number, required: true
+  param_group :team
   def update
 
     @team = Team.find_by_id(params[:id])
@@ -69,9 +80,9 @@ class TeamsController < ApplicationController
   end
 
 
-  # ROUTE DELETE /teams/:id
-  # Deletes an existing team
-  # Only accessible by Admins
+  api :DELETE, '/teams/:id', 'Delete existing team'
+  description 'Only accessible by Admins'
+  param :id, :number, required: true
   def destroy
 
     @team = Team.find_by_id(params[:id])
@@ -85,9 +96,10 @@ class TeamsController < ApplicationController
   end
 
 
-  # ROUT POST /teams/:id/user/:user_id
-  # Adds an existing user to an existing team
-  # Only accessible by Admins
+  api :POST, '/teams/:id/user/:user_id', 'Add existing user to team'
+  description 'Only accessible by Admins'
+  param :id, :number, 'Team ID', required: true
+  param :user_id, :number, 'User ID', required: true
   def add_user
 
     @team = Team.find_by_id(params[:id])
@@ -110,9 +122,10 @@ class TeamsController < ApplicationController
   end
 
 
-  # ROUTE POST /teams/:id/projects/:project_id
-  # Adds existing project to exisiting team
-  # Only accessible by Admins
+  api :POST, '/teams/:id/projects/:project_id', 'Add existing project to team'
+  description 'Only accessible by Admins'
+  param :id, :number, 'Team ID', required: true
+  param :project_id, :number, 'Project ID', required: true
   def add_project
 
     @team = Team.find_by_id(params[:id])
@@ -135,9 +148,10 @@ class TeamsController < ApplicationController
   end
 
 
-  # ROUTE DELETE /teams/:id/user/:user_id
-  # Removes user from team
-  # Only accessible by Admins
+  api :DELETE, '/teams/:id/user/:user_id', 'Remove user from team'
+  description 'Only accessible by Admins'
+  param :id, :number, 'Team ID', required: true
+  param :user_id, :number, 'User ID', required: true
   def remove_user
 
     @team = Team.find_by_id(params[:id])
@@ -160,9 +174,10 @@ class TeamsController < ApplicationController
   end
 
 
-  # ROUTE DELETE /teams/:id/projects/:project_id
-  # Removes project from team
-  # Only accessible by Admins
+  api :DELETE, '/teams/:id/projects/:project_id', 'Remove project from team'
+  description 'Only accessible by Admins'
+  param :id, :number, 'Team ID', required: true
+  param :project_id, :number, 'Project ID', required: true
   def remove_project
 
     @team = Team.find_by_id(params[:id])

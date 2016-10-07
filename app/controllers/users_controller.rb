@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 
+
   # Password confirmation should be handled client side.
   # Append password confirmation on server side to remove need to provide both
   before_action :confirm_password, only: :create
@@ -8,9 +9,22 @@ class UsersController < ApplicationController
   before_action :requires_admin, only: [:index, :create, :update, :destroy]
 
 
-  # ROUTE GET /users
-  # Returns all system users
-  # Only accessible by Admins
+  # Param group for api documentation
+  def_param_group :user do
+    param :user, Hash, required: true, :action_aware => true do
+      param :first_name, String, 'User\'s First name', :required => true
+      param :last_name, String, 'User\'s last name', :required => true
+      param :company, String, "User's Company", :required => true
+      param :username, String, "User's email address. Used to login", :required => true
+      param :password, String, "User's password", :required => true
+      param :admin, :boolean, "User's permission level"
+    end
+  end
+
+
+  api :GET, '/users', 'All Users'
+  formats ['json']
+  description "Returns all system users. Only accessible by Admins"
   def index
 
     render json: {error: 'You do not have permission to access this resource'},
@@ -21,10 +35,10 @@ class UsersController < ApplicationController
   end
 
 
-  # ROUTE GET /users/:id
-  # Returns details of a single user
-  # Admins can see any users
-  # Non-admins can only view themselves
+  api :GET, '/users/:id', 'User details'
+  param :id, :number, 'User ID', required: true
+  formats ['json']
+  description "Returns details of a single user. Admins can see any users. Non-admins can only view themselves"
   def show
 
     @user = User.find_by_id(params[:id])
@@ -40,9 +54,9 @@ class UsersController < ApplicationController
   end
 
 
-  # ROUTE POST /users/
-  # Creates a new user
-  # Only accessible by Admins
+  api :POST, '/users/', 'Create a new user'
+  param_group :user
+  description 'Only accessible by Admins'
   def create
     @user = User.new(create_user_params)
     @user.username = @user.username.downcase
@@ -54,9 +68,10 @@ class UsersController < ApplicationController
   end
 
 
-  # ROUTE PUT /users/:id
-  # Updates properties of existing user
-  # Only accessible by Admins
+  api :PUT, '/users/:id', 'Update existing user'
+  param :id, :number, 'User ID', required: true
+  param_group :user
+  description 'Only accessible by admin users'
   def update
     @user = User.find_by_id(params[:id])
     if @user
@@ -68,9 +83,9 @@ class UsersController < ApplicationController
   end
 
 
-  # ROUTE DELETE /users/:id
-  # Deletes an existing user
-  # Only accessible by Admins
+  api :DELETE, '/users/:id', 'Delete existing user'
+  param :id, :number, 'User ID', required: true
+  description 'Only accessible by admin users'
   def destroy
     user = User.find_by_id(params[:id])
     if user
