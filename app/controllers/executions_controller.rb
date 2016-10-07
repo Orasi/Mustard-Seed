@@ -78,12 +78,13 @@ class ExecutionsController < ApplicationController
     render json: {error: 'Not authorized to access this resource'},
            status: :unauthorized and return unless @current_user.projects.include? execution.project
 
+    @execution_id = params[:id]
     @testcase = Testcase.find_by_id(params[:testcase_id])
 
     render json: {error: 'Testcase not found'},
            status: :not_found and return unless @testcase
 
-    @results = @testcase.results.where(execution_id: execution.id).joins('JOIN environments ON environments.id = results.environment_id')
+    @results = @testcase.results.where(execution_id: execution.id).joins('LEFT JOIN environments ON environments.id = results.environment_id')
 
     render :testcase
 
@@ -115,17 +116,35 @@ class ExecutionsController < ApplicationController
   end
 
 
-  # ROUTE POST /executions/:id
+  def incomplete_tests
+
+    execution = Execution.find_by_id(params[:id])
+
+    render json: {error: 'Execution not found'},
+           status: :not_found and return unless execution
+
+    render json: {error: 'Not authorized to access this resource'},
+           status: :unauthorized and return unless @current_user.projects.include? execution.project
+
+    incomplete_tests = Testcase.not_run(execution)
+
+    render json: {incomplete: incomplete_tests}
+  end
+
+
+  # ROUTE POST /executions/:id?<execution_id || project_key>=<value>
   # Closes the specified execution and opens a new execution
+  # User must provide either execution_id or project_key
+  # If project_key is provided the open execution will be closed
   # Only accessible if project is viewable by current user
   # Displays details of NEW execution
   def close
 
-    render json: {error: 'Either execution_id or execution_key must be provided to close executions'},
-           status: :bad_request and return unless params[:execution_id] || params[:execution_key]
+    render json: {error: 'Either Execution Id or Project Key must be provided to close executions'},
+           status: :bad_request and return unless params[:execution_id] || params[:project_key]
 
-    if params[:execution_key]
-      execution = Project.find_by_api_key(params[:execution_key]).executions.find_by_closed(false)
+    if params[:project_key]
+      execution = Project.find_by_api_key(params[:project_key]).executions.find_by_closed(false)
     else
       execution = Execution.find_by_id(params[:execution_id])
     end
@@ -177,6 +196,30 @@ class ExecutionsController < ApplicationController
     end
 
     render json: {execution: 'Deleted'}
+
+  end
+
+  # ROUTE GET /executions/:id/next_test
+  # Returns the next incomplete test
+  # Marks the test as in use so it won't be retrieved by subsequent calls
+  def next_incomplete_test
+
+    execution = Execution.find_by_id(params[:id])
+
+    render json: {error: 'Execution not found'},
+           status: :not_found and return unless execution
+
+    render json: {error: 'Not authorized to access this resource'},
+           status: :unauthorized and return unless @current_user.projects.include? execution.project
+
+    testcase = Testcase.not_run(execution).where("runner_touch <= ? or runner_touch is null", 5.minutes.ago).order(runner_touch: :desc).first
+
+    render json: {testcase: 'No remaining testcases'} and return  unless testcase
+    testcase = Testcase.find(testcase.id)
+
+    testcase.update(runner_touch: DateTime.now)
+
+    render json: {testcase: testcase}
 
   end
 end

@@ -14,7 +14,10 @@ class ResultsController < ApplicationController
 
   end
 
-
+  # ROUTE GET /results/:id/screenshot/:screenshot_id
+  # Returns a temporary url to access the screenshot directly if viewable by current user
+  # Includes a screenshot token that is valid for 30 seconds from time of creation
+  # Screenshot token is invalidated after first use
   def screenshot
 
     @result = Result.find_by_id(params[:id])
@@ -64,17 +67,49 @@ class ResultsController < ApplicationController
       end
 
 
-      # Find project based on API Key
-      # Return error if invalid Key
-      project_id = result_params[:project_id]
-      project = Project.find_by_api_key(project_id)
-      render json: {error: 'Project not found'}, status: :not_found and return unless project
+      # Check result status to ensure it is one of the acceptable statuses
+      # All Status are written to the database in lowercase
+      # If status is invalid return an error
+      result_params[:status].downcase!
+      status = result_params[:status]
+      render json: {error: "Invalid status: #{status}"},
+             status: :bad_request and return unless Result.valid_status? status
 
 
-      # Find Execution for project, return error if no open execution exists
-      # An Open Execution SHOULD always exist
-      execution = project.executions.open_execution
-      render json: {error: 'Execution not found'}, status: :not_found and return unless execution
+      # Check result type to ensure it is an acceptable type
+      # All result types are written to the database in lowercase
+      # If type is invalid return error
+      result_params[:result_type].downcase!
+      result_type = result_params[:result_type]
+      render json: {error: "Invalid result type: #{result_type}"},
+             status: :bad_request and return unless Result.valid_type? result_type
+
+
+      if result_params['result_type'] == 'manual'
+
+        # If Manual Result find execution by execution_id
+        # Return error if error not found
+        execution = Execution.find_by_id(result_params[:execution_id])
+        render json: {error: 'Execution not found'}, status: :not_found and return unless execution
+
+        # Find Project from execution
+        # Return error if project not found
+        project = execution.project
+        render json: {error: 'Project not found'}, status: :not_found and return unless project
+      else
+
+        # Find project based on API Key
+        # Return error if invalid Key
+        project_id = result_params[:project_id]
+        project = Project.find_by_api_key(project_id)
+        render json: {error: 'Project not found'}, status: :not_found and return unless project
+
+        # Find Execution for project, return error if no open execution exists
+        # An Open Execution SHOULD always exist
+        execution = project.executions.open_execution
+        render json: {error: 'Execution not found'}, status: :not_found and return unless execution
+
+      end
 
 
       # Find testcase based on provided testcase_id
@@ -95,28 +130,16 @@ class ResultsController < ApplicationController
       # For Browsers this can be any uniquely identifying string
       # I.E.   Windows8_IE10
       # If no environment can be found with the environment id a new environment will be created
-      environment_identifier = result_params[:environment_id]
-      environment = find_or_create_environment(environment_identifier, project.id)
-      return unless environment
-      environment_id = environment.id
-
-
-      # Check result status to ensure it is one of the acceptable statuses
-      # All Status are writted to the database in lowercase
-      # If status is invalid return an error
-      result_params[:status].downcase!
-      status = result_params[:status]
-      render json: {error: "Invalid status: #{status}"},
-             status: :bad_request and return unless Result.valid_status? status
-
-
-      # Check result type to ensure it is an acceptable type
-      # All result types are written to the database in lowercase
-      # If type is invalid return error
-      result_params[:result_type].downcase!
-      result_type = result_params[:result_type]
-      render json: {error: "Invalid result type: #{result_type}"},
-             status: :bad_request and return unless Result.valid_type? result_type
+      # Manual test results are written with a -1 environment id.
+      # These checks are by passed for manual test results
+      if result_params['result_type'] == 'manual'
+        environment_id = result_params['environment_id']
+      else
+        environment_identifier = result_params[:environment_id]
+        environment = find_or_create_environment(environment_identifier, project.id)
+        return unless environment
+        environment_id = environment.id
+      end
 
 
       # Create Screenshot if screenshot is provided
@@ -152,6 +175,7 @@ class ResultsController < ApplicationController
       render json: {error: result.errors},
              status: :bad_request and return unless result.save
 
+
       # Render new result as json
       render json: {result: result}
 
@@ -170,8 +194,19 @@ class ResultsController < ApplicationController
     render json: {error: 'Missing required parameter: result'},
            status: :bad_request and return false unless params[:result]
 
-    render json: {error: 'Missing required parameter: result.project_id'},
-           status: :bad_request and return false unless params[:result][:project_id]
+    render json: {error: 'Missing required parameter: result.result_type'},
+           status: :bad_request and return false unless params[:result][:result_type]
+
+    # Manual Results are required to provde the execution id.
+    # All other results are required to provide the project_id
+    if params['result']['result_type'] == 'manual'
+      render json: {error: 'Missing required parameter: result.execution_id'},
+             status: :bad_request and return false unless params[:result][:execution_id]
+    else
+      render json: {error: 'Missing required parameter: result.project_id'},
+             status: :bad_request and return false unless params[:result][:project_id]
+    end
+
 
     render json: {error: 'Missing required parameter: result.testcase_id'},
            status: :bad_request and return false unless params[:result][:testcase_id]
@@ -179,8 +214,6 @@ class ResultsController < ApplicationController
     render json: {error: 'Missing required parameter: result.environment_id'},
            status: :bad_request and return false unless params[:result][:environment_id]
 
-    render json: {error: 'Missing required parameter: result.result_type'},
-           status: :bad_request and return false unless params[:result][:result_type]
 
     render json: {error: 'Missing required parameter: result.status'},
            status: :bad_request and return false unless params[:result][:status]
@@ -260,6 +293,7 @@ class ResultsController < ApplicationController
   end
 
 
+
   # Controls the columns that will be allowed to be written to the database
   # Extra care needs to be taken here to whitelist parameters that are allowed to avoid writing
   # arbitrary json to the database
@@ -273,7 +307,8 @@ class ResultsController < ApplicationController
                                    :comment,
                                    :screenshot,
                                    :stacktrace,
-                                   :link
+                                   :link,
+                                   :execution_id
     )
 
   end

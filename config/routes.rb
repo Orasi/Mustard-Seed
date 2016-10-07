@@ -23,8 +23,10 @@ Rails.application.routes.draw do
   get 'executions/:id/environments/:environment_id', to: 'executions#environment_detail'
   get 'executions/:id/testcase_summary', to: 'executions#testcase_summary'
   get 'executions/:id/environment_summary', to: 'executions#environment_summary'
+  get 'executions/:id/incomplete', to: 'executions#incomplete_tests'
+  get 'executions/:id/next_test', to: 'executions#next_incomplete_test'
 
-  post 'executions/close(/:execution_id)(/:execution_key)', to: 'executions#close'
+  post 'executions/close(/:execution_id)(/:project_key)', to: 'executions#close'
   delete 'executions/:id', to: 'executions#destroy'
 
   get 'results/:id', to: 'results#show'

@@ -8,7 +8,7 @@ class Testcase < ApplicationRecord
   validates :name, uniqueness: {scope: :project_id}
   validates :validation_id, uniqueness: {scope: :project_id}, if: 'validation_id.present?'
 
-  scope :not_run, -> (execution){select('testcases.id, testcases.name')
+  scope :not_run, -> (execution){select('testcases.id, testcases.name, testcases.runner_touch')
                                       .joins("JOIN executions ON executions.project_id = testcases.project_id \
                                                 AND executions.id = #{execution.id} ")
                                       .where("NOT EXISTS (Select current_status from results \
