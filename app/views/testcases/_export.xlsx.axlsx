@@ -25,3 +25,4 @@ p.workbook do |wb|
   end
 end
 p.use_shared_strings = true
+p.serialize filename

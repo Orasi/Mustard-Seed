@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   post 'projects/:project_id/import', to: 'testcases#import', defaults: {format: :json}
   get 'projects/:project_id/testcases/export', to: 'testcases#export', defaults: {format: :json}
 
+
   resources :environments, except: :index, defaults: {format: :json}
 
   resources :testcases, except: :index, defaults: {format: :json}
@@ -35,6 +36,6 @@ Rails.application.routes.draw do
   post 'results', to: 'results#create', defaults: {format: :json}
   get 'results/:id/screenshot/:screenshot_id', to: 'results#screenshot', defaults: {format: :json}
 
-  get 'screenshot/:token', to: 'screenshots#show', as: :screenshot, defaults: {format: :json}
+  get 'download/:token', to: 'downloads#show', as: :download, defaults: {format: :json}
 
 end

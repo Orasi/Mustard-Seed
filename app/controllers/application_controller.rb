@@ -42,7 +42,7 @@ class ApplicationController < ActionController::API
   # Checks request header for 'User-Token' and validates against database
   # User-Tokens expire after two hours and are renewed each time a request comes in
   def require_user_token
-
+    # puts request.headers.to_json
     token = UserToken.find_by_token(request.headers['User-Token'])
 
     render json: {Error: 'Invalid User Token' },

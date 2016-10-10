@@ -3,7 +3,6 @@ class Screenshot < ApplicationRecord
   has_attached_file :screenshot,
                     url: ':project_name/:execution_date/:test_name/:result_file_name',
                     path: "/#{::Rails.root}/screenshots/:project_name/:execution_date/:test_name/:result_file_name"
-  has_many :screenshot_tokens
 
   validates_attachment_content_type :screenshot, content_type: /\Aimage\/.*\z/
   validates :execution_start, :testcase_name, :environment_uuid, :project_name, presence: true

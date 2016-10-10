@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161007163223) do
+ActiveRecord::Schema.define(version: 20161010185058) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "download_tokens", force: :cascade do |t|
+    t.string   "token"
+    t.datetime "expiration"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "path"
+    t.string   "filename"
+    t.boolean  "remove"
+    t.string   "content_type"
+    t.string   "disposition"
+  end
 
   create_table "environments", force: :cascade do |t|
     t.string   "uuid"
@@ -58,14 +70,6 @@ ActiveRecord::Schema.define(version: 20161007163223) do
     t.integer  "execution_id"
     t.json     "results"
     t.string   "current_status"
-  end
-
-  create_table "screenshot_tokens", force: :cascade do |t|
-    t.string   "token"
-    t.datetime "expiration"
-    t.integer  "screenshot_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
   end
 
   create_table "screenshots", force: :cascade do |t|

@@ -55,8 +55,14 @@ class ResultsController < ApplicationController
     @result.results.each do |r|
       if r['screenshot_id'].to_s == params[:screenshot_id]
         ss = Screenshot.find(params[:screenshot_id])
-        token = ss.screenshot_tokens.create(expiration: DateTime.now + 30.seconds)
-        render json: {screenshot: screenshot_url(token: token.token)} and return
+        token = DownloadToken.create(expiration: DateTime.now + 30.seconds,
+                                     path: ss.screenshot.path,
+                                     disposition: 'inline',
+                                     remove: false,
+                                     content_type: ss.screenshot.content_type,
+                                     filename: ss.screenshot_file_name)
+        puts token.errors.full_messages
+        render json: {screenshot: download_url(token: token.token)} and return
       end
     end
 
