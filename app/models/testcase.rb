@@ -8,7 +8,7 @@ class Testcase < ApplicationRecord
   validates :name, uniqueness: {scope: :project_id}
   validates :validation_id, uniqueness: {scope: :project_id}, if: 'validation_id.present?'
 
-  scope :not_run, -> (execution){select('testcases.id, testcases.name, testcases.runner_touch')
+  scope :not_run, -> (execution){select('testcases.id, testcases.name, testcases.runner_touch, testcases.validation_id')
                                       .joins("JOIN executions ON executions.project_id = testcases.project_id \
                                                 AND executions.id = #{execution.id} ")
                                       .where("NOT EXISTS (Select current_status from results \
@@ -16,7 +16,7 @@ class Testcase < ApplicationRecord
                                                               AND results.execution_id = executions.id)")
   }
 
-  scope :failing, -> (execution){select('testcases.id, testcases.name')
+  scope :failing, -> (execution){select('testcases.id, testcases.name, testcases.validation_id')
                                      .joins("JOIN executions ON executions.project_id = testcases.project_id \
                                                 AND executions.id = #{execution.id} ")
                                      .where("EXISTS (Select current_status from results \
@@ -25,7 +25,7 @@ class Testcase < ApplicationRecord
                                                               AND results.execution_id = executions.id)")
   }
 
-  scope :passing, -> (execution){select('testcases.id, testcases.name')
+  scope :passing, -> (execution){select('testcases.id, testcases.name, testcases.validation_id')
                                      .joins("JOIN executions ON executions.project_id = testcases.project_id \
                                                 AND executions.id = #{execution.id} ")
                                      .where("EXISTS (Select current_status from results \
@@ -38,7 +38,7 @@ class Testcase < ApplicationRecord
                                                               AND results.execution_id = executions.id)")
   }
 
-  scope :skip, -> (execution){select('testcases.id, testcases.name')
+  scope :skip, -> (execution){select('testcases.id, testcases.name, testcases.validation_id')
                                      .joins("JOIN executions ON executions.project_id = testcases.project_id \
                                                 AND executions.id = #{execution.id} ")
                                      .where("EXISTS (Select current_status from results \

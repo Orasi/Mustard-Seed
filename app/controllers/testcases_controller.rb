@@ -1,7 +1,7 @@
 require 'csv'
 
 class TestcasesController < ApplicationController
-
+  include ActionController::MimeResponds
   before_action :requires_admin, only: [:create, :update, :destroy, :import]
 
 
@@ -83,6 +83,26 @@ class TestcasesController < ApplicationController
 
   end
 
+  api :GET, '/projects/:id/testcases/export', 'Export testcases'
+  description 'Export testcases to xlsx.  Only accessible by admin users'
+  param :project_id, :number, required: true
+  def export
+
+    @project = Project.find_by_id(params[:project_id])
+
+    render json: {error: "Project not found"},
+           status: :not_found and return unless @project
+
+    @testcases = @project.testcases
+    respond_to do |format|
+      format.xlsx{
+        response.headers['Content-Disposition'] = 'attachment; filename="Testcases_Export.xlsx"'
+      }
+      format.any{render json: @testcases}
+    end
+
+  end
+
 
   api :POST, '/projects/:id/import', 'Import testcases'
   description 'Import testcases from CSV string.  Only accessible by admin users'
@@ -112,16 +132,16 @@ class TestcasesController < ApplicationController
     test_ids = []
     CSV.parse(csv, headers: true) do |row|
       row_title = row['Title']
-      row_step = row['Steps'].split("\r\n")
-      row_expected = row['Expected Result'].split("\r\n")
-      row_id = row['TestID']
+      row_step = row['Steps'] ? row['Steps'].split("\r\n") : []
+      row_expected = row['Expected Result'] ? row['Expected Result'].split("\r\n") : []
+      row_id = row['Test ID'] ? row['Test ID'] : ''
       if row_title.present? && row_step.present? && row_expected.present?
         titles.append(row_title)
         steps.append(parse_steps(row_step))
         results.append(parse_steps(row_expected))
         test_ids.append(row_id)
       else
-        output[:errors].append(row_title) if row_title.present?
+        output[:error].append(row_title) if row_title.present?
       end
 
     end

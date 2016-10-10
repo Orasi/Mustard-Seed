@@ -43,7 +43,7 @@ class ExecutionsController < ApplicationController
   end
 
 
-  api :GET, '/executions/:id', 'Execution Details'
+  api :GET, '/executions/:id/testcase_status', 'Execution Details'
   description 'Shows details of execution'
   param :id, :number, 'Execution ID', required: true
   meta 'Only accessible if project is viewable by current user'

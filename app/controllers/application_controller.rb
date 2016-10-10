@@ -14,6 +14,9 @@ class ApplicationController < ActionController::API
   param :password, String, 'User password', required: true
   def authenticate
 
+    render json: {error: 'Username or Password are required'},
+           status: :bad_request and return unless params[:password] && params[:username]
+
     user = User.find_by_username(params[:username].downcase)
 
     render json: {error: 'Username or Password is invalid'},
