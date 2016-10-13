@@ -21,7 +21,7 @@ json.testcase do
     json.manual_results []
   end
 
-    json.automated_results @results.where.not(environment_id: -1) do |r|
+    json.automated_results @results.where.not(environment_id: -1).order(:current_status, 'environments.uuid') do |r|
     json.id r.id
     json.environment_id r.environment_id
     json.environment_name r.environment.uuid unless r.environment_id == -1
@@ -31,6 +31,7 @@ json.testcase do
     json.stacktrace r.results.first['stacktrace'] if r.results.first['stacktrace']
     json.link r.results.first['link'] if r.results.first['link']
     json.screenshot_id r.results.first['screenshot_id'] if r.results.first['screenshot_id']
+    json.created_at r.updated_at
     json.status r.current_status
   end
 
