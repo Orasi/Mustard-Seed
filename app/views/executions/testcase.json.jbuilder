@@ -24,7 +24,7 @@ json.testcase do
     json.automated_results @results.where.not(environment_id: -1).order(:current_status, 'environments.uuid') do |r|
     json.id r.id
     json.environment_id r.environment_id
-    json.environment_name r.environment.uuid unless r.environment_id == -1
+    json.environment_name r.environment.name unless r.environment_id == -1
     json.environment_type r.environment.environment_type unless r.environment_id == -1
     json.result_type r.results.first['result_type'] if r.results.first['result_type']
     json.comment r.results.first['comment'] if r.results.first['comment']

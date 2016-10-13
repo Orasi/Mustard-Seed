@@ -20,16 +20,11 @@ class Environment < ApplicationRecord
     self.environment_type ||= 'Undefined'
   end
 
-  # def display_name
-  #
-  #   return uuid unless options
-  #
-  #   if options['manufacturer'] && options['model'] && options['os_version']
-  #     return "#{options['manufacturer']} - #{options['model']} - #{options['os_version']}"
-  #   elsif options['os'] && options['browser'] && options['browser_version']
-  #     return "#{options['os']} - #{options['browser']} - #{options['browser_version']}"
-  #   end
-  #
-  #   uuid
-  # end
+  def name
+
+    return display_name if display_name && display_name != ''
+
+    uuid
+
+  end
 end
