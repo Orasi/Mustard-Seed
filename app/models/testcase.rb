@@ -1,5 +1,7 @@
 class Testcase < ApplicationRecord
 
+  serialize :reproduction_steps
+
   has_many :results, dependent: :destroy
 
   belongs_to :project

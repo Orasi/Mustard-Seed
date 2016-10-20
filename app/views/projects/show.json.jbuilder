@@ -4,7 +4,7 @@ json.project do
   json.api_key @project.api_key
   json.created_at @project.created_at
   json.updated_at @project.updated_at
-  json.testcases @project.testcases do |tc|
+  json.testcases @project.testcases.order(:validation_id, :id) do |tc|
     json.id tc.id
     json.testcase_name tc.name
     json.testcase_id tc.validation_id if tc.validation_id

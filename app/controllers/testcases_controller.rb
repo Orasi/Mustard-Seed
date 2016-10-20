@@ -58,8 +58,13 @@ class TestcasesController < ApplicationController
 
     testcase = Testcase.find_by_id(params[:id])
     if testcase
-      testcase.update(testcase_params)
-      render json: testcase
+      testcase.reproduction_steps = params[:testcase][:reproduction_steps] if params[:testcase][:reproduction_steps]
+      if testcase.update(testcase_params)
+        render json: testcase
+      else
+        render json: {error: testcase.errors.full_messages}, status: :bad_request
+      end
+
     else
       render json: {error: "Testcase not found"}, status: :not_found
     end
@@ -223,7 +228,7 @@ class TestcasesController < ApplicationController
 
   def testcase_params
 
-    params.require(:testcase).permit(:name, :validation_id, :project_id, :reproduction_steps)
+    params.require(:testcase).permit(:name, :validation_id, :project_id)
 
   end
 
