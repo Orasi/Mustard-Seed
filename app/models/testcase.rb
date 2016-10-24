@@ -4,7 +4,7 @@ class Testcase < ApplicationRecord
 
   has_many :results, dependent: :destroy
 
-  belongs_to :project
+  belongs_to :project, touch: true
 
   validates :name, :project_id, presence: true
   validates :name, uniqueness: {scope: :project_id}

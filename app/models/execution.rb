@@ -4,7 +4,7 @@ class Execution < ApplicationRecord
 
   before_save :default_name
 
-  belongs_to :project
+  belongs_to :project, touch: true
   has_many :results, dependent: :destroy
 
   def default_name

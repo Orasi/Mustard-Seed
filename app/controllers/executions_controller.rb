@@ -1,5 +1,6 @@
 class ExecutionsController < ApplicationController
 
+  skip_before_action :require_user_token, only: [:close]
   before_action :requires_admin, only: [:destroy]
 
 
@@ -156,6 +157,7 @@ class ExecutionsController < ApplicationController
     if params[:project_key]
       execution = Project.find_by_api_key(params[:project_key]).executions.find_by_closed(false)
     else
+      require_user_token
       execution = Execution.find_by_id(params[:execution_id])
     end
 

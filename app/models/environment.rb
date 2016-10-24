@@ -8,7 +8,7 @@ class Environment < ApplicationRecord
   #                                                             AND results.execution_id = executions.id)")
   # }
 
-  belongs_to :project
+  belongs_to :project, touch: true
   has_many :results, dependent: :destroy
   before_save :default_values
   validates :uuid, presence: true, uniqueness: {scope: :project_id}

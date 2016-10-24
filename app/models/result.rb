@@ -2,7 +2,7 @@ class Result < ApplicationRecord
 
   belongs_to :testcase
   belongs_to :environment, optional: true
-  belongs_to :execution
+  belongs_to :execution, touch: true
 
   validates :environment_id, :testcase_id, :execution_id, :current_status, presence: true
 
