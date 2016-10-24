@@ -155,20 +155,27 @@ class ExecutionsController < ApplicationController
            status: :bad_request and return unless params[:execution_id] || params[:project_key]
 
     if params[:project_key]
-      execution = Project.find_by_api_key(params[:project_key]).executions.find_by_closed(false)
+
+      project = Project.find_by_api_key(params[:project_key])
+
+      execution = project.executions.find_by_closed(false)
+
+      render json: {error: 'Execution not found'},
+         status: :not_found and return unless execution
+
     else
+
       require_user_token
       execution = Execution.find_by_id(params[:execution_id])
-    end
 
-
-    render json: {error: 'Execution not found'},
+      render json: {error: 'Execution not found'},
            status: :not_found and return unless execution
+      project = execution.project
 
-    project = execution.project
-
-    render json: {error: 'Not authorized to access this resource'},
+      render json: {error: 'Not authorized to access this resource'},
            status: :unauthorized and return unless @current_user.projects.include? project
+
+    end
 
     # Name execution if name is provided
     name = params[:execution] && params[:execution][:name] ? params[:execution][:name] : nil
