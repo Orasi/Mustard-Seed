@@ -223,7 +223,7 @@ class ExecutionsController < ApplicationController
 
   api :GET, '/executions/:id/next_test', 'Next Incomplete Test'
   description 'Returns the next incomplete test for this execution'
-  meta 'Marks the test as in use so it won\'t be retrieved by subsequent calls for 5 minutes'
+  meta "Marks the test as in use so it won\'t be retrieved by subsequent calls for 5 minutes"
   param :id, :number, 'Execution ID', required: true
   def next_incomplete_test
 

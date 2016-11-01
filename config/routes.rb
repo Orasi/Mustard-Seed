@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   post 'authenticate', to: 'application#authenticate', defaults: {format: :json}
 
   resources :users, defaults: {format: :json}
+  get 'users/find/:username', to: 'users#find', :constraints => { :username => /.+@.+\..*/}
+  post 'users/:id/reset-password/:token', to: 'users#reset_password'
+  post 'users/reset-password', to: 'users#trigger_password_reset'
+
 
   resources :projects
   post 'projects/:project_id/import', to: 'testcases#import', defaults: {format: :json}

@@ -6,6 +6,8 @@ class User < ApplicationRecord
   validates :username, :uniqueness => true
 
   has_one :user_token, dependent: :destroy
+  has_one :password_token, dependent:  :destroy
+
   has_and_belongs_to_many :teams
 
   def self.find_by_user_token(token)
