@@ -1,0 +1,14 @@
+!!! 5
+%html
+  %head
+    %meta{content: 'text/html; charset=UTF-8', 'http-equiv' => 'Content-Type'}
+  %body
+    %h1
+      Welcome to Mustard!
+    %p
+      = "A new user has been created for #{@username} on the Mustard Results Server"
+    %p
+      = "To continue signing up and create a password please "
+      = link_to 'Click Here', @url
+
+
