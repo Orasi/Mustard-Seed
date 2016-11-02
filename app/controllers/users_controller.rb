@@ -130,7 +130,7 @@ class UsersController < ApplicationController
     @user = User.new(create_user_params)
     @user.username = @user.username.downcase
     if @user.save
-      PasswordMailer.deliver_welcome_email(@user)
+      # PasswordMailer.deliver_welcome_email(@user)
       render :show
     else
       render json: {error: 'Bad Request', messages: @user.errors.full_messages}, status: :bad_request
