@@ -19,7 +19,7 @@ json.project do
     json.created_at env.created_at
     json.updated_at env.updated_at
   end
-  json.executions @project.executions.reverse do |exc|
+  json.executions @project.executions.order(:created_at).reverse do |exc|
     json.id exc.id
     json.name exc.name
     json.closed exc.closed
