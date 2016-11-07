@@ -4,6 +4,46 @@ class ExecutionsController < ApplicationController
   before_action :requires_admin, only: [:destroy]
 
 
+  api :get, '/executions/:id/testcase-count', 'Testcase Count'
+  description 'Returns the number of testcases in this execution'
+  param :id, :number, 'Execution ID', required: true
+  meta  'Only accessible if project is viewable by current user'
+  def testcase_count
+
+    execution = Execution.find_by_id(params[:id])
+
+    render json: {error: 'Execution not found'},
+           status: :not_found and return unless execution
+
+    render json: {error: 'Not authorized to access this resource'},
+           status: :unauthorized and return unless @current_user.projects.include? execution.project
+
+    count = execution.project.testcases.count
+
+    render json: {testcases: count}
+  end
+
+
+  api :get, '/executions/:id/environment-count', 'Environment Count'
+  description 'Returns the number of environments in this execution'
+  param :id, :number, 'Execution ID', required: true
+  meta  'Only accessible if project is viewable by current user'
+  def environment_count
+
+    execution = Execution.find_by_id(params[:id])
+
+    render json: {error: 'Execution not found'},
+           status: :not_found and return unless execution
+
+    render json: {error: 'Not authorized to access this resource'},
+           status: :unauthorized and return unless @current_user.projects.include? execution.project
+
+    count = execution.project.environments.count
+
+    render json: {environments: count}
+  end
+
+
   api :GET, '/executions/:id/testcase_summary', 'Testcase Summary'
   description 'Lists the pass, fail, and skip counts by testcase'
   param :id, :number, 'Execution ID', required: true

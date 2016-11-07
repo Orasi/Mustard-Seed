@@ -32,7 +32,8 @@ Rails.application.routes.draw do
   get 'executions/:id/environment_summary', to: 'executions#environment_summary', defaults: {format: :json}
   get 'executions/:id/incomplete', to: 'executions#incomplete_tests', defaults: {format: :json}
   get 'executions/:id/next_test', to: 'executions#next_incomplete_test', defaults: {format: :json}
-
+  get 'executions/:id/testcase-count', to: 'executions#testcase_count', defaults: {format: :json}
+  get 'executions/:id/environment-count', to: 'executions#environment_count', defaults: {format: :json}
   post 'executions/close(/:execution_id)(/:project_key)', to: 'executions#close', defaults: {format: :json}
   delete 'executions/:id', to: 'executions#destroy', defaults: {format: :json}
 
