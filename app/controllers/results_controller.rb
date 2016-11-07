@@ -19,6 +19,24 @@ class ResultsController < ApplicationController
   end
 
 
+  api :GET, 'results/recent', 'Recent Results'
+  description 'Returns the 10 most recent results viewable by current user'
+  def recent
+
+    if @current_user.admin
+
+      @results = Result.order('updated_at DESC').limit(10)
+
+    else
+
+      project_ids = @current_user.projects.pluck(:id)
+      @results = Result.joins('JOIN executions on executions.id = results.execution_id').where(executions: {project_id: project_ids}).order(updated_at: :desc).limit(10)
+
+    end
+
+  end
+
+
   api :GET, '/results/:id', 'Result details'
   description 'Only accessible if parent project is viewable by current user'
   param :id, :number, 'Result ID', required: true

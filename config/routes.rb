@@ -38,6 +38,7 @@ Rails.application.routes.draw do
 
   get 'results/:id', to: 'results#show', defaults: {format: :json}
   post 'results', to: 'results#create', defaults: {format: :json}
+  get 'recent-results', to: 'results#recent', defaults: {format: :json}
   get 'results/:id/screenshot/:screenshot_id', to: 'results#screenshot', defaults: {format: :json}
 
   get 'download/:token', to: 'downloads#show', as: :download, defaults: {format: :json}
