@@ -1,7 +1,7 @@
 json.results @results do |result|
   json.id result.id
   json.environment_id result.environment_id
-  json.environment_display_name result.environment.display_name
+  json.environment_display_name result.environment.display_name if result.environment
   json.environment_type result.environment.environment_type if result.environment
   json.testcase_id result.testcase_id
   json.testcase_name result.testcase.name
