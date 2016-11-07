@@ -19,7 +19,7 @@ class ResultsController < ApplicationController
   end
 
 
-  api :GET, 'results/recent', 'Recent Results'
+  api :GET, 'recent-results', 'Recent Results'
   description 'Returns the 10 most recent results viewable by current user'
   def recent
 
