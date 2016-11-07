@@ -38,8 +38,8 @@ class Execution < ApplicationRecord
   end
 
   def testcase_summary
-    sql = "SELECT testcases.id, testcases.validation_id, results.pass_count, results.fail_count, results.skip_count from testcases, \
-        (SELECT results.testcase_id, \
+    sql = "SELECT testcases.id, testcases.name, testcases.validation_id, results.pass_count, results.fail_count, results.skip_count, results.updated_at from testcases, \
+        (SELECT results.testcase_id, MAX(results.updated_at) updated_at, \
              Count(CASE \
                      WHEN results.current_status = 'pass' THEN 1\
                      ELSE NULL \
