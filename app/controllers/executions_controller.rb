@@ -41,6 +41,7 @@ class ExecutionsController < ApplicationController
     count = execution.project.environments.count
 
     render json: {environments: count}
+
   end
 
 
@@ -61,6 +62,7 @@ class ExecutionsController < ApplicationController
     summary = execution.testcase_summary
 
     render json: {summary: summary}
+
   end
 
 

@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'mailer@localhost.localdomain'
+  default from: 'mailer@mustard-results.com'
   layout 'mailer'
 end
