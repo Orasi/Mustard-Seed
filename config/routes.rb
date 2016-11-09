@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   get 'executions/:id/testcase-count', to: 'executions#testcase_count', defaults: {format: :json}
   get 'executions/:id/environment-count', to: 'executions#environment_count', defaults: {format: :json}
   post 'executions/close(/:execution_id)(/:project_key)', to: 'executions#close', defaults: {format: :json}
+  get 'executions/:project_key/failing', to: 'executions#failing_tests', defaults: {format: :json}
   delete 'executions/:id', to: 'executions#destroy', defaults: {format: :json}
 
   get 'results/:id', to: 'results#show', defaults: {format: :json}

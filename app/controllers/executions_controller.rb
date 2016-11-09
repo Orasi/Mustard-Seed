@@ -1,6 +1,6 @@
 class ExecutionsController < ApplicationController
 
-  skip_before_action :require_user_token, only: [:close]
+  skip_before_action :require_user_token, only: [:close, :failing_tests]
   before_action :requires_admin, only: [:destroy]
 
 
@@ -287,4 +287,32 @@ class ExecutionsController < ApplicationController
     render json: {testcase: testcase}
 
   end
+
+  api :GET, '/executions/:project_key/failing', 'Get all failing tests'
+  description 'Returns the complete list of failing tests/environments for the current execution'
+  param :project_key, String, 'Project Key.'
+  def failing_tests
+
+    render json: {error: 'Project Key must be provided'},
+           status: :bad_request and return unless params[:project_key]
+
+    project = Project.find_by_api_key(params[:project_key])
+
+    render json: {error: 'Project not found'},
+           status: :not_found and return unless project
+
+    execution = project.executions.find_by_closed(false)
+
+    render json: {error: 'Execution not found'},
+           status: :not_found and return unless execution
+
+    failed_tests = []
+    execution.results.includes(:environment, :testcase).where(current_status: 'fail').each do |fail|
+      failed_tests.append(environment_id: fail.environment.uuid, testcase_name: fail.testcase.name, validation_id: fail.testcase.validation_id)
+    end
+
+    render json: failed_tests
+  end
+
+
 end

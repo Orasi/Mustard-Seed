@@ -21,7 +21,7 @@ class User < ApplicationRecord
 
   def projects
     if admin
-      return Project.all
+      return Project.all.order(:updated_at)
     else
       projects = []
       self.teams.each do |t|
