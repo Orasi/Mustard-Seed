@@ -58,7 +58,7 @@ class TestcasesController < ApplicationController
 
     testcase = Testcase.find_by_id(params[:id])
     if testcase
-      testcase.reproduction_steps = params[:testcase][:reproduction_steps].to_hra if params[:testcase][:reproduction_steps]
+      testcase.reproduction_steps = params[:testcase][:reproduction_steps]. if params[:testcase][:reproduction_steps]
       if testcase.update(testcase_params)
         render json: testcase
       else
