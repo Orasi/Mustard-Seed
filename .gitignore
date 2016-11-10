@@ -65,7 +65,7 @@ bower.json
 # Gradle:
 .idea/gradle.xml
 .idea/libraries
-downloads/**/
+/downloads/
 # Mongo Explorer plugin:
 .idea/mongoSettings.xml
 
