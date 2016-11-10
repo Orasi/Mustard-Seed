@@ -168,7 +168,7 @@ class TestcasesController < ApplicationController
         test_steps = []
 
         steps[i].count.times do |j|
-          test_steps.append({step_number: j+1, action: steps[i][j], result: results[i][j]})
+          test_steps.append({'step_number' => j+1, 'action' => steps[i][j], 'result' => results[i][j]})
         end
 
         if preview.downcase == 'true'
