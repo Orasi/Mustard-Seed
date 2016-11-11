@@ -1,5 +1,5 @@
 class ExecutionsController < ApplicationController
-
+  include ActionController::MimeResponds
   skip_before_action :require_user_token, only: [:close, :failing_tests]
   before_action :requires_admin, only: [:destroy]
 
@@ -107,7 +107,24 @@ class ExecutionsController < ApplicationController
     @fail = execution.project.testcases.failing(@execution)
     @skip = execution.project.testcases.skip(@execution)
 
-    render :testcases
+    respond_to do |format|
+      format.xlsx{
+
+        filename = "#{execution.project.name}-Testcase Status.xlsx"
+        file_path =  Rails.root.join("downloads/reports/#{filename}")
+
+        TestcaseStatus.create(@pass, @fail, @skip, @not_run, file_path, filename)
+        token = DownloadToken.create(expiration: DateTime.now + 30.seconds,
+                                     path:  file_path,
+                                     disposition: 'attachment',
+                                     remove: true,
+                                     content_type: 'application/octet-stream',
+                                     filename: filename)
+
+        render json: {report: download_url(token: token.token)}
+      }
+      format.any{ render :testcases }
+    end
 
   end
 
