@@ -325,7 +325,7 @@ class ExecutionsController < ApplicationController
 
     failed_tests = []
     execution.results.includes(:environment, :testcase).where(current_status: 'fail').each do |fail|
-      failed_tests.append(environment_id: fail.environment.uuid, testcase_name: fail.testcase.name, validation_id: fail.testcase.validation_id)
+      failed_tests.append(environment_id: fail.environment ? fail.environment.uuid : 'manual', testcase_name: fail.testcase.name, validation_id: fail.testcase.validation_id)
     end
 
     render json: failed_tests
