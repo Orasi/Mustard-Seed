@@ -15,6 +15,7 @@ class ResultsController < ApplicationController
       param :link, String, 'Link to external result'
       param :execution_id, :number, 'Execution ID. Required for Manual result type'
       param :screenshot, String, 'Base64 encoded screenshot'
+      param :step_log, String, 'JSON Step Log of test'
     end
   end
 
@@ -359,7 +360,9 @@ class ResultsController < ApplicationController
                                    :screenshot,
                                    :stacktrace,
                                    :link,
-                                   :execution_id
+                                   :execution_id,
+                                   :step_log
+
     )
 
   end
