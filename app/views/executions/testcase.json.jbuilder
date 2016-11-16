@@ -31,6 +31,7 @@ json.testcase do
     json.stacktrace r.results.first['stacktrace'] if r.results.first['stacktrace']
     json.link r.results.first['link'] if r.results.first['link']
     json.screenshot_id r.results.first['screenshot_id'] if r.results.first['screenshot_id']
+    json.step_log r.results.first['step_log'] if r.results.first['step_log']
     json.created_at r.updated_at
     json.status r.current_status
   end
