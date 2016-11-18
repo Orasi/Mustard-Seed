@@ -102,10 +102,10 @@ class ExecutionsController < ApplicationController
 
     @execution = execution
 
-    @not_run = execution.project.testcases.not_run(@execution)
-    @pass = execution.project.testcases.passing(@execution)
-    @fail = execution.project.testcases.failing(@execution)
-    @skip = execution.project.testcases.skip(@execution)
+    @not_run = execution.project.testcases.not_run(@execution).order(:name)
+    @pass = execution.project.testcases.passing(@execution).order(:name)
+    @fail = execution.project.testcases.failing(@execution).order(:name)
+    @skip = execution.project.testcases.skip(@execution).order(:name)
 
     respond_to do |format|
       format.xlsx{
