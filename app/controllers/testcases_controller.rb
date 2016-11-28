@@ -21,6 +21,7 @@ class TestcasesController < ApplicationController
   api :GET, '/testcases/:id', 'Testcase details'
   param :id, :number, required: true
   description 'Only displayed if project is viewable by current user'
+
   def show
 
     testcase = Testcase.find_by_id(params[:id])
@@ -39,6 +40,7 @@ class TestcasesController < ApplicationController
   api :POST, '/testcases/', 'Create new testcase'
   description 'Only accessible by Admins'
   param_group :testcase
+
   def create
 
     testcase = Testcase.new(testcase_params)
@@ -54,6 +56,7 @@ class TestcasesController < ApplicationController
   api :PUT, '/testcases/', 'Update existing testcase'
   description 'Only accessible by Admins'
   param_group :testcase
+
   def update
 
     testcase = Testcase.find_by_id(params[:id])
@@ -75,6 +78,7 @@ class TestcasesController < ApplicationController
   api :DELETE, '/testcases/:id', 'Delete existing testcase'
   description 'Only accessbile by Admins'
   param :id, :number, required: true
+
   def destroy
 
     testcase = Testcase.find_by_id(params[:id])
@@ -90,6 +94,7 @@ class TestcasesController < ApplicationController
   api :GET, '/projects/:id/testcases/export', 'Export testcases'
   description 'Export testcases to xlsx.  Only accessible by admin users'
   param :project_id, :number, required: true
+
   def export
 
     @project = Project.find_by_id(params[:project_id])
@@ -99,14 +104,14 @@ class TestcasesController < ApplicationController
 
     @testcases = @project.testcases
     respond_to do |format|
-      format.xlsx{
+      format.xlsx {
 
         filename = "#{@project.name}-Testcases.xlsx"
-        file_path =  Rails.root.join("downloads/reports/#{filename}")
+        file_path = Rails.root.join("downloads/reports/#{filename}")
 
         ExportTestcases.create(@testcases, file_path, filename)
         token = DownloadToken.create(expiration: DateTime.now + 30.seconds,
-                                     path:  file_path,
+                                     path: file_path,
                                      disposition: 'attachment',
                                      remove: true,
                                      content_type: 'application/octet-stream',
@@ -114,7 +119,7 @@ class TestcasesController < ApplicationController
 
         render json: {report: download_url(token: token.token)}
       }
-      format.any{ render json: @testcases }
+      format.any { render json: @testcases }
     end
 
   end
@@ -125,6 +130,7 @@ class TestcasesController < ApplicationController
   param :project_id, :number, required: true
   param :csv, String, required: true
   param :preview, :boolean
+
   def import
 
     project = Project.find_by_id(params[:project_id])
@@ -137,6 +143,12 @@ class TestcasesController < ApplicationController
     output[:error] = []
 
     preview = params[:preview]
+    update = params[:update]
+    puts '*********************************************************************************'
+    puts '*********************************************************************************'
+    puts params[:update]
+    puts '*********************************************************************************'
+    puts '*********************************************************************************'
 
     csv = params[:csv]
 
@@ -170,18 +182,48 @@ class TestcasesController < ApplicationController
         steps[i].count.times do |j|
           test_steps.append({'step_number' => j+1, 'action' => steps[i][j], 'result' => results[i][j]})
         end
+        if update && update.downcase == 'true'
 
-        if preview.downcase == 'true'
+          found = false
+
+          #Find By Validation ID
+          tc = Testcase.where(project_id: project.id, validation_id: test_ids[i])
+          if tc.count > 0
+            tc = tc.first
+            tc.assign_attributes(reproduction_steps: test_steps, name: titles[i])
+            found = true
+          end
+
+          #Find by Name
+          unless found
+            tc = Testcase.where(project_id: project.id, name: titles[i])
+            if tc.count > 0
+              tc = tc.first
+              tc.assign_attrubutes(reproduction_steps: test_steps, validation_id: test_ids[i])
+              found == true
+            end
+          end
+
+          #If not found, create
+          unless found
+            tc = Testcase.new(project_id: project.id,
+                              name: titles[i],
+                              validation_id: test_ids[i],
+                              reproduction_steps: test_steps)
+            found = true
+          end
+        else
           tc = Testcase.new(project_id: project.id,
                             name: titles[i],
                             validation_id: test_ids[i],
                             reproduction_steps: test_steps)
-        else
-          tc = Testcase.create(project_id: project.id,
-                               name: titles[i],
-                               validation_id: test_ids[i],
-                               reproduction_steps: test_steps)
         end
+        if preview
+          unless preview.downcase == 'true'
+            tc.save
+          end
+        end
+
         output[:success].append(tc)
       else
         output[:error].append(titles[i])
