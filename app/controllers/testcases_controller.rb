@@ -144,11 +144,6 @@ class TestcasesController < ApplicationController
 
     preview = params[:preview]
     update = params[:update]
-    puts '*********************************************************************************'
-    puts '*********************************************************************************'
-    puts params[:update]
-    puts '*********************************************************************************'
-    puts '*********************************************************************************'
 
     csv = params[:csv]
 
@@ -199,7 +194,7 @@ class TestcasesController < ApplicationController
             tc = Testcase.where(project_id: project.id, name: titles[i])
             if tc.count > 0
               tc = tc.first
-              tc.assign_attrubutes(reproduction_steps: test_steps, validation_id: test_ids[i])
+              tc.assign_attributes(reproduction_steps: test_steps, validation_id: test_ids[i])
               found == true
             end
           end
