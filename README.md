@@ -46,7 +46,7 @@ By default Mustard does not have any users configured and atleast one will need 
 
 And we can create a user in the console with the following command.
 
-`User.create(first_name: '', last_name: '', username: '', password: '', password_confirmation: '', company: '', admin: true)'
+`User.create(first_name: '', last_name: '', username: '', password: '', password_confirmation: '', company: '', admin: true)`
 
 Where all the relevant values have been filled in.  **Usernames should always be a valid email address so we can send Reset Password Emails.**
 
@@ -59,10 +59,10 @@ This command starts the application listening on port 8080.  *This configuration
 
 We can also validate that the application is up and running via a CURL command to login in.  
 
-'curl -X POST -H "Content-Type: application/json"  -d '{
+`curl -X POST -H "Content-Type: application/json"  -d '{
 	"username": "INSERT USERNAME HERE",
 	"password": "INSERT PASSWORD HERE"
-}' "http://localhost:8080/authenticate"'
+}' "http://localhost:8080/authenticate"`
 
 This command should return information about the user and a UserToken that will be needed for all other API calls.
 
