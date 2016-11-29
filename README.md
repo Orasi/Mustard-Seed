@@ -20,16 +20,16 @@ After installing Bundler we can initiate the install of all required gem depende
 
 `bundle install`
 
-This command reads a list of the dependencies found in the [Gemfile](Gemfile) and installs them.  If any of the dependencies do not install succesfully you are likely missing the RubyDevKit for your installed version of Ruby.  This installation will vary from system to system, but should be easily findable on Google.
+This command reads a list of the dependencies found in the [Gemfile](Gemfile) and installs them.  If any of the dependencies do not install successfully, you are likely missing the RubyDevKit for your installed version of Ruby.  This installation will vary from system to system, but should be easily findable on Google.
 
 ### Setup Database
-We now need to configure Mustard to allow it to manage our PostgresSQL database.  This configuration is found [<MustardRoot>/config/database.yml](config/database.yml) **PostgresSQL is the only supported database for Mustard.  We make use of several Postgres specific functions that will not working in other databases**
+We now need to configure Mustard to allow it to manage our PostgresSQL database.  This configuration is found [<MustardRoot>/config/database.yml](config/database.yml) **PostgresSQL is the only supported database for Mustard.  We make use of several Postgres specific functions that will not work in other databases**
 
-This guide will be walking through setting up the Development environment, but configuring anyother environment is essentially the same in the database.yml file.  
+This guide will be walking through setting up the Development environment, but configuring any other environment is essentially the same in the database.yml file.  
 
-In database.yml find the development section and change the values for host, username, and password to the correct values for your PostgresSQL setup.  Host should contain the IP address of the PostgresSQL server, or localhost if the database and Mustard are running on the same server.  Once necessary changes have been made you may save and close this file.
+In database.yml, find the development section and change the values for host, username and password to the correct values for your PostgresSQL setup.  Host should contain the IP address of the PostgresSQL server, or 'localhost' if the database and Mustard are running on the same server.  Once necessary changes have been made you may save and close this file.
 
-After configuring the database information we can now create the database that will be used.  This can be done with the following command.
+After configuring the database information, we can now create the database that will be used.  This can be done with the following command.
 
 `rake db:create`
 
@@ -40,7 +40,7 @@ and then
 These commands will create the database and and all the tables that are needed for Mustard.
 
 ### Adding a User
-By default Mustard does not have any users configured and atleast one will need to be added in the Rails console to allow access.  You can access the Rails console by running the following command from the Mustard root directory.
+By default, Mustard does not have any users configured and atleast one will need to be added in the Rails console to allow access.  You can access the Rails console by running the following command from the Mustard root directory.
 
 `rails console`
 
@@ -69,7 +69,7 @@ This command should return information about the user and a UserToken that will 
 ## Using Mustard
 
 ### Mustard Conventions
-Mustard stores organizes results by Projects which Users can access.  User access to individual Projects is controlled through a Team system.  If a User belongs to a Team that grants access to a project the User then has access to the project.  Admin users automatically have access to every project.
+Mustard stores and organizes results by Projects which Users can access.  User access to individual Projects is controlled through a Team system.  If a User belongs to a Team that grants access to a project the User then has access to the project.  Admin users automatically have access to every project.
 
 Projects in Mustard have many Testcases, Environments, and Results:
 #### Testcases
@@ -79,7 +79,7 @@ Mustard Testcases are used to store what a result was testing.  In its most basi
 Mustard Environments are used to store where a test was run.  In its most basic form an environment is just a name that descrives where the tests are being run (I.E. 'Windows_8_Chrome_50').  
 
 #### Results
-Mustard Results store the result of a test.  There are two types of results in Mustard 'Automated' and 'Manual'.  Both type of results have several required attributes.  Status ('Pass', 'Fail', 'Skip'), TestcaseID (either the testcase name or a numerical identifier for the testcase), ProjectKey (discussed below), and ResultType ('automated' or 'manual') are all required for any result.  For automated results the Environment Name is also required.  Anytime a request comes in to Mustard to create a result the related Testcase and Environment are found.  If these can not be found they will be created in the system with basic information.  Several other optional parameters are also included with results including adding screenshots.  See the docs for full information on all possible result parameters.
+Mustard Results store the result of a test.  There are two types of results in Mustard 'Automated' and 'Manual'.  Both type of results have several required attributes.  Status ('Pass', 'Fail', 'Skip'), TestcaseID (either the testcase name or a numerical identifier for the testcase), ProjectKey (discussed below), and ResultType ('automated' or 'manual') are all required for any result.  For automated results the Environment Name is also required.  Anytime a request comes in to Mustard to create a result the related Testcase and Environment are found.  If these can not be found, then it will be created in the system with basic information.  Several other optional parameters are also included with results including adding screenshots.  See the docs for full information on all possible result parameters.
 
 ### JSON API
 **The following documentation is about using Mustard-Seed through the JSON API.  For setting up an easier method of managing projects, users, and results please see the  [Mustard-Dijon](https://github.com/Orasi/Mustard-Dijon) which is a Graphical Interface on top of Mustard-Seed**
@@ -92,7 +92,7 @@ Most calls to the Mustard-Seed require a User-Token to be present in the header.
 
 This will return some relevant details about the autenticated user as well as the User-Token for future use.  Almost all calls to the API require this token and any exceptions are highlighted in the docs.
 
-One other way to authenticate is present for some endpoints and that is the API-Key.  The API-Key is tied to a specific project and used on endpoints that may be automated such as creating test results.  The API-Key can be retreived by doing a GET request the the Project Show endpoint at http://localhost:8080/projects/<PROJECT_ID>  where <PROJECT_ID> is replaced by the ID of the project.
+One other way to authenticate is available for some endpoints and that is the API-Key.  The API-Key is tied to a specific project and used on endpoints that may be automated such as creating test results.  The API-Key can be retreived by doing a GET request the the Project Show endpoint at http://localhost:8080/projects/<PROJECT_ID>  where <PROJECT_ID> is replaced by the ID of the project.
 
 
 
