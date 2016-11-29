@@ -66,6 +66,36 @@ We can also validate that the application is up and running via a CURL command t
 
 This command should return information about the user and a UserToken that will be needed for all other API calls.
 
+## Using Mustard
+
+### Mustard Conventions
+Mustard stores organizes results by Projects which Users can access.  User access to individual Projects is controlled through a Team system.  If a User belongs to a Team that grants access to a project the User then has access to the project.  Admin users automatically have access to every project.
+
+Projects in Mustard have many Testcases, Environments, and Results:
+#### Testcases
+Mustard Testcases are used to store what a result was testing.  In its most basic form a testcase is just a name that describes what was being tested (I.E.  'Login_to_Application').  There is also support for adding the teststeps involved with a testcase to keep track of exactly what steps are required for performing this action.  Storing the test steps will also allow manual testers to create results that will be stored in Mustard.
+
+#### Environments
+Mustard Environments are used to store where a test was run.  In its most basic form an environment is just a name that descrives where the tests are being run (I.E. 'Windows_8_Chrome_50').  
+
+#### Results
+Mustard Results store the result of a test.  There are two types of results in Mustard 'Automated' and 'Manual'.  Both type of results have several required attributes.  Status ('Pass', 'Fail', 'Skip'), TestcaseID (either the testcase name or a numerical identifier for the testcase), ProjectKey (discussed below), and ResultType ('automated' or 'manual') are all required for any result.  For automated results the Environment Name is also required.  Anytime a request comes in to Mustard to create a result the related Testcase and Environment are found.  If these can not be found they will be created in the system with basic information.  Several other optional parameters are also included with results including adding screenshots.  See the docs for full information on all possible result parameters.
+
+### JSON API
+**The following documentation is about using Mustard-Seed through the JSON API.  For setting up an easier method of managing projects, users, and results please see the  [Mustard-Dijon](https://github.com/Orasi/Mustard-Dijon) which is a Graphical Interface on top of Mustard-Seed**
+
+The cornerstone of Mustard is the Mustard-Seed which is installed in the Getting Started section above.  Mustard-Seed uses a JSON API for all of its interactions.  Details about the JSON API can be found in the docs which come with Mustard Seed.  These docs can be accessed by navigating the the URL where Mustard-Seed is running /docs (http://localhost:8080/docs if following above instructions).  All calls to the API will need to be of Content-Type application/json.
+
+Most calls to the Mustard-Seed require a User-Token to be present in the header.  This user token can be found by submitting a POST request to the authentication endpoint with located at http://localhost:8080/authenticate.  This request requires two JSON parameters in the body in the followng format.
+
+`{"username": "YOUR USERNAME", "password":"YOUR PASSWORD"}`
+
+This will return some relevant details about the autenticated user as well as the User-Token for future use.  Almost all calls to the API require this token and any exceptions are highlighted in the docs.
+
+One other way to authenticate is present for some endpoints and that is the API-Key.  The API-Key is tied to a specific project and used on endpoints that may be automated such as creating test results.  The API-Key can be retreived by doing a GET request the the Project Show endpoint at http://localhost:8080/projects/<PROJECT_ID>  where <PROJECT_ID> is replaced by the ID of the project.
+
+
+
 # Orasi Software Inc
 Orasi is a software and professional services company focused on software quality testing and management.  As an organization, we are dedicated to best-in-class QA tools, practices and processes. We are agile and drive continuous improvement with our customers and within our own business.
 
