@@ -1,6 +1,6 @@
 class UserToken < ApplicationRecord
 
-  scope :of_type, ->(t_type) { find_by(token_type: t_type) }
+  scope :of_token_type, ->(t_type) { find_by(token_type: t_type) }
 
   belongs_to :user
   has_secure_token :token

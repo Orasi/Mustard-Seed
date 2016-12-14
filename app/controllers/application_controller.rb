@@ -26,9 +26,9 @@ class ApplicationController < ActionController::API
     token_type = params[:token_type] ? params[:token_type].to_sym : :web
 
 
-    user.user_tokens.of_type(token_type).destroy if !user.user_tokens.blank? && user.user_tokens.of_type(token_type)
+    user.user_tokens.where(token_type: token_type).first.destroy if !user.user_tokens.blank? && user.user_tokens.of_token_type(token_type)
     user.user_tokens.create(expires: UserToken.token_expiration_by_type(token_type), token_type: token_type)
-    token = user.user_tokens.of_type(token_type)
+    token = user.user_tokens.of_token_type(token_type)
 
     render json: {id: user.id,
                   user: user.username,
