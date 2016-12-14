@@ -22,14 +22,19 @@ class ApplicationController < ActionController::API
     render json: {error: 'Username or Password is invalid'},
            status: :unauthorized and return unless user && user.authenticate(params[:password])
 
-    user.user_token.destroy if user.user_token
-    user.create_user_token(expires: DateTime.now + 2.hours)
+    # Handle Various types of user tokens.  Each token can have only one of each type.
+    token_type = params[:token_type] ? params[:token_type].to_sym : :web
+
+
+    user.user_tokens.of_type(token_type).destroy if !user.user_tokens.blank? && user.user_tokens.of_type(token_type)
+    user.user_tokens.create(expires: UserToken.token_expiration_by_type(token_type), token_type: token_type)
+    token = user.user_tokens.of_type(token_type)
 
     render json: {id: user.id,
                   user: user.username,
                   first_name: user.first_name,
                   last_name: user.last_name,
-                  token: user.user_token.token,
+                  token: token.token,
                   admin: user.admin}
 
   end

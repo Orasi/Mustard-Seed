@@ -5,7 +5,7 @@ class User < ApplicationRecord
   validates :first_name, :last_name, :password_digest, :username,  presence: true
   validates :username, :uniqueness => true
 
-  has_one :user_token, dependent: :destroy
+  has_many :user_tokens, dependent: :destroy
   has_one :password_token, dependent:  :destroy
 
   has_and_belongs_to_many :teams
