@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  skip_before_action :require_user_token, only: [:trigger_password_reset, :reset_password, :find]
+  skip_before_action :require_user_token, only: [:valid_token, :trigger_password_reset, :reset_password, :find]
 
   # Password confirmation should be handled client side.
   # Append password confirmation on server side to remove need to provide both
@@ -69,6 +69,22 @@ class UsersController < ApplicationController
 
   end
 
+
+  api :GET, '/users/valid-token', 'Checks if a User-Token is valid'
+  param :user_token, String, 'User-Token', required: true
+  description 'Returns if a user-token is valid'
+  def valid_token
+    token = UserToken.find_by_token(request.headers['User-Token'])
+
+    render json: {Error: 'Invalid User Token' } and return unless token
+
+    render json: {Error: 'Invalid User Token' } and return if token.expires < DateTime.now
+
+    @current_user = token.user
+    token.update(expires: DateTime.now + 2.hours)
+
+    render json: {Token: 'Valid'}
+  end
 
   api :POST, '/users/reset-password', 'Trigger Password Reset Email'
   param :id, String, 'Username', required: true
