@@ -9,13 +9,15 @@ json.testcase do
 
   if @results.find_by_environment_id(-1)
     json.manual_results @results.find_by_environment_id(-1).results do |r|
-      # json.id r.id
+      json.id  @results.find_by_environment_id(-1).id
       json.created_by_name r['created_by_name']
       json.created_by_id r['created_by_id']
       json.created_at r['created_at']
       json.result_type r['result_type']
+      json.screenshot_id r['screenshot_id'] if r['screenshot_id']
       json.comment r['comment']
       json.status r['status']
+
     end
   else
     json.manual_results []
