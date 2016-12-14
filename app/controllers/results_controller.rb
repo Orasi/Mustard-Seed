@@ -201,7 +201,7 @@ class ResultsController < ApplicationController
         ss = Screenshot.new(screenshot: result_params[:screenshot],
                                execution_start: execution.created_at,
                                testcase_name: testcase.name,
-                               environment_uuid: environment.uuid,
+                               environment_uuid: environment ? environment.uuid : 'Manual',
                                project_name: project.name)
         result_params[:screenshot] = nil
         result_params[:screenshot_id] = ss.id if ss.save
