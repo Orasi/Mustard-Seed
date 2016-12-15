@@ -44,6 +44,7 @@ class TestcasesController < ApplicationController
   def create
 
     testcase = Testcase.new(testcase_params)
+    testcase.reproduction_steps = params.to_unsafe_h[:testcase][:reproduction_steps] if params[:testcase][:reproduction_steps]
     if testcase.save
       render json: testcase
     else
@@ -61,7 +62,8 @@ class TestcasesController < ApplicationController
 
     testcase = Testcase.find_by_id(params[:id])
     if testcase
-      testcase.reproduction_steps = params.to_unsafe_h[:testcase][:reproduction_steps] if params[:testcase][:reproduction_steps]
+      testcase.reproduction_steps = params.to_unsafe_h[:testcase][:reproduction_steps]
+
       if testcase.update(testcase_params)
         render json: testcase
       else
