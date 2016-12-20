@@ -20,4 +20,6 @@ class Project < ApplicationRecord
     execution = Execution.create(project_id: self.id, closed: false)
     return execution
   end
+
+
 end

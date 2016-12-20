@@ -1,6 +1,7 @@
 class Execution < ApplicationRecord
 
   scope :open_execution, ->() { find_by_closed(false) }
+  scope :closed, -> {where(closed: true)}
 
   before_save :default_name
 
@@ -59,5 +60,10 @@ class Execution < ApplicationRecord
 
     ActiveRecord::Base.connection.select_all(sql)
 
+  end
+
+  def close!
+    self.update(closed: true)
+    self.update(closed_at: DateTime.now)
   end
 end

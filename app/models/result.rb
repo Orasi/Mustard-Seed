@@ -22,4 +22,7 @@ class Result < ApplicationRecord
     Result.result_types.include? new_type.downcase.to_sym
   end
 
+  def testcase
+    Testcase.unscoped{ super }
+  end
 end

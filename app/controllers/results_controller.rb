@@ -289,7 +289,7 @@ class ResultsController < ApplicationController
 
       #Find testcase based on name
       #If not found create a testcase with that name
-      testcase = Testcase.where(name: identifier, project_id: project_id)
+      testcase = Testcase.where(name: identifier, project_id: project_id, outdated: false)
 
       unless testcase.blank?
         return testcase.first

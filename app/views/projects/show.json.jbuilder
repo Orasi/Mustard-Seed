@@ -10,6 +10,7 @@ json.project do
     json.testcase_id tc.validation_id if tc.validation_id
     json.created_at tc.created_at
     json.updated_at tc.updated_at
+    json.version tc.version if tc.version
   end
   json.environments @project.environments do |env|
     json.id env.id

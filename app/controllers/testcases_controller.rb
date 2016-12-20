@@ -61,13 +61,35 @@ class TestcasesController < ApplicationController
   def update
 
     testcase = Testcase.find_by_id(params[:id])
-    if testcase
-      testcase.reproduction_steps = params.to_unsafe_h[:testcase][:reproduction_steps]
+    render json: {error: 'Outdated Testcases can not be updated'}, status: :bad_request and return if testcase.outdated
 
-      if testcase.update(testcase_params)
-        render json: testcase
+    if testcase
+      repro_steps = params.to_unsafe_h[:testcase][:reproduction_steps]
+      params[:testcase].delete :reproduction_steps
+      if repro_steps == testcase.reproduction_steps
+        if testcase.update(testcase_params)
+          render json: testcase
+        else
+          render json: {error: testcase.errors.full_messages}, status: :bad_request
+        end
+
       else
-        render json: {error: testcase.errors.full_messages}, status: :bad_request
+        Testcase.transaction do
+          begin
+            clone = testcase.dup
+            testcase.close!
+            clone.assign_attributes(testcase_params)
+            clone.reproduction_steps = repro_steps
+            clone.outdated = false
+            clone.version = testcase.version + 1
+            clone.save!
+            render json: clone
+          rescue
+            render json: {error: clone.errors.full_messages + testcase.errors.full_messages}, status: :bad_request
+            raise ActiveRecord::Rollback
+
+          end
+        end
       end
 
     else
@@ -180,13 +202,14 @@ class TestcasesController < ApplicationController
           test_steps.append({'step_number' => j+1, 'action' => steps[i][j], 'result' => results[i][j]})
         end
         if update && update.downcase == 'true'
-
+          new_version = false
           found = false
 
           #Find By Validation ID
           tc = Testcase.where(project_id: project.id, validation_id: test_ids[i])
           if tc.count > 0
             tc = tc.first
+            new_version = true unless tc.reproduction_steps == test_steps
             tc.assign_attributes(reproduction_steps: test_steps, name: titles[i])
             found = true
           end
@@ -196,6 +219,7 @@ class TestcasesController < ApplicationController
             tc = Testcase.where(project_id: project.id, name: titles[i])
             if tc.count > 0
               tc = tc.first
+              new_version = true unless tc.reproduction_steps == test_steps
               tc.assign_attributes(reproduction_steps: test_steps, validation_id: test_ids[i])
               found == true
             end
@@ -206,18 +230,41 @@ class TestcasesController < ApplicationController
             tc = Testcase.new(project_id: project.id,
                               name: titles[i],
                               validation_id: test_ids[i],
-                              reproduction_steps: test_steps)
+                              reproduction_steps: test_steps,
+                              token: Testcase.generate_unique_secure_token
+            )
             found = true
           end
         else
           tc = Testcase.new(project_id: project.id,
                             name: titles[i],
                             validation_id: test_ids[i],
-                            reproduction_steps: test_steps)
+                            reproduction_steps: test_steps,
+                            token: Testcase.generate_unique_secure_token
+          )
         end
         if preview
           unless preview.downcase == 'true'
-            tc.save
+            if new_version && update && update.downcase == 'true'
+              begin
+                Testcase.transaction do
+
+                  testcase = Testcase.find(tc.id)
+                  clone = tc.dup
+                  testcase.close!
+                  clone.outdated = false
+                  clone.version = testcase.version + 1
+                  clone.save!
+
+                end
+              rescue
+
+              end
+
+            else
+              tc.save
+            end
+
           end
         end
 
@@ -237,10 +284,9 @@ class TestcasesController < ApplicationController
 
   private
 
-
   def testcase_params
 
-    params.require(:testcase).permit(:name, :validation_id, :project_id)
+    params.except(:reproduction_steps).require(:testcase).permit(:name, :validation_id, :project_id)
 
   end
 

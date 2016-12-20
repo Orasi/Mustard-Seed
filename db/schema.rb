@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161214152151) do
+ActiveRecord::Schema.define(version: 20161219182943) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -124,9 +124,13 @@ ActiveRecord::Schema.define(version: 20161214152151) do
     t.integer  "project_id"
     t.datetime "runner_touch"
     t.boolean  "locked"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.json     "reproduction_steps"
+    t.boolean  "outdated",           default: false
+    t.integer  "version",            default: 1
+    t.string   "token"
+    t.datetime "revised_at"
   end
 
   create_table "user_tokens", force: :cascade do |t|

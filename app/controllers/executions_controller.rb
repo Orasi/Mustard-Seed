@@ -102,10 +102,18 @@ class ExecutionsController < ApplicationController
 
     @execution = execution
 
-    @not_run = execution.project.testcases.not_run(@execution).order(:name)
-    @pass = execution.project.testcases.passing(@execution).order(:name)
-    @fail = execution.project.testcases.failing(@execution).order(:name)
-    @skip = execution.project.testcases.skip(@execution).order(:name)
+    if @execution.closed_at
+      @not_run = execution.project.testcases.as_of_date(execution.closed_at).not_run(@execution).order(:name)
+      @pass = execution.project.testcases.as_of_date(execution.closed_at).passing(@execution).order(:name)
+      @fail = execution.project.testcases.as_of_date(execution.closed_at).failing(@execution).order(:name)
+      @skip = execution.project.testcases.as_of_date(execution.closed_at).skip(@execution).order(:name)
+    else
+      @not_run = execution.project.testcases.not_run(@execution).order(:name)
+      @pass = execution.project.testcases.passing(@execution).order(:name)
+      @fail = execution.project.testcases.failing(@execution).order(:name)
+      @skip = execution.project.testcases.skip(@execution).order(:name)
+    end
+
 
     respond_to do |format|
       format.xlsx{
@@ -240,7 +248,7 @@ class ExecutionsController < ApplicationController
     name = params[:execution] && params[:execution][:name] ? params[:execution][:name] : nil
 
     ActiveRecord::Base.transaction do
-      execution.update!(closed: true)
+      execution.close!
       @new_execution = project.executions.new(closed: false, name: name)
       @new_execution.save!
     end
