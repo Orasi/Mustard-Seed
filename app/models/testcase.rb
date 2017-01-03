@@ -6,8 +6,8 @@ class Testcase < ApplicationRecord
 
   belongs_to :project, touch: true
 
-  before_create :add_version
-  before_create :add_token
+  before_validation :add_version
+  before_validation :add_token
 
   validates :name, :project_id, :token, :version, presence: true
   validates :name, uniqueness: {scope: [:outdated, :project_id]}, unless: 'outdated'

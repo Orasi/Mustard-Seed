@@ -48,7 +48,7 @@ class TestcasesController < ApplicationController
     if testcase.save
       render json: testcase
     else
-      render json: {error: 'Bad Request', messages: testcase.errors.full_messages}, status: :bad_request
+      render json: {error: testcase.errors.full_messages.to_sentence}, status: :bad_request
     end
 
   end
