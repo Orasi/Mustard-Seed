@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   post 'users/reset-password', to: 'users#trigger_password_reset'
 
 
-  resources :projects
+  resources :projects, defaults: {format: :json}
   post 'projects/:project_id/import', to: 'testcases#import', defaults: {format: :json}
   get 'projects/:project_id/testcases/export', to: 'testcases#export', defaults: {format: :json}
 

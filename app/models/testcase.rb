@@ -16,7 +16,7 @@ class Testcase < ApplicationRecord
   end
 
 
-  default_scope { where(outdated: false) }
+  default_scope { where(outdated: [false, nil]) }
   scope :as_of_date, -> (tc_date){unscope(where: :outdated).where('"testcases"."created_at" <= ? AND ("testcases"."revised_at" >= ? OR "testcases"."revised_at" IS NULL)', tc_date, tc_date)}
   scope :outdated, -> {unscope(where: :outdated).where(outdated: true)}
   scope :not_run, -> (execution){select('testcases.id, testcases.name, testcases.validation_id, testcases.reproduction_steps')

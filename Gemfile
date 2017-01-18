@@ -32,6 +32,8 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
+gem 'simplecov', :require => false, :group => :test
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'pg'
@@ -49,9 +51,10 @@ group :development, :test do
   # Use RSpec for specs
   gem 'rspec-rails', '3.5.0'
   gem 'rspec_api_documentation'
-
+  gem 'parallel_tests'
   # Use Factory Girl for generating random test data
   gem 'factory_girl_rails'
-  gem 'faker'
+  gem 'faker', branch: 'master' , git: 'https://github.com/stympy/faker.git'
+
 
 end

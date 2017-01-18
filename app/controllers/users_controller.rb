@@ -1,12 +1,11 @@
 class UsersController < ApplicationController
 
-  skip_before_action :require_user_token, only: [:valid_token, :trigger_password_reset, :reset_password, :find]
+  before_action :requires_admin, only: [:index, :create, :update, :destroy]
+  skip_before_action :require_user_token, only: [:index, :create, :update, :destroy, :valid_token, :trigger_password_reset, :reset_password, :find]
 
   # Password confirmation should be handled client side.
   # Append password confirmation on server side to remove need to provide both
   before_action :confirm_password, only: [:create, :reset_password]
-
-  before_action :requires_admin, only: [:index, :create, :update, :destroy]
 
 
   # Param group for api documentation
@@ -27,9 +26,6 @@ class UsersController < ApplicationController
   description "Returns all system users. Only accessible by Admins"
   def index
 
-    render json: {error: 'You do not have permission to access this resource'},
-           status: :unauthorized and return unless @current_user.admin
-
     @users = User.all
 
   end
@@ -43,13 +39,13 @@ class UsersController < ApplicationController
 
     @user = User.find_by_id(params[:id])
 
-    unless @current_user.admin
-      render json: {error: 'Not authorized to access this resource'},
-             status: :unauthorized and return unless @current_user == @user
-    end
-
     render json: {error: "User not found"},
            status: :not_found and return unless @user
+
+    unless @current_user.admin
+      render json: {error: 'Not authorized to access this resource'},
+             status: :forbidden and return unless @current_user == @user
+    end
 
   end
 
@@ -65,25 +61,28 @@ class UsersController < ApplicationController
     render json: {error: "User not found"},
            status: :not_found and return unless @user
 
+    render json: {error: 'Not authorized to access this resource'},
+           status: :forbidden and return false unless @current_user == @user
+
     render :show
 
   end
 
 
-  api :GET, '/users/valid-token', 'Checks if a User-Token is valid'
+  api :GET, '/users/token/valid', 'Checks if a User-Token is valid'
   param :user_token, String, 'User-Token', required: true
   description 'Returns if a user-token is valid'
   def valid_token
     token = UserToken.find_by_token(request.headers['User-Token'])
 
-    render json: {Error: 'Invalid User Token' } and return unless token
+    render json: {error: 'Invalid User Token' }, status: :unauthorized and return unless token
 
-    render json: {Error: 'Invalid User Token' } and return if token.expires < DateTime.now
+    render json: {error: 'Invalid User Token' }, status: :unauthorized and return if token.expires < DateTime.now
 
     @current_user = token.user
     token.update(expires: DateTime.now + 2.hours)
 
-    render json: {Token: 'Valid'}
+    render json: {token: 'Valid'}
   end
 
   api :POST, '/users/reset-password', 'Trigger Password Reset Email'
@@ -92,7 +91,7 @@ class UsersController < ApplicationController
   description "Triggers a password reset email to the User"
   def trigger_password_reset
 
-    @user = User.find_by_username(params[:username])
+    @user = User.find_by_username(params[:user][:username])
 
     render json: {error: "User not found"},
            status: :not_found and return unless @user
@@ -144,9 +143,9 @@ class UsersController < ApplicationController
   description 'Only accessible by Admins'
   def create
     @user = User.new(create_user_params)
-    @user.username = @user.username.downcase
+
     if @user.save
-      # PasswordMailer.deliver_welcome_email(@user)
+      @user.username = @user.username.downcase
       render :show
     else
       render json: {error: 'Bad Request', messages: @user.errors.full_messages}, status: :bad_request
@@ -159,10 +158,17 @@ class UsersController < ApplicationController
   param_group :user
   description 'Only accessible by admin users'
   def update
+
+    render json: {error: 'Can not update password through this interface'},
+           status: :bad_request and return if params[:user][:password]
+
     @user = User.find_by_id(params[:id])
     if @user
-      @user.update(update_user_params)
-      render :show
+      if @user.update(update_user_params)
+        render :show
+      else
+        render json: {error: @user.errors.full_messages}, status: :bad_request and return
+      end
     else
       render json: {error: "User not found"}, status: :not_found
     end

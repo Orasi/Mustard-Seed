@@ -8,8 +8,16 @@ class TeamsController < ApplicationController
                                         :remove_user,
                                         :remove_project]
 
+  skip_before_action :require_user_token, only: [:create,
+                                                 :update,
+                                                 :destroy,
+                                                 :add_user,
+                                                 :add_project,
+                                                 :remove_user,
+                                                 :remove_project]
 
-  # Param group for api documentation
+
+      # Param group for api documentation
   def_param_group :team do
     param :team, Hash, required: true, :action_aware => true do
       param :name, String, 'Team name', :required => true
@@ -42,7 +50,7 @@ class TeamsController < ApplicationController
            status: :not_found and return unless @team
 
       render json: {error: 'You do not have permission to access this resource'},
-             status: :unauthorized and return unless @current_user.user_teams.include? @team
+             status: :forbidden and return unless @current_user.user_teams.include? @team
 
 
   end
@@ -57,7 +65,7 @@ class TeamsController < ApplicationController
     if @team.save
       render :show
     else
-      render json: {error: 'Bad Request', messages: team.errors.full_messages}, status: :bad_request
+      render json: {error: 'Bad Request', messages: @team.errors.full_messages}, status: :bad_request
     end
 
   end
@@ -102,15 +110,17 @@ class TeamsController < ApplicationController
   param :user_id, :number, 'User ID', required: true
   def add_user
 
-    @team = Team.find_by_id(params[:id])
+    team = Team.where(id: params[:id])
 
     render json: {error: "Team not found"},
-           status: :not_found and return unless @team
+           status: :not_found and return if team.blank?
+    @team = team.first
 
-    user = User.find_by_id(params[:user_id])
+    user = User.where(id: params[:user_id])
 
     render json: {error: "User not found"},
-           status: :not_found and return unless user
+           status: :not_found and return if user.blank?
+    user = user.first
 
     render json: {error: "User already exists on team"},
            status: :bad_request and return if user.teams.include? @team
@@ -128,11 +138,12 @@ class TeamsController < ApplicationController
   param :project_id, :number, 'Project ID', required: true
   def add_project
 
-    @team = Team.find_by_id(params[:id])
+    team = Team.where(id: params[:id])
 
     render json: {error: "Team not found"},
-           status: :not_found and return unless @team
+           status: :not_found and return if team.blank?
 
+    @team = team.first
     project = Project.find_by_id(params[:project_id])
 
     render json: {error: "Project not found"},

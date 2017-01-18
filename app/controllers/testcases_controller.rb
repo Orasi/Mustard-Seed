@@ -2,7 +2,8 @@ require 'csv'
 
 class TestcasesController < ApplicationController
   include ActionController::MimeResponds
-  before_action :requires_admin, only: [:create, :update, :destroy, :import]
+  before_action :require_user_token, only: [:create, :show, :update, :export]
+  before_action :requires_admin, only: [:destroy, :import]
 
   # Param group for api documentation
   def_param_group :testcase do
@@ -24,29 +25,38 @@ class TestcasesController < ApplicationController
 
   def show
 
-    testcase = Testcase.find_by_id(params[:id])
+    testcase = Testcase.unscope(:where).where(id: params[:id])
 
     render json: {error: "Testcase not found"},
-           status: :not_found and return unless testcase
+           status: :not_found and return if testcase.blank?
+    testcase = testcase.first
 
+    other_versions = Testcase.unscope(:where).where(token: testcase.token).where.not(id: testcase.id).order(:version)
     render json: {error: 'Not authorized to access this resource'},
-           status: :unauthorized and return unless @current_user.projects.include? testcase.project
+           status: :forbidden and return unless @current_user.projects.include? testcase.project
 
-    render json: testcase
+    render json: {testcase: testcase, other_versions: other_versions.to_a}
 
   end
 
 
   api :POST, '/testcases/', 'Create new testcase'
-  description 'Only accessible by Admins'
+  description 'Only accessible if project is viewable by current user'
   param_group :testcase
 
   def create
 
+    render json: {error: 'Project ID must be provided to create testcase'},
+           status: :bad_request and return unless testcase_params[:project_id]
+
+    render json: {error: 'Not authorized to access this resource'},
+           status: :forbidden and return unless @current_user.projects.include? Project.find(testcase_params[:project_id])
+
     testcase = Testcase.new(testcase_params)
     testcase.reproduction_steps = params.to_unsafe_h[:testcase][:reproduction_steps] if params[:testcase][:reproduction_steps]
+    add_user_name testcase
     if testcase.save
-      render json: testcase
+      render json: {testcase: testcase}
     else
       render json: {error: testcase.errors.full_messages.to_sentence}, status: :bad_request
     end
@@ -55,47 +65,49 @@ class TestcasesController < ApplicationController
 
 
   api :PUT, '/testcases/', 'Update existing testcase'
-  description 'Only accessible by Admins'
+  description 'Only accessible if project is viewable by current user'
   param_group :testcase
 
   def update
 
-    testcase = Testcase.find_by_id(params[:id])
+    testcase = Testcase.unscope(:where).where(id: params[:id])
+
+    render json: {error: 'Could not find testcase'}, status: :not_found and return if testcase.blank?
+    testcase = testcase.first
+
+    render json: {error: 'Not authorized to access this resource'},
+           status: :forbidden and return unless @current_user.projects.include? testcase.project
+
     render json: {error: 'Outdated Testcases can not be updated'}, status: :bad_request and return if testcase.outdated
 
-    if testcase
-      repro_steps = params.to_unsafe_h[:testcase][:reproduction_steps]
-      params[:testcase].delete :reproduction_steps
-      if repro_steps == testcase.reproduction_steps
-        if testcase.update(testcase_params)
-          render json: testcase
-        else
-          render json: {error: testcase.errors.full_messages}, status: :bad_request
-        end
-
+    repro_steps = params.to_unsafe_h[:testcase][:reproduction_steps]
+    params[:testcase].delete :reproduction_steps
+    if repro_steps.nil? || repro_steps == testcase.reproduction_steps
+      if testcase.update(testcase_params)
+        render json: {testcase: testcase}
       else
-        Testcase.transaction do
-          begin
-            clone = testcase.dup
-            testcase.close!
-            clone.assign_attributes(testcase_params)
-            clone.reproduction_steps = repro_steps
-            clone.outdated = false
-            clone.version = testcase.version + 1
-            clone.save!
-            render json: clone
-          rescue
-            render json: {error: clone.errors.full_messages + testcase.errors.full_messages}, status: :bad_request
-            raise ActiveRecord::Rollback
-
-          end
-        end
+        render json: {error: testcase.errors.full_messages}, status: :bad_request
       end
 
     else
-      render json: {error: "Testcase not found"}, status: :not_found
-    end
+      Testcase.transaction do
+        begin
+          clone = testcase.dup
+          testcase.close!
+          clone.assign_attributes(testcase_params)
+          clone.reproduction_steps = repro_steps
+          clone.outdated = false
+          clone.version = testcase.version + 1
+          add_user_name clone
+          clone.save!
+          render json: {testcase: clone}
+        rescue
+          render json: {error: clone.errors.full_messages + testcase.errors.full_messages}, status: :bad_request
+          raise ActiveRecord::Rollback
 
+        end
+      end
+    end
   end
 
 
@@ -115,16 +127,17 @@ class TestcasesController < ApplicationController
 
   end
 
-  api :GET, '/projects/:id/testcases/export', 'Export testcases'
-  description 'Export testcases to xlsx.  Only accessible by admin users'
+  api :GET, '/projects/:id/testcases/export[.format]', 'Export testcases'
+  description 'Export testcases to json or xlsx.  Only accessible by admin users.  Output format is controlled by .format extension.  No format defaults to JSON'
   param :project_id, :number, required: true
 
   def export
 
-    @project = Project.find_by_id(params[:project_id])
+    @project = Project.where(id: params[:project_id])
 
     render json: {error: "Project not found"},
            status: :not_found and return unless @project
+    @project = @project.first
 
     @testcases = @project.testcases
     respond_to do |format|
@@ -143,7 +156,7 @@ class TestcasesController < ApplicationController
 
         render json: {report: download_url(token: token.token)}
       }
-      format.any { render json: @testcases }
+      format.any { render json: {testcases: @testcases} }
     end
 
   end
@@ -157,10 +170,11 @@ class TestcasesController < ApplicationController
 
   def import
 
-    project = Project.find_by_id(params[:project_id])
+    project = Project.where(id: params[:project_id])
 
     render json: {error: "Project not found"},
-           status: :not_found and return unless project
+           status: :not_found and return if project.blank?
+    project = project.first
 
     output = {}
     output[:success] = []
@@ -254,6 +268,7 @@ class TestcasesController < ApplicationController
                   testcase.close!
                   clone.outdated = false
                   clone.version = testcase.version + 1
+                  add_user_name clone
                   clone.save!
 
                 end
@@ -262,6 +277,7 @@ class TestcasesController < ApplicationController
               end
 
             else
+              add_user_name(tc)
               tc.save
             end
 
@@ -283,6 +299,13 @@ class TestcasesController < ApplicationController
 
 
   private
+
+  def add_user_name(test)
+    if @current_user
+      user_display_name = "#{@current_user.first_name}  #{@current_user.last_name}"
+      test.username = user_display_name
+    end
+  end
 
   def testcase_params
 

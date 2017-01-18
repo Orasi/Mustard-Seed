@@ -22,10 +22,11 @@ class DownloadsController < ApplicationController
   see "results#screenshot", "results#screenshot for token generation example"
   def show
 
-    dl = DownloadToken.find_by_token(params[:token])
+    dl = DownloadToken.where(token: params[:token])
 
     render json: {error: "Download not found"},
-           status: :not_found and return unless dl
+           status: :not_found and return if dl.blank?
+    dl = dl.first
 
     if dl.expiration < DateTime.now
 

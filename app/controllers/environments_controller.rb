@@ -1,6 +1,7 @@
 class EnvironmentsController < ApplicationController
 
   before_action :requires_admin, only: [:create, :update, :destroy]
+  skip_before_action :require_user_token, only: [:create, :update, :destroy]
 
 
 # Param group for api documentation
@@ -24,9 +25,9 @@ class EnvironmentsController < ApplicationController
            status: :not_found and return unless environment
 
     render json: {error: 'Not authorized to access this resource'},
-           status: :unauthorized and return unless @current_user.projects.include? environment.project
+           status: :forbidden and return unless @current_user.projects.include? environment.project
 
-    render json: environment
+    render json: {environment: environment}
 
   end
 
@@ -41,7 +42,7 @@ class EnvironmentsController < ApplicationController
     render json: {error: 'Bad Request', messages: environment.errors.full_messages},
            status: :bad_request and return unless environment.save
 
-    render json: environment
+    render json: {environment: environment}
 
   end
 
@@ -52,14 +53,20 @@ class EnvironmentsController < ApplicationController
   param_group :environment
   def update
 
-    environment = Environment.find_by_id(params[:id])
+    environment = Environment.where(id: params[:id])
 
     render json: {error: "Environment not found"},
-           status: :not_found and return unless environment
+           status: :not_found and return if environment.blank?
 
-    environment.update(environment_params)
+    environment = environment.first
 
-    render json: environment
+    if environment.update(environment_params)
+      render json: {environment: environment}
+    else
+      render json: {error: environment.errors.full_messages}, status: :bad_request
+    end
+
+
 
   end
 
@@ -74,10 +81,11 @@ class EnvironmentsController < ApplicationController
     render json: {error: "Environment not found"},
            status: :not_found and return unless environment
 
-    render json: {user: 'Deleted'} and return if environment.destroy
-    render json: {error: "Failed to Delete environment [#{environment.errors.full_messages}]"}
-
-    render json: {environment: 'Deleted'}
+    if environment.destroy
+      render json: {environment: 'Deleted'} and return if environment.destroy
+    else
+      render json: {error: "Failed to Delete environment [#{environment.errors.full_messages}]"}
+    end
 
   end
 

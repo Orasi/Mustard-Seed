@@ -30,12 +30,12 @@ class ApplicationController < ActionController::API
     user.user_tokens.create(expires: UserToken.token_expiration_by_type(token_type), token_type: token_type)
     token = user.user_tokens.of_token_type(token_type).first
 
-    render json: {id: user.id,
-                  user: user.username,
-                  first_name: user.first_name,
-                  last_name: user.last_name,
-                  token: token.token,
-                  admin: user.admin}
+    render json: {user: {id: user.id,
+                        username: user.username,
+                        first_name: user.first_name,
+                        last_name: user.last_name,
+                        token: token.token,
+                        admin: user.admin}}
 
   end
 
@@ -50,11 +50,11 @@ class ApplicationController < ActionController::API
     # puts request.headers.to_json
     token = UserToken.find_by_token(request.headers['User-Token'])
 
-    render json: {Error: 'Invalid User Token' },
-           status: :unauthorized and return unless token
+    render json: {error: 'Invalid User Token' },
+           status: :unauthorized and return false unless token
 
-    render json: {Error: 'Invalid User Token' },
-           status: :unauthorized and return if token.expires < DateTime.now
+    render json: {error: 'Invalid User Token' },
+           status: :unauthorized and return false if token.expires < DateTime.now
 
     @current_user = token.user
     token.update(expires: DateTime.now + 2.hours)
@@ -68,13 +68,16 @@ class ApplicationController < ActionController::API
   # Returns error if admin route is accessed by non-admin user
   def requires_admin
 
-    require_user_token unless @current_user
+    authenticated = require_user_token unless @current_user
 
-    render json: {error: 'Not authorized to access this resource'},
-           status: :unauthorized and return false unless @current_user.admin
+    if authenticated
+      render json: {error: 'Not authorized to access this resource'},
+             status: :forbidden and return false unless @current_user.admin
 
-    return @current_user.admin
-
+      return @current_user.admin
+    else
+      return false
+    end
   end
 
 end
