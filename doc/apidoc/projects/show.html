@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>API documentation</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link type='text/css' rel='stylesheet' href='../../apidoc/stylesheets/bundled/bootstrap.min.css'/>
+<link type='text/css' rel='stylesheet' href='../../apidoc/stylesheets/bundled/prettify.css'/>
+<link type='text/css' rel='stylesheet' href='../../apidoc/stylesheets/bundled/bootstrap-responsive.min.css'/>
+  <link type='text/css' rel='stylesheet' href='../../apidoc/stylesheets/application.css'/>
+  <!-- IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div id='container'>
+        <ul class='breadcrumb'>
+  <li>
+    <a href='../../apidoc.html'>Mustard 1.0</a>
+    <span class='divider'>/</span>
+  </li>
+  <li>
+    <a href='../../apidoc/projects.html'>
+      Projects
+      
+    </a>
+    <span class='divider'>/</span>
+  </li>
+  <li class='active'>show</li>
+  
+
+</ul>
+
+  <div class='page-header'>
+    <h1>
+      GET /projects/:id
+      <br>
+      <small>Project details</small>
+    </h1>
+  </div>
+
+<div>
+
+  
+<p>Only accessible if project is viewable by current user</p>
+
+
+
+
+
+  <h2>Examples</h2>
+    <pre class="prettyprint">GET /projects/24500
+200
+{
+  &quot;project&quot;: {
+    &quot;id&quot;: 24500,
+    &quot;project_name&quot;: &quot;Orn, Brekke and Turcotte&quot;,
+    &quot;api_key&quot;: &quot;3e663d59a1fa70cf737f972214698195&quot;,
+    &quot;created_at&quot;: &quot;2017-01-20T20:24:57.599Z&quot;,
+    &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.659Z&quot;,
+    &quot;testcases&quot;: [
+      {
+        &quot;id&quot;: 93371,
+        &quot;testcase_name&quot;: &quot;Repellendus id qui quod voluptates amet qui incidunt perspiciatis.&quot;,
+        &quot;testcase_id&quot;: 1983169,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.650Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.650Z&quot;,
+        &quot;version&quot;: 1
+      },
+      {
+        &quot;id&quot;: 93372,
+        &quot;testcase_name&quot;: &quot;Quibusdam atque dolorum quia.&quot;,
+        &quot;testcase_id&quot;: 4946485,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.657Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.657Z&quot;,
+        &quot;version&quot;: 1
+      },
+      {
+        &quot;id&quot;: 93370,
+        &quot;testcase_name&quot;: &quot;Reiciendis ut velit sunt quisquam.&quot;,
+        &quot;testcase_id&quot;: 5309266,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.643Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.643Z&quot;,
+        &quot;version&quot;: 1
+      },
+      {
+        &quot;id&quot;: 93369,
+        &quot;testcase_name&quot;: &quot;Sunt et aliquid velit mollitia.&quot;,
+        &quot;testcase_id&quot;: 7458654,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.635Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.635Z&quot;,
+        &quot;version&quot;: 1
+      },
+      {
+        &quot;id&quot;: 93368,
+        &quot;testcase_name&quot;: &quot;At officia nemo autem hic omnis nostrum.&quot;,
+        &quot;testcase_id&quot;: 9937402,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.628Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.628Z&quot;,
+        &quot;version&quot;: 1
+      }
+    ],
+    &quot;environments&quot;: [
+      {
+        &quot;id&quot;: 109738,
+        &quot;uuid&quot;: &quot;26cd8a5db22b2f5e4bc52f8c609a3bbc&quot;,
+        &quot;display_name&quot;: null,
+        &quot;environment_type&quot;: &quot;Undefined&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.606Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.606Z&quot;
+      },
+      {
+        &quot;id&quot;: 109739,
+        &quot;uuid&quot;: &quot;9054d8e7c285203719e68d9f943a065e&quot;,
+        &quot;display_name&quot;: null,
+        &quot;environment_type&quot;: &quot;Undefined&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.611Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.611Z&quot;
+      },
+      {
+        &quot;id&quot;: 109740,
+        &quot;uuid&quot;: &quot;ddd6dcdef98d7d707c9723959bcdfdf8&quot;,
+        &quot;display_name&quot;: null,
+        &quot;environment_type&quot;: &quot;Undefined&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.615Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.615Z&quot;
+      },
+      {
+        &quot;id&quot;: 109741,
+        &quot;uuid&quot;: &quot;971061aa6dd137e91b2e667ebafc77f7&quot;,
+        &quot;display_name&quot;: null,
+        &quot;environment_type&quot;: &quot;Undefined&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.619Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.619Z&quot;
+      },
+      {
+        &quot;id&quot;: 109742,
+        &quot;uuid&quot;: &quot;fa17f873031e661b8a347c0bc5ee2921&quot;,
+        &quot;display_name&quot;: null,
+        &quot;environment_type&quot;: &quot;Undefined&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.623Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.623Z&quot;
+      }
+    ],
+    &quot;executions&quot;: [
+      {
+        &quot;id&quot;: 24544,
+        &quot;name&quot;: &quot;Execution: 01/20/2017&quot;,
+        &quot;closed&quot;: false,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.600Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.600Z&quot;
+      }
+    ]
+  }
+}</pre>
+
+  <h2>Params</h2>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Param name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Project ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+    </tbody>
+  </table>
+
+
+
+</div>
+
+
+        
+      </div>
+    </div>
+    <hr>
+    <footer></footer>
+  </div>
+  <script type='text/javascript' src='../../apidoc/javascripts/bundled/jquery.js'></script>
+<script type='text/javascript' src='../../apidoc/javascripts/bundled/bootstrap-collapse.js'></script>
+<script type='text/javascript' src='../../apidoc/javascripts/bundled/prettify.js'></script>
+<script type='text/javascript' src='../../apidoc/javascripts/apipie.js'></script>
+</body>
+</html>

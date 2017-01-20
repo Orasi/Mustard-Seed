@@ -1,0 +1,1783 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>API documentation</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link type='text/css' rel='stylesheet' href='../apidoc/stylesheets/bundled/bootstrap.min.css'/>
+<link type='text/css' rel='stylesheet' href='../apidoc/stylesheets/bundled/prettify.css'/>
+<link type='text/css' rel='stylesheet' href='../apidoc/stylesheets/bundled/bootstrap-responsive.min.css'/>
+  <link type='text/css' rel='stylesheet' href='../apidoc/stylesheets/application.css'/>
+  <!-- IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div id='container'>
+        <ul class='breadcrumb'>
+  <li>
+    <a href='../apidoc.html'>Mustard 1.0</a>
+    <span class='divider'>/</span>
+  </li>
+  <li class='active'>
+    Executions
+    
+  </li>
+  
+</ul>
+
+<div class='page-header'>
+  <h1>
+    Executions
+    <br>
+    <small></small>
+  </h1>
+</div>
+
+
+
+
+
+
+<div class='accordion' id='accordion'>
+
+    <hr>
+    <div class='pull-right small'>
+      <a href='../apidoc/executions/testcase_count.html'> >>> </a>
+    </div>
+    <div>
+        <h2>
+          <a href='#description-testcase_count'
+           class='accordion-toggle'
+           data-toggle='collapse'
+           data-parent='#accordion'>
+            get /executions/:id/testcase-count
+          </a>
+          <br>
+          <small>Testcase Count</small>
+        </h2>
+    </div>
+
+
+    <div id='description-testcase_count' class='collapse accordion-body'>
+      
+<p>Returns the number of testcases in this execution</p>
+
+
+
+
+  <h3>Metadata</h3>
+  <pre class="prettyprint lang-yaml">--- Only accessible if project is viewable by current user
+...
+</pre>
+
+
+  <h3>Examples</h3>
+    <pre class="prettyprint">GET /executions/24523/testcase-count
+200
+{
+  &quot;testcases&quot;: 5
+}</pre>
+
+  <h3>Params</h3>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Param name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Execution ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+    </tbody>
+  </table>
+
+
+
+    </div>
+    <hr>
+    <div class='pull-right small'>
+      <a href='../apidoc/executions/environment_count.html'> >>> </a>
+    </div>
+    <div>
+        <h2>
+          <a href='#description-environment_count'
+           class='accordion-toggle'
+           data-toggle='collapse'
+           data-parent='#accordion'>
+            get /executions/:id/environment-count
+          </a>
+          <br>
+          <small>Environment Count</small>
+        </h2>
+    </div>
+
+
+    <div id='description-environment_count' class='collapse accordion-body'>
+      
+<p>Returns the number of environments in this execution</p>
+
+
+
+
+  <h3>Metadata</h3>
+  <pre class="prettyprint lang-yaml">--- Only accessible if project is viewable by current user
+...
+</pre>
+
+
+  <h3>Examples</h3>
+    <pre class="prettyprint">GET /executions/24524/environment-count
+200
+{
+  &quot;environments&quot;: 5
+}</pre>
+
+  <h3>Params</h3>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Param name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Execution ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+    </tbody>
+  </table>
+
+
+
+    </div>
+    <hr>
+    <div class='pull-right small'>
+      <a href='../apidoc/executions/testcase_summary.html'> >>> </a>
+    </div>
+    <div>
+        <h2>
+          <a href='#description-testcase_summary'
+           class='accordion-toggle'
+           data-toggle='collapse'
+           data-parent='#accordion'>
+            GET /executions/:id/testcase_summary
+          </a>
+          <br>
+          <small>Testcase Summary</small>
+        </h2>
+    </div>
+
+
+    <div id='description-testcase_summary' class='collapse accordion-body'>
+      
+<p>Lists the pass, fail, and skip counts by testcase</p>
+
+
+
+
+  <h3>Metadata</h3>
+  <pre class="prettyprint lang-yaml">--- Only accessible if project is viewable by current user
+...
+</pre>
+
+
+  <h3>Examples</h3>
+    <pre class="prettyprint">GET /executions/24525/testcase_summary
+200
+{
+  &quot;summary&quot;: [
+    {
+      &quot;id&quot;: 93289,
+      &quot;name&quot;: &quot;Consectetur delectus temporibus illo.&quot;,
+      &quot;validation_id&quot;: 1842764,
+      &quot;pass_count&quot;: 2,
+      &quot;fail_count&quot;: 3,
+      &quot;skip_count&quot;: 1,
+      &quot;updated_at&quot;: &quot;2017-01-20 20:24:53.14885&quot;
+    },
+    {
+      &quot;id&quot;: 93292,
+      &quot;name&quot;: &quot;Magnam vel possimus nulla voluptates deserunt non quis reiciendis.&quot;,
+      &quot;validation_id&quot;: 2035008,
+      &quot;pass_count&quot;: 2,
+      &quot;fail_count&quot;: 3,
+      &quot;skip_count&quot;: 1,
+      &quot;updated_at&quot;: &quot;2017-01-20 20:24:53.292587&quot;
+    },
+    {
+      &quot;id&quot;: 93291,
+      &quot;name&quot;: &quot;Nostrum velit libero autem expedita.&quot;,
+      &quot;validation_id&quot;: 9279283,
+      &quot;pass_count&quot;: 1,
+      &quot;fail_count&quot;: 2,
+      &quot;skip_count&quot;: 3,
+      &quot;updated_at&quot;: &quot;2017-01-20 20:24:53.248335&quot;
+    },
+    {
+      &quot;id&quot;: 93288,
+      &quot;name&quot;: &quot;Sunt libero dolorem amet.&quot;,
+      &quot;validation_id&quot;: 1242112,
+      &quot;pass_count&quot;: 1,
+      &quot;fail_count&quot;: 2,
+      &quot;skip_count&quot;: 3,
+      &quot;updated_at&quot;: &quot;2017-01-20 20:24:53.103471&quot;
+    },
+    {
+      &quot;id&quot;: 93290,
+      &quot;name&quot;: &quot;Iure natus sunt a occaecati modi delectus cumque.&quot;,
+      &quot;validation_id&quot;: 6174333,
+      &quot;pass_count&quot;: 1,
+      &quot;fail_count&quot;: 3,
+      &quot;skip_count&quot;: 2,
+      &quot;updated_at&quot;: &quot;2017-01-20 20:24:53.198619&quot;
+    }
+  ]
+}</pre>
+
+  <h3>Params</h3>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Param name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Execution ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+    </tbody>
+  </table>
+
+
+
+    </div>
+    <hr>
+    <div class='pull-right small'>
+      <a href='../apidoc/executions/environment_summary.html'> >>> </a>
+    </div>
+    <div>
+        <h2>
+          <a href='#description-environment_summary'
+           class='accordion-toggle'
+           data-toggle='collapse'
+           data-parent='#accordion'>
+            GET /executions/:id/environment_summary
+          </a>
+          <br>
+          <small>Environment Summary</small>
+        </h2>
+    </div>
+
+
+    <div id='description-environment_summary' class='collapse accordion-body'>
+      
+<p>Lists the pass, fail, and skip counts by environment</p>
+
+
+
+
+  <h3>Metadata</h3>
+  <pre class="prettyprint lang-yaml">--- Only accessible if project is viewable by current user
+...
+</pre>
+
+
+  <h3>Examples</h3>
+    <pre class="prettyprint">GET /executions/24526/environment_summary
+200
+{
+  &quot;summary&quot;: [
+    {
+      &quot;id&quot;: 109667,
+      &quot;uuid&quot;: &quot;7cb3f73ba24c3a74e7417e271308c058&quot;,
+      &quot;display_name&quot;: null,
+      &quot;environment_type&quot;: &quot;Undefined&quot;,
+      &quot;pass_count&quot;: 2,
+      &quot;fail_count&quot;: 2,
+      &quot;skip_count&quot;: 1,
+      &quot;updated_at&quot;: &quot;2017-01-20 20:24:53.628356&quot;
+    },
+    {
+      &quot;id&quot;: 109663,
+      &quot;uuid&quot;: &quot;c595b74d21b12a85764ee2caab87717f&quot;,
+      &quot;display_name&quot;: null,
+      &quot;environment_type&quot;: &quot;Undefined&quot;,
+      &quot;pass_count&quot;: 1,
+      &quot;fail_count&quot;: 1,
+      &quot;skip_count&quot;: 3,
+      &quot;updated_at&quot;: &quot;2017-01-20 20:24:53.602075&quot;
+    },
+    {
+      &quot;id&quot;: 109665,
+      &quot;uuid&quot;: &quot;cc0b16d06a48cb0cfa40fc8a185b4cae&quot;,
+      &quot;display_name&quot;: null,
+      &quot;environment_type&quot;: &quot;Undefined&quot;,
+      &quot;pass_count&quot;: 3,
+      &quot;fail_count&quot;: 1,
+      &quot;skip_count&quot;: 1,
+      &quot;updated_at&quot;: &quot;2017-01-20 20:24:53.615193&quot;
+    },
+    {
+      &quot;id&quot;: 109664,
+      &quot;uuid&quot;: &quot;8502f5de2ba1bc3d0526b32dcac06d70&quot;,
+      &quot;display_name&quot;: null,
+      &quot;environment_type&quot;: &quot;Undefined&quot;,
+      &quot;pass_count&quot;: 1,
+      &quot;fail_count&quot;: 3,
+      &quot;skip_count&quot;: 1,
+      &quot;updated_at&quot;: &quot;2017-01-20 20:24:53.608738&quot;
+    },
+    {
+      &quot;id&quot;: 109666,
+      &quot;uuid&quot;: &quot;fcc87aa46e94b4d413864a2ef86e9a07&quot;,
+      &quot;display_name&quot;: null,
+      &quot;environment_type&quot;: &quot;Undefined&quot;,
+      &quot;pass_count&quot;: 2,
+      &quot;fail_count&quot;: 1,
+      &quot;skip_count&quot;: 2,
+      &quot;updated_at&quot;: &quot;2017-01-20 20:24:53.621877&quot;
+    }
+  ]
+}</pre>
+
+  <h3>Params</h3>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Param name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Execution ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+    </tbody>
+  </table>
+
+
+
+    </div>
+    <hr>
+    <div class='pull-right small'>
+      <a href='../apidoc/executions/testcase_status.html'> >>> </a>
+    </div>
+    <div>
+        <h2>
+          <a href='#description-testcase_status'
+           class='accordion-toggle'
+           data-toggle='collapse'
+           data-parent='#accordion'>
+            GET /executions/:id/testcase_status
+          </a>
+          <br>
+          <small>Execution Details</small>
+        </h2>
+    </div>
+
+
+    <div id='description-testcase_status' class='collapse accordion-body'>
+      
+<p>Shows details of execution</p>
+
+
+
+
+  <h3>Metadata</h3>
+  <pre class="prettyprint lang-yaml">--- Only accessible if project is viewable by current user
+...
+</pre>
+
+
+  <h3>Examples</h3>
+    <pre class="prettyprint">GET /executions/24527/testcase_status
+200
+{
+  &quot;execution&quot;: {
+    &quot;id&quot;: 24527,
+    &quot;name&quot;: &quot;Execution: 01/20/2017&quot;,
+    &quot;project_id&quot;: 24486,
+    &quot;project_name&quot;: &quot;Nicolas Inc&quot;,
+    &quot;closed&quot;: false,
+    &quot;fail&quot;: [
+      {
+        &quot;id&quot;: 93300,
+        &quot;validation_id&quot;: 8177478,
+        &quot;name&quot;: &quot;Corporis eligendi nobis maxime et molestiae.&quot;,
+        &quot;path&quot;: &quot;results/93300&quot;
+      },
+      {
+        &quot;id&quot;: 93298,
+        &quot;validation_id&quot;: 5041907,
+        &quot;name&quot;: &quot;Cum sed eos ut excepturi ut.&quot;,
+        &quot;path&quot;: &quot;results/93298&quot;
+      },
+      {
+        &quot;id&quot;: 93302,
+        &quot;validation_id&quot;: 2423559,
+        &quot;name&quot;: &quot;Ea ex id quisquam quaerat maiores aut.&quot;,
+        &quot;path&quot;: &quot;results/93302&quot;
+      },
+      {
+        &quot;id&quot;: 93299,
+        &quot;validation_id&quot;: 7458673,
+        &quot;name&quot;: &quot;Est id corrupti modi nam quo dicta et.&quot;,
+        &quot;path&quot;: &quot;results/93299&quot;
+      },
+      {
+        &quot;id&quot;: 93301,
+        &quot;validation_id&quot;: 1308234,
+        &quot;name&quot;: &quot;Vel sunt cupiditate voluptas qui delectus quidem velit.&quot;,
+        &quot;path&quot;: &quot;results/93301&quot;
+      }
+    ],
+    &quot;pass&quot;: [],
+    &quot;skip&quot;: [],
+    &quot;not_run&quot;: []
+  }
+}</pre>
+
+  <h3>Params</h3>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Param name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Execution ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+    </tbody>
+  </table>
+
+
+
+    </div>
+    <hr>
+    <div class='pull-right small'>
+      <a href='../apidoc/executions/testcase_detail.html'> >>> </a>
+    </div>
+    <div>
+        <h2>
+          <a href='#description-testcase_detail'
+           class='accordion-toggle'
+           data-toggle='collapse'
+           data-parent='#accordion'>
+            GET /executions/:id/testcases/:testcase_id
+          </a>
+          <br>
+          <small>Testcase Detail</small>
+        </h2>
+    </div>
+
+
+    <div id='description-testcase_detail' class='collapse accordion-body'>
+      
+<p>Shows latest results in all environments for a given testcase</p>
+
+
+
+
+  <h3>Metadata</h3>
+  <pre class="prettyprint lang-yaml">--- Only accessible if project is viewable by current user
+...
+</pre>
+
+
+  <h3>Examples</h3>
+    <pre class="prettyprint">GET /executions/24528/testcases/93303
+200
+{
+  &quot;testcase&quot;: {
+    &quot;id&quot;: 93303,
+    &quot;testcase_name&quot;: &quot;Enim illum perspiciatis similique vitae.&quot;,
+    &quot;validation_id&quot;: 3676848,
+    &quot;project_id&quot;: 24487,
+    &quot;execution_id&quot;: &quot;24528&quot;,
+    &quot;reproduction_steps&quot;: [
+      {
+        &quot;step_number&quot;: 1,
+        &quot;action&quot;: &quot;Hic distinctio voluptatem magnam est iure.&quot;,
+        &quot;result&quot;: &quot;Error quia quis sit exercitationem sint iusto.&quot;
+      },
+      {
+        &quot;step_number&quot;: 2,
+        &quot;action&quot;: &quot;Cupiditate dignissimos earum quia eius praesentium.&quot;,
+        &quot;result&quot;: &quot;Alias doloremque laudantium odio enim illum.&quot;
+      },
+      {
+        &quot;step_number&quot;: 3,
+        &quot;action&quot;: &quot;Placeat voluptas sed neque velit quaerat quisquam veniam.&quot;,
+        &quot;result&quot;: &quot;Et molestiae reprehenderit voluptas quas corrupti.&quot;
+      }
+    ],
+    &quot;manual_results&quot;: [
+      {
+        &quot;id&quot;: 113930,
+        &quot;created_by_name&quot;: &quot;Keyshawn Tremblay&quot;,
+        &quot;created_by_id&quot;: 59313,
+        &quot;created_at&quot;: &quot;2017-01-20T15:24:54.347-05:00&quot;,
+        &quot;result_type&quot;: &quot;manual&quot;,
+        &quot;comment&quot;: &quot;Sint ad tempore sit maxime est.&quot;,
+        &quot;status&quot;: &quot;skip&quot;
+      },
+      {
+        &quot;id&quot;: 113930,
+        &quot;created_by_name&quot;: &quot;Keyshawn Tremblay&quot;,
+        &quot;created_by_id&quot;: 59313,
+        &quot;created_at&quot;: &quot;2017-01-20T15:24:54.347-05:00&quot;,
+        &quot;result_type&quot;: &quot;manual&quot;,
+        &quot;comment&quot;: &quot;Qui velit dolorem at repellat tenetur ab.&quot;,
+        &quot;status&quot;: &quot;fail&quot;
+      },
+      {
+        &quot;id&quot;: 113930,
+        &quot;created_by_name&quot;: &quot;Keyshawn Tremblay&quot;,
+        &quot;created_by_id&quot;: 59313,
+        &quot;created_at&quot;: &quot;2017-01-20T15:24:54.337-05:00&quot;,
+        &quot;result_type&quot;: &quot;manual&quot;,
+        &quot;comment&quot;: &quot;Consequatur quas quidem et odio quis id.&quot;,
+        &quot;status&quot;: &quot;pass&quot;
+      }
+    ],
+    &quot;automated_results&quot;: [
+      {
+        &quot;id&quot;: 113928,
+        &quot;environment_id&quot;: 109676,
+        &quot;environment_name&quot;: &quot;6cda059eea2e1ed18d3c9caa34b8dc37&quot;,
+        &quot;environment_type&quot;: &quot;Undefined&quot;,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;comment&quot;: &quot;Quaerat explicabo qui ab omnis.&quot;,
+        &quot;stacktrace&quot;: &quot;Necessitatibus est at eos tempora aut. Incidunt assumenda quod nam dolorem deserunt est. Atque reprehenderit ullam id quo occaecati praesentium. Modi vitae commodi. Quo officia mollitia veniam cum ut consectetur.&quot;,
+        &quot;link&quot;: &quot;http://waelchimills.info/elroy&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:54.320Z&quot;,
+        &quot;status&quot;: &quot;fail&quot;
+      },
+      {
+        &quot;id&quot;: 113926,
+        &quot;environment_id&quot;: 109674,
+        &quot;environment_name&quot;: &quot;34acfbae848cc6368cd20ed7b6fa2717&quot;,
+        &quot;environment_type&quot;: &quot;Undefined&quot;,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;comment&quot;: &quot;Vel cum sit adipisci qui.&quot;,
+        &quot;stacktrace&quot;: &quot;Enim fugiat repellendus tenetur illo. Magnam mollitia totam sit quis. Provident quo et impedit in velit maxime.&quot;,
+        &quot;link&quot;: &quot;http://erdmanfay.org/dahlia.schmitt&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:54.303Z&quot;,
+        &quot;status&quot;: &quot;pass&quot;
+      },
+      {
+        &quot;id&quot;: 113925,
+        &quot;environment_id&quot;: 109673,
+        &quot;environment_name&quot;: &quot;c3ca413cd07e4050efbbf21258d3c5ae&quot;,
+        &quot;environment_type&quot;: &quot;Undefined&quot;,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;comment&quot;: &quot;Voluptatem quas velit cumque possimus quos reiciendis magni debitis.&quot;,
+        &quot;stacktrace&quot;: &quot;Quidem nam doloribus labore aliquid distinctio. Omnis debitis et ea omnis eos quae. Sed quibusdam provident quia.&quot;,
+        &quot;link&quot;: &quot;http://balistreri.net/kaden.emard&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:54.294Z&quot;,
+        &quot;status&quot;: &quot;pass&quot;
+      },
+      {
+        &quot;id&quot;: 113929,
+        &quot;environment_id&quot;: 109677,
+        &quot;environment_name&quot;: &quot;5ca57d00aa20d0fa4736479f1fe01f9e&quot;,
+        &quot;environment_type&quot;: &quot;Undefined&quot;,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;comment&quot;: &quot;Est quis nesciunt nisi qui neque.&quot;,
+        &quot;stacktrace&quot;: &quot;Minus rem et ut. Non repudiandae suscipit dolorum adipisci qui est eligendi. Nam placeat eum molestias.&quot;,
+        &quot;link&quot;: &quot;http://harber.name/prince&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:54.329Z&quot;,
+        &quot;status&quot;: &quot;skip&quot;
+      },
+      {
+        &quot;id&quot;: 113927,
+        &quot;environment_id&quot;: 109675,
+        &quot;environment_name&quot;: &quot;d1b9a177ff985adf1a691cc56e00df13&quot;,
+        &quot;environment_type&quot;: &quot;Undefined&quot;,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;comment&quot;: &quot;Molestias laboriosam ipsa officiis et optio.&quot;,
+        &quot;stacktrace&quot;: &quot;Cum vitae illum nam non doloribus earum et. Recusandae tempore illum officiis assumenda rerum. Molestiae qui iusto voluptatum cupiditate consequuntur aut. Rerum velit deleniti molestias placeat. Fugiat quae dolorem hic cupiditate eaque nesciunt nulla.&quot;,
+        &quot;link&quot;: &quot;http://glover.info/tyler&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:54.311Z&quot;,
+        &quot;status&quot;: &quot;skip&quot;
+      }
+    ]
+  }
+}</pre>
+
+  <h3>Params</h3>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Param name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Execution ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>testcase_id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Testcase ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+    </tbody>
+  </table>
+
+
+
+    </div>
+    <hr>
+    <div class='pull-right small'>
+      <a href='../apidoc/executions/environment_detail.html'> >>> </a>
+    </div>
+    <div>
+        <h2>
+          <a href='#description-environment_detail'
+           class='accordion-toggle'
+           data-toggle='collapse'
+           data-parent='#accordion'>
+            GET /executions/:id/environments/:environment_id
+          </a>
+          <br>
+          <small>Environment Detail</small>
+        </h2>
+    </div>
+
+
+    <div id='description-environment_detail' class='collapse accordion-body'>
+      
+<p>Shows latest results in all environments for a given testcase</p>
+
+
+
+
+  <h3>Metadata</h3>
+  <pre class="prettyprint lang-yaml">--- Only accessible if project is viewable by current user
+...
+</pre>
+
+
+  <h3>Examples</h3>
+    <pre class="prettyprint">GET /executions/24529/environments/109678
+200
+{
+  &quot;environment&quot;: {
+    &quot;id&quot;: 109678,
+    &quot;uuid&quot;: &quot;18f9167ffabd6b21e9d58ea8da2b15f5&quot;,
+    &quot;environment_type&quot;: &quot;Undefined&quot;,
+    &quot;results&quot;: [
+      {
+        &quot;id&quot;: 113955,
+        &quot;testcase_id&quot;: 93308,
+        &quot;validation_id&quot;: 2693944,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;comment&quot;: &quot;Vitae et nobis nihil expedita veritatis enim quis.&quot;,
+        &quot;stacktrace&quot;: &quot;Ea eos nihil iure odio. Qui rem nihil voluptatum accusantium repellat non. Fuga rerum nobis eveniet quia. Molestias dolores nemo. Et facilis consequatur vitae dolore itaque quidem.&quot;,
+        &quot;link&quot;: &quot;http://breitenberg.org/anibal&quot;,
+        &quot;name&quot;: &quot;pass&quot;
+      },
+      {
+        &quot;id&quot;: 113961,
+        &quot;testcase_id&quot;: 93309,
+        &quot;validation_id&quot;: 8824287,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;comment&quot;: &quot;Voluptatem nulla ea placeat ipsa eos maxime laborum adipisci.&quot;,
+        &quot;stacktrace&quot;: &quot;Ea vel eum autem qui. Expedita necessitatibus facere placeat vero enim aut odio. Placeat nisi ut ea qui. Ut id corporis quo eaque dolor qui quo. Laboriosam vitae occaecati velit repudiandae.&quot;,
+        &quot;link&quot;: &quot;http://nolan.org/irwin_cruickshank&quot;,
+        &quot;name&quot;: &quot;fail&quot;
+      },
+      {
+        &quot;id&quot;: 113967,
+        &quot;testcase_id&quot;: 93310,
+        &quot;validation_id&quot;: 6574255,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;comment&quot;: &quot;Dolorem ut dicta dolores et esse qui.&quot;,
+        &quot;stacktrace&quot;: &quot;A quas dolorem alias. Ut et vel inventore et ducimus. Saepe enim numquam dicta.&quot;,
+        &quot;link&quot;: &quot;http://lehner.info/jaydon&quot;,
+        &quot;name&quot;: &quot;pass&quot;
+      },
+      {
+        &quot;id&quot;: 113973,
+        &quot;testcase_id&quot;: 93311,
+        &quot;validation_id&quot;: 7393791,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;comment&quot;: &quot;Corporis iure id fuga reiciendis et est dignissimos aperiam.&quot;,
+        &quot;stacktrace&quot;: &quot;Sint molestiae ullam. Et alias doloremque non placeat voluptatem. Molestiae sed aut voluptatem. Sequi blanditiis animi ipsum quasi facilis.&quot;,
+        &quot;link&quot;: &quot;http://stark.name/jaylen&quot;,
+        &quot;name&quot;: &quot;fail&quot;
+      },
+      {
+        &quot;id&quot;: 113979,
+        &quot;testcase_id&quot;: 93312,
+        &quot;validation_id&quot;: 5565896,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;comment&quot;: &quot;Dolores labore consectetur temporibus corrupti velit alias.&quot;,
+        &quot;stacktrace&quot;: &quot;Et omnis quo optio nihil quidem repudiandae. Expedita error corporis quisquam eius sunt nostrum sapiente. Velit recusandae consequatur ut porro. Ex non repellat vel magnam quaerat labore aut.&quot;,
+        &quot;link&quot;: &quot;http://bernier.com/jett_sporer&quot;,
+        &quot;name&quot;: &quot;skip&quot;
+      }
+    ]
+  }
+}</pre>
+
+  <h3>Params</h3>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Param name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Execution ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>environment_id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Environment ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+    </tbody>
+  </table>
+
+
+
+    </div>
+    <hr>
+    <div class='pull-right small'>
+      <a href='../apidoc/executions/incomplete_tests.html'> >>> </a>
+    </div>
+    <div>
+        <h2>
+          <a href='#description-incomplete_tests'
+           class='accordion-toggle'
+           data-toggle='collapse'
+           data-parent='#accordion'>
+            GET /executions/:id/incomplete_tests
+          </a>
+          <br>
+          <small>List Incomplete Tests</small>
+        </h2>
+    </div>
+
+
+    <div id='description-incomplete_tests' class='collapse accordion-body'>
+      
+<p>Lists all incomplete tests for the given execution</p>
+
+
+
+
+  <h3>Metadata</h3>
+  <pre class="prettyprint lang-yaml">--- Only accessible if project is viewable by current user
+...
+</pre>
+
+
+  <h3>Examples</h3>
+    <pre class="prettyprint">GET /executions/24530/incomplete
+200
+{
+  &quot;incomplete&quot;: []
+}</pre>
+
+  <h3>Params</h3>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Param name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Execution ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+    </tbody>
+  </table>
+
+
+
+    </div>
+    <hr>
+    <div class='pull-right small'>
+      <a href='../apidoc/executions/close.html'> >>> </a>
+    </div>
+    <div>
+        <h2>
+          <a href='#description-close'
+           class='accordion-toggle'
+           data-toggle='collapse'
+           data-parent='#accordion'>
+            POST /executions/close
+          </a>
+          <br>
+          <small>Close execution</small>
+        </h2>
+    </div>
+
+
+    <div id='description-close' class='collapse accordion-body'>
+      
+<p>Closes execution and opens a new execution</p>
+
+
+
+
+  <h3>Metadata</h3>
+  <pre class="prettyprint lang-yaml">--- |-
+  User must provide either execution_id or project_key
+          If project_key is provided the open execution will be closed
+          Only accessible if project is viewable by current user
+          Displays details of NEW execution
+</pre>
+
+
+  <h3>Examples</h3>
+    <pre class="prettyprint">POST /executions/close
+{
+  &quot;project_key&quot;: &quot;266db085783a001f95f8e65ebbf89406&quot;,
+  &quot;name&quot;: &quot;Some Name&quot;
+}
+200
+{
+  &quot;execution&quot;: {
+    &quot;id&quot;: 24534,
+    &quot;created_at&quot;: &quot;2017-01-20T20:24:56.426Z&quot;,
+    &quot;updated_at&quot;: &quot;2017-01-20T20:24:56.426Z&quot;,
+    &quot;project_id&quot;: 24492,
+    &quot;closed&quot;: false,
+    &quot;closed_at&quot;: null,
+    &quot;deleted&quot;: null,
+    &quot;name&quot;: &quot;Some Name&quot;
+  }
+}</pre>
+
+  <h3>Params</h3>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Param name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>project_key </strong><br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Project Key.  Required if execution_id is not present</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>execution_id </strong><br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Execution ID. Required if project_key is not present</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+    </tbody>
+  </table>
+
+
+
+    </div>
+    <hr>
+    <div class='pull-right small'>
+      <a href='../apidoc/executions/destroy.html'> >>> </a>
+    </div>
+    <div>
+        <h2>
+          <a href='#description-destroy'
+           class='accordion-toggle'
+           data-toggle='collapse'
+           data-parent='#accordion'>
+            DELETE /executions/:id
+          </a>
+          <br>
+          <small>Delete execution</small>
+        </h2>
+    </div>
+
+
+    <div id='description-destroy' class='collapse accordion-body'>
+      
+<p>Deletes an existing execution</p>
+
+
+
+
+  <h3>Metadata</h3>
+  <pre class="prettyprint lang-yaml">--- |-
+  If deleted execution was open it will create a new open execution
+          Projects must have one open execution at all times
+          Only accessible by Admins
+</pre>
+
+
+  <h3>Examples</h3>
+    <pre class="prettyprint">DELETE /executions/24537
+200
+{
+  &quot;execution&quot;: &quot;Deleted&quot;
+}</pre>
+
+  <h3>Params</h3>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Param name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Execution ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+    </tbody>
+  </table>
+
+
+
+    </div>
+    <hr>
+    <div class='pull-right small'>
+      <a href='../apidoc/executions/next_incomplete_test.html'> >>> </a>
+    </div>
+    <div>
+        <h2>
+          <a href='#description-next_incomplete_test'
+           class='accordion-toggle'
+           data-toggle='collapse'
+           data-parent='#accordion'>
+            GET /executions/:id/next_test
+          </a>
+          <br>
+          <small>Next Incomplete Test</small>
+        </h2>
+    </div>
+
+
+    <div id='description-next_incomplete_test' class='collapse accordion-body'>
+      
+<p>Returns the next incomplete test for this execution</p>
+
+
+
+
+  <h3>Metadata</h3>
+  <pre class="prettyprint lang-yaml">--- Marks the test as in use so it won&#39;t be retrieved by subsequent calls for 5 minutes
+...
+</pre>
+
+
+  <h3>Examples</h3>
+    <pre class="prettyprint">GET /executions/24531/next_test
+200
+{
+  &quot;testcase&quot;: {
+    &quot;id&quot;: 93318,
+    &quot;runner_touch&quot;: &quot;2017-01-20T20:24:55.667Z&quot;,
+    &quot;version&quot;: 1,
+    &quot;token&quot;: &quot;kDEpovN6Apyc3vM9oSCX8hNv&quot;,
+    &quot;name&quot;: &quot;Repellendus quia eligendi commodi deserunt aut odio repellat necessitatibus.&quot;,
+    &quot;project_id&quot;: 24490,
+    &quot;outdated&quot;: false,
+    &quot;validation_id&quot;: 1471372,
+    &quot;locked&quot;: null,
+    &quot;created_at&quot;: &quot;2017-01-20T20:24:55.602Z&quot;,
+    &quot;updated_at&quot;: &quot;2017-01-20T20:24:55.670Z&quot;,
+    &quot;reproduction_steps&quot;: [
+      {
+        &quot;step_number&quot;: 1,
+        &quot;action&quot;: &quot;Explicabo est similique exercitationem minima eligendi rem nostrum.&quot;,
+        &quot;result&quot;: &quot;Nihil incidunt neque aliquam nisi facere itaque perspiciatis.&quot;
+      },
+      {
+        &quot;step_number&quot;: 2,
+        &quot;action&quot;: &quot;Excepturi at minus voluptatum incidunt ut nihil.&quot;,
+        &quot;result&quot;: &quot;Deserunt non quo et neque molestiae in.&quot;
+      },
+      {
+        &quot;step_number&quot;: 3,
+        &quot;action&quot;: &quot;Consequatur sed soluta fugit et dolorem.&quot;,
+        &quot;result&quot;: &quot;Iure perferendis ipsa voluptas recusandae qui neque eos.&quot;
+      }
+    ],
+    &quot;revised_at&quot;: null,
+    &quot;username&quot;: null
+  }
+}</pre>
+
+  <h3>Params</h3>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Param name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Execution ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+    </tbody>
+  </table>
+
+
+
+    </div>
+    <hr>
+    <div class='pull-right small'>
+      <a href='../apidoc/executions/failing_tests.html'> >>> </a>
+    </div>
+    <div>
+        <h2>
+          <a href='#description-failing_tests'
+           class='accordion-toggle'
+           data-toggle='collapse'
+           data-parent='#accordion'>
+            GET /executions/:project_key/failing
+          </a>
+          <br>
+          <small>Get all failing tests</small>
+        </h2>
+    </div>
+
+
+    <div id='description-failing_tests' class='collapse accordion-body'>
+      
+<p>Returns the complete list of failing tests/environments for the current
+execution</p>
+
+
+
+
+
+  <h3>Examples</h3>
+    <pre class="prettyprint">GET /executions/46731df1da40973725b4e808dde27d1f/failing
+200
+{
+  &quot;failing&quot;: [
+    {
+      &quot;environment_id&quot;: &quot;2ceaa88110b41267020621ce614faad4&quot;,
+      &quot;testcase_name&quot;: &quot;Velit voluptate fugiat sed enim sint commodi et.&quot;,
+      &quot;validation_id&quot;: 2915528
+    },
+    {
+      &quot;environment_id&quot;: &quot;e4e340c8c091dd50e362f48f270d2e3c&quot;,
+      &quot;testcase_name&quot;: &quot;Velit voluptate fugiat sed enim sint commodi et.&quot;,
+      &quot;validation_id&quot;: 2915528
+    },
+    {
+      &quot;environment_id&quot;: &quot;cada6f5cdc4033e3db5daa955ea1938c&quot;,
+      &quot;testcase_name&quot;: &quot;Velit voluptate fugiat sed enim sint commodi et.&quot;,
+      &quot;validation_id&quot;: 2915528
+    },
+    {
+      &quot;environment_id&quot;: &quot;2ceaa88110b41267020621ce614faad4&quot;,
+      &quot;testcase_name&quot;: &quot;Animi perferendis magnam nobis amet sapiente exercitationem architecto eum.&quot;,
+      &quot;validation_id&quot;: 9084424
+    },
+    {
+      &quot;environment_id&quot;: &quot;manual&quot;,
+      &quot;testcase_name&quot;: &quot;Animi perferendis magnam nobis amet sapiente exercitationem architecto eum.&quot;,
+      &quot;validation_id&quot;: 9084424
+    },
+    {
+      &quot;environment_id&quot;: &quot;d698dab5a4ef56992b6e3aefb52556c0&quot;,
+      &quot;testcase_name&quot;: &quot;Aperiam voluptatum accusamus voluptatem eum est facilis.&quot;,
+      &quot;validation_id&quot;: 4421928
+    },
+    {
+      &quot;environment_id&quot;: &quot;manual&quot;,
+      &quot;testcase_name&quot;: &quot;Aperiam voluptatum accusamus voluptatem eum est facilis.&quot;,
+      &quot;validation_id&quot;: 4421928
+    },
+    {
+      &quot;environment_id&quot;: &quot;2ceaa88110b41267020621ce614faad4&quot;,
+      &quot;testcase_name&quot;: &quot;Itaque est ut iusto magnam sed.&quot;,
+      &quot;validation_id&quot;: 4331527
+    },
+    {
+      &quot;environment_id&quot;: &quot;d698dab5a4ef56992b6e3aefb52556c0&quot;,
+      &quot;testcase_name&quot;: &quot;Itaque est ut iusto magnam sed.&quot;,
+      &quot;validation_id&quot;: 4331527
+    },
+    {
+      &quot;environment_id&quot;: &quot;cada6f5cdc4033e3db5daa955ea1938c&quot;,
+      &quot;testcase_name&quot;: &quot;Itaque est ut iusto magnam sed.&quot;,
+      &quot;validation_id&quot;: 4331527
+    },
+    {
+      &quot;environment_id&quot;: &quot;manual&quot;,
+      &quot;testcase_name&quot;: &quot;Itaque est ut iusto magnam sed.&quot;,
+      &quot;validation_id&quot;: 4331527
+    },
+    {
+      &quot;environment_id&quot;: &quot;e4e340c8c091dd50e362f48f270d2e3c&quot;,
+      &quot;testcase_name&quot;: &quot;Assumenda ducimus ut amet labore in quia.&quot;,
+      &quot;validation_id&quot;: 4947075
+    }
+  ]
+}</pre>
+
+  <h3>Params</h3>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Param name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>project_key </strong><br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Project Key.</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+    </tbody>
+  </table>
+
+
+
+    </div>
+</div>
+
+
+        
+      </div>
+    </div>
+    <hr>
+    <footer></footer>
+  </div>
+  <script type='text/javascript' src='../apidoc/javascripts/bundled/jquery.js'></script>
+<script type='text/javascript' src='../apidoc/javascripts/bundled/bootstrap-collapse.js'></script>
+<script type='text/javascript' src='../apidoc/javascripts/bundled/prettify.js'></script>
+<script type='text/javascript' src='../apidoc/javascripts/apipie.js'></script>
+</body>
+</html>

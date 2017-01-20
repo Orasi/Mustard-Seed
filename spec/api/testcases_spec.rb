@@ -59,7 +59,23 @@ describe "TESTCASES API::" , :type => :api do
         expect(json).to include('testcase')
       end
 
+      it 'should return other versions of test case' do
+        put "/testcases/#{testcase.id}", {testcase: {name: 'Renamed Testcase',
+                                                     project_id: project.id,
+                                                     validation_id: rand(10000..99999),
+                                                     reproduction_steps: [{step_number: 1,
+                                                                           action: Faker::Lorem.sentence,
+                                                                           result: Faker::Lorem.sentence},
+                                                                          {step_number: 2,
+                                                                           action: Faker::Lorem.sentence,
+                                                                           result: Faker::Lorem.sentence}]}}.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
+        get "/testcases/#{testcase.id}"
+        expect(json['other_versions'].count).to eq testcase.version
+
+      end
+
       it 'should not be able to access testcase not viewable by user' do
+        testcase = FactoryGirl.create(:project).testcases.first
         get "/testcases/#{testcase.id}"
         expect(last_response.status).to eq 403
         expect(json).to include('error')
@@ -281,7 +297,24 @@ describe "TESTCASES API::" , :type => :api do
         expect(Testcase.count).to eq testcase_count
       end
 
-      it 'stores user who created testcase'
+      it 'stores user who created testcase' do
+        id = project.id
+        post "/testcases", {testcase: {name: 'Some New Testcase',
+                                       project_id: id,
+                                       validation_id: rand(10000..99999),
+                                       reproduction_steps: [{step_number: 1,
+                                                             action: Faker::Lorem.sentence,
+                                                             result: Faker::Lorem.sentence},
+                                                            {step_number: 2,
+                                                             action: Faker::Lorem.sentence,
+                                                             result: Faker::Lorem.sentence}]}}.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
+
+        expect(json).to include('testcase')
+        expect(json['testcase']).to include('username')
+        expect(json['testcase']['username']).to eq ("#{user.first_name} #{user.last_name}")
+
+      end
+
     end
 
     context 'without user token' do
@@ -364,7 +397,7 @@ describe "TESTCASES API::" , :type => :api do
         expect(json).to include 'testcase'
       end
 
-      it 'creates a new testcase if steps change'do
+      it 'creates a new testcase if steps change' do
         expect(json).to include 'testcase'
         expect(json['testcase']).to include('id')
         expect(json['testcase']['id']).to_not eq testcase.id
@@ -380,6 +413,7 @@ describe "TESTCASES API::" , :type => :api do
         expect(json['testcase']['id']).to eq testcase.id
         expect(json['testcase']['version']).to eq testcase.version
       end
+
       it 'should have the same token' do
         expect(json).to include 'testcase'
         expect(json['testcase']).to include('token')
@@ -424,14 +458,79 @@ describe "TESTCASES API::" , :type => :api do
     end
 
     context 'as a non-admin' do
+
       before do
         header 'User-Token', user.user_tokens.first.token
-        put "/testcases/#{testcase.id}", {testcase: {uuid: 123456789}}.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
       end
-      it 'can create testcase in projects you can view'
-      it 'can not create testcase in projects you can not view'
-      it 'stores user who created testcase'
-      it_behaves_like 'a forbidden request'
+
+      it 'responds successfully', :show_in_doc do
+        put "/testcases/#{testcase.id}", {testcase: {name: 'Renamed Testcase',
+                                                     project_id: project.id,
+                                                     validation_id: rand(10000..99999),
+                                                     reproduction_steps: [{step_number: 1,
+                                                                           action: Faker::Lorem.sentence,
+                                                                           result: Faker::Lorem.sentence},
+                                                                          {step_number: 2,
+                                                                           action: Faker::Lorem.sentence,
+                                                                           result: Faker::Lorem.sentence}]}}.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
+
+        expect(last_response.status).to eq 200
+        expect(json).to include 'testcase'
+      end
+
+      it 'should update testcase if project is viewable' do
+        id = project.id
+
+        put "/testcases/#{testcase.id}", {testcase: {name: 'Renamed Testcase',
+                                                     project_id: id,
+                                                     validation_id: rand(10000..99999),
+                                                     reproduction_steps: [{step_number: 1,
+                                                                           action: Faker::Lorem.sentence,
+                                                                           result: Faker::Lorem.sentence},
+                                                                          {step_number: 2,
+                                                                           action: Faker::Lorem.sentence,
+                                                                           result: Faker::Lorem.sentence}]}}.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
+
+        expect(json['testcase']['name']).to eq 'Renamed Testcase'
+      end
+
+      it 'should not update testcase if project is not viewable' do
+        project = FactoryGirl.create(:project)
+        testcase = project.testcases.first
+        testcase_count = Testcase.count
+        put "/testcases/#{testcase.id}", {testcase: {name: 'Renamed Testcase',
+                                                     project_id: project.id,
+                                                     validation_id: rand(10000..99999),
+                                                     reproduction_steps: [{step_number: 1,
+                                                                           action: Faker::Lorem.sentence,
+                                                                           result: Faker::Lorem.sentence},
+                                                                          {step_number: 2,
+                                                                           action: Faker::Lorem.sentence,
+                                                                           result: Faker::Lorem.sentence}]}}.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
+
+        expect(last_response.status).to eq 403
+        expect(json).to include 'error'
+        expect(Testcase.count).to eq testcase_count
+      end
+
+      it 'stores user who updated testcase' do
+        id = project.id
+        put "/testcases/#{testcase.id}", {testcase: {name: 'Renamed Testcase',
+                                                     project_id: id,
+                                                     validation_id: rand(10000..99999),
+                                                     reproduction_steps: [{step_number: 1,
+                                                                           action: Faker::Lorem.sentence,
+                                                                           result: Faker::Lorem.sentence},
+                                                                          {step_number: 2,
+                                                                           action: Faker::Lorem.sentence,
+                                                                           result: Faker::Lorem.sentence}]}}.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
+
+        expect(json).to include('testcase')
+        expect(json['testcase']).to include('username')
+        expect(json['testcase']['username']).to eq ("#{user.first_name} #{user.last_name}")
+
+      end
+
 
     end
 
@@ -542,6 +641,31 @@ describe "TESTCASES API::" , :type => :api do
 
       header 'User-Token', admin.user_tokens.first.token
       post "/projects/#{project.id}/import", {csv: contents}.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
+      expect(last_response.status).to eq 200
+      expect(json).to include('success')
+      expect(json).to include('fail')
+
+    end
+    it 'should preview testcases', :show_in_doc do
+
+      file = File.open('spec/api/test.csv', "rb")
+      contents = file.read
+
+      header 'User-Token', admin.user_tokens.first.token
+      post "/projects/#{project.id}/import", {preview: 'true', csv: contents}.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
+      expect(last_response.status).to eq 200
+      expect(json).to include('success')
+      expect(json).to include('fail')
+
+    end
+    it 'should update testcases', :show_in_doc do
+
+      file = File.open('spec/api/test.csv', "rb")
+      contents = file.read
+
+      header 'User-Token', admin.user_tokens.first.token
+      post "/projects/#{project.id}/import", {update: 'true',csv: contents}.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
+      post "/projects/#{project.id}/import", {update: 'true',csv: contents}.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
       expect(last_response.status).to eq 200
       expect(json).to include('success')
       expect(json).to include('fail')

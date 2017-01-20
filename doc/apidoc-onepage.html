@@ -1,0 +1,8191 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>API documentation</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link type='text/css' rel='stylesheet' href='./apidoc/stylesheets/bundled/bootstrap.min.css'/>
+<link type='text/css' rel='stylesheet' href='./apidoc/stylesheets/bundled/prettify.css'/>
+<link type='text/css' rel='stylesheet' href='./apidoc/stylesheets/bundled/bootstrap-responsive.min.css'/>
+  <link type='text/css' rel='stylesheet' href='./apidoc/stylesheets/application.css'/>
+  <!-- IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div id='container'>
+          <h4><a href='#application'>Application</a></h4>
+  <ul>
+      <li><a href='#application-authenticate'>authenticate</a></li>
+  </ul>
+  <h4><a href='#downloads'>Downloads</a></h4>
+  <ul>
+      <li><a href='#downloads-show'>show</a></li>
+  </ul>
+  <h4><a href='#environments'>Environments</a></h4>
+  <ul>
+      <li><a href='#environments-show'>show</a></li>
+      <li><a href='#environments-create'>create</a></li>
+      <li><a href='#environments-update'>update</a></li>
+      <li><a href='#environments-destroy'>destroy</a></li>
+  </ul>
+  <h4><a href='#executions'>Executions</a></h4>
+  <ul>
+      <li><a href='#executions-testcase_count'>testcase_count</a></li>
+      <li><a href='#executions-environment_count'>environment_count</a></li>
+      <li><a href='#executions-testcase_summary'>testcase_summary</a></li>
+      <li><a href='#executions-environment_summary'>environment_summary</a></li>
+      <li><a href='#executions-testcase_status'>testcase_status</a></li>
+      <li><a href='#executions-testcase_detail'>testcase_detail</a></li>
+      <li><a href='#executions-environment_detail'>environment_detail</a></li>
+      <li><a href='#executions-incomplete_tests'>incomplete_tests</a></li>
+      <li><a href='#executions-close'>close</a></li>
+      <li><a href='#executions-destroy'>destroy</a></li>
+      <li><a href='#executions-next_incomplete_test'>next_incomplete_test</a></li>
+      <li><a href='#executions-failing_tests'>failing_tests</a></li>
+  </ul>
+  <h4><a href='#projects'>Projects</a></h4>
+  <ul>
+      <li><a href='#projects-index'>index</a></li>
+      <li><a href='#projects-show'>show</a></li>
+      <li><a href='#projects-create'>create</a></li>
+      <li><a href='#projects-update'>update</a></li>
+      <li><a href='#projects-destroy'>destroy</a></li>
+  </ul>
+  <h4><a href='#results'>Results</a></h4>
+  <ul>
+      <li><a href='#results-recent'>recent</a></li>
+      <li><a href='#results-show'>show</a></li>
+      <li><a href='#results-screenshot'>screenshot</a></li>
+      <li><a href='#results-create'>create</a></li>
+  </ul>
+  <h4><a href='#teams'>Teams</a></h4>
+  <ul>
+      <li><a href='#teams-index'>index</a></li>
+      <li><a href='#teams-show'>show</a></li>
+      <li><a href='#teams-create'>create</a></li>
+      <li><a href='#teams-update'>update</a></li>
+      <li><a href='#teams-destroy'>destroy</a></li>
+      <li><a href='#teams-add_user'>add_user</a></li>
+      <li><a href='#teams-add_project'>add_project</a></li>
+      <li><a href='#teams-remove_user'>remove_user</a></li>
+      <li><a href='#teams-remove_project'>remove_project</a></li>
+  </ul>
+  <h4><a href='#testcases'>Testcases</a></h4>
+  <ul>
+      <li><a href='#testcases-show'>show</a></li>
+      <li><a href='#testcases-create'>create</a></li>
+      <li><a href='#testcases-update'>update</a></li>
+      <li><a href='#testcases-destroy'>destroy</a></li>
+      <li><a href='#testcases-export'>export</a></li>
+      <li><a href='#testcases-import'>import</a></li>
+  </ul>
+  <h4><a href='#users'>Users</a></h4>
+  <ul>
+      <li><a href='#users-index'>index</a></li>
+      <li><a href='#users-show'>show</a></li>
+      <li><a href='#users-find'>find</a></li>
+      <li><a href='#users-valid_token'>valid_token</a></li>
+      <li><a href='#users-trigger_password_reset'>trigger_password_reset</a></li>
+      <li><a href='#users-reset_password'>reset_password</a></li>
+      <li><a href='#users-create'>create</a></li>
+      <li><a href='#users-update'>update</a></li>
+      <li><a href='#users-destroy'>destroy</a></li>
+  </ul>
+
+
+
+<div>
+<p>API documentation for the Mustard Results Server</p>
+</div>
+
+<hr>
+
+
+  <ul class='breadcrumb'  id='application'>
+    <li><a href='#'>Mustard</a><span class='divider'>/</span></li>
+    <li class='active'>Application</li>
+  </ul>
+
+  <div class='page-header'>
+    <h1>
+      <a href='#application'>Application</a><br>
+      <small></small>
+    </h1>
+  </div>
+
+
+  <div class='accordion' id='accordion'>
+
+      <hr>
+
+      <ul class='breadcrumb' id='application-authenticate'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#application'>Application</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>authenticate</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#application-authenticate'>
+              POST /authenticate
+            </a><br>
+            <small>Login</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Returns User-Token and current user details.</p>
+
+          <h2>Examples</h2>
+            <pre>POST /authenticate/
+{
+  &quot;username&quot;: &quot;eusebio_gleichner@luettgendouglas.info&quot;,
+  &quot;password&quot;: 12345
+}
+200
+{
+  &quot;user&quot;: {
+    &quot;id&quot;: 59354,
+    &quot;username&quot;: &quot;eusebio_gleichner@luettgendouglas.info&quot;,
+    &quot;first_name&quot;: &quot;Mariah&quot;,
+    &quot;last_name&quot;: &quot;Blick&quot;,
+    &quot;token&quot;: &quot;HjAFGf6orJWzM4rE54t2AJVb&quot;,
+    &quot;admin&quot;: null
+  }
+}</pre>
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>username </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>User username</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>password </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>User password</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+            </tbody>
+          </table>
+      </div>
+  </div>
+
+  <ul class='breadcrumb'  id='downloads'>
+    <li><a href='#'>Mustard</a><span class='divider'>/</span></li>
+    <li class='active'>Downloads</li>
+  </ul>
+
+  <div class='page-header'>
+    <h1>
+      <a href='#downloads'>Downloads</a><br>
+      <small></small>
+    </h1>
+  </div>
+
+
+  <div class='accordion' id='accordion'>
+
+      <hr>
+
+      <ul class='breadcrumb' id='downloads-show'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#downloads'>Downloads</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>show</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#downloads-show'>
+              GET /downloads/:token
+            </a><br>
+            <small>Access download</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Directly access download file found via download token.</p>
+
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Download token</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+            </tbody>
+          </table>
+      </div>
+  </div>
+
+  <ul class='breadcrumb'  id='environments'>
+    <li><a href='#'>Mustard</a><span class='divider'>/</span></li>
+    <li class='active'>Environments</li>
+  </ul>
+
+  <div class='page-header'>
+    <h1>
+      <a href='#environments'>Environments</a><br>
+      <small></small>
+    </h1>
+  </div>
+
+
+  <div class='accordion' id='accordion'>
+
+      <hr>
+
+      <ul class='breadcrumb' id='environments-show'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#environments'>Environments</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>show</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#environments-show'>
+              GET /environments/:id
+            </a><br>
+            <small>Environment details</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Only accessible if current user can view parent project</p>
+
+          <h2>Examples</h2>
+            <pre>GET /environments/109633
+200
+{
+  &quot;environment&quot;: {
+    &quot;id&quot;: 109633,
+    &quot;uuid&quot;: &quot;c35db4f1fca8a8dc0ab02bb95da2b39a&quot;,
+    &quot;project_id&quot;: 24479,
+    &quot;created_at&quot;: &quot;2017-01-20T20:24:51.940Z&quot;,
+    &quot;updated_at&quot;: &quot;2017-01-20T20:24:51.940Z&quot;,
+    &quot;environment_type&quot;: &quot;Undefined&quot;,
+    &quot;display_name&quot;: null
+  }
+}</pre>
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Environment ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+            </tbody>
+          </table>
+      </div>
+      <hr>
+
+      <ul class='breadcrumb' id='environments-create'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#environments'>Environments</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>create</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#environments-create'>
+              POST /environments
+            </a><br>
+            <small>Create new environment</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Only accessible by admin users</p>
+
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>environment </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a Hash</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+    <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>environment[uuid] </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Unique Identifier for environment.  IE “Windows_8_1_Chrome_50”</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>environment[project_id] </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Project ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>environment[display_name] </strong><br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>Name of environment to be displayed</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>environment[environment_type] </strong><br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>Environment type</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be one of: <code>Windows</code>, <code>Mac</code>, <code>Linux</code>,
+<code>Android</code>, <code>iOS</code>, <code>Windows Phone</code>.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+
+            </tbody>
+          </table>
+      </div>
+      <hr>
+
+      <ul class='breadcrumb' id='environments-update'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#environments'>Environments</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>update</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#environments-update'>
+              PUT /environments/:id
+            </a><br>
+            <small>Update existing environment</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Only accessible by admin users</p>
+
+          <h2>Examples</h2>
+            <pre>PUT /environments/109638
+{
+  &quot;environment&quot;: {
+    &quot;uuid&quot;: &quot;987654321&quot;,
+    &quot;display_name&quot;: &quot;Some new display name&quot;
+  }
+}
+200
+{
+  &quot;environment&quot;: {
+    &quot;id&quot;: 109638,
+    &quot;uuid&quot;: &quot;987654321&quot;,
+    &quot;display_name&quot;: &quot;Some new display name&quot;,
+    &quot;project_id&quot;: 24480,
+    &quot;environment_type&quot;: &quot;Undefined&quot;,
+    &quot;created_at&quot;: &quot;2017-01-20T20:24:52.088Z&quot;,
+    &quot;updated_at&quot;: &quot;2017-01-20T20:24:52.154Z&quot;
+  }
+}</pre>
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Environment ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>environment </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a Hash</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+    <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>environment[uuid] </strong><br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Unique Identifier for environment.  IE “Windows_8_1_Chrome_50”</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>environment[project_id] </strong><br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Project ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>environment[display_name] </strong><br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>Name of environment to be displayed</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>environment[environment_type] </strong><br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>Environment type</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be one of: <code>Windows</code>, <code>Mac</code>, <code>Linux</code>,
+<code>Android</code>, <code>iOS</code>, <code>Windows Phone</code>.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+
+            </tbody>
+          </table>
+      </div>
+      <hr>
+
+      <ul class='breadcrumb' id='environments-destroy'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#environments'>Environments</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>destroy</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#environments-destroy'>
+              DELETE /environments/:id
+            </a><br>
+            <small>Delete existing environment</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Only accessible by admin users</p>
+
+          <h2>Examples</h2>
+            <pre>DELETE /environments/109643
+200
+{
+  &quot;environment&quot;: &quot;Deleted&quot;
+}</pre>
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Environment ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+            </tbody>
+          </table>
+      </div>
+  </div>
+
+  <ul class='breadcrumb'  id='executions'>
+    <li><a href='#'>Mustard</a><span class='divider'>/</span></li>
+    <li class='active'>Executions</li>
+  </ul>
+
+  <div class='page-header'>
+    <h1>
+      <a href='#executions'>Executions</a><br>
+      <small></small>
+    </h1>
+  </div>
+
+
+  <div class='accordion' id='accordion'>
+
+      <hr>
+
+      <ul class='breadcrumb' id='executions-testcase_count'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#executions'>Executions</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>testcase_count</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#executions-testcase_count'>
+              get /executions/:id/testcase-count
+            </a><br>
+            <small>Testcase Count</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Returns the number of testcases in this execution</p>
+
+          <h2>Examples</h2>
+            <pre>GET /executions/24523/testcase-count
+200
+{
+  &quot;testcases&quot;: 5
+}</pre>
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Execution ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+            </tbody>
+          </table>
+      </div>
+      <hr>
+
+      <ul class='breadcrumb' id='executions-environment_count'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#executions'>Executions</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>environment_count</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#executions-environment_count'>
+              get /executions/:id/environment-count
+            </a><br>
+            <small>Environment Count</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Returns the number of environments in this execution</p>
+
+          <h2>Examples</h2>
+            <pre>GET /executions/24524/environment-count
+200
+{
+  &quot;environments&quot;: 5
+}</pre>
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Execution ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+            </tbody>
+          </table>
+      </div>
+      <hr>
+
+      <ul class='breadcrumb' id='executions-testcase_summary'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#executions'>Executions</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>testcase_summary</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#executions-testcase_summary'>
+              GET /executions/:id/testcase_summary
+            </a><br>
+            <small>Testcase Summary</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Lists the pass, fail, and skip counts by testcase</p>
+
+          <h2>Examples</h2>
+            <pre>GET /executions/24525/testcase_summary
+200
+{
+  &quot;summary&quot;: [
+    {
+      &quot;id&quot;: 93289,
+      &quot;name&quot;: &quot;Consectetur delectus temporibus illo.&quot;,
+      &quot;validation_id&quot;: 1842764,
+      &quot;pass_count&quot;: 2,
+      &quot;fail_count&quot;: 3,
+      &quot;skip_count&quot;: 1,
+      &quot;updated_at&quot;: &quot;2017-01-20 20:24:53.14885&quot;
+    },
+    {
+      &quot;id&quot;: 93292,
+      &quot;name&quot;: &quot;Magnam vel possimus nulla voluptates deserunt non quis reiciendis.&quot;,
+      &quot;validation_id&quot;: 2035008,
+      &quot;pass_count&quot;: 2,
+      &quot;fail_count&quot;: 3,
+      &quot;skip_count&quot;: 1,
+      &quot;updated_at&quot;: &quot;2017-01-20 20:24:53.292587&quot;
+    },
+    {
+      &quot;id&quot;: 93291,
+      &quot;name&quot;: &quot;Nostrum velit libero autem expedita.&quot;,
+      &quot;validation_id&quot;: 9279283,
+      &quot;pass_count&quot;: 1,
+      &quot;fail_count&quot;: 2,
+      &quot;skip_count&quot;: 3,
+      &quot;updated_at&quot;: &quot;2017-01-20 20:24:53.248335&quot;
+    },
+    {
+      &quot;id&quot;: 93288,
+      &quot;name&quot;: &quot;Sunt libero dolorem amet.&quot;,
+      &quot;validation_id&quot;: 1242112,
+      &quot;pass_count&quot;: 1,
+      &quot;fail_count&quot;: 2,
+      &quot;skip_count&quot;: 3,
+      &quot;updated_at&quot;: &quot;2017-01-20 20:24:53.103471&quot;
+    },
+    {
+      &quot;id&quot;: 93290,
+      &quot;name&quot;: &quot;Iure natus sunt a occaecati modi delectus cumque.&quot;,
+      &quot;validation_id&quot;: 6174333,
+      &quot;pass_count&quot;: 1,
+      &quot;fail_count&quot;: 3,
+      &quot;skip_count&quot;: 2,
+      &quot;updated_at&quot;: &quot;2017-01-20 20:24:53.198619&quot;
+    }
+  ]
+}</pre>
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Execution ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+            </tbody>
+          </table>
+      </div>
+      <hr>
+
+      <ul class='breadcrumb' id='executions-environment_summary'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#executions'>Executions</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>environment_summary</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#executions-environment_summary'>
+              GET /executions/:id/environment_summary
+            </a><br>
+            <small>Environment Summary</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Lists the pass, fail, and skip counts by environment</p>
+
+          <h2>Examples</h2>
+            <pre>GET /executions/24526/environment_summary
+200
+{
+  &quot;summary&quot;: [
+    {
+      &quot;id&quot;: 109667,
+      &quot;uuid&quot;: &quot;7cb3f73ba24c3a74e7417e271308c058&quot;,
+      &quot;display_name&quot;: null,
+      &quot;environment_type&quot;: &quot;Undefined&quot;,
+      &quot;pass_count&quot;: 2,
+      &quot;fail_count&quot;: 2,
+      &quot;skip_count&quot;: 1,
+      &quot;updated_at&quot;: &quot;2017-01-20 20:24:53.628356&quot;
+    },
+    {
+      &quot;id&quot;: 109663,
+      &quot;uuid&quot;: &quot;c595b74d21b12a85764ee2caab87717f&quot;,
+      &quot;display_name&quot;: null,
+      &quot;environment_type&quot;: &quot;Undefined&quot;,
+      &quot;pass_count&quot;: 1,
+      &quot;fail_count&quot;: 1,
+      &quot;skip_count&quot;: 3,
+      &quot;updated_at&quot;: &quot;2017-01-20 20:24:53.602075&quot;
+    },
+    {
+      &quot;id&quot;: 109665,
+      &quot;uuid&quot;: &quot;cc0b16d06a48cb0cfa40fc8a185b4cae&quot;,
+      &quot;display_name&quot;: null,
+      &quot;environment_type&quot;: &quot;Undefined&quot;,
+      &quot;pass_count&quot;: 3,
+      &quot;fail_count&quot;: 1,
+      &quot;skip_count&quot;: 1,
+      &quot;updated_at&quot;: &quot;2017-01-20 20:24:53.615193&quot;
+    },
+    {
+      &quot;id&quot;: 109664,
+      &quot;uuid&quot;: &quot;8502f5de2ba1bc3d0526b32dcac06d70&quot;,
+      &quot;display_name&quot;: null,
+      &quot;environment_type&quot;: &quot;Undefined&quot;,
+      &quot;pass_count&quot;: 1,
+      &quot;fail_count&quot;: 3,
+      &quot;skip_count&quot;: 1,
+      &quot;updated_at&quot;: &quot;2017-01-20 20:24:53.608738&quot;
+    },
+    {
+      &quot;id&quot;: 109666,
+      &quot;uuid&quot;: &quot;fcc87aa46e94b4d413864a2ef86e9a07&quot;,
+      &quot;display_name&quot;: null,
+      &quot;environment_type&quot;: &quot;Undefined&quot;,
+      &quot;pass_count&quot;: 2,
+      &quot;fail_count&quot;: 1,
+      &quot;skip_count&quot;: 2,
+      &quot;updated_at&quot;: &quot;2017-01-20 20:24:53.621877&quot;
+    }
+  ]
+}</pre>
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Execution ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+            </tbody>
+          </table>
+      </div>
+      <hr>
+
+      <ul class='breadcrumb' id='executions-testcase_status'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#executions'>Executions</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>testcase_status</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#executions-testcase_status'>
+              GET /executions/:id/testcase_status
+            </a><br>
+            <small>Execution Details</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Shows details of execution</p>
+
+          <h2>Examples</h2>
+            <pre>GET /executions/24527/testcase_status
+200
+{
+  &quot;execution&quot;: {
+    &quot;id&quot;: 24527,
+    &quot;name&quot;: &quot;Execution: 01/20/2017&quot;,
+    &quot;project_id&quot;: 24486,
+    &quot;project_name&quot;: &quot;Nicolas Inc&quot;,
+    &quot;closed&quot;: false,
+    &quot;fail&quot;: [
+      {
+        &quot;id&quot;: 93300,
+        &quot;validation_id&quot;: 8177478,
+        &quot;name&quot;: &quot;Corporis eligendi nobis maxime et molestiae.&quot;,
+        &quot;path&quot;: &quot;results/93300&quot;
+      },
+      {
+        &quot;id&quot;: 93298,
+        &quot;validation_id&quot;: 5041907,
+        &quot;name&quot;: &quot;Cum sed eos ut excepturi ut.&quot;,
+        &quot;path&quot;: &quot;results/93298&quot;
+      },
+      {
+        &quot;id&quot;: 93302,
+        &quot;validation_id&quot;: 2423559,
+        &quot;name&quot;: &quot;Ea ex id quisquam quaerat maiores aut.&quot;,
+        &quot;path&quot;: &quot;results/93302&quot;
+      },
+      {
+        &quot;id&quot;: 93299,
+        &quot;validation_id&quot;: 7458673,
+        &quot;name&quot;: &quot;Est id corrupti modi nam quo dicta et.&quot;,
+        &quot;path&quot;: &quot;results/93299&quot;
+      },
+      {
+        &quot;id&quot;: 93301,
+        &quot;validation_id&quot;: 1308234,
+        &quot;name&quot;: &quot;Vel sunt cupiditate voluptas qui delectus quidem velit.&quot;,
+        &quot;path&quot;: &quot;results/93301&quot;
+      }
+    ],
+    &quot;pass&quot;: [],
+    &quot;skip&quot;: [],
+    &quot;not_run&quot;: []
+  }
+}</pre>
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Execution ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+            </tbody>
+          </table>
+      </div>
+      <hr>
+
+      <ul class='breadcrumb' id='executions-testcase_detail'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#executions'>Executions</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>testcase_detail</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#executions-testcase_detail'>
+              GET /executions/:id/testcases/:testcase_id
+            </a><br>
+            <small>Testcase Detail</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Shows latest results in all environments for a given testcase</p>
+
+          <h2>Examples</h2>
+            <pre>GET /executions/24528/testcases/93303
+200
+{
+  &quot;testcase&quot;: {
+    &quot;id&quot;: 93303,
+    &quot;testcase_name&quot;: &quot;Enim illum perspiciatis similique vitae.&quot;,
+    &quot;validation_id&quot;: 3676848,
+    &quot;project_id&quot;: 24487,
+    &quot;execution_id&quot;: &quot;24528&quot;,
+    &quot;reproduction_steps&quot;: [
+      {
+        &quot;step_number&quot;: 1,
+        &quot;action&quot;: &quot;Hic distinctio voluptatem magnam est iure.&quot;,
+        &quot;result&quot;: &quot;Error quia quis sit exercitationem sint iusto.&quot;
+      },
+      {
+        &quot;step_number&quot;: 2,
+        &quot;action&quot;: &quot;Cupiditate dignissimos earum quia eius praesentium.&quot;,
+        &quot;result&quot;: &quot;Alias doloremque laudantium odio enim illum.&quot;
+      },
+      {
+        &quot;step_number&quot;: 3,
+        &quot;action&quot;: &quot;Placeat voluptas sed neque velit quaerat quisquam veniam.&quot;,
+        &quot;result&quot;: &quot;Et molestiae reprehenderit voluptas quas corrupti.&quot;
+      }
+    ],
+    &quot;manual_results&quot;: [
+      {
+        &quot;id&quot;: 113930,
+        &quot;created_by_name&quot;: &quot;Keyshawn Tremblay&quot;,
+        &quot;created_by_id&quot;: 59313,
+        &quot;created_at&quot;: &quot;2017-01-20T15:24:54.347-05:00&quot;,
+        &quot;result_type&quot;: &quot;manual&quot;,
+        &quot;comment&quot;: &quot;Sint ad tempore sit maxime est.&quot;,
+        &quot;status&quot;: &quot;skip&quot;
+      },
+      {
+        &quot;id&quot;: 113930,
+        &quot;created_by_name&quot;: &quot;Keyshawn Tremblay&quot;,
+        &quot;created_by_id&quot;: 59313,
+        &quot;created_at&quot;: &quot;2017-01-20T15:24:54.347-05:00&quot;,
+        &quot;result_type&quot;: &quot;manual&quot;,
+        &quot;comment&quot;: &quot;Qui velit dolorem at repellat tenetur ab.&quot;,
+        &quot;status&quot;: &quot;fail&quot;
+      },
+      {
+        &quot;id&quot;: 113930,
+        &quot;created_by_name&quot;: &quot;Keyshawn Tremblay&quot;,
+        &quot;created_by_id&quot;: 59313,
+        &quot;created_at&quot;: &quot;2017-01-20T15:24:54.337-05:00&quot;,
+        &quot;result_type&quot;: &quot;manual&quot;,
+        &quot;comment&quot;: &quot;Consequatur quas quidem et odio quis id.&quot;,
+        &quot;status&quot;: &quot;pass&quot;
+      }
+    ],
+    &quot;automated_results&quot;: [
+      {
+        &quot;id&quot;: 113928,
+        &quot;environment_id&quot;: 109676,
+        &quot;environment_name&quot;: &quot;6cda059eea2e1ed18d3c9caa34b8dc37&quot;,
+        &quot;environment_type&quot;: &quot;Undefined&quot;,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;comment&quot;: &quot;Quaerat explicabo qui ab omnis.&quot;,
+        &quot;stacktrace&quot;: &quot;Necessitatibus est at eos tempora aut. Incidunt assumenda quod nam dolorem deserunt est. Atque reprehenderit ullam id quo occaecati praesentium. Modi vitae commodi. Quo officia mollitia veniam cum ut consectetur.&quot;,
+        &quot;link&quot;: &quot;http://waelchimills.info/elroy&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:54.320Z&quot;,
+        &quot;status&quot;: &quot;fail&quot;
+      },
+      {
+        &quot;id&quot;: 113926,
+        &quot;environment_id&quot;: 109674,
+        &quot;environment_name&quot;: &quot;34acfbae848cc6368cd20ed7b6fa2717&quot;,
+        &quot;environment_type&quot;: &quot;Undefined&quot;,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;comment&quot;: &quot;Vel cum sit adipisci qui.&quot;,
+        &quot;stacktrace&quot;: &quot;Enim fugiat repellendus tenetur illo. Magnam mollitia totam sit quis. Provident quo et impedit in velit maxime.&quot;,
+        &quot;link&quot;: &quot;http://erdmanfay.org/dahlia.schmitt&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:54.303Z&quot;,
+        &quot;status&quot;: &quot;pass&quot;
+      },
+      {
+        &quot;id&quot;: 113925,
+        &quot;environment_id&quot;: 109673,
+        &quot;environment_name&quot;: &quot;c3ca413cd07e4050efbbf21258d3c5ae&quot;,
+        &quot;environment_type&quot;: &quot;Undefined&quot;,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;comment&quot;: &quot;Voluptatem quas velit cumque possimus quos reiciendis magni debitis.&quot;,
+        &quot;stacktrace&quot;: &quot;Quidem nam doloribus labore aliquid distinctio. Omnis debitis et ea omnis eos quae. Sed quibusdam provident quia.&quot;,
+        &quot;link&quot;: &quot;http://balistreri.net/kaden.emard&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:54.294Z&quot;,
+        &quot;status&quot;: &quot;pass&quot;
+      },
+      {
+        &quot;id&quot;: 113929,
+        &quot;environment_id&quot;: 109677,
+        &quot;environment_name&quot;: &quot;5ca57d00aa20d0fa4736479f1fe01f9e&quot;,
+        &quot;environment_type&quot;: &quot;Undefined&quot;,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;comment&quot;: &quot;Est quis nesciunt nisi qui neque.&quot;,
+        &quot;stacktrace&quot;: &quot;Minus rem et ut. Non repudiandae suscipit dolorum adipisci qui est eligendi. Nam placeat eum molestias.&quot;,
+        &quot;link&quot;: &quot;http://harber.name/prince&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:54.329Z&quot;,
+        &quot;status&quot;: &quot;skip&quot;
+      },
+      {
+        &quot;id&quot;: 113927,
+        &quot;environment_id&quot;: 109675,
+        &quot;environment_name&quot;: &quot;d1b9a177ff985adf1a691cc56e00df13&quot;,
+        &quot;environment_type&quot;: &quot;Undefined&quot;,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;comment&quot;: &quot;Molestias laboriosam ipsa officiis et optio.&quot;,
+        &quot;stacktrace&quot;: &quot;Cum vitae illum nam non doloribus earum et. Recusandae tempore illum officiis assumenda rerum. Molestiae qui iusto voluptatum cupiditate consequuntur aut. Rerum velit deleniti molestias placeat. Fugiat quae dolorem hic cupiditate eaque nesciunt nulla.&quot;,
+        &quot;link&quot;: &quot;http://glover.info/tyler&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:54.311Z&quot;,
+        &quot;status&quot;: &quot;skip&quot;
+      }
+    ]
+  }
+}</pre>
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Execution ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>testcase_id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Testcase ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+            </tbody>
+          </table>
+      </div>
+      <hr>
+
+      <ul class='breadcrumb' id='executions-environment_detail'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#executions'>Executions</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>environment_detail</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#executions-environment_detail'>
+              GET /executions/:id/environments/:environment_id
+            </a><br>
+            <small>Environment Detail</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Shows latest results in all environments for a given testcase</p>
+
+          <h2>Examples</h2>
+            <pre>GET /executions/24529/environments/109678
+200
+{
+  &quot;environment&quot;: {
+    &quot;id&quot;: 109678,
+    &quot;uuid&quot;: &quot;18f9167ffabd6b21e9d58ea8da2b15f5&quot;,
+    &quot;environment_type&quot;: &quot;Undefined&quot;,
+    &quot;results&quot;: [
+      {
+        &quot;id&quot;: 113955,
+        &quot;testcase_id&quot;: 93308,
+        &quot;validation_id&quot;: 2693944,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;comment&quot;: &quot;Vitae et nobis nihil expedita veritatis enim quis.&quot;,
+        &quot;stacktrace&quot;: &quot;Ea eos nihil iure odio. Qui rem nihil voluptatum accusantium repellat non. Fuga rerum nobis eveniet quia. Molestias dolores nemo. Et facilis consequatur vitae dolore itaque quidem.&quot;,
+        &quot;link&quot;: &quot;http://breitenberg.org/anibal&quot;,
+        &quot;name&quot;: &quot;pass&quot;
+      },
+      {
+        &quot;id&quot;: 113961,
+        &quot;testcase_id&quot;: 93309,
+        &quot;validation_id&quot;: 8824287,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;comment&quot;: &quot;Voluptatem nulla ea placeat ipsa eos maxime laborum adipisci.&quot;,
+        &quot;stacktrace&quot;: &quot;Ea vel eum autem qui. Expedita necessitatibus facere placeat vero enim aut odio. Placeat nisi ut ea qui. Ut id corporis quo eaque dolor qui quo. Laboriosam vitae occaecati velit repudiandae.&quot;,
+        &quot;link&quot;: &quot;http://nolan.org/irwin_cruickshank&quot;,
+        &quot;name&quot;: &quot;fail&quot;
+      },
+      {
+        &quot;id&quot;: 113967,
+        &quot;testcase_id&quot;: 93310,
+        &quot;validation_id&quot;: 6574255,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;comment&quot;: &quot;Dolorem ut dicta dolores et esse qui.&quot;,
+        &quot;stacktrace&quot;: &quot;A quas dolorem alias. Ut et vel inventore et ducimus. Saepe enim numquam dicta.&quot;,
+        &quot;link&quot;: &quot;http://lehner.info/jaydon&quot;,
+        &quot;name&quot;: &quot;pass&quot;
+      },
+      {
+        &quot;id&quot;: 113973,
+        &quot;testcase_id&quot;: 93311,
+        &quot;validation_id&quot;: 7393791,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;comment&quot;: &quot;Corporis iure id fuga reiciendis et est dignissimos aperiam.&quot;,
+        &quot;stacktrace&quot;: &quot;Sint molestiae ullam. Et alias doloremque non placeat voluptatem. Molestiae sed aut voluptatem. Sequi blanditiis animi ipsum quasi facilis.&quot;,
+        &quot;link&quot;: &quot;http://stark.name/jaylen&quot;,
+        &quot;name&quot;: &quot;fail&quot;
+      },
+      {
+        &quot;id&quot;: 113979,
+        &quot;testcase_id&quot;: 93312,
+        &quot;validation_id&quot;: 5565896,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;comment&quot;: &quot;Dolores labore consectetur temporibus corrupti velit alias.&quot;,
+        &quot;stacktrace&quot;: &quot;Et omnis quo optio nihil quidem repudiandae. Expedita error corporis quisquam eius sunt nostrum sapiente. Velit recusandae consequatur ut porro. Ex non repellat vel magnam quaerat labore aut.&quot;,
+        &quot;link&quot;: &quot;http://bernier.com/jett_sporer&quot;,
+        &quot;name&quot;: &quot;skip&quot;
+      }
+    ]
+  }
+}</pre>
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Execution ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>environment_id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Environment ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+            </tbody>
+          </table>
+      </div>
+      <hr>
+
+      <ul class='breadcrumb' id='executions-incomplete_tests'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#executions'>Executions</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>incomplete_tests</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#executions-incomplete_tests'>
+              GET /executions/:id/incomplete_tests
+            </a><br>
+            <small>List Incomplete Tests</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Lists all incomplete tests for the given execution</p>
+
+          <h2>Examples</h2>
+            <pre>GET /executions/24530/incomplete
+200
+{
+  &quot;incomplete&quot;: []
+}</pre>
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Execution ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+            </tbody>
+          </table>
+      </div>
+      <hr>
+
+      <ul class='breadcrumb' id='executions-close'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#executions'>Executions</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>close</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#executions-close'>
+              POST /executions/close
+            </a><br>
+            <small>Close execution</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Closes execution and opens a new execution</p>
+
+          <h2>Examples</h2>
+            <pre>POST /executions/close
+{
+  &quot;project_key&quot;: &quot;266db085783a001f95f8e65ebbf89406&quot;,
+  &quot;name&quot;: &quot;Some Name&quot;
+}
+200
+{
+  &quot;execution&quot;: {
+    &quot;id&quot;: 24534,
+    &quot;created_at&quot;: &quot;2017-01-20T20:24:56.426Z&quot;,
+    &quot;updated_at&quot;: &quot;2017-01-20T20:24:56.426Z&quot;,
+    &quot;project_id&quot;: 24492,
+    &quot;closed&quot;: false,
+    &quot;closed_at&quot;: null,
+    &quot;deleted&quot;: null,
+    &quot;name&quot;: &quot;Some Name&quot;
+  }
+}</pre>
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>project_key </strong><br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Project Key.  Required if execution_id is not present</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>execution_id </strong><br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Execution ID. Required if project_key is not present</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+            </tbody>
+          </table>
+      </div>
+      <hr>
+
+      <ul class='breadcrumb' id='executions-destroy'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#executions'>Executions</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>destroy</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#executions-destroy'>
+              DELETE /executions/:id
+            </a><br>
+            <small>Delete execution</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Deletes an existing execution</p>
+
+          <h2>Examples</h2>
+            <pre>DELETE /executions/24537
+200
+{
+  &quot;execution&quot;: &quot;Deleted&quot;
+}</pre>
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Execution ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+            </tbody>
+          </table>
+      </div>
+      <hr>
+
+      <ul class='breadcrumb' id='executions-next_incomplete_test'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#executions'>Executions</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>next_incomplete_test</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#executions-next_incomplete_test'>
+              GET /executions/:id/next_test
+            </a><br>
+            <small>Next Incomplete Test</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Returns the next incomplete test for this execution</p>
+
+          <h2>Examples</h2>
+            <pre>GET /executions/24531/next_test
+200
+{
+  &quot;testcase&quot;: {
+    &quot;id&quot;: 93318,
+    &quot;runner_touch&quot;: &quot;2017-01-20T20:24:55.667Z&quot;,
+    &quot;version&quot;: 1,
+    &quot;token&quot;: &quot;kDEpovN6Apyc3vM9oSCX8hNv&quot;,
+    &quot;name&quot;: &quot;Repellendus quia eligendi commodi deserunt aut odio repellat necessitatibus.&quot;,
+    &quot;project_id&quot;: 24490,
+    &quot;outdated&quot;: false,
+    &quot;validation_id&quot;: 1471372,
+    &quot;locked&quot;: null,
+    &quot;created_at&quot;: &quot;2017-01-20T20:24:55.602Z&quot;,
+    &quot;updated_at&quot;: &quot;2017-01-20T20:24:55.670Z&quot;,
+    &quot;reproduction_steps&quot;: [
+      {
+        &quot;step_number&quot;: 1,
+        &quot;action&quot;: &quot;Explicabo est similique exercitationem minima eligendi rem nostrum.&quot;,
+        &quot;result&quot;: &quot;Nihil incidunt neque aliquam nisi facere itaque perspiciatis.&quot;
+      },
+      {
+        &quot;step_number&quot;: 2,
+        &quot;action&quot;: &quot;Excepturi at minus voluptatum incidunt ut nihil.&quot;,
+        &quot;result&quot;: &quot;Deserunt non quo et neque molestiae in.&quot;
+      },
+      {
+        &quot;step_number&quot;: 3,
+        &quot;action&quot;: &quot;Consequatur sed soluta fugit et dolorem.&quot;,
+        &quot;result&quot;: &quot;Iure perferendis ipsa voluptas recusandae qui neque eos.&quot;
+      }
+    ],
+    &quot;revised_at&quot;: null,
+    &quot;username&quot;: null
+  }
+}</pre>
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Execution ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+            </tbody>
+          </table>
+      </div>
+      <hr>
+
+      <ul class='breadcrumb' id='executions-failing_tests'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#executions'>Executions</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>failing_tests</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#executions-failing_tests'>
+              GET /executions/:project_key/failing
+            </a><br>
+            <small>Get all failing tests</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Returns the complete list of failing tests/environments for the current
+execution</p>
+
+          <h2>Examples</h2>
+            <pre>GET /executions/46731df1da40973725b4e808dde27d1f/failing
+200
+{
+  &quot;failing&quot;: [
+    {
+      &quot;environment_id&quot;: &quot;2ceaa88110b41267020621ce614faad4&quot;,
+      &quot;testcase_name&quot;: &quot;Velit voluptate fugiat sed enim sint commodi et.&quot;,
+      &quot;validation_id&quot;: 2915528
+    },
+    {
+      &quot;environment_id&quot;: &quot;e4e340c8c091dd50e362f48f270d2e3c&quot;,
+      &quot;testcase_name&quot;: &quot;Velit voluptate fugiat sed enim sint commodi et.&quot;,
+      &quot;validation_id&quot;: 2915528
+    },
+    {
+      &quot;environment_id&quot;: &quot;cada6f5cdc4033e3db5daa955ea1938c&quot;,
+      &quot;testcase_name&quot;: &quot;Velit voluptate fugiat sed enim sint commodi et.&quot;,
+      &quot;validation_id&quot;: 2915528
+    },
+    {
+      &quot;environment_id&quot;: &quot;2ceaa88110b41267020621ce614faad4&quot;,
+      &quot;testcase_name&quot;: &quot;Animi perferendis magnam nobis amet sapiente exercitationem architecto eum.&quot;,
+      &quot;validation_id&quot;: 9084424
+    },
+    {
+      &quot;environment_id&quot;: &quot;manual&quot;,
+      &quot;testcase_name&quot;: &quot;Animi perferendis magnam nobis amet sapiente exercitationem architecto eum.&quot;,
+      &quot;validation_id&quot;: 9084424
+    },
+    {
+      &quot;environment_id&quot;: &quot;d698dab5a4ef56992b6e3aefb52556c0&quot;,
+      &quot;testcase_name&quot;: &quot;Aperiam voluptatum accusamus voluptatem eum est facilis.&quot;,
+      &quot;validation_id&quot;: 4421928
+    },
+    {
+      &quot;environment_id&quot;: &quot;manual&quot;,
+      &quot;testcase_name&quot;: &quot;Aperiam voluptatum accusamus voluptatem eum est facilis.&quot;,
+      &quot;validation_id&quot;: 4421928
+    },
+    {
+      &quot;environment_id&quot;: &quot;2ceaa88110b41267020621ce614faad4&quot;,
+      &quot;testcase_name&quot;: &quot;Itaque est ut iusto magnam sed.&quot;,
+      &quot;validation_id&quot;: 4331527
+    },
+    {
+      &quot;environment_id&quot;: &quot;d698dab5a4ef56992b6e3aefb52556c0&quot;,
+      &quot;testcase_name&quot;: &quot;Itaque est ut iusto magnam sed.&quot;,
+      &quot;validation_id&quot;: 4331527
+    },
+    {
+      &quot;environment_id&quot;: &quot;cada6f5cdc4033e3db5daa955ea1938c&quot;,
+      &quot;testcase_name&quot;: &quot;Itaque est ut iusto magnam sed.&quot;,
+      &quot;validation_id&quot;: 4331527
+    },
+    {
+      &quot;environment_id&quot;: &quot;manual&quot;,
+      &quot;testcase_name&quot;: &quot;Itaque est ut iusto magnam sed.&quot;,
+      &quot;validation_id&quot;: 4331527
+    },
+    {
+      &quot;environment_id&quot;: &quot;e4e340c8c091dd50e362f48f270d2e3c&quot;,
+      &quot;testcase_name&quot;: &quot;Assumenda ducimus ut amet labore in quia.&quot;,
+      &quot;validation_id&quot;: 4947075
+    }
+  ]
+}</pre>
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>project_key </strong><br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Project Key.</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+            </tbody>
+          </table>
+      </div>
+  </div>
+
+  <ul class='breadcrumb'  id='projects'>
+    <li><a href='#'>Mustard</a><span class='divider'>/</span></li>
+    <li class='active'>Projects</li>
+  </ul>
+
+  <div class='page-header'>
+    <h1>
+      <a href='#projects'>Projects</a><br>
+      <small></small>
+    </h1>
+  </div>
+
+
+  <div class='accordion' id='accordion'>
+
+      <hr>
+
+      <ul class='breadcrumb' id='projects-index'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#projects'>Projects</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>index</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#projects-index'>
+              GET /projects
+            </a><br>
+            <small>All Projects</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Returns all projects viewable by current user</p>
+
+          <h2>Examples</h2>
+            <pre>GET /projects
+200
+{
+  &quot;projects&quot;: [
+    {
+      &quot;id&quot;: 24495,
+      &quot;project_name&quot;: &quot;Zulauf and Sons&quot;,
+      &quot;api_key&quot;: &quot;edddaab7ceb9335acb70a9b86d36b40f&quot;,
+      &quot;created_at&quot;: &quot;2017-01-20T20:24:57.214Z&quot;,
+      &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.273Z&quot;,
+      &quot;execution_id&quot;: 24539
+    },
+    {
+      &quot;id&quot;: 24496,
+      &quot;project_name&quot;: &quot;Lemke-Dickinson&quot;,
+      &quot;api_key&quot;: &quot;e684331faaa82d38fbdca18f4c4805d4&quot;,
+      &quot;created_at&quot;: &quot;2017-01-20T20:24:57.280Z&quot;,
+      &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.338Z&quot;,
+      &quot;execution_id&quot;: 24540
+    },
+    {
+      &quot;id&quot;: 24497,
+      &quot;project_name&quot;: &quot;Beer, Aufderhar and Abshire&quot;,
+      &quot;api_key&quot;: &quot;a2724c55ed9b743a2425c09136442741&quot;,
+      &quot;created_at&quot;: &quot;2017-01-20T20:24:57.345Z&quot;,
+      &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.414Z&quot;,
+      &quot;execution_id&quot;: 24541
+    },
+    {
+      &quot;id&quot;: 24498,
+      &quot;project_name&quot;: &quot;Okuneva Inc&quot;,
+      &quot;api_key&quot;: &quot;1afabf0d65787a9054c5dca07a260539&quot;,
+      &quot;created_at&quot;: &quot;2017-01-20T20:24:57.422Z&quot;,
+      &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.486Z&quot;,
+      &quot;execution_id&quot;: 24542
+    },
+    {
+      &quot;id&quot;: 24499,
+      &quot;project_name&quot;: &quot;Botsford LLC&quot;,
+      &quot;api_key&quot;: &quot;5155ce33f0b4d78377244097d38b5585&quot;,
+      &quot;created_at&quot;: &quot;2017-01-20T20:24:57.494Z&quot;,
+      &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.559Z&quot;,
+      &quot;execution_id&quot;: 24543
+    }
+  ]
+}</pre>
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+            </tbody>
+          </table>
+      </div>
+      <hr>
+
+      <ul class='breadcrumb' id='projects-show'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#projects'>Projects</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>show</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#projects-show'>
+              GET /projects/:id
+            </a><br>
+            <small>Project details</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Only accessible if project is viewable by current user</p>
+
+          <h2>Examples</h2>
+            <pre>GET /projects/24500
+200
+{
+  &quot;project&quot;: {
+    &quot;id&quot;: 24500,
+    &quot;project_name&quot;: &quot;Orn, Brekke and Turcotte&quot;,
+    &quot;api_key&quot;: &quot;3e663d59a1fa70cf737f972214698195&quot;,
+    &quot;created_at&quot;: &quot;2017-01-20T20:24:57.599Z&quot;,
+    &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.659Z&quot;,
+    &quot;testcases&quot;: [
+      {
+        &quot;id&quot;: 93371,
+        &quot;testcase_name&quot;: &quot;Repellendus id qui quod voluptates amet qui incidunt perspiciatis.&quot;,
+        &quot;testcase_id&quot;: 1983169,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.650Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.650Z&quot;,
+        &quot;version&quot;: 1
+      },
+      {
+        &quot;id&quot;: 93372,
+        &quot;testcase_name&quot;: &quot;Quibusdam atque dolorum quia.&quot;,
+        &quot;testcase_id&quot;: 4946485,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.657Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.657Z&quot;,
+        &quot;version&quot;: 1
+      },
+      {
+        &quot;id&quot;: 93370,
+        &quot;testcase_name&quot;: &quot;Reiciendis ut velit sunt quisquam.&quot;,
+        &quot;testcase_id&quot;: 5309266,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.643Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.643Z&quot;,
+        &quot;version&quot;: 1
+      },
+      {
+        &quot;id&quot;: 93369,
+        &quot;testcase_name&quot;: &quot;Sunt et aliquid velit mollitia.&quot;,
+        &quot;testcase_id&quot;: 7458654,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.635Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.635Z&quot;,
+        &quot;version&quot;: 1
+      },
+      {
+        &quot;id&quot;: 93368,
+        &quot;testcase_name&quot;: &quot;At officia nemo autem hic omnis nostrum.&quot;,
+        &quot;testcase_id&quot;: 9937402,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.628Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.628Z&quot;,
+        &quot;version&quot;: 1
+      }
+    ],
+    &quot;environments&quot;: [
+      {
+        &quot;id&quot;: 109738,
+        &quot;uuid&quot;: &quot;26cd8a5db22b2f5e4bc52f8c609a3bbc&quot;,
+        &quot;display_name&quot;: null,
+        &quot;environment_type&quot;: &quot;Undefined&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.606Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.606Z&quot;
+      },
+      {
+        &quot;id&quot;: 109739,
+        &quot;uuid&quot;: &quot;9054d8e7c285203719e68d9f943a065e&quot;,
+        &quot;display_name&quot;: null,
+        &quot;environment_type&quot;: &quot;Undefined&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.611Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.611Z&quot;
+      },
+      {
+        &quot;id&quot;: 109740,
+        &quot;uuid&quot;: &quot;ddd6dcdef98d7d707c9723959bcdfdf8&quot;,
+        &quot;display_name&quot;: null,
+        &quot;environment_type&quot;: &quot;Undefined&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.615Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.615Z&quot;
+      },
+      {
+        &quot;id&quot;: 109741,
+        &quot;uuid&quot;: &quot;971061aa6dd137e91b2e667ebafc77f7&quot;,
+        &quot;display_name&quot;: null,
+        &quot;environment_type&quot;: &quot;Undefined&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.619Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.619Z&quot;
+      },
+      {
+        &quot;id&quot;: 109742,
+        &quot;uuid&quot;: &quot;fa17f873031e661b8a347c0bc5ee2921&quot;,
+        &quot;display_name&quot;: null,
+        &quot;environment_type&quot;: &quot;Undefined&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.623Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.623Z&quot;
+      }
+    ],
+    &quot;executions&quot;: [
+      {
+        &quot;id&quot;: 24544,
+        &quot;name&quot;: &quot;Execution: 01/20/2017&quot;,
+        &quot;closed&quot;: false,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.600Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.600Z&quot;
+      }
+    ]
+  }
+}</pre>
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Project ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+            </tbody>
+          </table>
+      </div>
+      <hr>
+
+      <ul class='breadcrumb' id='projects-create'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#projects'>Projects</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>create</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#projects-create'>
+              POST /projects
+            </a><br>
+            <small>Create new project</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Only accessible by admin users</p>
+
+          <h2>Examples</h2>
+            <pre>POST /projects
+{
+  &quot;project&quot;: {
+    &quot;name&quot;: &quot;Goldner, Blick and Fadel&quot;
+  }
+}
+200
+{
+  &quot;project&quot;: {
+    &quot;id&quot;: 24501,
+    &quot;project_name&quot;: &quot;Goldner, Blick and Fadel&quot;,
+    &quot;api_key&quot;: &quot;81bac44969a7ba5a96ba1919f3007d5d&quot;,
+    &quot;created_at&quot;: &quot;2017-01-20T20:24:57.713Z&quot;,
+    &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.713Z&quot;,
+    &quot;testcases&quot;: [],
+    &quot;environments&quot;: [],
+    &quot;executions&quot;: [
+      {
+        &quot;id&quot;: 24545,
+        &quot;name&quot;: &quot;Execution: 01/20/2017&quot;,
+        &quot;closed&quot;: false,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.714Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.714Z&quot;
+      }
+    ]
+  }
+}</pre>
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>team </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a Hash</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+    <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>team[name] </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Project name</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+
+            </tbody>
+          </table>
+      </div>
+      <hr>
+
+      <ul class='breadcrumb' id='projects-update'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#projects'>Projects</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>update</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#projects-update'>
+              PUT /projects/:id
+            </a><br>
+            <small>Update existing project</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Only accessible by admin users</p>
+
+          <h2>Examples</h2>
+            <pre>PUT /projects/24502
+{
+  &quot;project&quot;: {
+    &quot;name&quot;: &quot;Some New Name&quot;
+  }
+}
+200
+{
+  &quot;project&quot;: {
+    &quot;id&quot;: 24502,
+    &quot;project_name&quot;: &quot;Some New Name&quot;,
+    &quot;api_key&quot;: &quot;6082614115d87735d8de85731b2ea453&quot;,
+    &quot;created_at&quot;: &quot;2017-01-20T20:24:57.768Z&quot;,
+    &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.919Z&quot;,
+    &quot;testcases&quot;: [
+      {
+        &quot;id&quot;: 93374,
+        &quot;testcase_name&quot;: &quot;Commodi aut exercitationem saepe id illum fuga doloribus eum.&quot;,
+        &quot;testcase_id&quot;: 3301326,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.809Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.809Z&quot;,
+        &quot;version&quot;: 1
+      },
+      {
+        &quot;id&quot;: 93373,
+        &quot;testcase_name&quot;: &quot;Facere veniam voluptas voluptatibus itaque eum quia.&quot;,
+        &quot;testcase_id&quot;: 3845106,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.802Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.802Z&quot;,
+        &quot;version&quot;: 1
+      },
+      {
+        &quot;id&quot;: 93375,
+        &quot;testcase_name&quot;: &quot;Iusto et blanditiis consequatur cupiditate repellendus assumenda.&quot;,
+        &quot;testcase_id&quot;: 4515517,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.815Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.815Z&quot;,
+        &quot;version&quot;: 1
+      },
+      {
+        &quot;id&quot;: 93377,
+        &quot;testcase_name&quot;: &quot;Aut ducimus eius officiis.&quot;,
+        &quot;testcase_id&quot;: 6167300,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.828Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.828Z&quot;,
+        &quot;version&quot;: 1
+      },
+      {
+        &quot;id&quot;: 93376,
+        &quot;testcase_name&quot;: &quot;Fuga reprehenderit non quod nostrum omnis porro et ipsam.&quot;,
+        &quot;testcase_id&quot;: 9351224,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.822Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.822Z&quot;,
+        &quot;version&quot;: 1
+      }
+    ],
+    &quot;environments&quot;: [
+      {
+        &quot;id&quot;: 109743,
+        &quot;uuid&quot;: &quot;7b81cff7e3fc65f940d3ecb5fe77ad40&quot;,
+        &quot;display_name&quot;: null,
+        &quot;environment_type&quot;: &quot;Undefined&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.776Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.776Z&quot;
+      },
+      {
+        &quot;id&quot;: 109744,
+        &quot;uuid&quot;: &quot;198434bfd1c95345b214919838793e72&quot;,
+        &quot;display_name&quot;: null,
+        &quot;environment_type&quot;: &quot;Undefined&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.779Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.779Z&quot;
+      },
+      {
+        &quot;id&quot;: 109745,
+        &quot;uuid&quot;: &quot;686d22d2e51508a83d8d50244a58a903&quot;,
+        &quot;display_name&quot;: null,
+        &quot;environment_type&quot;: &quot;Undefined&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.783Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.783Z&quot;
+      },
+      {
+        &quot;id&quot;: 109746,
+        &quot;uuid&quot;: &quot;8ae686ff01497e167fd384fc0a813b5e&quot;,
+        &quot;display_name&quot;: null,
+        &quot;environment_type&quot;: &quot;Undefined&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.786Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.786Z&quot;
+      },
+      {
+        &quot;id&quot;: 109747,
+        &quot;uuid&quot;: &quot;f14ccbadd46b19261ad271885fe83c36&quot;,
+        &quot;display_name&quot;: null,
+        &quot;environment_type&quot;: &quot;Undefined&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.797Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.797Z&quot;
+      }
+    ],
+    &quot;executions&quot;: [
+      {
+        &quot;id&quot;: 24546,
+        &quot;name&quot;: &quot;Execution: 01/20/2017&quot;,
+        &quot;closed&quot;: false,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.769Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.769Z&quot;
+      }
+    ]
+  }
+}</pre>
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Project ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>team </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a Hash</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+    <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>team[name] </strong><br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Project name</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+
+            </tbody>
+          </table>
+      </div>
+      <hr>
+
+      <ul class='breadcrumb' id='projects-destroy'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#projects'>Projects</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>destroy</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#projects-destroy'>
+              DELETE /projects/:id
+            </a><br>
+            <small>Delete existing project</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Only accessible by Admins</p>
+
+          <h2>Examples</h2>
+            <pre>DELETE /projects/24504
+200
+{
+  &quot;project&quot;: &quot;Deleted&quot;
+}</pre>
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Project ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+            </tbody>
+          </table>
+      </div>
+  </div>
+
+  <ul class='breadcrumb'  id='results'>
+    <li><a href='#'>Mustard</a><span class='divider'>/</span></li>
+    <li class='active'>Results</li>
+  </ul>
+
+  <div class='page-header'>
+    <h1>
+      <a href='#results'>Results</a><br>
+      <small></small>
+    </h1>
+  </div>
+
+
+  <div class='accordion' id='accordion'>
+
+      <hr>
+
+      <ul class='breadcrumb' id='results-recent'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#results'>Results</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>recent</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#results-recent'>
+              GET recent-results
+            </a><br>
+            <small>Recent Results</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Returns the 10 most recent results viewable by current user</p>
+
+          <h2>Examples</h2>
+            <pre>GET /recent-results
+200
+{
+  &quot;results&quot;: [
+    {
+      &quot;id&quot;: 114164,
+      &quot;environment_id&quot;: -1,
+      &quot;testcase_id&quot;: 93397,
+      &quot;testcase_name&quot;: &quot;Qui qui quam nemo.&quot;,
+      &quot;testcase_validation_id&quot;: 8161018,
+      &quot;execution_id&quot;: 24550,
+      &quot;project_id&quot;: 24506,
+      &quot;project_name&quot;: &quot;Wyman-Russel&quot;,
+      &quot;result&quot;: {
+        &quot;status&quot;: &quot;fail&quot;,
+        &quot;result_type&quot;: &quot;manual&quot;,
+        &quot;comment&quot;: &quot;At consequatur et ex ducimus laboriosam.&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T15:24:58.526-05:00&quot;,
+        &quot;created_by_id&quot;: 59369,
+        &quot;created_by_name&quot;: &quot;Mckayla Romaguera&quot;
+      },
+      &quot;updated_at&quot;: &quot;2017-01-20T20:24:58.526Z&quot;
+    },
+    {
+      &quot;id&quot;: 114163,
+      &quot;environment_id&quot;: 109767,
+      &quot;environment_display_name&quot;: null,
+      &quot;environment_type&quot;: &quot;Undefined&quot;,
+      &quot;testcase_id&quot;: 93397,
+      &quot;testcase_name&quot;: &quot;Qui qui quam nemo.&quot;,
+      &quot;testcase_validation_id&quot;: 8161018,
+      &quot;execution_id&quot;: 24550,
+      &quot;project_id&quot;: 24506,
+      &quot;project_name&quot;: &quot;Wyman-Russel&quot;,
+      &quot;result&quot;: {
+        &quot;status&quot;: &quot;skip&quot;,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;stacktrace&quot;: &quot;Ut ex illum quasi molestias voluptatem asperiores vitae. Quos nostrum facilis maxime rerum velit hic. Molestiae et sit officia. Nam harum deserunt ratione vel qui veritatis consequatur. Minima ipsum consequatur qui.&quot;,
+        &quot;comment&quot;: &quot;Facere consequuntur quam est.&quot;,
+        &quot;link&quot;: &quot;http://kertzmann.info/amos&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T15:24:58.511-05:00&quot;
+      },
+      &quot;updated_at&quot;: &quot;2017-01-20T20:24:58.511Z&quot;
+    },
+    {
+      &quot;id&quot;: 114162,
+      &quot;environment_id&quot;: 109766,
+      &quot;environment_display_name&quot;: null,
+      &quot;environment_type&quot;: &quot;Undefined&quot;,
+      &quot;testcase_id&quot;: 93397,
+      &quot;testcase_name&quot;: &quot;Qui qui quam nemo.&quot;,
+      &quot;testcase_validation_id&quot;: 8161018,
+      &quot;execution_id&quot;: 24550,
+      &quot;project_id&quot;: 24506,
+      &quot;project_name&quot;: &quot;Wyman-Russel&quot;,
+      &quot;result&quot;: {
+        &quot;status&quot;: &quot;pass&quot;,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;stacktrace&quot;: &quot;Eum ratione laudantium atque. Fugiat voluptas blanditiis quas omnis minus. Rerum quis odio eum aliquam ex. Est quia voluptas quia nemo.&quot;,
+        &quot;comment&quot;: &quot;Aspernatur quia ut alias aperiam.&quot;,
+        &quot;link&quot;: &quot;http://dickinson.info/dale&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T15:24:58.504-05:00&quot;
+      },
+      &quot;updated_at&quot;: &quot;2017-01-20T20:24:58.504Z&quot;
+    },
+    {
+      &quot;id&quot;: 114161,
+      &quot;environment_id&quot;: 109765,
+      &quot;environment_display_name&quot;: null,
+      &quot;environment_type&quot;: &quot;Undefined&quot;,
+      &quot;testcase_id&quot;: 93397,
+      &quot;testcase_name&quot;: &quot;Qui qui quam nemo.&quot;,
+      &quot;testcase_validation_id&quot;: 8161018,
+      &quot;execution_id&quot;: 24550,
+      &quot;project_id&quot;: 24506,
+      &quot;project_name&quot;: &quot;Wyman-Russel&quot;,
+      &quot;result&quot;: {
+        &quot;status&quot;: &quot;skip&quot;,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;stacktrace&quot;: &quot;Dolores est consequatur aut sunt voluptas fuga aliquid. Mollitia temporibus ex. Qui explicabo sint incidunt temporibus. Voluptatibus qui totam. Consequatur velit doloribus quae dignissimos sint qui quis.&quot;,
+        &quot;comment&quot;: &quot;Iusto rem voluptas voluptatem exercitationem ea ut necessitatibus.&quot;,
+        &quot;link&quot;: &quot;http://friesen.net/asha.kirlin&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T15:24:58.497-05:00&quot;
+      },
+      &quot;updated_at&quot;: &quot;2017-01-20T20:24:58.497Z&quot;
+    },
+    {
+      &quot;id&quot;: 114160,
+      &quot;environment_id&quot;: 109764,
+      &quot;environment_display_name&quot;: null,
+      &quot;environment_type&quot;: &quot;Undefined&quot;,
+      &quot;testcase_id&quot;: 93397,
+      &quot;testcase_name&quot;: &quot;Qui qui quam nemo.&quot;,
+      &quot;testcase_validation_id&quot;: 8161018,
+      &quot;execution_id&quot;: 24550,
+      &quot;project_id&quot;: 24506,
+      &quot;project_name&quot;: &quot;Wyman-Russel&quot;,
+      &quot;result&quot;: {
+        &quot;status&quot;: &quot;skip&quot;,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;stacktrace&quot;: &quot;Minima sit nisi earum vitae sed perferendis. Rem voluptatum et expedita. Iste est culpa vel illo id cupiditate voluptate. Ipsum veniam quod quae deserunt reprehenderit.&quot;,
+        &quot;comment&quot;: &quot;Voluptas laborum mollitia omnis aut et.&quot;,
+        &quot;link&quot;: &quot;http://starkferry.info/vallie.rath&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T15:24:58.489-05:00&quot;
+      },
+      &quot;updated_at&quot;: &quot;2017-01-20T20:24:58.489Z&quot;
+    },
+    {
+      &quot;id&quot;: 114159,
+      &quot;environment_id&quot;: 109763,
+      &quot;environment_display_name&quot;: null,
+      &quot;environment_type&quot;: &quot;Undefined&quot;,
+      &quot;testcase_id&quot;: 93397,
+      &quot;testcase_name&quot;: &quot;Qui qui quam nemo.&quot;,
+      &quot;testcase_validation_id&quot;: 8161018,
+      &quot;execution_id&quot;: 24550,
+      &quot;project_id&quot;: 24506,
+      &quot;project_name&quot;: &quot;Wyman-Russel&quot;,
+      &quot;result&quot;: {
+        &quot;status&quot;: &quot;pass&quot;,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;stacktrace&quot;: &quot;Veritatis quia occaecati laborum rerum ex. Est aut temporibus delectus vel voluptas. Eum temporibus assumenda voluptatem. Occaecati temporibus qui quam ea sed voluptate. Tempora id et distinctio.&quot;,
+        &quot;comment&quot;: &quot;Minus sequi voluptates ut qui rerum dignissimos.&quot;,
+        &quot;link&quot;: &quot;http://gleasonabbott.co/nelle&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T15:24:58.482-05:00&quot;
+      },
+      &quot;updated_at&quot;: &quot;2017-01-20T20:24:58.483Z&quot;
+    },
+    {
+      &quot;id&quot;: 114158,
+      &quot;environment_id&quot;: -1,
+      &quot;testcase_id&quot;: 93396,
+      &quot;testcase_name&quot;: &quot;Nihil quis repudiandae laborum sequi.&quot;,
+      &quot;testcase_validation_id&quot;: 3519762,
+      &quot;execution_id&quot;: 24550,
+      &quot;project_id&quot;: 24506,
+      &quot;project_name&quot;: &quot;Wyman-Russel&quot;,
+      &quot;result&quot;: {
+        &quot;status&quot;: &quot;pass&quot;,
+        &quot;result_type&quot;: &quot;manual&quot;,
+        &quot;comment&quot;: &quot;Et et accusantium velit nihil doloribus vero consequatur.&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T15:24:58.476-05:00&quot;,
+        &quot;created_by_id&quot;: 59368,
+        &quot;created_by_name&quot;: &quot;Oswald Simonis&quot;
+      },
+      &quot;updated_at&quot;: &quot;2017-01-20T20:24:58.476Z&quot;
+    },
+    {
+      &quot;id&quot;: 114157,
+      &quot;environment_id&quot;: 109767,
+      &quot;environment_display_name&quot;: null,
+      &quot;environment_type&quot;: &quot;Undefined&quot;,
+      &quot;testcase_id&quot;: 93396,
+      &quot;testcase_name&quot;: &quot;Nihil quis repudiandae laborum sequi.&quot;,
+      &quot;testcase_validation_id&quot;: 3519762,
+      &quot;execution_id&quot;: 24550,
+      &quot;project_id&quot;: 24506,
+      &quot;project_name&quot;: &quot;Wyman-Russel&quot;,
+      &quot;result&quot;: {
+        &quot;status&quot;: &quot;pass&quot;,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;stacktrace&quot;: &quot;Et ut suscipit et odio quaerat. Natus autem molestiae velit dolores beatae. Corporis eius expedita deleniti et et libero et.&quot;,
+        &quot;comment&quot;: &quot;Cupiditate sit voluptas est dicta assumenda.&quot;,
+        &quot;link&quot;: &quot;http://bosco.info/douglas_orn&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T15:24:58.462-05:00&quot;
+      },
+      &quot;updated_at&quot;: &quot;2017-01-20T20:24:58.462Z&quot;
+    },
+    {
+      &quot;id&quot;: 114156,
+      &quot;environment_id&quot;: 109766,
+      &quot;environment_display_name&quot;: null,
+      &quot;environment_type&quot;: &quot;Undefined&quot;,
+      &quot;testcase_id&quot;: 93396,
+      &quot;testcase_name&quot;: &quot;Nihil quis repudiandae laborum sequi.&quot;,
+      &quot;testcase_validation_id&quot;: 3519762,
+      &quot;execution_id&quot;: 24550,
+      &quot;project_id&quot;: 24506,
+      &quot;project_name&quot;: &quot;Wyman-Russel&quot;,
+      &quot;result&quot;: {
+        &quot;status&quot;: &quot;pass&quot;,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;stacktrace&quot;: &quot;At sed in quam amet nostrum. Quia mollitia autem tenetur sunt. Aperiam quia excepturi. Voluptas nulla sunt eligendi atque quidem.&quot;,
+        &quot;comment&quot;: &quot;Harum rerum sequi accusantium exercitationem dolores dolorum.&quot;,
+        &quot;link&quot;: &quot;http://gislason.net/esta&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T15:24:58.455-05:00&quot;
+      },
+      &quot;updated_at&quot;: &quot;2017-01-20T20:24:58.455Z&quot;
+    },
+    {
+      &quot;id&quot;: 114155,
+      &quot;environment_id&quot;: 109765,
+      &quot;environment_display_name&quot;: null,
+      &quot;environment_type&quot;: &quot;Undefined&quot;,
+      &quot;testcase_id&quot;: 93396,
+      &quot;testcase_name&quot;: &quot;Nihil quis repudiandae laborum sequi.&quot;,
+      &quot;testcase_validation_id&quot;: 3519762,
+      &quot;execution_id&quot;: 24550,
+      &quot;project_id&quot;: 24506,
+      &quot;project_name&quot;: &quot;Wyman-Russel&quot;,
+      &quot;result&quot;: {
+        &quot;status&quot;: &quot;pass&quot;,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;stacktrace&quot;: &quot;Dolor repellat ut error. Consectetur officia neque aut ipsam qui. Nihil corporis dolorum asperiores natus aut occaecati adipisci. Ex consectetur nisi dignissimos repellendus. Voluptate autem vel et.&quot;,
+        &quot;comment&quot;: &quot;Dolorem non delectus doloremque velit sapiente.&quot;,
+        &quot;link&quot;: &quot;http://runolfsdottir.biz/evan_swaniawski&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T15:24:58.448-05:00&quot;
+      },
+      &quot;updated_at&quot;: &quot;2017-01-20T20:24:58.448Z&quot;
+    }
+  ]
+}</pre>
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+            </tbody>
+          </table>
+      </div>
+      <hr>
+
+      <ul class='breadcrumb' id='results-show'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#results'>Results</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>show</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#results-show'>
+              GET /results/:id
+            </a><br>
+            <small>Result details</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Only accessible if parent project is viewable by current user</p>
+
+          <h2>Examples</h2>
+            <pre>GET /results/114165
+200
+{
+  &quot;result&quot;: {
+    &quot;id&quot;: 114165,
+    &quot;environment_id&quot;: 109778,
+    &quot;environment_display_name&quot;: null,
+    &quot;environment_type&quot;: &quot;Undefined&quot;,
+    &quot;testcase_id&quot;: 93408,
+    &quot;testcase_name&quot;: &quot;Esse aperiam expedita ab aut reprehenderit ipsam cum reiciendis.&quot;,
+    &quot;testcase_validation_id&quot;: 1097294,
+    &quot;execution_id&quot;: 24553,
+    &quot;results&quot;: [
+      {
+        &quot;status&quot;: &quot;fail&quot;,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;stacktrace&quot;: &quot;Non ipsum odit sint. Quia dolor ratione rem officia quaerat. Aut veniam similique asperiores repudiandae facere in.&quot;,
+        &quot;comment&quot;: &quot;Voluptatem repellendus optio delectus.&quot;,
+        &quot;link&quot;: &quot;http://lind.net/nyah_hudson&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T15:24:58.856-05:00&quot;
+      },
+      {
+        &quot;status&quot;: &quot;pass&quot;,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;stacktrace&quot;: &quot;Eaque vel laborum. Praesentium rerum non dolore autem omnis tempore. Voluptas sit accusantium. Similique perferendis velit inventore consequatur iure quis non. Tenetur doloribus blanditiis accusantium rerum quis.&quot;,
+        &quot;comment&quot;: &quot;Autem quod eum magni.&quot;,
+        &quot;link&quot;: &quot;http://spencer.name/verla.denesik&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T15:24:58.856-05:00&quot;
+      },
+      {
+        &quot;status&quot;: &quot;pass&quot;,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;stacktrace&quot;: &quot;Eveniet odit illum sed nam. Quas modi necessitatibus dolorem inventore. Placeat non maxime voluptas ea. Fugit illum sed et. Repudiandae quam excepturi doloribus sed veniam et.&quot;,
+        &quot;comment&quot;: &quot;Consectetur eos accusantium neque et aut libero ea.&quot;,
+        &quot;link&quot;: &quot;http://willms.net/hoyt_gulgowski&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T15:24:58.856-05:00&quot;
+      }
+    ],
+    &quot;updated_at&quot;: &quot;2017-01-20T20:24:58.857Z&quot;,
+    &quot;creted_at&quot;: &quot;2017-01-20T20:24:58.857Z&quot;
+  }
+}</pre>
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Result ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+            </tbody>
+          </table>
+      </div>
+      <hr>
+
+      <ul class='breadcrumb' id='results-screenshot'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#results'>Results</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>screenshot</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#results-screenshot'>
+              GET /results/:id/screenshot/:screenshot_id
+            </a><br>
+            <small>Access result screenshot</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Returns a temporary url to access the screenshot directly. \</p>
+
+<pre>Includes a screenshot token that is valid for 30 seconds from \
+time of creation and destroyed after first use.  Only accessible \
+if parent project is viewable by current user</pre>
+
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Result ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>screenshot_id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Screenshot ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+            </tbody>
+          </table>
+      </div>
+      <hr>
+
+      <ul class='breadcrumb' id='results-create'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#results'>Results</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>create</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#results-create'>
+              POST /results
+            </a><br>
+            <small>Create new result</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Creates a result for project based on API KEY</p>
+
+          <h2>Examples</h2>
+            <pre>POST /results
+{
+  &quot;result&quot;: {
+    &quot;status&quot;: &quot;pass&quot;,
+    &quot;environment_id&quot;: -1,
+    &quot;testcase_id&quot;: 9675228,
+    &quot;result_type&quot;: &quot;manual&quot;,
+    &quot;execution_id&quot;: 24554,
+    &quot;comment&quot;: &quot;Some new comment&quot;
+  }
+}
+200
+{
+  &quot;result&quot;: {
+    &quot;results&quot;: [
+      {
+        &quot;status&quot;: &quot;pass&quot;,
+        &quot;environment_id&quot;: -1,
+        &quot;testcase_id&quot;: 9675228,
+        &quot;result_type&quot;: &quot;manual&quot;,
+        &quot;comment&quot;: &quot;Some new comment&quot;,
+        &quot;execution_id&quot;: 24554,
+        &quot;created_by_id&quot;: 59378,
+        &quot;created_by_name&quot;: &quot;Abdul Schulist&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T15:24:59.501-05:00&quot;
+      },
+      {
+        &quot;status&quot;: &quot;skip&quot;,
+        &quot;result_type&quot;: &quot;manual&quot;,
+        &quot;comment&quot;: &quot;Qui aspernatur reprehenderit velit aut vitae qui consequatur.&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T15:24:59.271-05:00&quot;,
+        &quot;created_by_id&quot;: 59379,
+        &quot;created_by_name&quot;: &quot;Germaine Rath&quot;
+      },
+      {
+        &quot;status&quot;: &quot;pass&quot;,
+        &quot;result_type&quot;: &quot;manual&quot;,
+        &quot;comment&quot;: &quot;Animi quis nulla asperiores sunt.&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T15:24:59.271-05:00&quot;,
+        &quot;created_by_id&quot;: 59379,
+        &quot;created_by_name&quot;: &quot;Germaine Rath&quot;
+      },
+      {
+        &quot;status&quot;: &quot;fail&quot;,
+        &quot;result_type&quot;: &quot;manual&quot;,
+        &quot;comment&quot;: &quot;Aperiam dignissimos et nihil dolore consequatur voluptates delectus.&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T15:24:59.262-05:00&quot;,
+        &quot;created_by_id&quot;: 59379,
+        &quot;created_by_name&quot;: &quot;Germaine Rath&quot;
+      }
+    ],
+    &quot;current_status&quot;: &quot;pass&quot;,
+    &quot;id&quot;: 114200,
+    &quot;environment_id&quot;: -1,
+    &quot;testcase_id&quot;: 93413,
+    &quot;execution_id&quot;: 24554,
+    &quot;created_at&quot;: &quot;2017-01-20T20:24:59.271Z&quot;,
+    &quot;updated_at&quot;: &quot;2017-01-20T20:24:59.501Z&quot;
+  }
+}</pre>
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>result </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a Hash</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+    <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>result[status] </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Result status</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be one of: <code>pass</code>, <code>fail</code>, <code>skip</code>.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>result[environment_id] </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Environment UUID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>result[testcase_id] </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Either the testcase validation id or the testcase name</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be one of: String, number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>result[result_type] </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Result type</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be one of: <code>automated</code>, <code>manual</code>.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>result[project_id] </strong><br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>Project API Key. Required for automated result type</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>result[execution_id] </strong><br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>Execution ID. Required for Manual result type</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>result[comment] </strong><br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>Comment</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>result[stacktrace] </strong><br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>Stacktrace</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>result[link] </strong><br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>Link to external result</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>result[screenshot] </strong><br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>Base64 encoded screenshot</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>result[step_log] </strong><br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>JSON Step Log of test</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+
+            </tbody>
+          </table>
+      </div>
+  </div>
+
+  <ul class='breadcrumb'  id='teams'>
+    <li><a href='#'>Mustard</a><span class='divider'>/</span></li>
+    <li class='active'>Teams</li>
+  </ul>
+
+  <div class='page-header'>
+    <h1>
+      <a href='#teams'>Teams</a><br>
+      <small></small>
+    </h1>
+  </div>
+
+
+  <div class='accordion' id='accordion'>
+
+      <hr>
+
+      <ul class='breadcrumb' id='teams-index'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#teams'>Teams</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>index</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#teams-index'>
+              GET /teams
+            </a><br>
+            <small>All teams</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Returns all teams viewable by current user</p>
+
+          <h2>Examples</h2>
+            <pre>GET /teams
+200
+{
+  &quot;teams&quot;: [
+    {
+      &quot;id&quot;: 9081,
+      &quot;name&quot;: &quot;Mosciski LLC&quot;,
+      &quot;description&quot;: &quot;I&#39;ll bypass the wireless SMS application, that should hard drive the JBOD transmitter!&quot;,
+      &quot;user_count&quot;: 2,
+      &quot;project_count&quot;: 2,
+      &quot;created_at&quot;: &quot;2017-01-20T20:24:59.516Z&quot;,
+      &quot;updated_at&quot;: &quot;2017-01-20T20:24:59.516Z&quot;
+    },
+    {
+      &quot;id&quot;: 9082,
+      &quot;name&quot;: &quot;Emmerich, Veum and Kreiger&quot;,
+      &quot;description&quot;: &quot;We need to override the bluetooth AI bandwidth!&quot;,
+      &quot;user_count&quot;: 2,
+      &quot;project_count&quot;: 2,
+      &quot;created_at&quot;: &quot;2017-01-20T20:24:59.716Z&quot;,
+      &quot;updated_at&quot;: &quot;2017-01-20T20:24:59.716Z&quot;
+    },
+    {
+      &quot;id&quot;: 9083,
+      &quot;name&quot;: &quot;O&#39;Connell, Hintz and Vandervort&quot;,
+      &quot;description&quot;: &quot;Programming the port won&#39;t do anything, we need to calculate the 1080p ssl bandwidth!&quot;,
+      &quot;user_count&quot;: 2,
+      &quot;project_count&quot;: 2,
+      &quot;created_at&quot;: &quot;2017-01-20T20:24:59.910Z&quot;,
+      &quot;updated_at&quot;: &quot;2017-01-20T20:24:59.910Z&quot;
+    }
+  ]
+}</pre>
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+            </tbody>
+          </table>
+      </div>
+      <hr>
+
+      <ul class='breadcrumb' id='teams-show'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#teams'>Teams</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>show</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#teams-show'>
+              GET /teams/:id
+            </a><br>
+            <small>Team details</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Must be viewable by current user</p>
+
+          <h2>Examples</h2>
+            <pre>GET /teams/9084
+200
+{
+  &quot;team&quot;: {
+    &quot;id&quot;: 9084,
+    &quot;name&quot;: &quot;Koss, McCullough and Feest&quot;,
+    &quot;description&quot;: &quot;We need to copy the digital PNG sensor!&quot;,
+    &quot;created_at&quot;: &quot;2017-01-20T20:25:00.169Z&quot;,
+    &quot;updated_at&quot;: &quot;2017-01-20T20:25:00.169Z&quot;,
+    &quot;projects&quot;: [
+      {
+        &quot;id&quot;: 24517,
+        &quot;project_name&quot;: &quot;Cummings-Hansen&quot;
+      },
+      {
+        &quot;id&quot;: 24518,
+        &quot;project_name&quot;: &quot;Hackett-Treutel&quot;
+      }
+    ],
+    &quot;users&quot;: [
+      {
+        &quot;id&quot;: 59391,
+        &quot;username&quot;: &quot;bruce@terrylakin.info&quot;
+      },
+      {
+        &quot;id&quot;: 59392,
+        &quot;username&quot;: &quot;marques@grant.com&quot;
+      }
+    ]
+  }
+}</pre>
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+            </tbody>
+          </table>
+      </div>
+      <hr>
+
+      <ul class='breadcrumb' id='teams-create'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#teams'>Teams</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>create</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#teams-create'>
+              POST /teams
+            </a><br>
+            <small>Create new team</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Only accessible by Admins</p>
+
+          <h2>Examples</h2>
+            <pre>POST /teams
+{
+  &quot;team&quot;: {
+    &quot;name&quot;: &quot;Jacobi-Wyman&quot;,
+    &quot;description&quot;: &quot;Indexing the capacitor won&#39;t do anything, we need to copy the bluetooth thx port!&quot;
+  }
+}
+200
+{
+  &quot;team&quot;: {
+    &quot;id&quot;: 9085,
+    &quot;name&quot;: &quot;Jacobi-Wyman&quot;,
+    &quot;description&quot;: &quot;Indexing the capacitor won&#39;t do anything, we need to copy the bluetooth thx port!&quot;,
+    &quot;created_at&quot;: &quot;2017-01-20T20:25:00.371Z&quot;,
+    &quot;updated_at&quot;: &quot;2017-01-20T20:25:00.371Z&quot;,
+    &quot;projects&quot;: [],
+    &quot;users&quot;: []
+  }
+}</pre>
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>team </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a Hash</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+    <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>team[name] </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Team name</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>team[description] </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Team Description</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+
+            </tbody>
+          </table>
+      </div>
+      <hr>
+
+      <ul class='breadcrumb' id='teams-update'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#teams'>Teams</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>update</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#teams-update'>
+              PUT /teams/:id
+            </a><br>
+            <small>Update existing team</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Only accessible by Admins</p>
+
+          <h2>Examples</h2>
+            <pre>PUT /teams/9086
+{
+  &quot;team&quot;: {
+    &quot;name&quot;: &quot;Some New Name&quot;
+  }
+}
+200
+{
+  &quot;team&quot;: {
+    &quot;id&quot;: 9086,
+    &quot;name&quot;: &quot;Some New Name&quot;,
+    &quot;description&quot;: &quot;Overriding the pixel won&#39;t do anything, we need to quantify the mobile sdd pixel!&quot;,
+    &quot;created_at&quot;: &quot;2017-01-20T20:25:00.391Z&quot;,
+    &quot;updated_at&quot;: &quot;2017-01-20T20:25:00.566Z&quot;,
+    &quot;projects&quot;: [
+      {
+        &quot;id&quot;: 24519,
+        &quot;project_name&quot;: &quot;Weimann LLC&quot;
+      },
+      {
+        &quot;id&quot;: 24520,
+        &quot;project_name&quot;: &quot;Crist-Kunze&quot;
+      }
+    ],
+    &quot;users&quot;: [
+      {
+        &quot;id&quot;: 59396,
+        &quot;username&quot;: &quot;jerod_lynch@kuvalis.biz&quot;
+      },
+      {
+        &quot;id&quot;: 59397,
+        &quot;username&quot;: &quot;neva_borer@kris.io&quot;
+      }
+    ]
+  }
+}</pre>
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>team </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a Hash</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+    <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>team[name] </strong><br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Team name</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>team[description] </strong><br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Team Description</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+
+            </tbody>
+          </table>
+      </div>
+      <hr>
+
+      <ul class='breadcrumb' id='teams-destroy'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#teams'>Teams</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>destroy</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#teams-destroy'>
+              DELETE /teams/:id
+            </a><br>
+            <small>Delete existing team</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Only accessible by Admins</p>
+
+          <h2>Examples</h2>
+            <pre>DELETE /teams/9087
+200
+{
+  &quot;team&quot;: &quot;Deleted&quot;
+}</pre>
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+            </tbody>
+          </table>
+      </div>
+      <hr>
+
+      <ul class='breadcrumb' id='teams-add_user'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#teams'>Teams</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>add_user</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#teams-add_user'>
+              POST /teams/:id/user/:user_id
+            </a><br>
+            <small>Add existing user to team</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Only accessible by Admins</p>
+
+          <h2>Examples</h2>
+            <pre>POST /teams/9088/user/59403
+200
+{
+  &quot;team&quot;: {
+    &quot;id&quot;: 9088,
+    &quot;name&quot;: &quot;Ankunding-Yundt&quot;,
+    &quot;description&quot;: &quot;Use the primary JSON capacitor, then you can index the primary pixel!&quot;,
+    &quot;created_at&quot;: &quot;2017-01-20T20:25:00.785Z&quot;,
+    &quot;updated_at&quot;: &quot;2017-01-20T20:25:00.785Z&quot;,
+    &quot;projects&quot;: [
+      {
+        &quot;id&quot;: 24523,
+        &quot;project_name&quot;: &quot;Eichmann and Sons&quot;
+      },
+      {
+        &quot;id&quot;: 24524,
+        &quot;project_name&quot;: &quot;Zulauf Inc&quot;
+      }
+    ],
+    &quot;users&quot;: [
+      {
+        &quot;id&quot;: 59401,
+        &quot;username&quot;: &quot;milton@reinger.co&quot;
+      },
+      {
+        &quot;id&quot;: 59402,
+        &quot;username&quot;: &quot;felicity.bartell@cummeratakozey.info&quot;
+      },
+      {
+        &quot;id&quot;: 59403,
+        &quot;username&quot;: &quot;durward.medhurst@rogahn.io&quot;
+      }
+    ]
+  }
+}</pre>
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Team ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>user_id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>User ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+            </tbody>
+          </table>
+      </div>
+      <hr>
+
+      <ul class='breadcrumb' id='teams-add_project'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#teams'>Teams</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>add_project</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#teams-add_project'>
+              POST /teams/:id/projects/:project_id
+            </a><br>
+            <small>Add existing project to team</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Only accessible by Admins</p>
+
+          <h2>Examples</h2>
+            <pre>POST /teams/9089/project/24527
+200
+{
+  &quot;team&quot;: {
+    &quot;id&quot;: 9089,
+    &quot;name&quot;: &quot;Hane LLC&quot;,
+    &quot;description&quot;: &quot;The AI hard drive is down, program the back-end port so we can generate the COM card!&quot;,
+    &quot;created_at&quot;: &quot;2017-01-20T20:25:00.992Z&quot;,
+    &quot;updated_at&quot;: &quot;2017-01-20T20:25:00.992Z&quot;,
+    &quot;projects&quot;: [
+      {
+        &quot;id&quot;: 24525,
+        &quot;project_name&quot;: &quot;Will-Feil&quot;
+      },
+      {
+        &quot;id&quot;: 24526,
+        &quot;project_name&quot;: &quot;Effertz LLC&quot;
+      },
+      {
+        &quot;id&quot;: 24527,
+        &quot;project_name&quot;: &quot;Feil and Sons&quot;
+      }
+    ],
+    &quot;users&quot;: [
+      {
+        &quot;id&quot;: 59405,
+        &quot;username&quot;: &quot;eriberto.nicolas@conn.com&quot;
+      },
+      {
+        &quot;id&quot;: 59406,
+        &quot;username&quot;: &quot;tyson@kohler.com&quot;
+      }
+    ]
+  }
+}</pre>
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Team ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>project_id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Project ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+            </tbody>
+          </table>
+      </div>
+      <hr>
+
+      <ul class='breadcrumb' id='teams-remove_user'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#teams'>Teams</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>remove_user</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#teams-remove_user'>
+              DELETE /teams/:id/user/:user_id
+            </a><br>
+            <small>Remove user from team</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Only accessible by Admins</p>
+
+          <h2>Examples</h2>
+            <pre>DELETE /teams/9090/user/59408
+200
+{
+  &quot;team&quot;: {
+    &quot;id&quot;: 9090,
+    &quot;name&quot;: &quot;Hamill, Treutel and Hackett&quot;,
+    &quot;description&quot;: &quot;Parsing the driver won&#39;t do anything, we need to override the haptic tcp matrix!&quot;,
+    &quot;created_at&quot;: &quot;2017-01-20T20:25:01.276Z&quot;,
+    &quot;updated_at&quot;: &quot;2017-01-20T20:25:01.276Z&quot;,
+    &quot;projects&quot;: [
+      {
+        &quot;id&quot;: 24528,
+        &quot;project_name&quot;: &quot;Kuhn LLC&quot;
+      },
+      {
+        &quot;id&quot;: 24529,
+        &quot;project_name&quot;: &quot;Morissette, Harber and Gorczany&quot;
+      }
+    ],
+    &quot;users&quot;: [
+      {
+        &quot;id&quot;: 59409,
+        &quot;username&quot;: &quot;christina.crona@willmtroman.info&quot;
+      }
+    ]
+  }
+}</pre>
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Team ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>user_id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>User ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+            </tbody>
+          </table>
+      </div>
+      <hr>
+
+      <ul class='breadcrumb' id='teams-remove_project'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#teams'>Teams</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>remove_project</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#teams-remove_project'>
+              DELETE /teams/:id/projects/:project_id
+            </a><br>
+            <small>Remove project from team</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Only accessible by Admins</p>
+
+          <h2>Examples</h2>
+            <pre>DELETE /teams/9091/project/24530
+200
+{
+  &quot;team&quot;: {
+    &quot;id&quot;: 9091,
+    &quot;name&quot;: &quot;Corwin LLC&quot;,
+    &quot;description&quot;: &quot;I&#39;ll parse the open-source SDD system, that should matrix the SMTP monitor!&quot;,
+    &quot;created_at&quot;: &quot;2017-01-20T20:25:01.481Z&quot;,
+    &quot;updated_at&quot;: &quot;2017-01-20T20:25:01.481Z&quot;,
+    &quot;projects&quot;: [
+      {
+        &quot;id&quot;: 24531,
+        &quot;project_name&quot;: &quot;Connelly, Grimes and Morar&quot;
+      }
+    ],
+    &quot;users&quot;: [
+      {
+        &quot;id&quot;: 59411,
+        &quot;username&quot;: &quot;otilia@schroedergoodwin.co&quot;
+      },
+      {
+        &quot;id&quot;: 59412,
+        &quot;username&quot;: &quot;darrin_robel@greenholt.net&quot;
+      }
+    ]
+  }
+}</pre>
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Team ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>project_id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Project ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+            </tbody>
+          </table>
+      </div>
+  </div>
+
+  <ul class='breadcrumb'  id='testcases'>
+    <li><a href='#'>Mustard</a><span class='divider'>/</span></li>
+    <li class='active'>Testcases</li>
+  </ul>
+
+  <div class='page-header'>
+    <h1>
+      <a href='#testcases'>Testcases</a><br>
+      <small></small>
+    </h1>
+  </div>
+
+
+  <div class='accordion' id='accordion'>
+
+      <hr>
+
+      <ul class='breadcrumb' id='testcases-show'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#testcases'>Testcases</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>show</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#testcases-show'>
+              GET /testcases/:id
+            </a><br>
+            <small>Testcase details</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Only displayed if project is viewable by current user</p>
+
+          <h2>Examples</h2>
+            <pre>GET /testcases/93523
+200
+{
+  &quot;testcase&quot;: {
+    &quot;id&quot;: 93523,
+    &quot;name&quot;: &quot;Voluptatem ratione qui debitis.&quot;,
+    &quot;validation_id&quot;: 7463804,
+    &quot;project_id&quot;: 24532,
+    &quot;runner_touch&quot;: null,
+    &quot;locked&quot;: null,
+    &quot;created_at&quot;: &quot;2017-01-20T20:25:01.754Z&quot;,
+    &quot;updated_at&quot;: &quot;2017-01-20T20:25:01.754Z&quot;,
+    &quot;reproduction_steps&quot;: [
+      {
+        &quot;step_number&quot;: 1,
+        &quot;action&quot;: &quot;Molestiae repellat magni culpa reprehenderit quia nostrum.&quot;,
+        &quot;result&quot;: &quot;Et officiis est praesentium et.&quot;
+      },
+      {
+        &quot;step_number&quot;: 2,
+        &quot;action&quot;: &quot;Repellat enim ea molestiae nesciunt est dolor voluptas quae.&quot;,
+        &quot;result&quot;: &quot;Qui debitis odio similique harum eligendi sed nesciunt non.&quot;
+      },
+      {
+        &quot;step_number&quot;: 3,
+        &quot;action&quot;: &quot;Rem incidunt quia voluptas modi omnis.&quot;,
+        &quot;result&quot;: &quot;Tempora sequi facere non.&quot;
+      }
+    ],
+    &quot;outdated&quot;: false,
+    &quot;version&quot;: 1,
+    &quot;token&quot;: &quot;Ba2paaYDWTQ9zbCXwXeW3M94&quot;,
+    &quot;revised_at&quot;: null,
+    &quot;username&quot;: null
+  },
+  &quot;other_versions&quot;: []
+}</pre>
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+            </tbody>
+          </table>
+      </div>
+      <hr>
+
+      <ul class='breadcrumb' id='testcases-create'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#testcases'>Testcases</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>create</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#testcases-create'>
+              POST /testcases
+            </a><br>
+            <small>Create new testcase</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Only accessible if project is viewable by current user</p>
+
+          <h2>Examples</h2>
+            <pre>POST /testcases
+{
+  &quot;testcase&quot;: {
+    &quot;name&quot;: &quot;Some New Testcase&quot;,
+    &quot;project_id&quot;: 24534,
+    &quot;validation_id&quot;: 67548,
+    &quot;reproduction_steps&quot;: [
+      {
+        &quot;step_number&quot;: 1,
+        &quot;action&quot;: &quot;Omnis dolores occaecati quia sapiente autem voluptas.&quot;,
+        &quot;result&quot;: &quot;Ea atque voluptatum reprehenderit quae consequatur itaque unde.&quot;
+      },
+      {
+        &quot;step_number&quot;: 2,
+        &quot;action&quot;: &quot;Atque neque natus consequatur omnis aperiam rem iusto totam.&quot;,
+        &quot;result&quot;: &quot;Aliquam aperiam eaque odio impedit consequatur libero.&quot;
+      }
+    ]
+  }
+}
+200
+{
+  &quot;testcase&quot;: {
+    &quot;id&quot;: 93543,
+    &quot;name&quot;: &quot;Some New Testcase&quot;,
+    &quot;validation_id&quot;: 67548,
+    &quot;project_id&quot;: 24534,
+    &quot;runner_touch&quot;: null,
+    &quot;locked&quot;: null,
+    &quot;created_at&quot;: &quot;2017-01-20T20:25:02.086Z&quot;,
+    &quot;updated_at&quot;: &quot;2017-01-20T20:25:02.086Z&quot;,
+    &quot;reproduction_steps&quot;: [
+      {
+        &quot;step_number&quot;: 1,
+        &quot;action&quot;: &quot;Omnis dolores occaecati quia sapiente autem voluptas.&quot;,
+        &quot;result&quot;: &quot;Ea atque voluptatum reprehenderit quae consequatur itaque unde.&quot;
+      },
+      {
+        &quot;step_number&quot;: 2,
+        &quot;action&quot;: &quot;Atque neque natus consequatur omnis aperiam rem iusto totam.&quot;,
+        &quot;result&quot;: &quot;Aliquam aperiam eaque odio impedit consequatur libero.&quot;
+      }
+    ],
+    &quot;outdated&quot;: false,
+    &quot;version&quot;: 1,
+    &quot;token&quot;: &quot;mJ1KyxCpA7UN5Rtz9rBm6MMm&quot;,
+    &quot;revised_at&quot;: null,
+    &quot;username&quot;: &quot;Brennan Kulas&quot;
+  }
+}</pre>
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>testcase </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a Hash</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+    <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>testcase[name] </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Testcase name</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>testcase[project_id] </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Project ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>testcase[validation_id] </strong><br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>Unique ID for testcase</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>testcase[reproduction_steps] </strong><br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be an Array of nested elements</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+    <tr style='background-color:rgb(245,245,245);'>
+    <td>
+      <strong>testcase[reproduction_steps][action] </strong><br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>Action to perform</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(245,245,245);'>
+    <td>
+      <strong>testcase[reproduction_steps][result] </strong><br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>Expected result</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+
+
+            </tbody>
+          </table>
+      </div>
+      <hr>
+
+      <ul class='breadcrumb' id='testcases-update'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#testcases'>Testcases</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>update</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#testcases-update'>
+              PUT /testcases
+            </a><br>
+            <small>Update existing testcase</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Only accessible if project is viewable by current user</p>
+
+          <h2>Examples</h2>
+            <pre>PUT /testcases/93555
+{
+  &quot;testcase&quot;: {
+    &quot;name&quot;: &quot;Renamed Testcase&quot;,
+    &quot;project_id&quot;: 24538,
+    &quot;validation_id&quot;: 27484,
+    &quot;reproduction_steps&quot;: [
+      {
+        &quot;step_number&quot;: 1,
+        &quot;action&quot;: &quot;At a molestiae quia voluptates temporibus aliquid.&quot;,
+        &quot;result&quot;: &quot;Necessitatibus voluptatem et officia ea consectetur aut dolor.&quot;
+      },
+      {
+        &quot;step_number&quot;: 2,
+        &quot;action&quot;: &quot;Magni consequatur est perspiciatis harum exercitationem provident.&quot;,
+        &quot;result&quot;: &quot;Aliquam qui neque quisquam quibusdam.&quot;
+      }
+    ]
+  }
+}
+200
+{
+  &quot;testcase&quot;: {
+    &quot;id&quot;: 93565,
+    &quot;name&quot;: &quot;Renamed Testcase&quot;,
+    &quot;validation_id&quot;: 27484,
+    &quot;project_id&quot;: 24538,
+    &quot;runner_touch&quot;: null,
+    &quot;locked&quot;: null,
+    &quot;created_at&quot;: &quot;2017-01-20T20:25:02.496Z&quot;,
+    &quot;updated_at&quot;: &quot;2017-01-20T20:25:02.496Z&quot;,
+    &quot;reproduction_steps&quot;: [
+      {
+        &quot;step_number&quot;: 1,
+        &quot;action&quot;: &quot;At a molestiae quia voluptates temporibus aliquid.&quot;,
+        &quot;result&quot;: &quot;Necessitatibus voluptatem et officia ea consectetur aut dolor.&quot;
+      },
+      {
+        &quot;step_number&quot;: 2,
+        &quot;action&quot;: &quot;Magni consequatur est perspiciatis harum exercitationem provident.&quot;,
+        &quot;result&quot;: &quot;Aliquam qui neque quisquam quibusdam.&quot;
+      }
+    ],
+    &quot;outdated&quot;: false,
+    &quot;version&quot;: 2,
+    &quot;token&quot;: &quot;8ZfJGC4Qm9PTCbyn38XZpwiD&quot;,
+    &quot;revised_at&quot;: null,
+    &quot;username&quot;: &quot;Alene Hoeger&quot;
+  }
+}</pre>
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>testcase </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a Hash</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+    <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>testcase[name] </strong><br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Testcase name</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>testcase[project_id] </strong><br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Project ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>testcase[validation_id] </strong><br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>Unique ID for testcase</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>testcase[reproduction_steps] </strong><br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be an Array of nested elements</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+    <tr style='background-color:rgb(245,245,245);'>
+    <td>
+      <strong>testcase[reproduction_steps][action] </strong><br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>Action to perform</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(245,245,245);'>
+    <td>
+      <strong>testcase[reproduction_steps][result] </strong><br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>Expected result</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+
+
+            </tbody>
+          </table>
+      </div>
+      <hr>
+
+      <ul class='breadcrumb' id='testcases-destroy'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#testcases'>Testcases</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>destroy</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#testcases-destroy'>
+              DELETE /testcases/:id
+            </a><br>
+            <small>Delete existing testcase</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Only accessbile by Admins</p>
+
+          <h2>Examples</h2>
+            <pre>DELETE /testcases/93577
+200
+{
+  &quot;testcase&quot;: &quot;Deleted&quot;
+}</pre>
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+            </tbody>
+          </table>
+      </div>
+      <hr>
+
+      <ul class='breadcrumb' id='testcases-export'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#testcases'>Testcases</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>export</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#testcases-export'>
+              GET /projects/:id/testcases/export[.format]
+            </a><br>
+            <small>Export testcases</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Export testcases to json or xlsx.  Only accessible by admin users.  Output
+format is controlled by .format extension.  No format defaults to JSON</p>
+
+          <h2>Examples</h2>
+            <pre>GET /projects/24550/testcases/export
+200
+{
+  &quot;testcases&quot;: [
+    {
+      &quot;id&quot;: 93617,
+      &quot;name&quot;: &quot;Sequi impedit officia nostrum.&quot;,
+      &quot;validation_id&quot;: 8420922,
+      &quot;project_id&quot;: 24550,
+      &quot;runner_touch&quot;: null,
+      &quot;locked&quot;: null,
+      &quot;created_at&quot;: &quot;2017-01-20T20:25:03.592Z&quot;,
+      &quot;updated_at&quot;: &quot;2017-01-20T20:25:03.592Z&quot;,
+      &quot;reproduction_steps&quot;: [
+        {
+          &quot;step_number&quot;: 1,
+          &quot;action&quot;: &quot;Ut voluptas praesentium dolor accusantium possimus temporibus quisquam.&quot;,
+          &quot;result&quot;: &quot;Aut ex distinctio voluptas laboriosam.&quot;
+        },
+        {
+          &quot;step_number&quot;: 2,
+          &quot;action&quot;: &quot;Quasi aperiam amet quam.&quot;,
+          &quot;result&quot;: &quot;Veniam velit ut nesciunt cum dolore assumenda neque.&quot;
+        },
+        {
+          &quot;step_number&quot;: 3,
+          &quot;action&quot;: &quot;Nesciunt molestias ipsam est praesentium voluptatem quo laboriosam.&quot;,
+          &quot;result&quot;: &quot;Ipsam laboriosam veritatis itaque dolorem.&quot;
+        }
+      ],
+      &quot;outdated&quot;: false,
+      &quot;version&quot;: 1,
+      &quot;token&quot;: &quot;4L3tQJP3xmw62Snb7ezJSYgx&quot;,
+      &quot;revised_at&quot;: null,
+      &quot;username&quot;: null
+    },
+    {
+      &quot;id&quot;: 93618,
+      &quot;name&quot;: &quot;Et et debitis error et doloribus non.&quot;,
+      &quot;validation_id&quot;: 4218522,
+      &quot;project_id&quot;: 24550,
+      &quot;runner_touch&quot;: null,
+      &quot;locked&quot;: null,
+      &quot;created_at&quot;: &quot;2017-01-20T20:25:03.601Z&quot;,
+      &quot;updated_at&quot;: &quot;2017-01-20T20:25:03.601Z&quot;,
+      &quot;reproduction_steps&quot;: [
+        {
+          &quot;step_number&quot;: 1,
+          &quot;action&quot;: &quot;Quis explicabo labore aut ipsa voluptas inventore eligendi dolorem.&quot;,
+          &quot;result&quot;: &quot;Et dicta temporibus dolor deserunt natus distinctio expedita est.&quot;
+        },
+        {
+          &quot;step_number&quot;: 2,
+          &quot;action&quot;: &quot;Vitae voluptas non quia.&quot;,
+          &quot;result&quot;: &quot;Sint alias consectetur sit eum.&quot;
+        },
+        {
+          &quot;step_number&quot;: 3,
+          &quot;action&quot;: &quot;Est nihil natus possimus magni velit quaerat nesciunt.&quot;,
+          &quot;result&quot;: &quot;Accusamus fugiat autem tempore velit quo velit ut.&quot;
+        }
+      ],
+      &quot;outdated&quot;: false,
+      &quot;version&quot;: 1,
+      &quot;token&quot;: &quot;ck8sfnC56bvYXA3Y1HbUx2YJ&quot;,
+      &quot;revised_at&quot;: null,
+      &quot;username&quot;: null
+    },
+    {
+      &quot;id&quot;: 93619,
+      &quot;name&quot;: &quot;Exercitationem quisquam non unde esse velit est laudantium dolorum.&quot;,
+      &quot;validation_id&quot;: 2109819,
+      &quot;project_id&quot;: 24550,
+      &quot;runner_touch&quot;: null,
+      &quot;locked&quot;: null,
+      &quot;created_at&quot;: &quot;2017-01-20T20:25:03.610Z&quot;,
+      &quot;updated_at&quot;: &quot;2017-01-20T20:25:03.610Z&quot;,
+      &quot;reproduction_steps&quot;: [
+        {
+          &quot;step_number&quot;: 1,
+          &quot;action&quot;: &quot;Vitae minima ducimus ut laboriosam dolores cupiditate accusamus quibusdam.&quot;,
+          &quot;result&quot;: &quot;Nisi optio enim autem ut quae dolore esse error.&quot;
+        },
+        {
+          &quot;step_number&quot;: 2,
+          &quot;action&quot;: &quot;Ea ad ut atque ut non omnis modi adipisci.&quot;,
+          &quot;result&quot;: &quot;Dignissimos voluptas laudantium est fugit.&quot;
+        },
+        {
+          &quot;step_number&quot;: 3,
+          &quot;action&quot;: &quot;Fugiat ut nihil dolores et modi exercitationem ex pariatur.&quot;,
+          &quot;result&quot;: &quot;Corrupti nihil quis rerum nulla quia.&quot;
+        }
+      ],
+      &quot;outdated&quot;: false,
+      &quot;version&quot;: 1,
+      &quot;token&quot;: &quot;Nw48joeMiDcyW3okWWTrZcAB&quot;,
+      &quot;revised_at&quot;: null,
+      &quot;username&quot;: null
+    },
+    {
+      &quot;id&quot;: 93620,
+      &quot;name&quot;: &quot;Omnis non fugiat soluta repellendus ipsa atque alias.&quot;,
+      &quot;validation_id&quot;: 2223101,
+      &quot;project_id&quot;: 24550,
+      &quot;runner_touch&quot;: null,
+      &quot;locked&quot;: null,
+      &quot;created_at&quot;: &quot;2017-01-20T20:25:03.621Z&quot;,
+      &quot;updated_at&quot;: &quot;2017-01-20T20:25:03.621Z&quot;,
+      &quot;reproduction_steps&quot;: [
+        {
+          &quot;step_number&quot;: 1,
+          &quot;action&quot;: &quot;Ut minus nisi error eaque.&quot;,
+          &quot;result&quot;: &quot;Voluptates neque rerum sunt.&quot;
+        },
+        {
+          &quot;step_number&quot;: 2,
+          &quot;action&quot;: &quot;Aliquid nostrum et non harum.&quot;,
+          &quot;result&quot;: &quot;Libero et ipsa architecto aut est qui adipisci.&quot;
+        },
+        {
+          &quot;step_number&quot;: 3,
+          &quot;action&quot;: &quot;Et quisquam tempora et.&quot;,
+          &quot;result&quot;: &quot;Corrupti veritatis dolorem autem.&quot;
+        }
+      ],
+      &quot;outdated&quot;: false,
+      &quot;version&quot;: 1,
+      &quot;token&quot;: &quot;btjqp7PEjbr3RcJRCWdQ5S6q&quot;,
+      &quot;revised_at&quot;: null,
+      &quot;username&quot;: null
+    },
+    {
+      &quot;id&quot;: 93621,
+      &quot;name&quot;: &quot;Dolores reprehenderit nobis molestiae nisi enim repellat.&quot;,
+      &quot;validation_id&quot;: 2685232,
+      &quot;project_id&quot;: 24550,
+      &quot;runner_touch&quot;: null,
+      &quot;locked&quot;: null,
+      &quot;created_at&quot;: &quot;2017-01-20T20:25:03.631Z&quot;,
+      &quot;updated_at&quot;: &quot;2017-01-20T20:25:03.631Z&quot;,
+      &quot;reproduction_steps&quot;: [
+        {
+          &quot;step_number&quot;: 1,
+          &quot;action&quot;: &quot;Nemo iure accusantium est magni eligendi est.&quot;,
+          &quot;result&quot;: &quot;Quia fuga facilis aliquid laborum ipsum consequuntur dolor.&quot;
+        },
+        {
+          &quot;step_number&quot;: 2,
+          &quot;action&quot;: &quot;Et eum esse qui debitis officiis deleniti.&quot;,
+          &quot;result&quot;: &quot;Nisi neque consequatur aut velit quasi omnis quae.&quot;
+        },
+        {
+          &quot;step_number&quot;: 3,
+          &quot;action&quot;: &quot;Ut sed cum non quo.&quot;,
+          &quot;result&quot;: &quot;Tenetur molestiae blanditiis veniam nemo odio aut iste in.&quot;
+        }
+      ],
+      &quot;outdated&quot;: false,
+      &quot;version&quot;: 1,
+      &quot;token&quot;: &quot;RdqsppExn7qFdaSQEM5bJhJV&quot;,
+      &quot;revised_at&quot;: null,
+      &quot;username&quot;: null
+    }
+  ]
+}</pre>
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>project_id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+            </tbody>
+          </table>
+      </div>
+      <hr>
+
+      <ul class='breadcrumb' id='testcases-import'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#testcases'>Testcases</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>import</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#testcases-import'>
+              POST /projects/:id/import
+            </a><br>
+            <small>Import testcases</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Import testcases from CSV string.  Only accessible by admin users</p>
+
+          <h2>Examples</h2>
+            <pre>POST /projects/24544/import
+{
+  &quot;csv&quot;: &quot;Test ID,Title,Steps,Expected Result\n123457,New Test Case 1,\&quot;1.  Action 1\n2.  Action 2\n3.  Action 3\&quot;,\&quot;1.  Result 1\n2.  Result 2\n3.  Result 3\&quot;\n123456,New Test Case 2,\&quot;1.  Action 1\n2.  Action 2\n3.  Action 3\&quot;,\&quot;1.  Result 1\n2.  Result 2\n3.  Result 3\&quot;\n&quot;
+}
+200
+{
+  &quot;success&quot;: [
+    {
+      &quot;validation_id&quot;: 123457,
+      &quot;name&quot;: &quot;New Test Case 1&quot;,
+      &quot;reproduction_steps&quot;: [
+        {
+          &quot;step_number&quot;: 1,
+          &quot;action&quot;: &quot;Action 1\n2.  Action 2\n3.  Action 3&quot;,
+          &quot;result&quot;: &quot;Result 1\n2.  Result 2\n3.  Result 3&quot;
+        }
+      ]
+    },
+    {
+      &quot;validation_id&quot;: 123456,
+      &quot;name&quot;: &quot;New Test Case 2&quot;,
+      &quot;reproduction_steps&quot;: [
+        {
+          &quot;step_number&quot;: 1,
+          &quot;action&quot;: &quot;Action 1\n2.  Action 2\n3.  Action 3&quot;,
+          &quot;result&quot;: &quot;Result 1\n2.  Result 2\n3.  Result 3&quot;
+        }
+      ]
+    }
+  ],
+  &quot;fail&quot;: []
+}</pre>
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>project_id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>csv </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>preview </strong><br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be &#39;true&#39; or &#39;false&#39; or &#39;1&#39; or &#39;0&#39;</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+            </tbody>
+          </table>
+      </div>
+  </div>
+
+  <ul class='breadcrumb'  id='users'>
+    <li><a href='#'>Mustard</a><span class='divider'>/</span></li>
+    <li class='active'>Users</li>
+  </ul>
+
+  <div class='page-header'>
+    <h1>
+      <a href='#users'>Users</a><br>
+      <small></small>
+    </h1>
+  </div>
+
+
+  <div class='accordion' id='accordion'>
+
+      <hr>
+
+      <ul class='breadcrumb' id='users-index'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#users'>Users</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>index</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#users-index'>
+              GET /users
+            </a><br>
+            <small>All Users</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Returns all system users. Only accessible by Admins</p>
+
+          <h2>Examples</h2>
+            <pre>GET /users
+200
+{
+  &quot;users&quot;: [
+    {
+      &quot;id&quot;: 59445,
+      &quot;username&quot;: &quot;calista@paucekheel.biz&quot;,
+      &quot;first_name&quot;: &quot;Bennett&quot;,
+      &quot;last_name&quot;: &quot;Botsford&quot;,
+      &quot;company&quot;: &quot;Mosciski-Abernathy&quot;,
+      &quot;admin&quot;: null,
+      &quot;created_at&quot;: &quot;2017-01-20T20:25:04.028Z&quot;,
+      &quot;updated_at&quot;: &quot;2017-01-20T20:25:04.028Z&quot;
+    },
+    {
+      &quot;id&quot;: 59446,
+      &quot;username&quot;: &quot;kaitlyn_kemmer@wisozk.io&quot;,
+      &quot;first_name&quot;: &quot;Dillon&quot;,
+      &quot;last_name&quot;: &quot;Pfeffer&quot;,
+      &quot;company&quot;: &quot;Price Group&quot;,
+      &quot;admin&quot;: null,
+      &quot;created_at&quot;: &quot;2017-01-20T20:25:04.036Z&quot;,
+      &quot;updated_at&quot;: &quot;2017-01-20T20:25:04.036Z&quot;
+    },
+    {
+      &quot;id&quot;: 59447,
+      &quot;username&quot;: &quot;amiya_ritchie@keeblermayer.com&quot;,
+      &quot;first_name&quot;: &quot;Hector&quot;,
+      &quot;last_name&quot;: &quot;Schoen&quot;,
+      &quot;company&quot;: &quot;Rutherford-Braun&quot;,
+      &quot;admin&quot;: null,
+      &quot;created_at&quot;: &quot;2017-01-20T20:25:04.045Z&quot;,
+      &quot;updated_at&quot;: &quot;2017-01-20T20:25:04.045Z&quot;
+    },
+    {
+      &quot;id&quot;: 59448,
+      &quot;username&quot;: &quot;kari@lesch.io&quot;,
+      &quot;first_name&quot;: &quot;Jeffrey&quot;,
+      &quot;last_name&quot;: &quot;Armstrong&quot;,
+      &quot;company&quot;: &quot;Greenfelder-Halvorson&quot;,
+      &quot;admin&quot;: true,
+      &quot;created_at&quot;: &quot;2017-01-20T20:25:04.053Z&quot;,
+      &quot;updated_at&quot;: &quot;2017-01-20T20:25:04.053Z&quot;
+    }
+  ]
+}</pre>
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+            </tbody>
+          </table>
+      </div>
+      <hr>
+
+      <ul class='breadcrumb' id='users-show'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#users'>Users</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>show</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#users-show'>
+              GET /users/:id
+            </a><br>
+            <small>User details</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Returns details of a single user. Admins can see any users. Non-admins can
+only view themselves</p>
+
+          <h2>Examples</h2>
+            <pre>GET /users/59449
+200
+{
+  &quot;user&quot;: {
+    &quot;id&quot;: 59449,
+    &quot;username&quot;: &quot;adam_thiel@wisozk.com&quot;,
+    &quot;first_name&quot;: &quot;Lavinia&quot;,
+    &quot;last_name&quot;: &quot;Waters&quot;,
+    &quot;company&quot;: &quot;Adams-Funk&quot;,
+    &quot;admin&quot;: null,
+    &quot;created_at&quot;: &quot;2017-01-20T20:25:04.091Z&quot;,
+    &quot;updated_at&quot;: &quot;2017-01-20T20:25:04.091Z&quot;
+  }
+}</pre>
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>User ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+            </tbody>
+          </table>
+      </div>
+      <hr>
+
+      <ul class='breadcrumb' id='users-find'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#users'>Users</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>find</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#users-find'>
+              GET /users/find/:username
+            </a><br>
+            <small>Find by Username</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Returns is of a single user found by username.</p>
+
+          <h2>Examples</h2>
+            <pre>GET /users/find/clotilde.windler@maggio.org
+200
+{
+  &quot;user&quot;: {
+    &quot;id&quot;: 59450,
+    &quot;username&quot;: &quot;clotilde.windler@maggio.org&quot;
+  }
+}</pre>
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>username </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Username</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+            </tbody>
+          </table>
+      </div>
+      <hr>
+
+      <ul class='breadcrumb' id='users-valid_token'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#users'>Users</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>valid_token</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#users-valid_token'>
+              GET /users/token/valid
+            </a><br>
+            <small>Checks if a User-Token is valid</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Returns if a user-token is valid</p>
+
+          <h2>Examples</h2>
+            <pre>GET /users/token/valid
+200
+{
+  &quot;token&quot;: &quot;Valid&quot;
+}</pre>
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>user_token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>User-Token</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+            </tbody>
+          </table>
+      </div>
+      <hr>
+
+      <ul class='breadcrumb' id='users-trigger_password_reset'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#users'>Users</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>trigger_password_reset</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#users-trigger_password_reset'>
+              POST /users/reset-password
+            </a><br>
+            <small>Trigger Password Reset Email</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Triggers a password reset email to the User</p>
+
+          <h2>Examples</h2>
+            <pre>POST /users/reset-password
+{
+  &quot;user&quot;: {
+    &quot;username&quot;: &quot;eleazar_langworth@howell.io&quot;
+  },
+  &quot;redirect-to&quot;: &quot;http://some.url/TOKEN&quot;
+}
+200
+{
+  &quot;success&quot;: &quot;Password reset email sent&quot;
+}</pre>
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Username</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+            </tbody>
+          </table>
+      </div>
+      <hr>
+
+      <ul class='breadcrumb' id='users-reset_password'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#users'>Users</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>reset_password</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#users-reset_password'>
+              POST /users/:id/reset-password/:token
+            </a><br>
+            <small>Update the User Password</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Reset a User&#39;s password.</p>
+
+          <h2>Examples</h2>
+            <pre>POST /users/59459/reset-password/kBDtn58hrqNj4bkR7ponXCey
+{
+  &quot;user&quot;: {
+    &quot;password&quot;: &quot;NoOneLikesCats&quot;
+  }
+}
+200
+{
+  &quot;user&quot;: {
+    &quot;id&quot;: 59459,
+    &quot;password_digest&quot;: &quot;$2a$04$3wS3CGcZB0/XNNydAvfXsu6yMxOp4Ee2ITR8MkgU9jyx.RwY.mzT6&quot;,
+    &quot;first_name&quot;: &quot;Taya&quot;,
+    &quot;last_name&quot;: &quot;Gutkowski&quot;,
+    &quot;username&quot;: &quot;itzel_huel@kautzer.com&quot;,
+    &quot;company&quot;: &quot;Runolfsson and Sons&quot;,
+    &quot;admin&quot;: null,
+    &quot;deleted&quot;: null,
+    &quot;created_at&quot;: &quot;2017-01-20T20:25:04.479Z&quot;,
+    &quot;updated_at&quot;: &quot;2017-01-20T20:25:04.495Z&quot;
+  }
+}</pre>
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>User ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Password Reset Token</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+            </tbody>
+          </table>
+      </div>
+      <hr>
+
+      <ul class='breadcrumb' id='users-create'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#users'>Users</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>create</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#users-create'>
+              POST /users
+            </a><br>
+            <small>Create a new user</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Only accessible by Admins</p>
+
+          <h2>Examples</h2>
+            <pre>POST /users/
+{
+  &quot;user&quot;: {
+    &quot;first_name&quot;: &quot;Chelsie&quot;,
+    &quot;last_name&quot;: &quot;Padberg&quot;,
+    &quot;password&quot;: &quot;1234&quot;,
+    &quot;password_confirmation&quot;: &quot;1234&quot;,
+    &quot;username&quot;: &quot;tyrel.prohaska@jones.io&quot;
+  }
+}
+200
+{
+  &quot;user&quot;: {
+    &quot;id&quot;: 59453,
+    &quot;username&quot;: &quot;tyrel.prohaska@jones.io&quot;,
+    &quot;first_name&quot;: &quot;Chelsie&quot;,
+    &quot;last_name&quot;: &quot;Padberg&quot;,
+    &quot;company&quot;: null,
+    &quot;admin&quot;: null,
+    &quot;created_at&quot;: &quot;2017-01-20T20:25:04.171Z&quot;,
+    &quot;updated_at&quot;: &quot;2017-01-20T20:25:04.171Z&quot;
+  }
+}</pre>
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>user </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a Hash</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+    <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>user[first_name] </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>User&#39;s First name</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>user[last_name] </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>User&#39;s last name</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>user[company] </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>User&#39;s Company</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>user[username] </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>User&#39;s email address. Used to login</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>user[password] </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>User&#39;s password</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>user[admin] </strong><br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>User&#39;s permission level</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be &#39;true&#39; or &#39;false&#39; or &#39;1&#39; or &#39;0&#39;</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+
+            </tbody>
+          </table>
+      </div>
+      <hr>
+
+      <ul class='breadcrumb' id='users-update'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#users'>Users</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>update</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#users-update'>
+              PUT /users/:id
+            </a><br>
+            <small>Update existing user</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Only accessible by admin users</p>
+
+          <h2>Examples</h2>
+            <pre>PUT /users/59455
+{
+  &quot;user&quot;: {
+    &quot;first_name&quot;: &quot;Tom&quot;,
+    &quot;last_name&quot;: &quot;Jones&quot;,
+    &quot;username&quot;: &quot;tom.jones@singing.com&quot;,
+    &quot;company&quot;: &quot;singing&quot;,
+    &quot;admin&quot;: true
+  }
+}
+200
+{
+  &quot;user&quot;: {
+    &quot;id&quot;: 59455,
+    &quot;username&quot;: &quot;tom.jones@singing.com&quot;,
+    &quot;first_name&quot;: &quot;Tom&quot;,
+    &quot;last_name&quot;: &quot;Jones&quot;,
+    &quot;company&quot;: &quot;singing&quot;,
+    &quot;admin&quot;: true,
+    &quot;created_at&quot;: &quot;2017-01-20T20:25:04.192Z&quot;,
+    &quot;updated_at&quot;: &quot;2017-01-20T20:25:04.205Z&quot;
+  }
+}</pre>
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>User ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>user </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a Hash</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+    <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>user[first_name] </strong><br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>User&#39;s First name</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>user[last_name] </strong><br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>User&#39;s last name</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>user[company] </strong><br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>User&#39;s Company</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>user[username] </strong><br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>User&#39;s email address. Used to login</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>user[password] </strong><br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>User&#39;s password</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>user[admin] </strong><br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>User&#39;s permission level</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be &#39;true&#39; or &#39;false&#39; or &#39;1&#39; or &#39;0&#39;</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+
+            </tbody>
+          </table>
+      </div>
+      <hr>
+
+      <ul class='breadcrumb' id='users-destroy'>
+        <li>
+          <a href='#'>Mustard</a>
+          <span class='divider'>/</span>
+        </li>
+        <li>
+          <a href='#users'>Users</a>
+          <span class='divider'>/</span>
+        </li>
+        <li class='active'>destroy</li>
+      </ul>
+
+      <div>
+          <h3>
+            <a href='#users-destroy'>
+              DELETE /users/:id
+            </a><br>
+            <small>Delete existing user</small>
+          </h3>
+      </div>
+
+      <div>
+        
+<p>Only accessible by admin users</p>
+
+          <h2>Examples</h2>
+            <pre>DELETE /users/59457
+200
+{
+  &quot;user&quot;: &quot;Deleted&quot;
+}</pre>
+
+
+          <h2>Params</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Param name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>User ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+            </tbody>
+          </table>
+      </div>
+  </div>
+
+
+        
+      </div>
+    </div>
+    <hr>
+    <footer></footer>
+  </div>
+  <script type='text/javascript' src='./apidoc/javascripts/bundled/jquery.js'></script>
+<script type='text/javascript' src='./apidoc/javascripts/bundled/bootstrap-collapse.js'></script>
+<script type='text/javascript' src='./apidoc/javascripts/bundled/prettify.js'></script>
+<script type='text/javascript' src='./apidoc/javascripts/apipie.js'></script>
+</body>
+</html>

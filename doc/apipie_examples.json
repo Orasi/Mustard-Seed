@@ -1,0 +1,2750 @@
+{
+  "application#authenticate": [
+    {
+      "verb": "POST",
+      "path": "/authenticate/",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": {
+        "username": "eusebio_gleichner@luettgendouglas.info",
+        "password": 12345
+      },
+      "response_data": {
+        "user": {
+          "id": 59354,
+          "username": "eusebio_gleichner@luettgendouglas.info",
+          "first_name": "Mariah",
+          "last_name": "Blick",
+          "token": "HjAFGf6orJWzM4rE54t2AJVb",
+          "admin": null
+        }
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "environments#destroy": [
+    {
+      "verb": "DELETE",
+      "path": "/environments/109643",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": null,
+      "response_data": {
+        "environment": "Deleted"
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "environments#show": [
+    {
+      "verb": "GET",
+      "path": "/environments/109633",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": null,
+      "response_data": {
+        "environment": {
+          "id": 109633,
+          "uuid": "c35db4f1fca8a8dc0ab02bb95da2b39a",
+          "project_id": 24479,
+          "created_at": "2017-01-20T20:24:51.940Z",
+          "updated_at": "2017-01-20T20:24:51.940Z",
+          "environment_type": "Undefined",
+          "display_name": null
+        }
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "environments#update": [
+    {
+      "verb": "PUT",
+      "path": "/environments/109638",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": {
+        "environment": {
+          "uuid": "987654321",
+          "display_name": "Some new display name"
+        }
+      },
+      "response_data": {
+        "environment": {
+          "id": 109638,
+          "uuid": "987654321",
+          "display_name": "Some new display name",
+          "project_id": 24480,
+          "environment_type": "Undefined",
+          "created_at": "2017-01-20T20:24:52.088Z",
+          "updated_at": "2017-01-20T20:24:52.154Z"
+        }
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "executions#close": [
+    {
+      "verb": "POST",
+      "path": "/executions/close",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": {
+        "project_key": "266db085783a001f95f8e65ebbf89406",
+        "name": "Some Name"
+      },
+      "response_data": {
+        "execution": {
+          "id": 24534,
+          "created_at": "2017-01-20T20:24:56.426Z",
+          "updated_at": "2017-01-20T20:24:56.426Z",
+          "project_id": 24492,
+          "closed": false,
+          "closed_at": null,
+          "deleted": null,
+          "name": "Some Name"
+        }
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    },
+    {
+      "verb": "POST",
+      "path": "/executions/close",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": {
+        "execution_id": 24535,
+        "name": "Some Name"
+      },
+      "response_data": {
+        "execution": {
+          "id": 24536,
+          "created_at": "2017-01-20T20:24:56.754Z",
+          "updated_at": "2017-01-20T20:24:56.754Z",
+          "project_id": 24493,
+          "closed": false,
+          "closed_at": null,
+          "deleted": null,
+          "name": "Some Name"
+        }
+      },
+      "code": 200,
+      "show_in_doc": 0,
+      "recorded": true
+    }
+  ],
+  "executions#destroy": [
+    {
+      "verb": "DELETE",
+      "path": "/executions/24537",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": null,
+      "response_data": {
+        "execution": "Deleted"
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "executions#environment_count": [
+    {
+      "verb": "GET",
+      "path": "/executions/24524/environment-count",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": null,
+      "response_data": {
+        "environments": 5
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "executions#environment_detail": [
+    {
+      "verb": "GET",
+      "path": "/executions/24529/environments/109678",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": null,
+      "response_data": {
+        "environment": {
+          "id": 109678,
+          "uuid": "18f9167ffabd6b21e9d58ea8da2b15f5",
+          "environment_type": "Undefined",
+          "results": [
+            {
+              "id": 113955,
+              "testcase_id": 93308,
+              "validation_id": 2693944,
+              "result_type": "automated",
+              "comment": "Vitae et nobis nihil expedita veritatis enim quis.",
+              "stacktrace": "Ea eos nihil iure odio. Qui rem nihil voluptatum accusantium repellat non. Fuga rerum nobis eveniet quia. Molestias dolores nemo. Et facilis consequatur vitae dolore itaque quidem.",
+              "link": "http://breitenberg.org/anibal",
+              "name": "pass"
+            },
+            {
+              "id": 113961,
+              "testcase_id": 93309,
+              "validation_id": 8824287,
+              "result_type": "automated",
+              "comment": "Voluptatem nulla ea placeat ipsa eos maxime laborum adipisci.",
+              "stacktrace": "Ea vel eum autem qui. Expedita necessitatibus facere placeat vero enim aut odio. Placeat nisi ut ea qui. Ut id corporis quo eaque dolor qui quo. Laboriosam vitae occaecati velit repudiandae.",
+              "link": "http://nolan.org/irwin_cruickshank",
+              "name": "fail"
+            },
+            {
+              "id": 113967,
+              "testcase_id": 93310,
+              "validation_id": 6574255,
+              "result_type": "automated",
+              "comment": "Dolorem ut dicta dolores et esse qui.",
+              "stacktrace": "A quas dolorem alias. Ut et vel inventore et ducimus. Saepe enim numquam dicta.",
+              "link": "http://lehner.info/jaydon",
+              "name": "pass"
+            },
+            {
+              "id": 113973,
+              "testcase_id": 93311,
+              "validation_id": 7393791,
+              "result_type": "automated",
+              "comment": "Corporis iure id fuga reiciendis et est dignissimos aperiam.",
+              "stacktrace": "Sint molestiae ullam. Et alias doloremque non placeat voluptatem. Molestiae sed aut voluptatem. Sequi blanditiis animi ipsum quasi facilis.",
+              "link": "http://stark.name/jaylen",
+              "name": "fail"
+            },
+            {
+              "id": 113979,
+              "testcase_id": 93312,
+              "validation_id": 5565896,
+              "result_type": "automated",
+              "comment": "Dolores labore consectetur temporibus corrupti velit alias.",
+              "stacktrace": "Et omnis quo optio nihil quidem repudiandae. Expedita error corporis quisquam eius sunt nostrum sapiente. Velit recusandae consequatur ut porro. Ex non repellat vel magnam quaerat labore aut.",
+              "link": "http://bernier.com/jett_sporer",
+              "name": "skip"
+            }
+          ]
+        }
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "executions#environment_summary": [
+    {
+      "verb": "GET",
+      "path": "/executions/24526/environment_summary",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": null,
+      "response_data": {
+        "summary": [
+          {
+            "id": 109667,
+            "uuid": "7cb3f73ba24c3a74e7417e271308c058",
+            "display_name": null,
+            "environment_type": "Undefined",
+            "pass_count": 2,
+            "fail_count": 2,
+            "skip_count": 1,
+            "updated_at": "2017-01-20 20:24:53.628356"
+          },
+          {
+            "id": 109663,
+            "uuid": "c595b74d21b12a85764ee2caab87717f",
+            "display_name": null,
+            "environment_type": "Undefined",
+            "pass_count": 1,
+            "fail_count": 1,
+            "skip_count": 3,
+            "updated_at": "2017-01-20 20:24:53.602075"
+          },
+          {
+            "id": 109665,
+            "uuid": "cc0b16d06a48cb0cfa40fc8a185b4cae",
+            "display_name": null,
+            "environment_type": "Undefined",
+            "pass_count": 3,
+            "fail_count": 1,
+            "skip_count": 1,
+            "updated_at": "2017-01-20 20:24:53.615193"
+          },
+          {
+            "id": 109664,
+            "uuid": "8502f5de2ba1bc3d0526b32dcac06d70",
+            "display_name": null,
+            "environment_type": "Undefined",
+            "pass_count": 1,
+            "fail_count": 3,
+            "skip_count": 1,
+            "updated_at": "2017-01-20 20:24:53.608738"
+          },
+          {
+            "id": 109666,
+            "uuid": "fcc87aa46e94b4d413864a2ef86e9a07",
+            "display_name": null,
+            "environment_type": "Undefined",
+            "pass_count": 2,
+            "fail_count": 1,
+            "skip_count": 2,
+            "updated_at": "2017-01-20 20:24:53.621877"
+          }
+        ]
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "executions#failing_tests": [
+    {
+      "verb": "GET",
+      "path": "/executions/46731df1da40973725b4e808dde27d1f/failing",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": null,
+      "response_data": {
+        "failing": [
+          {
+            "environment_id": "2ceaa88110b41267020621ce614faad4",
+            "testcase_name": "Velit voluptate fugiat sed enim sint commodi et.",
+            "validation_id": 2915528
+          },
+          {
+            "environment_id": "e4e340c8c091dd50e362f48f270d2e3c",
+            "testcase_name": "Velit voluptate fugiat sed enim sint commodi et.",
+            "validation_id": 2915528
+          },
+          {
+            "environment_id": "cada6f5cdc4033e3db5daa955ea1938c",
+            "testcase_name": "Velit voluptate fugiat sed enim sint commodi et.",
+            "validation_id": 2915528
+          },
+          {
+            "environment_id": "2ceaa88110b41267020621ce614faad4",
+            "testcase_name": "Animi perferendis magnam nobis amet sapiente exercitationem architecto eum.",
+            "validation_id": 9084424
+          },
+          {
+            "environment_id": "manual",
+            "testcase_name": "Animi perferendis magnam nobis amet sapiente exercitationem architecto eum.",
+            "validation_id": 9084424
+          },
+          {
+            "environment_id": "d698dab5a4ef56992b6e3aefb52556c0",
+            "testcase_name": "Aperiam voluptatum accusamus voluptatem eum est facilis.",
+            "validation_id": 4421928
+          },
+          {
+            "environment_id": "manual",
+            "testcase_name": "Aperiam voluptatum accusamus voluptatem eum est facilis.",
+            "validation_id": 4421928
+          },
+          {
+            "environment_id": "2ceaa88110b41267020621ce614faad4",
+            "testcase_name": "Itaque est ut iusto magnam sed.",
+            "validation_id": 4331527
+          },
+          {
+            "environment_id": "d698dab5a4ef56992b6e3aefb52556c0",
+            "testcase_name": "Itaque est ut iusto magnam sed.",
+            "validation_id": 4331527
+          },
+          {
+            "environment_id": "cada6f5cdc4033e3db5daa955ea1938c",
+            "testcase_name": "Itaque est ut iusto magnam sed.",
+            "validation_id": 4331527
+          },
+          {
+            "environment_id": "manual",
+            "testcase_name": "Itaque est ut iusto magnam sed.",
+            "validation_id": 4331527
+          },
+          {
+            "environment_id": "e4e340c8c091dd50e362f48f270d2e3c",
+            "testcase_name": "Assumenda ducimus ut amet labore in quia.",
+            "validation_id": 4947075
+          }
+        ]
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "executions#incomplete_tests": [
+    {
+      "verb": "GET",
+      "path": "/executions/24530/incomplete",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": null,
+      "response_data": {
+        "incomplete": [
+
+        ]
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "executions#next_incomplete_test": [
+    {
+      "verb": "GET",
+      "path": "/executions/24531/next_test",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": null,
+      "response_data": {
+        "testcase": {
+          "id": 93318,
+          "runner_touch": "2017-01-20T20:24:55.667Z",
+          "version": 1,
+          "token": "kDEpovN6Apyc3vM9oSCX8hNv",
+          "name": "Repellendus quia eligendi commodi deserunt aut odio repellat necessitatibus.",
+          "project_id": 24490,
+          "outdated": false,
+          "validation_id": 1471372,
+          "locked": null,
+          "created_at": "2017-01-20T20:24:55.602Z",
+          "updated_at": "2017-01-20T20:24:55.670Z",
+          "reproduction_steps": [
+            {
+              "step_number": 1,
+              "action": "Explicabo est similique exercitationem minima eligendi rem nostrum.",
+              "result": "Nihil incidunt neque aliquam nisi facere itaque perspiciatis."
+            },
+            {
+              "step_number": 2,
+              "action": "Excepturi at minus voluptatum incidunt ut nihil.",
+              "result": "Deserunt non quo et neque molestiae in."
+            },
+            {
+              "step_number": 3,
+              "action": "Consequatur sed soluta fugit et dolorem.",
+              "result": "Iure perferendis ipsa voluptas recusandae qui neque eos."
+            }
+          ],
+          "revised_at": null,
+          "username": null
+        }
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "executions#testcase_count": [
+    {
+      "verb": "GET",
+      "path": "/executions/24523/testcase-count",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": null,
+      "response_data": {
+        "testcases": 5
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "executions#testcase_detail": [
+    {
+      "verb": "GET",
+      "path": "/executions/24528/testcases/93303",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": null,
+      "response_data": {
+        "testcase": {
+          "id": 93303,
+          "testcase_name": "Enim illum perspiciatis similique vitae.",
+          "validation_id": 3676848,
+          "project_id": 24487,
+          "execution_id": "24528",
+          "reproduction_steps": [
+            {
+              "step_number": 1,
+              "action": "Hic distinctio voluptatem magnam est iure.",
+              "result": "Error quia quis sit exercitationem sint iusto."
+            },
+            {
+              "step_number": 2,
+              "action": "Cupiditate dignissimos earum quia eius praesentium.",
+              "result": "Alias doloremque laudantium odio enim illum."
+            },
+            {
+              "step_number": 3,
+              "action": "Placeat voluptas sed neque velit quaerat quisquam veniam.",
+              "result": "Et molestiae reprehenderit voluptas quas corrupti."
+            }
+          ],
+          "manual_results": [
+            {
+              "id": 113930,
+              "created_by_name": "Keyshawn Tremblay",
+              "created_by_id": 59313,
+              "created_at": "2017-01-20T15:24:54.347-05:00",
+              "result_type": "manual",
+              "comment": "Sint ad tempore sit maxime est.",
+              "status": "skip"
+            },
+            {
+              "id": 113930,
+              "created_by_name": "Keyshawn Tremblay",
+              "created_by_id": 59313,
+              "created_at": "2017-01-20T15:24:54.347-05:00",
+              "result_type": "manual",
+              "comment": "Qui velit dolorem at repellat tenetur ab.",
+              "status": "fail"
+            },
+            {
+              "id": 113930,
+              "created_by_name": "Keyshawn Tremblay",
+              "created_by_id": 59313,
+              "created_at": "2017-01-20T15:24:54.337-05:00",
+              "result_type": "manual",
+              "comment": "Consequatur quas quidem et odio quis id.",
+              "status": "pass"
+            }
+          ],
+          "automated_results": [
+            {
+              "id": 113928,
+              "environment_id": 109676,
+              "environment_name": "6cda059eea2e1ed18d3c9caa34b8dc37",
+              "environment_type": "Undefined",
+              "result_type": "automated",
+              "comment": "Quaerat explicabo qui ab omnis.",
+              "stacktrace": "Necessitatibus est at eos tempora aut. Incidunt assumenda quod nam dolorem deserunt est. Atque reprehenderit ullam id quo occaecati praesentium. Modi vitae commodi. Quo officia mollitia veniam cum ut consectetur.",
+              "link": "http://waelchimills.info/elroy",
+              "created_at": "2017-01-20T20:24:54.320Z",
+              "status": "fail"
+            },
+            {
+              "id": 113926,
+              "environment_id": 109674,
+              "environment_name": "34acfbae848cc6368cd20ed7b6fa2717",
+              "environment_type": "Undefined",
+              "result_type": "automated",
+              "comment": "Vel cum sit adipisci qui.",
+              "stacktrace": "Enim fugiat repellendus tenetur illo. Magnam mollitia totam sit quis. Provident quo et impedit in velit maxime.",
+              "link": "http://erdmanfay.org/dahlia.schmitt",
+              "created_at": "2017-01-20T20:24:54.303Z",
+              "status": "pass"
+            },
+            {
+              "id": 113925,
+              "environment_id": 109673,
+              "environment_name": "c3ca413cd07e4050efbbf21258d3c5ae",
+              "environment_type": "Undefined",
+              "result_type": "automated",
+              "comment": "Voluptatem quas velit cumque possimus quos reiciendis magni debitis.",
+              "stacktrace": "Quidem nam doloribus labore aliquid distinctio. Omnis debitis et ea omnis eos quae. Sed quibusdam provident quia.",
+              "link": "http://balistreri.net/kaden.emard",
+              "created_at": "2017-01-20T20:24:54.294Z",
+              "status": "pass"
+            },
+            {
+              "id": 113929,
+              "environment_id": 109677,
+              "environment_name": "5ca57d00aa20d0fa4736479f1fe01f9e",
+              "environment_type": "Undefined",
+              "result_type": "automated",
+              "comment": "Est quis nesciunt nisi qui neque.",
+              "stacktrace": "Minus rem et ut. Non repudiandae suscipit dolorum adipisci qui est eligendi. Nam placeat eum molestias.",
+              "link": "http://harber.name/prince",
+              "created_at": "2017-01-20T20:24:54.329Z",
+              "status": "skip"
+            },
+            {
+              "id": 113927,
+              "environment_id": 109675,
+              "environment_name": "d1b9a177ff985adf1a691cc56e00df13",
+              "environment_type": "Undefined",
+              "result_type": "automated",
+              "comment": "Molestias laboriosam ipsa officiis et optio.",
+              "stacktrace": "Cum vitae illum nam non doloribus earum et. Recusandae tempore illum officiis assumenda rerum. Molestiae qui iusto voluptatum cupiditate consequuntur aut. Rerum velit deleniti molestias placeat. Fugiat quae dolorem hic cupiditate eaque nesciunt nulla.",
+              "link": "http://glover.info/tyler",
+              "created_at": "2017-01-20T20:24:54.311Z",
+              "status": "skip"
+            }
+          ]
+        }
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "executions#testcase_status": [
+    {
+      "verb": "GET",
+      "path": "/executions/24527/testcase_status",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": null,
+      "response_data": {
+        "execution": {
+          "id": 24527,
+          "name": "Execution: 01/20/2017",
+          "project_id": 24486,
+          "project_name": "Nicolas Inc",
+          "closed": false,
+          "fail": [
+            {
+              "id": 93300,
+              "validation_id": 8177478,
+              "name": "Corporis eligendi nobis maxime et molestiae.",
+              "path": "results/93300"
+            },
+            {
+              "id": 93298,
+              "validation_id": 5041907,
+              "name": "Cum sed eos ut excepturi ut.",
+              "path": "results/93298"
+            },
+            {
+              "id": 93302,
+              "validation_id": 2423559,
+              "name": "Ea ex id quisquam quaerat maiores aut.",
+              "path": "results/93302"
+            },
+            {
+              "id": 93299,
+              "validation_id": 7458673,
+              "name": "Est id corrupti modi nam quo dicta et.",
+              "path": "results/93299"
+            },
+            {
+              "id": 93301,
+              "validation_id": 1308234,
+              "name": "Vel sunt cupiditate voluptas qui delectus quidem velit.",
+              "path": "results/93301"
+            }
+          ],
+          "pass": [
+
+          ],
+          "skip": [
+
+          ],
+          "not_run": [
+
+          ]
+        }
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "executions#testcase_summary": [
+    {
+      "verb": "GET",
+      "path": "/executions/24525/testcase_summary",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": null,
+      "response_data": {
+        "summary": [
+          {
+            "id": 93289,
+            "name": "Consectetur delectus temporibus illo.",
+            "validation_id": 1842764,
+            "pass_count": 2,
+            "fail_count": 3,
+            "skip_count": 1,
+            "updated_at": "2017-01-20 20:24:53.14885"
+          },
+          {
+            "id": 93292,
+            "name": "Magnam vel possimus nulla voluptates deserunt non quis reiciendis.",
+            "validation_id": 2035008,
+            "pass_count": 2,
+            "fail_count": 3,
+            "skip_count": 1,
+            "updated_at": "2017-01-20 20:24:53.292587"
+          },
+          {
+            "id": 93291,
+            "name": "Nostrum velit libero autem expedita.",
+            "validation_id": 9279283,
+            "pass_count": 1,
+            "fail_count": 2,
+            "skip_count": 3,
+            "updated_at": "2017-01-20 20:24:53.248335"
+          },
+          {
+            "id": 93288,
+            "name": "Sunt libero dolorem amet.",
+            "validation_id": 1242112,
+            "pass_count": 1,
+            "fail_count": 2,
+            "skip_count": 3,
+            "updated_at": "2017-01-20 20:24:53.103471"
+          },
+          {
+            "id": 93290,
+            "name": "Iure natus sunt a occaecati modi delectus cumque.",
+            "validation_id": 6174333,
+            "pass_count": 1,
+            "fail_count": 3,
+            "skip_count": 2,
+            "updated_at": "2017-01-20 20:24:53.198619"
+          }
+        ]
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "projects#create": [
+    {
+      "verb": "POST",
+      "path": "/projects",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": {
+        "project": {
+          "name": "Goldner, Blick and Fadel"
+        }
+      },
+      "response_data": {
+        "project": {
+          "id": 24501,
+          "project_name": "Goldner, Blick and Fadel",
+          "api_key": "81bac44969a7ba5a96ba1919f3007d5d",
+          "created_at": "2017-01-20T20:24:57.713Z",
+          "updated_at": "2017-01-20T20:24:57.713Z",
+          "testcases": [
+
+          ],
+          "environments": [
+
+          ],
+          "executions": [
+            {
+              "id": 24545,
+              "name": "Execution: 01/20/2017",
+              "closed": false,
+              "created_at": "2017-01-20T20:24:57.714Z",
+              "updated_at": "2017-01-20T20:24:57.714Z"
+            }
+          ]
+        }
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "projects#destroy": [
+    {
+      "verb": "DELETE",
+      "path": "/projects/24504",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": null,
+      "response_data": {
+        "project": "Deleted"
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "projects#index": [
+    {
+      "verb": "GET",
+      "path": "/projects",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": null,
+      "response_data": {
+        "projects": [
+          {
+            "id": 24495,
+            "project_name": "Zulauf and Sons",
+            "api_key": "edddaab7ceb9335acb70a9b86d36b40f",
+            "created_at": "2017-01-20T20:24:57.214Z",
+            "updated_at": "2017-01-20T20:24:57.273Z",
+            "execution_id": 24539
+          },
+          {
+            "id": 24496,
+            "project_name": "Lemke-Dickinson",
+            "api_key": "e684331faaa82d38fbdca18f4c4805d4",
+            "created_at": "2017-01-20T20:24:57.280Z",
+            "updated_at": "2017-01-20T20:24:57.338Z",
+            "execution_id": 24540
+          },
+          {
+            "id": 24497,
+            "project_name": "Beer, Aufderhar and Abshire",
+            "api_key": "a2724c55ed9b743a2425c09136442741",
+            "created_at": "2017-01-20T20:24:57.345Z",
+            "updated_at": "2017-01-20T20:24:57.414Z",
+            "execution_id": 24541
+          },
+          {
+            "id": 24498,
+            "project_name": "Okuneva Inc",
+            "api_key": "1afabf0d65787a9054c5dca07a260539",
+            "created_at": "2017-01-20T20:24:57.422Z",
+            "updated_at": "2017-01-20T20:24:57.486Z",
+            "execution_id": 24542
+          },
+          {
+            "id": 24499,
+            "project_name": "Botsford LLC",
+            "api_key": "5155ce33f0b4d78377244097d38b5585",
+            "created_at": "2017-01-20T20:24:57.494Z",
+            "updated_at": "2017-01-20T20:24:57.559Z",
+            "execution_id": 24543
+          }
+        ]
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "projects#show": [
+    {
+      "verb": "GET",
+      "path": "/projects/24500",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": null,
+      "response_data": {
+        "project": {
+          "id": 24500,
+          "project_name": "Orn, Brekke and Turcotte",
+          "api_key": "3e663d59a1fa70cf737f972214698195",
+          "created_at": "2017-01-20T20:24:57.599Z",
+          "updated_at": "2017-01-20T20:24:57.659Z",
+          "testcases": [
+            {
+              "id": 93371,
+              "testcase_name": "Repellendus id qui quod voluptates amet qui incidunt perspiciatis.",
+              "testcase_id": 1983169,
+              "created_at": "2017-01-20T20:24:57.650Z",
+              "updated_at": "2017-01-20T20:24:57.650Z",
+              "version": 1
+            },
+            {
+              "id": 93372,
+              "testcase_name": "Quibusdam atque dolorum quia.",
+              "testcase_id": 4946485,
+              "created_at": "2017-01-20T20:24:57.657Z",
+              "updated_at": "2017-01-20T20:24:57.657Z",
+              "version": 1
+            },
+            {
+              "id": 93370,
+              "testcase_name": "Reiciendis ut velit sunt quisquam.",
+              "testcase_id": 5309266,
+              "created_at": "2017-01-20T20:24:57.643Z",
+              "updated_at": "2017-01-20T20:24:57.643Z",
+              "version": 1
+            },
+            {
+              "id": 93369,
+              "testcase_name": "Sunt et aliquid velit mollitia.",
+              "testcase_id": 7458654,
+              "created_at": "2017-01-20T20:24:57.635Z",
+              "updated_at": "2017-01-20T20:24:57.635Z",
+              "version": 1
+            },
+            {
+              "id": 93368,
+              "testcase_name": "At officia nemo autem hic omnis nostrum.",
+              "testcase_id": 9937402,
+              "created_at": "2017-01-20T20:24:57.628Z",
+              "updated_at": "2017-01-20T20:24:57.628Z",
+              "version": 1
+            }
+          ],
+          "environments": [
+            {
+              "id": 109738,
+              "uuid": "26cd8a5db22b2f5e4bc52f8c609a3bbc",
+              "display_name": null,
+              "environment_type": "Undefined",
+              "created_at": "2017-01-20T20:24:57.606Z",
+              "updated_at": "2017-01-20T20:24:57.606Z"
+            },
+            {
+              "id": 109739,
+              "uuid": "9054d8e7c285203719e68d9f943a065e",
+              "display_name": null,
+              "environment_type": "Undefined",
+              "created_at": "2017-01-20T20:24:57.611Z",
+              "updated_at": "2017-01-20T20:24:57.611Z"
+            },
+            {
+              "id": 109740,
+              "uuid": "ddd6dcdef98d7d707c9723959bcdfdf8",
+              "display_name": null,
+              "environment_type": "Undefined",
+              "created_at": "2017-01-20T20:24:57.615Z",
+              "updated_at": "2017-01-20T20:24:57.615Z"
+            },
+            {
+              "id": 109741,
+              "uuid": "971061aa6dd137e91b2e667ebafc77f7",
+              "display_name": null,
+              "environment_type": "Undefined",
+              "created_at": "2017-01-20T20:24:57.619Z",
+              "updated_at": "2017-01-20T20:24:57.619Z"
+            },
+            {
+              "id": 109742,
+              "uuid": "fa17f873031e661b8a347c0bc5ee2921",
+              "display_name": null,
+              "environment_type": "Undefined",
+              "created_at": "2017-01-20T20:24:57.623Z",
+              "updated_at": "2017-01-20T20:24:57.623Z"
+            }
+          ],
+          "executions": [
+            {
+              "id": 24544,
+              "name": "Execution: 01/20/2017",
+              "closed": false,
+              "created_at": "2017-01-20T20:24:57.600Z",
+              "updated_at": "2017-01-20T20:24:57.600Z"
+            }
+          ]
+        }
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "projects#update": [
+    {
+      "verb": "PUT",
+      "path": "/projects/24502",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": {
+        "project": {
+          "name": "Some New Name"
+        }
+      },
+      "response_data": {
+        "project": {
+          "id": 24502,
+          "project_name": "Some New Name",
+          "api_key": "6082614115d87735d8de85731b2ea453",
+          "created_at": "2017-01-20T20:24:57.768Z",
+          "updated_at": "2017-01-20T20:24:57.919Z",
+          "testcases": [
+            {
+              "id": 93374,
+              "testcase_name": "Commodi aut exercitationem saepe id illum fuga doloribus eum.",
+              "testcase_id": 3301326,
+              "created_at": "2017-01-20T20:24:57.809Z",
+              "updated_at": "2017-01-20T20:24:57.809Z",
+              "version": 1
+            },
+            {
+              "id": 93373,
+              "testcase_name": "Facere veniam voluptas voluptatibus itaque eum quia.",
+              "testcase_id": 3845106,
+              "created_at": "2017-01-20T20:24:57.802Z",
+              "updated_at": "2017-01-20T20:24:57.802Z",
+              "version": 1
+            },
+            {
+              "id": 93375,
+              "testcase_name": "Iusto et blanditiis consequatur cupiditate repellendus assumenda.",
+              "testcase_id": 4515517,
+              "created_at": "2017-01-20T20:24:57.815Z",
+              "updated_at": "2017-01-20T20:24:57.815Z",
+              "version": 1
+            },
+            {
+              "id": 93377,
+              "testcase_name": "Aut ducimus eius officiis.",
+              "testcase_id": 6167300,
+              "created_at": "2017-01-20T20:24:57.828Z",
+              "updated_at": "2017-01-20T20:24:57.828Z",
+              "version": 1
+            },
+            {
+              "id": 93376,
+              "testcase_name": "Fuga reprehenderit non quod nostrum omnis porro et ipsam.",
+              "testcase_id": 9351224,
+              "created_at": "2017-01-20T20:24:57.822Z",
+              "updated_at": "2017-01-20T20:24:57.822Z",
+              "version": 1
+            }
+          ],
+          "environments": [
+            {
+              "id": 109743,
+              "uuid": "7b81cff7e3fc65f940d3ecb5fe77ad40",
+              "display_name": null,
+              "environment_type": "Undefined",
+              "created_at": "2017-01-20T20:24:57.776Z",
+              "updated_at": "2017-01-20T20:24:57.776Z"
+            },
+            {
+              "id": 109744,
+              "uuid": "198434bfd1c95345b214919838793e72",
+              "display_name": null,
+              "environment_type": "Undefined",
+              "created_at": "2017-01-20T20:24:57.779Z",
+              "updated_at": "2017-01-20T20:24:57.779Z"
+            },
+            {
+              "id": 109745,
+              "uuid": "686d22d2e51508a83d8d50244a58a903",
+              "display_name": null,
+              "environment_type": "Undefined",
+              "created_at": "2017-01-20T20:24:57.783Z",
+              "updated_at": "2017-01-20T20:24:57.783Z"
+            },
+            {
+              "id": 109746,
+              "uuid": "8ae686ff01497e167fd384fc0a813b5e",
+              "display_name": null,
+              "environment_type": "Undefined",
+              "created_at": "2017-01-20T20:24:57.786Z",
+              "updated_at": "2017-01-20T20:24:57.786Z"
+            },
+            {
+              "id": 109747,
+              "uuid": "f14ccbadd46b19261ad271885fe83c36",
+              "display_name": null,
+              "environment_type": "Undefined",
+              "created_at": "2017-01-20T20:24:57.797Z",
+              "updated_at": "2017-01-20T20:24:57.797Z"
+            }
+          ],
+          "executions": [
+            {
+              "id": 24546,
+              "name": "Execution: 01/20/2017",
+              "closed": false,
+              "created_at": "2017-01-20T20:24:57.769Z",
+              "updated_at": "2017-01-20T20:24:57.769Z"
+            }
+          ]
+        }
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "results#create": [
+    {
+      "verb": "POST",
+      "path": "/results",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": {
+        "result": {
+          "status": "pass",
+          "environment_id": -1,
+          "testcase_id": 9675228,
+          "result_type": "manual",
+          "execution_id": 24554,
+          "comment": "Some new comment"
+        }
+      },
+      "response_data": {
+        "result": {
+          "results": [
+            {
+              "status": "pass",
+              "environment_id": -1,
+              "testcase_id": 9675228,
+              "result_type": "manual",
+              "comment": "Some new comment",
+              "execution_id": 24554,
+              "created_by_id": 59378,
+              "created_by_name": "Abdul Schulist",
+              "created_at": "2017-01-20T15:24:59.501-05:00"
+            },
+            {
+              "status": "skip",
+              "result_type": "manual",
+              "comment": "Qui aspernatur reprehenderit velit aut vitae qui consequatur.",
+              "created_at": "2017-01-20T15:24:59.271-05:00",
+              "created_by_id": 59379,
+              "created_by_name": "Germaine Rath"
+            },
+            {
+              "status": "pass",
+              "result_type": "manual",
+              "comment": "Animi quis nulla asperiores sunt.",
+              "created_at": "2017-01-20T15:24:59.271-05:00",
+              "created_by_id": 59379,
+              "created_by_name": "Germaine Rath"
+            },
+            {
+              "status": "fail",
+              "result_type": "manual",
+              "comment": "Aperiam dignissimos et nihil dolore consequatur voluptates delectus.",
+              "created_at": "2017-01-20T15:24:59.262-05:00",
+              "created_by_id": 59379,
+              "created_by_name": "Germaine Rath"
+            }
+          ],
+          "current_status": "pass",
+          "id": 114200,
+          "environment_id": -1,
+          "testcase_id": 93413,
+          "execution_id": 24554,
+          "created_at": "2017-01-20T20:24:59.271Z",
+          "updated_at": "2017-01-20T20:24:59.501Z"
+        }
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "results#recent": [
+    {
+      "verb": "GET",
+      "path": "/recent-results",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": null,
+      "response_data": {
+        "results": [
+          {
+            "id": 114164,
+            "environment_id": -1,
+            "testcase_id": 93397,
+            "testcase_name": "Qui qui quam nemo.",
+            "testcase_validation_id": 8161018,
+            "execution_id": 24550,
+            "project_id": 24506,
+            "project_name": "Wyman-Russel",
+            "result": {
+              "status": "fail",
+              "result_type": "manual",
+              "comment": "At consequatur et ex ducimus laboriosam.",
+              "created_at": "2017-01-20T15:24:58.526-05:00",
+              "created_by_id": 59369,
+              "created_by_name": "Mckayla Romaguera"
+            },
+            "updated_at": "2017-01-20T20:24:58.526Z"
+          },
+          {
+            "id": 114163,
+            "environment_id": 109767,
+            "environment_display_name": null,
+            "environment_type": "Undefined",
+            "testcase_id": 93397,
+            "testcase_name": "Qui qui quam nemo.",
+            "testcase_validation_id": 8161018,
+            "execution_id": 24550,
+            "project_id": 24506,
+            "project_name": "Wyman-Russel",
+            "result": {
+              "status": "skip",
+              "result_type": "automated",
+              "stacktrace": "Ut ex illum quasi molestias voluptatem asperiores vitae. Quos nostrum facilis maxime rerum velit hic. Molestiae et sit officia. Nam harum deserunt ratione vel qui veritatis consequatur. Minima ipsum consequatur qui.",
+              "comment": "Facere consequuntur quam est.",
+              "link": "http://kertzmann.info/amos",
+              "created_at": "2017-01-20T15:24:58.511-05:00"
+            },
+            "updated_at": "2017-01-20T20:24:58.511Z"
+          },
+          {
+            "id": 114162,
+            "environment_id": 109766,
+            "environment_display_name": null,
+            "environment_type": "Undefined",
+            "testcase_id": 93397,
+            "testcase_name": "Qui qui quam nemo.",
+            "testcase_validation_id": 8161018,
+            "execution_id": 24550,
+            "project_id": 24506,
+            "project_name": "Wyman-Russel",
+            "result": {
+              "status": "pass",
+              "result_type": "automated",
+              "stacktrace": "Eum ratione laudantium atque. Fugiat voluptas blanditiis quas omnis minus. Rerum quis odio eum aliquam ex. Est quia voluptas quia nemo.",
+              "comment": "Aspernatur quia ut alias aperiam.",
+              "link": "http://dickinson.info/dale",
+              "created_at": "2017-01-20T15:24:58.504-05:00"
+            },
+            "updated_at": "2017-01-20T20:24:58.504Z"
+          },
+          {
+            "id": 114161,
+            "environment_id": 109765,
+            "environment_display_name": null,
+            "environment_type": "Undefined",
+            "testcase_id": 93397,
+            "testcase_name": "Qui qui quam nemo.",
+            "testcase_validation_id": 8161018,
+            "execution_id": 24550,
+            "project_id": 24506,
+            "project_name": "Wyman-Russel",
+            "result": {
+              "status": "skip",
+              "result_type": "automated",
+              "stacktrace": "Dolores est consequatur aut sunt voluptas fuga aliquid. Mollitia temporibus ex. Qui explicabo sint incidunt temporibus. Voluptatibus qui totam. Consequatur velit doloribus quae dignissimos sint qui quis.",
+              "comment": "Iusto rem voluptas voluptatem exercitationem ea ut necessitatibus.",
+              "link": "http://friesen.net/asha.kirlin",
+              "created_at": "2017-01-20T15:24:58.497-05:00"
+            },
+            "updated_at": "2017-01-20T20:24:58.497Z"
+          },
+          {
+            "id": 114160,
+            "environment_id": 109764,
+            "environment_display_name": null,
+            "environment_type": "Undefined",
+            "testcase_id": 93397,
+            "testcase_name": "Qui qui quam nemo.",
+            "testcase_validation_id": 8161018,
+            "execution_id": 24550,
+            "project_id": 24506,
+            "project_name": "Wyman-Russel",
+            "result": {
+              "status": "skip",
+              "result_type": "automated",
+              "stacktrace": "Minima sit nisi earum vitae sed perferendis. Rem voluptatum et expedita. Iste est culpa vel illo id cupiditate voluptate. Ipsum veniam quod quae deserunt reprehenderit.",
+              "comment": "Voluptas laborum mollitia omnis aut et.",
+              "link": "http://starkferry.info/vallie.rath",
+              "created_at": "2017-01-20T15:24:58.489-05:00"
+            },
+            "updated_at": "2017-01-20T20:24:58.489Z"
+          },
+          {
+            "id": 114159,
+            "environment_id": 109763,
+            "environment_display_name": null,
+            "environment_type": "Undefined",
+            "testcase_id": 93397,
+            "testcase_name": "Qui qui quam nemo.",
+            "testcase_validation_id": 8161018,
+            "execution_id": 24550,
+            "project_id": 24506,
+            "project_name": "Wyman-Russel",
+            "result": {
+              "status": "pass",
+              "result_type": "automated",
+              "stacktrace": "Veritatis quia occaecati laborum rerum ex. Est aut temporibus delectus vel voluptas. Eum temporibus assumenda voluptatem. Occaecati temporibus qui quam ea sed voluptate. Tempora id et distinctio.",
+              "comment": "Minus sequi voluptates ut qui rerum dignissimos.",
+              "link": "http://gleasonabbott.co/nelle",
+              "created_at": "2017-01-20T15:24:58.482-05:00"
+            },
+            "updated_at": "2017-01-20T20:24:58.483Z"
+          },
+          {
+            "id": 114158,
+            "environment_id": -1,
+            "testcase_id": 93396,
+            "testcase_name": "Nihil quis repudiandae laborum sequi.",
+            "testcase_validation_id": 3519762,
+            "execution_id": 24550,
+            "project_id": 24506,
+            "project_name": "Wyman-Russel",
+            "result": {
+              "status": "pass",
+              "result_type": "manual",
+              "comment": "Et et accusantium velit nihil doloribus vero consequatur.",
+              "created_at": "2017-01-20T15:24:58.476-05:00",
+              "created_by_id": 59368,
+              "created_by_name": "Oswald Simonis"
+            },
+            "updated_at": "2017-01-20T20:24:58.476Z"
+          },
+          {
+            "id": 114157,
+            "environment_id": 109767,
+            "environment_display_name": null,
+            "environment_type": "Undefined",
+            "testcase_id": 93396,
+            "testcase_name": "Nihil quis repudiandae laborum sequi.",
+            "testcase_validation_id": 3519762,
+            "execution_id": 24550,
+            "project_id": 24506,
+            "project_name": "Wyman-Russel",
+            "result": {
+              "status": "pass",
+              "result_type": "automated",
+              "stacktrace": "Et ut suscipit et odio quaerat. Natus autem molestiae velit dolores beatae. Corporis eius expedita deleniti et et libero et.",
+              "comment": "Cupiditate sit voluptas est dicta assumenda.",
+              "link": "http://bosco.info/douglas_orn",
+              "created_at": "2017-01-20T15:24:58.462-05:00"
+            },
+            "updated_at": "2017-01-20T20:24:58.462Z"
+          },
+          {
+            "id": 114156,
+            "environment_id": 109766,
+            "environment_display_name": null,
+            "environment_type": "Undefined",
+            "testcase_id": 93396,
+            "testcase_name": "Nihil quis repudiandae laborum sequi.",
+            "testcase_validation_id": 3519762,
+            "execution_id": 24550,
+            "project_id": 24506,
+            "project_name": "Wyman-Russel",
+            "result": {
+              "status": "pass",
+              "result_type": "automated",
+              "stacktrace": "At sed in quam amet nostrum. Quia mollitia autem tenetur sunt. Aperiam quia excepturi. Voluptas nulla sunt eligendi atque quidem.",
+              "comment": "Harum rerum sequi accusantium exercitationem dolores dolorum.",
+              "link": "http://gislason.net/esta",
+              "created_at": "2017-01-20T15:24:58.455-05:00"
+            },
+            "updated_at": "2017-01-20T20:24:58.455Z"
+          },
+          {
+            "id": 114155,
+            "environment_id": 109765,
+            "environment_display_name": null,
+            "environment_type": "Undefined",
+            "testcase_id": 93396,
+            "testcase_name": "Nihil quis repudiandae laborum sequi.",
+            "testcase_validation_id": 3519762,
+            "execution_id": 24550,
+            "project_id": 24506,
+            "project_name": "Wyman-Russel",
+            "result": {
+              "status": "pass",
+              "result_type": "automated",
+              "stacktrace": "Dolor repellat ut error. Consectetur officia neque aut ipsam qui. Nihil corporis dolorum asperiores natus aut occaecati adipisci. Ex consectetur nisi dignissimos repellendus. Voluptate autem vel et.",
+              "comment": "Dolorem non delectus doloremque velit sapiente.",
+              "link": "http://runolfsdottir.biz/evan_swaniawski",
+              "created_at": "2017-01-20T15:24:58.448-05:00"
+            },
+            "updated_at": "2017-01-20T20:24:58.448Z"
+          }
+        ]
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "results#show": [
+    {
+      "verb": "GET",
+      "path": "/results/114165",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": null,
+      "response_data": {
+        "result": {
+          "id": 114165,
+          "environment_id": 109778,
+          "environment_display_name": null,
+          "environment_type": "Undefined",
+          "testcase_id": 93408,
+          "testcase_name": "Esse aperiam expedita ab aut reprehenderit ipsam cum reiciendis.",
+          "testcase_validation_id": 1097294,
+          "execution_id": 24553,
+          "results": [
+            {
+              "status": "fail",
+              "result_type": "automated",
+              "stacktrace": "Non ipsum odit sint. Quia dolor ratione rem officia quaerat. Aut veniam similique asperiores repudiandae facere in.",
+              "comment": "Voluptatem repellendus optio delectus.",
+              "link": "http://lind.net/nyah_hudson",
+              "created_at": "2017-01-20T15:24:58.856-05:00"
+            },
+            {
+              "status": "pass",
+              "result_type": "automated",
+              "stacktrace": "Eaque vel laborum. Praesentium rerum non dolore autem omnis tempore. Voluptas sit accusantium. Similique perferendis velit inventore consequatur iure quis non. Tenetur doloribus blanditiis accusantium rerum quis.",
+              "comment": "Autem quod eum magni.",
+              "link": "http://spencer.name/verla.denesik",
+              "created_at": "2017-01-20T15:24:58.856-05:00"
+            },
+            {
+              "status": "pass",
+              "result_type": "automated",
+              "stacktrace": "Eveniet odit illum sed nam. Quas modi necessitatibus dolorem inventore. Placeat non maxime voluptas ea. Fugit illum sed et. Repudiandae quam excepturi doloribus sed veniam et.",
+              "comment": "Consectetur eos accusantium neque et aut libero ea.",
+              "link": "http://willms.net/hoyt_gulgowski",
+              "created_at": "2017-01-20T15:24:58.856-05:00"
+            }
+          ],
+          "updated_at": "2017-01-20T20:24:58.857Z",
+          "creted_at": "2017-01-20T20:24:58.857Z"
+        }
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "teams#add_project": [
+    {
+      "verb": "POST",
+      "path": "/teams/9089/project/24527",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": null,
+      "response_data": {
+        "team": {
+          "id": 9089,
+          "name": "Hane LLC",
+          "description": "The AI hard drive is down, program the back-end port so we can generate the COM card!",
+          "created_at": "2017-01-20T20:25:00.992Z",
+          "updated_at": "2017-01-20T20:25:00.992Z",
+          "projects": [
+            {
+              "id": 24525,
+              "project_name": "Will-Feil"
+            },
+            {
+              "id": 24526,
+              "project_name": "Effertz LLC"
+            },
+            {
+              "id": 24527,
+              "project_name": "Feil and Sons"
+            }
+          ],
+          "users": [
+            {
+              "id": 59405,
+              "username": "eriberto.nicolas@conn.com"
+            },
+            {
+              "id": 59406,
+              "username": "tyson@kohler.com"
+            }
+          ]
+        }
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "teams#add_user": [
+    {
+      "verb": "POST",
+      "path": "/teams/9088/user/59403",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": null,
+      "response_data": {
+        "team": {
+          "id": 9088,
+          "name": "Ankunding-Yundt",
+          "description": "Use the primary JSON capacitor, then you can index the primary pixel!",
+          "created_at": "2017-01-20T20:25:00.785Z",
+          "updated_at": "2017-01-20T20:25:00.785Z",
+          "projects": [
+            {
+              "id": 24523,
+              "project_name": "Eichmann and Sons"
+            },
+            {
+              "id": 24524,
+              "project_name": "Zulauf Inc"
+            }
+          ],
+          "users": [
+            {
+              "id": 59401,
+              "username": "milton@reinger.co"
+            },
+            {
+              "id": 59402,
+              "username": "felicity.bartell@cummeratakozey.info"
+            },
+            {
+              "id": 59403,
+              "username": "durward.medhurst@rogahn.io"
+            }
+          ]
+        }
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "teams#create": [
+    {
+      "verb": "POST",
+      "path": "/teams",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": {
+        "team": {
+          "name": "Jacobi-Wyman",
+          "description": "Indexing the capacitor won't do anything, we need to copy the bluetooth thx port!"
+        }
+      },
+      "response_data": {
+        "team": {
+          "id": 9085,
+          "name": "Jacobi-Wyman",
+          "description": "Indexing the capacitor won't do anything, we need to copy the bluetooth thx port!",
+          "created_at": "2017-01-20T20:25:00.371Z",
+          "updated_at": "2017-01-20T20:25:00.371Z",
+          "projects": [
+
+          ],
+          "users": [
+
+          ]
+        }
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "teams#destroy": [
+    {
+      "verb": "DELETE",
+      "path": "/teams/9087",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": null,
+      "response_data": {
+        "team": "Deleted"
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "teams#index": [
+    {
+      "verb": "GET",
+      "path": "/teams",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": null,
+      "response_data": {
+        "teams": [
+          {
+            "id": 9081,
+            "name": "Mosciski LLC",
+            "description": "I'll bypass the wireless SMS application, that should hard drive the JBOD transmitter!",
+            "user_count": 2,
+            "project_count": 2,
+            "created_at": "2017-01-20T20:24:59.516Z",
+            "updated_at": "2017-01-20T20:24:59.516Z"
+          },
+          {
+            "id": 9082,
+            "name": "Emmerich, Veum and Kreiger",
+            "description": "We need to override the bluetooth AI bandwidth!",
+            "user_count": 2,
+            "project_count": 2,
+            "created_at": "2017-01-20T20:24:59.716Z",
+            "updated_at": "2017-01-20T20:24:59.716Z"
+          },
+          {
+            "id": 9083,
+            "name": "O'Connell, Hintz and Vandervort",
+            "description": "Programming the port won't do anything, we need to calculate the 1080p ssl bandwidth!",
+            "user_count": 2,
+            "project_count": 2,
+            "created_at": "2017-01-20T20:24:59.910Z",
+            "updated_at": "2017-01-20T20:24:59.910Z"
+          }
+        ]
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "teams#remove_project": [
+    {
+      "verb": "DELETE",
+      "path": "/teams/9091/project/24530",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": null,
+      "response_data": {
+        "team": {
+          "id": 9091,
+          "name": "Corwin LLC",
+          "description": "I'll parse the open-source SDD system, that should matrix the SMTP monitor!",
+          "created_at": "2017-01-20T20:25:01.481Z",
+          "updated_at": "2017-01-20T20:25:01.481Z",
+          "projects": [
+            {
+              "id": 24531,
+              "project_name": "Connelly, Grimes and Morar"
+            }
+          ],
+          "users": [
+            {
+              "id": 59411,
+              "username": "otilia@schroedergoodwin.co"
+            },
+            {
+              "id": 59412,
+              "username": "darrin_robel@greenholt.net"
+            }
+          ]
+        }
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "teams#remove_user": [
+    {
+      "verb": "DELETE",
+      "path": "/teams/9090/user/59408",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": null,
+      "response_data": {
+        "team": {
+          "id": 9090,
+          "name": "Hamill, Treutel and Hackett",
+          "description": "Parsing the driver won't do anything, we need to override the haptic tcp matrix!",
+          "created_at": "2017-01-20T20:25:01.276Z",
+          "updated_at": "2017-01-20T20:25:01.276Z",
+          "projects": [
+            {
+              "id": 24528,
+              "project_name": "Kuhn LLC"
+            },
+            {
+              "id": 24529,
+              "project_name": "Morissette, Harber and Gorczany"
+            }
+          ],
+          "users": [
+            {
+              "id": 59409,
+              "username": "christina.crona@willmtroman.info"
+            }
+          ]
+        }
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "teams#show": [
+    {
+      "verb": "GET",
+      "path": "/teams/9084",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": null,
+      "response_data": {
+        "team": {
+          "id": 9084,
+          "name": "Koss, McCullough and Feest",
+          "description": "We need to copy the digital PNG sensor!",
+          "created_at": "2017-01-20T20:25:00.169Z",
+          "updated_at": "2017-01-20T20:25:00.169Z",
+          "projects": [
+            {
+              "id": 24517,
+              "project_name": "Cummings-Hansen"
+            },
+            {
+              "id": 24518,
+              "project_name": "Hackett-Treutel"
+            }
+          ],
+          "users": [
+            {
+              "id": 59391,
+              "username": "bruce@terrylakin.info"
+            },
+            {
+              "id": 59392,
+              "username": "marques@grant.com"
+            }
+          ]
+        }
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "teams#update": [
+    {
+      "verb": "PUT",
+      "path": "/teams/9086",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": {
+        "team": {
+          "name": "Some New Name"
+        }
+      },
+      "response_data": {
+        "team": {
+          "id": 9086,
+          "name": "Some New Name",
+          "description": "Overriding the pixel won't do anything, we need to quantify the mobile sdd pixel!",
+          "created_at": "2017-01-20T20:25:00.391Z",
+          "updated_at": "2017-01-20T20:25:00.566Z",
+          "projects": [
+            {
+              "id": 24519,
+              "project_name": "Weimann LLC"
+            },
+            {
+              "id": 24520,
+              "project_name": "Crist-Kunze"
+            }
+          ],
+          "users": [
+            {
+              "id": 59396,
+              "username": "jerod_lynch@kuvalis.biz"
+            },
+            {
+              "id": 59397,
+              "username": "neva_borer@kris.io"
+            }
+          ]
+        }
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "testcases#create": [
+    {
+      "verb": "POST",
+      "path": "/testcases",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": {
+        "testcase": {
+          "name": "Some New Testcase",
+          "project_id": 24534,
+          "validation_id": 67548,
+          "reproduction_steps": [
+            {
+              "step_number": 1,
+              "action": "Omnis dolores occaecati quia sapiente autem voluptas.",
+              "result": "Ea atque voluptatum reprehenderit quae consequatur itaque unde."
+            },
+            {
+              "step_number": 2,
+              "action": "Atque neque natus consequatur omnis aperiam rem iusto totam.",
+              "result": "Aliquam aperiam eaque odio impedit consequatur libero."
+            }
+          ]
+        }
+      },
+      "response_data": {
+        "testcase": {
+          "id": 93543,
+          "name": "Some New Testcase",
+          "validation_id": 67548,
+          "project_id": 24534,
+          "runner_touch": null,
+          "locked": null,
+          "created_at": "2017-01-20T20:25:02.086Z",
+          "updated_at": "2017-01-20T20:25:02.086Z",
+          "reproduction_steps": [
+            {
+              "step_number": 1,
+              "action": "Omnis dolores occaecati quia sapiente autem voluptas.",
+              "result": "Ea atque voluptatum reprehenderit quae consequatur itaque unde."
+            },
+            {
+              "step_number": 2,
+              "action": "Atque neque natus consequatur omnis aperiam rem iusto totam.",
+              "result": "Aliquam aperiam eaque odio impedit consequatur libero."
+            }
+          ],
+          "outdated": false,
+          "version": 1,
+          "token": "mJ1KyxCpA7UN5Rtz9rBm6MMm",
+          "revised_at": null,
+          "username": "Brennan Kulas"
+        }
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    },
+    {
+      "verb": "POST",
+      "path": "/testcases",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": {
+        "testcase": {
+          "name": "Some New Testcase",
+          "project_id": 24536,
+          "validation_id": 98137,
+          "reproduction_steps": [
+            {
+              "step_number": 1,
+              "action": "Et nulla harum optio qui magnam consequatur.",
+              "result": "Molestias voluptas nesciunt ipsa."
+            },
+            {
+              "step_number": 2,
+              "action": "Sed eum impedit sed velit voluptas ea.",
+              "result": "Sed qui atque rerum quo sapiente laborum voluptatum autem."
+            }
+          ]
+        }
+      },
+      "response_data": {
+        "testcase": {
+          "id": 93554,
+          "name": "Some New Testcase",
+          "validation_id": 98137,
+          "project_id": 24536,
+          "runner_touch": null,
+          "locked": null,
+          "created_at": "2017-01-20T20:25:02.283Z",
+          "updated_at": "2017-01-20T20:25:02.283Z",
+          "reproduction_steps": [
+            {
+              "step_number": 1,
+              "action": "Et nulla harum optio qui magnam consequatur.",
+              "result": "Molestias voluptas nesciunt ipsa."
+            },
+            {
+              "step_number": 2,
+              "action": "Sed eum impedit sed velit voluptas ea.",
+              "result": "Sed qui atque rerum quo sapiente laborum voluptatum autem."
+            }
+          ],
+          "outdated": false,
+          "version": 1,
+          "token": "jJW5LPxmYQ9pDtzKoTuA1jTE",
+          "revised_at": null,
+          "username": "Uriel Stark"
+        }
+      },
+      "code": 200,
+      "show_in_doc": 0,
+      "recorded": true
+    }
+  ],
+  "testcases#destroy": [
+    {
+      "verb": "DELETE",
+      "path": "/testcases/93577",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": null,
+      "response_data": {
+        "testcase": "Deleted"
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "testcases#export": [
+    {
+      "verb": "GET",
+      "path": "/projects/24550/testcases/export",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": null,
+      "response_data": {
+        "testcases": [
+          {
+            "id": 93617,
+            "name": "Sequi impedit officia nostrum.",
+            "validation_id": 8420922,
+            "project_id": 24550,
+            "runner_touch": null,
+            "locked": null,
+            "created_at": "2017-01-20T20:25:03.592Z",
+            "updated_at": "2017-01-20T20:25:03.592Z",
+            "reproduction_steps": [
+              {
+                "step_number": 1,
+                "action": "Ut voluptas praesentium dolor accusantium possimus temporibus quisquam.",
+                "result": "Aut ex distinctio voluptas laboriosam."
+              },
+              {
+                "step_number": 2,
+                "action": "Quasi aperiam amet quam.",
+                "result": "Veniam velit ut nesciunt cum dolore assumenda neque."
+              },
+              {
+                "step_number": 3,
+                "action": "Nesciunt molestias ipsam est praesentium voluptatem quo laboriosam.",
+                "result": "Ipsam laboriosam veritatis itaque dolorem."
+              }
+            ],
+            "outdated": false,
+            "version": 1,
+            "token": "4L3tQJP3xmw62Snb7ezJSYgx",
+            "revised_at": null,
+            "username": null
+          },
+          {
+            "id": 93618,
+            "name": "Et et debitis error et doloribus non.",
+            "validation_id": 4218522,
+            "project_id": 24550,
+            "runner_touch": null,
+            "locked": null,
+            "created_at": "2017-01-20T20:25:03.601Z",
+            "updated_at": "2017-01-20T20:25:03.601Z",
+            "reproduction_steps": [
+              {
+                "step_number": 1,
+                "action": "Quis explicabo labore aut ipsa voluptas inventore eligendi dolorem.",
+                "result": "Et dicta temporibus dolor deserunt natus distinctio expedita est."
+              },
+              {
+                "step_number": 2,
+                "action": "Vitae voluptas non quia.",
+                "result": "Sint alias consectetur sit eum."
+              },
+              {
+                "step_number": 3,
+                "action": "Est nihil natus possimus magni velit quaerat nesciunt.",
+                "result": "Accusamus fugiat autem tempore velit quo velit ut."
+              }
+            ],
+            "outdated": false,
+            "version": 1,
+            "token": "ck8sfnC56bvYXA3Y1HbUx2YJ",
+            "revised_at": null,
+            "username": null
+          },
+          {
+            "id": 93619,
+            "name": "Exercitationem quisquam non unde esse velit est laudantium dolorum.",
+            "validation_id": 2109819,
+            "project_id": 24550,
+            "runner_touch": null,
+            "locked": null,
+            "created_at": "2017-01-20T20:25:03.610Z",
+            "updated_at": "2017-01-20T20:25:03.610Z",
+            "reproduction_steps": [
+              {
+                "step_number": 1,
+                "action": "Vitae minima ducimus ut laboriosam dolores cupiditate accusamus quibusdam.",
+                "result": "Nisi optio enim autem ut quae dolore esse error."
+              },
+              {
+                "step_number": 2,
+                "action": "Ea ad ut atque ut non omnis modi adipisci.",
+                "result": "Dignissimos voluptas laudantium est fugit."
+              },
+              {
+                "step_number": 3,
+                "action": "Fugiat ut nihil dolores et modi exercitationem ex pariatur.",
+                "result": "Corrupti nihil quis rerum nulla quia."
+              }
+            ],
+            "outdated": false,
+            "version": 1,
+            "token": "Nw48joeMiDcyW3okWWTrZcAB",
+            "revised_at": null,
+            "username": null
+          },
+          {
+            "id": 93620,
+            "name": "Omnis non fugiat soluta repellendus ipsa atque alias.",
+            "validation_id": 2223101,
+            "project_id": 24550,
+            "runner_touch": null,
+            "locked": null,
+            "created_at": "2017-01-20T20:25:03.621Z",
+            "updated_at": "2017-01-20T20:25:03.621Z",
+            "reproduction_steps": [
+              {
+                "step_number": 1,
+                "action": "Ut minus nisi error eaque.",
+                "result": "Voluptates neque rerum sunt."
+              },
+              {
+                "step_number": 2,
+                "action": "Aliquid nostrum et non harum.",
+                "result": "Libero et ipsa architecto aut est qui adipisci."
+              },
+              {
+                "step_number": 3,
+                "action": "Et quisquam tempora et.",
+                "result": "Corrupti veritatis dolorem autem."
+              }
+            ],
+            "outdated": false,
+            "version": 1,
+            "token": "btjqp7PEjbr3RcJRCWdQ5S6q",
+            "revised_at": null,
+            "username": null
+          },
+          {
+            "id": 93621,
+            "name": "Dolores reprehenderit nobis molestiae nisi enim repellat.",
+            "validation_id": 2685232,
+            "project_id": 24550,
+            "runner_touch": null,
+            "locked": null,
+            "created_at": "2017-01-20T20:25:03.631Z",
+            "updated_at": "2017-01-20T20:25:03.631Z",
+            "reproduction_steps": [
+              {
+                "step_number": 1,
+                "action": "Nemo iure accusantium est magni eligendi est.",
+                "result": "Quia fuga facilis aliquid laborum ipsum consequuntur dolor."
+              },
+              {
+                "step_number": 2,
+                "action": "Et eum esse qui debitis officiis deleniti.",
+                "result": "Nisi neque consequatur aut velit quasi omnis quae."
+              },
+              {
+                "step_number": 3,
+                "action": "Ut sed cum non quo.",
+                "result": "Tenetur molestiae blanditiis veniam nemo odio aut iste in."
+              }
+            ],
+            "outdated": false,
+            "version": 1,
+            "token": "RdqsppExn7qFdaSQEM5bJhJV",
+            "revised_at": null,
+            "username": null
+          }
+        ]
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    },
+    {
+      "verb": "GET",
+      "path": "/projects/24552/testcases/export.xlsx",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": null,
+      "response_data": {
+        "report": "http://example.org/download/XPYis1yCqJis8ZViTufZjVbS"
+      },
+      "code": 200,
+      "show_in_doc": 0,
+      "recorded": true
+    }
+  ],
+  "testcases#import": [
+    {
+      "verb": "POST",
+      "path": "/projects/24544/import",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": {
+        "csv": "Test ID,Title,Steps,Expected Result\n123457,New Test Case 1,\"1.  Action 1\n2.  Action 2\n3.  Action 3\",\"1.  Result 1\n2.  Result 2\n3.  Result 3\"\n123456,New Test Case 2,\"1.  Action 1\n2.  Action 2\n3.  Action 3\",\"1.  Result 1\n2.  Result 2\n3.  Result 3\"\n"
+      },
+      "response_data": {
+        "success": [
+          {
+            "validation_id": 123457,
+            "name": "New Test Case 1",
+            "reproduction_steps": [
+              {
+                "step_number": 1,
+                "action": "Action 1\n2.  Action 2\n3.  Action 3",
+                "result": "Result 1\n2.  Result 2\n3.  Result 3"
+              }
+            ]
+          },
+          {
+            "validation_id": 123456,
+            "name": "New Test Case 2",
+            "reproduction_steps": [
+              {
+                "step_number": 1,
+                "action": "Action 1\n2.  Action 2\n3.  Action 3",
+                "result": "Result 1\n2.  Result 2\n3.  Result 3"
+              }
+            ]
+          }
+        ],
+        "fail": [
+
+        ]
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    },
+    {
+      "verb": "POST",
+      "path": "/projects/24546/import",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": {
+        "preview": "true",
+        "csv": "Test ID,Title,Steps,Expected Result\n123457,New Test Case 1,\"1.  Action 1\n2.  Action 2\n3.  Action 3\",\"1.  Result 1\n2.  Result 2\n3.  Result 3\"\n123456,New Test Case 2,\"1.  Action 1\n2.  Action 2\n3.  Action 3\",\"1.  Result 1\n2.  Result 2\n3.  Result 3\"\n"
+      },
+      "response_data": {
+        "success": [
+          {
+            "validation_id": 123457,
+            "name": "New Test Case 1",
+            "reproduction_steps": [
+              {
+                "step_number": 1,
+                "action": "Action 1\n2.  Action 2\n3.  Action 3",
+                "result": "Result 1\n2.  Result 2\n3.  Result 3"
+              }
+            ]
+          },
+          {
+            "validation_id": 123456,
+            "name": "New Test Case 2",
+            "reproduction_steps": [
+              {
+                "step_number": 1,
+                "action": "Action 1\n2.  Action 2\n3.  Action 3",
+                "result": "Result 1\n2.  Result 2\n3.  Result 3"
+              }
+            ]
+          }
+        ],
+        "fail": [
+
+        ]
+      },
+      "code": 200,
+      "show_in_doc": 0,
+      "recorded": true
+    },
+    {
+      "verb": "POST",
+      "path": "/projects/24548/import",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": {
+        "update": "true",
+        "csv": "Test ID,Title,Steps,Expected Result\n123457,New Test Case 1,\"1.  Action 1\n2.  Action 2\n3.  Action 3\",\"1.  Result 1\n2.  Result 2\n3.  Result 3\"\n123456,New Test Case 2,\"1.  Action 1\n2.  Action 2\n3.  Action 3\",\"1.  Result 1\n2.  Result 2\n3.  Result 3\"\n"
+      },
+      "response_data": {
+        "success": [
+          {
+            "validation_id": 123457,
+            "name": "New Test Case 1",
+            "reproduction_steps": [
+              {
+                "step_number": 1,
+                "action": "Action 1\n2.  Action 2\n3.  Action 3",
+                "result": "Result 1\n2.  Result 2\n3.  Result 3"
+              }
+            ]
+          },
+          {
+            "validation_id": 123456,
+            "name": "New Test Case 2",
+            "reproduction_steps": [
+              {
+                "step_number": 1,
+                "action": "Action 1\n2.  Action 2\n3.  Action 3",
+                "result": "Result 1\n2.  Result 2\n3.  Result 3"
+              }
+            ]
+          }
+        ],
+        "fail": [
+
+        ]
+      },
+      "code": 200,
+      "show_in_doc": 0,
+      "recorded": true
+    },
+    {
+      "verb": "POST",
+      "path": "/projects/24548/import",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": {
+        "update": "true",
+        "csv": "Test ID,Title,Steps,Expected Result\n123457,New Test Case 1,\"1.  Action 1\n2.  Action 2\n3.  Action 3\",\"1.  Result 1\n2.  Result 2\n3.  Result 3\"\n123456,New Test Case 2,\"1.  Action 1\n2.  Action 2\n3.  Action 3\",\"1.  Result 1\n2.  Result 2\n3.  Result 3\"\n"
+      },
+      "response_data": {
+        "success": [
+          {
+            "validation_id": 123457,
+            "name": "New Test Case 1",
+            "reproduction_steps": [
+              {
+                "step_number": 1,
+                "action": "Action 1\n2.  Action 2\n3.  Action 3",
+                "result": "Result 1\n2.  Result 2\n3.  Result 3"
+              }
+            ]
+          },
+          {
+            "validation_id": 123456,
+            "name": "New Test Case 2",
+            "reproduction_steps": [
+              {
+                "step_number": 1,
+                "action": "Action 1\n2.  Action 2\n3.  Action 3",
+                "result": "Result 1\n2.  Result 2\n3.  Result 3"
+              }
+            ]
+          }
+        ],
+        "fail": [
+
+        ]
+      },
+      "code": 200,
+      "show_in_doc": 0,
+      "recorded": true
+    }
+  ],
+  "testcases#show": [
+    {
+      "verb": "GET",
+      "path": "/testcases/93523",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": null,
+      "response_data": {
+        "testcase": {
+          "id": 93523,
+          "name": "Voluptatem ratione qui debitis.",
+          "validation_id": 7463804,
+          "project_id": 24532,
+          "runner_touch": null,
+          "locked": null,
+          "created_at": "2017-01-20T20:25:01.754Z",
+          "updated_at": "2017-01-20T20:25:01.754Z",
+          "reproduction_steps": [
+            {
+              "step_number": 1,
+              "action": "Molestiae repellat magni culpa reprehenderit quia nostrum.",
+              "result": "Et officiis est praesentium et."
+            },
+            {
+              "step_number": 2,
+              "action": "Repellat enim ea molestiae nesciunt est dolor voluptas quae.",
+              "result": "Qui debitis odio similique harum eligendi sed nesciunt non."
+            },
+            {
+              "step_number": 3,
+              "action": "Rem incidunt quia voluptas modi omnis.",
+              "result": "Tempora sequi facere non."
+            }
+          ],
+          "outdated": false,
+          "version": 1,
+          "token": "Ba2paaYDWTQ9zbCXwXeW3M94",
+          "revised_at": null,
+          "username": null
+        },
+        "other_versions": [
+
+        ]
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "testcases#update": [
+    {
+      "verb": "PUT",
+      "path": "/testcases/93555",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": {
+        "testcase": {
+          "name": "Renamed Testcase",
+          "project_id": 24538,
+          "validation_id": 27484,
+          "reproduction_steps": [
+            {
+              "step_number": 1,
+              "action": "At a molestiae quia voluptates temporibus aliquid.",
+              "result": "Necessitatibus voluptatem et officia ea consectetur aut dolor."
+            },
+            {
+              "step_number": 2,
+              "action": "Magni consequatur est perspiciatis harum exercitationem provident.",
+              "result": "Aliquam qui neque quisquam quibusdam."
+            }
+          ]
+        }
+      },
+      "response_data": {
+        "testcase": {
+          "id": 93565,
+          "name": "Renamed Testcase",
+          "validation_id": 27484,
+          "project_id": 24538,
+          "runner_touch": null,
+          "locked": null,
+          "created_at": "2017-01-20T20:25:02.496Z",
+          "updated_at": "2017-01-20T20:25:02.496Z",
+          "reproduction_steps": [
+            {
+              "step_number": 1,
+              "action": "At a molestiae quia voluptates temporibus aliquid.",
+              "result": "Necessitatibus voluptatem et officia ea consectetur aut dolor."
+            },
+            {
+              "step_number": 2,
+              "action": "Magni consequatur est perspiciatis harum exercitationem provident.",
+              "result": "Aliquam qui neque quisquam quibusdam."
+            }
+          ],
+          "outdated": false,
+          "version": 2,
+          "token": "8ZfJGC4Qm9PTCbyn38XZpwiD",
+          "revised_at": null,
+          "username": "Alene Hoeger"
+        }
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    },
+    {
+      "verb": "PUT",
+      "path": "/testcases/93566",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": {
+        "testcase": {
+          "name": "Renamed Testcase",
+          "project_id": 24540,
+          "validation_id": 38436,
+          "reproduction_steps": [
+            {
+              "step_number": 1,
+              "action": "Dignissimos eius nostrum est accusamus quo.",
+              "result": "Molestiae eaque omnis quia iure."
+            },
+            {
+              "step_number": 2,
+              "action": "Sequi quo rerum ipsum in atque ea qui.",
+              "result": "Exercitationem iusto ut culpa."
+            }
+          ]
+        }
+      },
+      "response_data": {
+        "testcase": {
+          "id": 93576,
+          "name": "Renamed Testcase",
+          "validation_id": 38436,
+          "project_id": 24540,
+          "runner_touch": null,
+          "locked": null,
+          "created_at": "2017-01-20T20:25:02.704Z",
+          "updated_at": "2017-01-20T20:25:02.704Z",
+          "reproduction_steps": [
+            {
+              "step_number": 1,
+              "action": "Dignissimos eius nostrum est accusamus quo.",
+              "result": "Molestiae eaque omnis quia iure."
+            },
+            {
+              "step_number": 2,
+              "action": "Sequi quo rerum ipsum in atque ea qui.",
+              "result": "Exercitationem iusto ut culpa."
+            }
+          ],
+          "outdated": false,
+          "version": 2,
+          "token": "mxRYGkHYqpBbsHpRsBoWJyye",
+          "revised_at": null,
+          "username": "Wilfrid Shanahan"
+        }
+      },
+      "code": 200,
+      "show_in_doc": 0,
+      "recorded": true
+    }
+  ],
+  "users#create": [
+    {
+      "verb": "POST",
+      "path": "/users/",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": {
+        "user": {
+          "first_name": "Chelsie",
+          "last_name": "Padberg",
+          "password": "1234",
+          "password_confirmation": "1234",
+          "username": "tyrel.prohaska@jones.io"
+        }
+      },
+      "response_data": {
+        "user": {
+          "id": 59453,
+          "username": "tyrel.prohaska@jones.io",
+          "first_name": "Chelsie",
+          "last_name": "Padberg",
+          "company": null,
+          "admin": null,
+          "created_at": "2017-01-20T20:25:04.171Z",
+          "updated_at": "2017-01-20T20:25:04.171Z"
+        }
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "users#destroy": [
+    {
+      "verb": "DELETE",
+      "path": "/users/59457",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": null,
+      "response_data": {
+        "user": "Deleted"
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "users#find": [
+    {
+      "verb": "GET",
+      "path": "/users/find/clotilde.windler@maggio.org",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": null,
+      "response_data": {
+        "user": {
+          "id": 59450,
+          "username": "clotilde.windler@maggio.org"
+        }
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "users#index": [
+    {
+      "verb": "GET",
+      "path": "/users",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": null,
+      "response_data": {
+        "users": [
+          {
+            "id": 59445,
+            "username": "calista@paucekheel.biz",
+            "first_name": "Bennett",
+            "last_name": "Botsford",
+            "company": "Mosciski-Abernathy",
+            "admin": null,
+            "created_at": "2017-01-20T20:25:04.028Z",
+            "updated_at": "2017-01-20T20:25:04.028Z"
+          },
+          {
+            "id": 59446,
+            "username": "kaitlyn_kemmer@wisozk.io",
+            "first_name": "Dillon",
+            "last_name": "Pfeffer",
+            "company": "Price Group",
+            "admin": null,
+            "created_at": "2017-01-20T20:25:04.036Z",
+            "updated_at": "2017-01-20T20:25:04.036Z"
+          },
+          {
+            "id": 59447,
+            "username": "amiya_ritchie@keeblermayer.com",
+            "first_name": "Hector",
+            "last_name": "Schoen",
+            "company": "Rutherford-Braun",
+            "admin": null,
+            "created_at": "2017-01-20T20:25:04.045Z",
+            "updated_at": "2017-01-20T20:25:04.045Z"
+          },
+          {
+            "id": 59448,
+            "username": "kari@lesch.io",
+            "first_name": "Jeffrey",
+            "last_name": "Armstrong",
+            "company": "Greenfelder-Halvorson",
+            "admin": true,
+            "created_at": "2017-01-20T20:25:04.053Z",
+            "updated_at": "2017-01-20T20:25:04.053Z"
+          }
+        ]
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "users#reset_password": [
+    {
+      "verb": "POST",
+      "path": "/users/59459/reset-password/kBDtn58hrqNj4bkR7ponXCey",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": {
+        "user": {
+          "password": "NoOneLikesCats"
+        }
+      },
+      "response_data": {
+        "user": {
+          "id": 59459,
+          "password_digest": "$2a$04$3wS3CGcZB0/XNNydAvfXsu6yMxOp4Ee2ITR8MkgU9jyx.RwY.mzT6",
+          "first_name": "Taya",
+          "last_name": "Gutkowski",
+          "username": "itzel_huel@kautzer.com",
+          "company": "Runolfsson and Sons",
+          "admin": null,
+          "deleted": null,
+          "created_at": "2017-01-20T20:25:04.479Z",
+          "updated_at": "2017-01-20T20:25:04.495Z"
+        }
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "users#show": [
+    {
+      "verb": "GET",
+      "path": "/users/59449",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": null,
+      "response_data": {
+        "user": {
+          "id": 59449,
+          "username": "adam_thiel@wisozk.com",
+          "first_name": "Lavinia",
+          "last_name": "Waters",
+          "company": "Adams-Funk",
+          "admin": null,
+          "created_at": "2017-01-20T20:25:04.091Z",
+          "updated_at": "2017-01-20T20:25:04.091Z"
+        }
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "users#trigger_password_reset": [
+    {
+      "verb": "POST",
+      "path": "/users/reset-password",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": {
+        "user": {
+          "username": "eleazar_langworth@howell.io"
+        },
+        "redirect-to": "http://some.url/TOKEN"
+      },
+      "response_data": {
+        "success": "Password reset email sent"
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "users#update": [
+    {
+      "verb": "PUT",
+      "path": "/users/59455",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": {
+        "user": {
+          "first_name": "Tom",
+          "last_name": "Jones",
+          "username": "tom.jones@singing.com",
+          "company": "singing",
+          "admin": true
+        }
+      },
+      "response_data": {
+        "user": {
+          "id": 59455,
+          "username": "tom.jones@singing.com",
+          "first_name": "Tom",
+          "last_name": "Jones",
+          "company": "singing",
+          "admin": true,
+          "created_at": "2017-01-20T20:25:04.192Z",
+          "updated_at": "2017-01-20T20:25:04.205Z"
+        }
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "users#valid_token": [
+    {
+      "verb": "GET",
+      "path": "/users/token/valid",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": null,
+      "response_data": {
+        "token": "Valid"
+      },
+      "code": 200,
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ]
+}

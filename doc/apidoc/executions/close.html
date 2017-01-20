@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>API documentation</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link type='text/css' rel='stylesheet' href='../../apidoc/stylesheets/bundled/bootstrap.min.css'/>
+<link type='text/css' rel='stylesheet' href='../../apidoc/stylesheets/bundled/prettify.css'/>
+<link type='text/css' rel='stylesheet' href='../../apidoc/stylesheets/bundled/bootstrap-responsive.min.css'/>
+  <link type='text/css' rel='stylesheet' href='../../apidoc/stylesheets/application.css'/>
+  <!-- IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div id='container'>
+        <ul class='breadcrumb'>
+  <li>
+    <a href='../../apidoc.html'>Mustard 1.0</a>
+    <span class='divider'>/</span>
+  </li>
+  <li>
+    <a href='../../apidoc/executions.html'>
+      Executions
+      
+    </a>
+    <span class='divider'>/</span>
+  </li>
+  <li class='active'>close</li>
+  
+
+</ul>
+
+  <div class='page-header'>
+    <h1>
+      POST /executions/close
+      <br>
+      <small>Close execution</small>
+    </h1>
+  </div>
+
+<div>
+
+  
+<p>Closes execution and opens a new execution</p>
+
+
+
+
+  <h2>Metadata</h2>
+  <pre class="prettyprint lang-yaml">--- |-
+  User must provide either execution_id or project_key
+          If project_key is provided the open execution will be closed
+          Only accessible if project is viewable by current user
+          Displays details of NEW execution
+</pre>
+
+
+  <h2>Examples</h2>
+    <pre class="prettyprint">POST /executions/close
+{
+  &quot;project_key&quot;: &quot;266db085783a001f95f8e65ebbf89406&quot;,
+  &quot;name&quot;: &quot;Some Name&quot;
+}
+200
+{
+  &quot;execution&quot;: {
+    &quot;id&quot;: 24534,
+    &quot;created_at&quot;: &quot;2017-01-20T20:24:56.426Z&quot;,
+    &quot;updated_at&quot;: &quot;2017-01-20T20:24:56.426Z&quot;,
+    &quot;project_id&quot;: 24492,
+    &quot;closed&quot;: false,
+    &quot;closed_at&quot;: null,
+    &quot;deleted&quot;: null,
+    &quot;name&quot;: &quot;Some Name&quot;
+  }
+}</pre>
+
+  <h2>Params</h2>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Param name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>project_key </strong><br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Project Key.  Required if execution_id is not present</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>execution_id </strong><br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Execution ID. Required if project_key is not present</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+    </tbody>
+  </table>
+
+
+
+</div>
+
+
+        
+      </div>
+    </div>
+    <hr>
+    <footer></footer>
+  </div>
+  <script type='text/javascript' src='../../apidoc/javascripts/bundled/jquery.js'></script>
+<script type='text/javascript' src='../../apidoc/javascripts/bundled/bootstrap-collapse.js'></script>
+<script type='text/javascript' src='../../apidoc/javascripts/bundled/prettify.js'></script>
+<script type='text/javascript' src='../../apidoc/javascripts/apipie.js'></script>
+</body>
+</html>

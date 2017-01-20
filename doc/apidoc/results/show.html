@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>API documentation</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link type='text/css' rel='stylesheet' href='../../apidoc/stylesheets/bundled/bootstrap.min.css'/>
+<link type='text/css' rel='stylesheet' href='../../apidoc/stylesheets/bundled/prettify.css'/>
+<link type='text/css' rel='stylesheet' href='../../apidoc/stylesheets/bundled/bootstrap-responsive.min.css'/>
+  <link type='text/css' rel='stylesheet' href='../../apidoc/stylesheets/application.css'/>
+  <!-- IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div id='container'>
+        <ul class='breadcrumb'>
+  <li>
+    <a href='../../apidoc.html'>Mustard 1.0</a>
+    <span class='divider'>/</span>
+  </li>
+  <li>
+    <a href='../../apidoc/results.html'>
+      Results
+      
+    </a>
+    <span class='divider'>/</span>
+  </li>
+  <li class='active'>show</li>
+  
+
+</ul>
+
+  <div class='page-header'>
+    <h1>
+      GET /results/:id
+      <br>
+      <small>Result details</small>
+    </h1>
+  </div>
+
+<div>
+
+  
+<p>Only accessible if parent project is viewable by current user</p>
+
+
+
+
+
+  <h2>Examples</h2>
+    <pre class="prettyprint">GET /results/114165
+200
+{
+  &quot;result&quot;: {
+    &quot;id&quot;: 114165,
+    &quot;environment_id&quot;: 109778,
+    &quot;environment_display_name&quot;: null,
+    &quot;environment_type&quot;: &quot;Undefined&quot;,
+    &quot;testcase_id&quot;: 93408,
+    &quot;testcase_name&quot;: &quot;Esse aperiam expedita ab aut reprehenderit ipsam cum reiciendis.&quot;,
+    &quot;testcase_validation_id&quot;: 1097294,
+    &quot;execution_id&quot;: 24553,
+    &quot;results&quot;: [
+      {
+        &quot;status&quot;: &quot;fail&quot;,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;stacktrace&quot;: &quot;Non ipsum odit sint. Quia dolor ratione rem officia quaerat. Aut veniam similique asperiores repudiandae facere in.&quot;,
+        &quot;comment&quot;: &quot;Voluptatem repellendus optio delectus.&quot;,
+        &quot;link&quot;: &quot;http://lind.net/nyah_hudson&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T15:24:58.856-05:00&quot;
+      },
+      {
+        &quot;status&quot;: &quot;pass&quot;,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;stacktrace&quot;: &quot;Eaque vel laborum. Praesentium rerum non dolore autem omnis tempore. Voluptas sit accusantium. Similique perferendis velit inventore consequatur iure quis non. Tenetur doloribus blanditiis accusantium rerum quis.&quot;,
+        &quot;comment&quot;: &quot;Autem quod eum magni.&quot;,
+        &quot;link&quot;: &quot;http://spencer.name/verla.denesik&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T15:24:58.856-05:00&quot;
+      },
+      {
+        &quot;status&quot;: &quot;pass&quot;,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;stacktrace&quot;: &quot;Eveniet odit illum sed nam. Quas modi necessitatibus dolorem inventore. Placeat non maxime voluptas ea. Fugit illum sed et. Repudiandae quam excepturi doloribus sed veniam et.&quot;,
+        &quot;comment&quot;: &quot;Consectetur eos accusantium neque et aut libero ea.&quot;,
+        &quot;link&quot;: &quot;http://willms.net/hoyt_gulgowski&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T15:24:58.856-05:00&quot;
+      }
+    ],
+    &quot;updated_at&quot;: &quot;2017-01-20T20:24:58.857Z&quot;,
+    &quot;creted_at&quot;: &quot;2017-01-20T20:24:58.857Z&quot;
+  }
+}</pre>
+
+  <h2>Params</h2>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Param name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Result ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+    </tbody>
+  </table>
+
+
+
+</div>
+
+
+        
+      </div>
+    </div>
+    <hr>
+    <footer></footer>
+  </div>
+  <script type='text/javascript' src='../../apidoc/javascripts/bundled/jquery.js'></script>
+<script type='text/javascript' src='../../apidoc/javascripts/bundled/bootstrap-collapse.js'></script>
+<script type='text/javascript' src='../../apidoc/javascripts/bundled/prettify.js'></script>
+<script type='text/javascript' src='../../apidoc/javascripts/apipie.js'></script>
+</body>
+</html>

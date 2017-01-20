@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>API documentation</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link type='text/css' rel='stylesheet' href='../../apidoc/stylesheets/bundled/bootstrap.min.css'/>
+<link type='text/css' rel='stylesheet' href='../../apidoc/stylesheets/bundled/prettify.css'/>
+<link type='text/css' rel='stylesheet' href='../../apidoc/stylesheets/bundled/bootstrap-responsive.min.css'/>
+  <link type='text/css' rel='stylesheet' href='../../apidoc/stylesheets/application.css'/>
+  <!-- IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div id='container'>
+        <ul class='breadcrumb'>
+  <li>
+    <a href='../../apidoc.html'>Mustard 1.0</a>
+    <span class='divider'>/</span>
+  </li>
+  <li>
+    <a href='../../apidoc/testcases.html'>
+      Testcases
+      
+    </a>
+    <span class='divider'>/</span>
+  </li>
+  <li class='active'>show</li>
+  
+
+</ul>
+
+  <div class='page-header'>
+    <h1>
+      GET /testcases/:id
+      <br>
+      <small>Testcase details</small>
+    </h1>
+  </div>
+
+<div>
+
+  
+<p>Only displayed if project is viewable by current user</p>
+
+
+
+
+
+  <h2>Examples</h2>
+    <pre class="prettyprint">GET /testcases/93523
+200
+{
+  &quot;testcase&quot;: {
+    &quot;id&quot;: 93523,
+    &quot;name&quot;: &quot;Voluptatem ratione qui debitis.&quot;,
+    &quot;validation_id&quot;: 7463804,
+    &quot;project_id&quot;: 24532,
+    &quot;runner_touch&quot;: null,
+    &quot;locked&quot;: null,
+    &quot;created_at&quot;: &quot;2017-01-20T20:25:01.754Z&quot;,
+    &quot;updated_at&quot;: &quot;2017-01-20T20:25:01.754Z&quot;,
+    &quot;reproduction_steps&quot;: [
+      {
+        &quot;step_number&quot;: 1,
+        &quot;action&quot;: &quot;Molestiae repellat magni culpa reprehenderit quia nostrum.&quot;,
+        &quot;result&quot;: &quot;Et officiis est praesentium et.&quot;
+      },
+      {
+        &quot;step_number&quot;: 2,
+        &quot;action&quot;: &quot;Repellat enim ea molestiae nesciunt est dolor voluptas quae.&quot;,
+        &quot;result&quot;: &quot;Qui debitis odio similique harum eligendi sed nesciunt non.&quot;
+      },
+      {
+        &quot;step_number&quot;: 3,
+        &quot;action&quot;: &quot;Rem incidunt quia voluptas modi omnis.&quot;,
+        &quot;result&quot;: &quot;Tempora sequi facere non.&quot;
+      }
+    ],
+    &quot;outdated&quot;: false,
+    &quot;version&quot;: 1,
+    &quot;token&quot;: &quot;Ba2paaYDWTQ9zbCXwXeW3M94&quot;,
+    &quot;revised_at&quot;: null,
+    &quot;username&quot;: null
+  },
+  &quot;other_versions&quot;: []
+}</pre>
+
+  <h2>Params</h2>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Param name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+    </tbody>
+  </table>
+
+
+
+</div>
+
+
+        
+      </div>
+    </div>
+    <hr>
+    <footer></footer>
+  </div>
+  <script type='text/javascript' src='../../apidoc/javascripts/bundled/jquery.js'></script>
+<script type='text/javascript' src='../../apidoc/javascripts/bundled/bootstrap-collapse.js'></script>
+<script type='text/javascript' src='../../apidoc/javascripts/bundled/prettify.js'></script>
+<script type='text/javascript' src='../../apidoc/javascripts/apipie.js'></script>
+</body>
+</html>

@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>API documentation</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link type='text/css' rel='stylesheet' href='../apidoc/stylesheets/bundled/bootstrap.min.css'/>
+<link type='text/css' rel='stylesheet' href='../apidoc/stylesheets/bundled/prettify.css'/>
+<link type='text/css' rel='stylesheet' href='../apidoc/stylesheets/bundled/bootstrap-responsive.min.css'/>
+  <link type='text/css' rel='stylesheet' href='../apidoc/stylesheets/application.css'/>
+  <!-- IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div id='container'>
+        <ul class='breadcrumb'>
+  <li>
+    <a href='../apidoc.html'>Mustard 1.0</a>
+    <span class='divider'>/</span>
+  </li>
+  <li class='active'>
+    Users
+    
+  </li>
+  
+</ul>
+
+<div class='page-header'>
+  <h1>
+    Users
+    <br>
+    <small></small>
+  </h1>
+</div>
+
+
+
+
+
+
+<div class='accordion' id='accordion'>
+
+    <hr>
+    <div class='pull-right small'>
+      <a href='../apidoc/users/index.html'> >>> </a>
+    </div>
+    <div>
+        <h2>
+          <a href='#description-index'
+           class='accordion-toggle'
+           data-toggle='collapse'
+           data-parent='#accordion'>
+            GET /users
+          </a>
+          <br>
+          <small>All Users</small>
+        </h2>
+    </div>
+
+
+    <div id='description-index' class='collapse accordion-body'>
+      
+<p>Returns all system users. Only accessible by Admins</p>
+
+
+  <h3>Supported Formats</h3>
+  json
+
+
+
+  <h3>Examples</h3>
+    <pre class="prettyprint">GET /users
+200
+{
+  &quot;users&quot;: [
+    {
+      &quot;id&quot;: 59445,
+      &quot;username&quot;: &quot;calista@paucekheel.biz&quot;,
+      &quot;first_name&quot;: &quot;Bennett&quot;,
+      &quot;last_name&quot;: &quot;Botsford&quot;,
+      &quot;company&quot;: &quot;Mosciski-Abernathy&quot;,
+      &quot;admin&quot;: null,
+      &quot;created_at&quot;: &quot;2017-01-20T20:25:04.028Z&quot;,
+      &quot;updated_at&quot;: &quot;2017-01-20T20:25:04.028Z&quot;
+    },
+    {
+      &quot;id&quot;: 59446,
+      &quot;username&quot;: &quot;kaitlyn_kemmer@wisozk.io&quot;,
+      &quot;first_name&quot;: &quot;Dillon&quot;,
+      &quot;last_name&quot;: &quot;Pfeffer&quot;,
+      &quot;company&quot;: &quot;Price Group&quot;,
+      &quot;admin&quot;: null,
+      &quot;created_at&quot;: &quot;2017-01-20T20:25:04.036Z&quot;,
+      &quot;updated_at&quot;: &quot;2017-01-20T20:25:04.036Z&quot;
+    },
+    {
+      &quot;id&quot;: 59447,
+      &quot;username&quot;: &quot;amiya_ritchie@keeblermayer.com&quot;,
+      &quot;first_name&quot;: &quot;Hector&quot;,
+      &quot;last_name&quot;: &quot;Schoen&quot;,
+      &quot;company&quot;: &quot;Rutherford-Braun&quot;,
+      &quot;admin&quot;: null,
+      &quot;created_at&quot;: &quot;2017-01-20T20:25:04.045Z&quot;,
+      &quot;updated_at&quot;: &quot;2017-01-20T20:25:04.045Z&quot;
+    },
+    {
+      &quot;id&quot;: 59448,
+      &quot;username&quot;: &quot;kari@lesch.io&quot;,
+      &quot;first_name&quot;: &quot;Jeffrey&quot;,
+      &quot;last_name&quot;: &quot;Armstrong&quot;,
+      &quot;company&quot;: &quot;Greenfelder-Halvorson&quot;,
+      &quot;admin&quot;: true,
+      &quot;created_at&quot;: &quot;2017-01-20T20:25:04.053Z&quot;,
+      &quot;updated_at&quot;: &quot;2017-01-20T20:25:04.053Z&quot;
+    }
+  ]
+}</pre>
+
+  <h3>Params</h3>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Param name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+    </tbody>
+  </table>
+
+
+
+    </div>
+    <hr>
+    <div class='pull-right small'>
+      <a href='../apidoc/users/show.html'> >>> </a>
+    </div>
+    <div>
+        <h2>
+          <a href='#description-show'
+           class='accordion-toggle'
+           data-toggle='collapse'
+           data-parent='#accordion'>
+            GET /users/:id
+          </a>
+          <br>
+          <small>User details</small>
+        </h2>
+    </div>
+
+
+    <div id='description-show' class='collapse accordion-body'>
+      
+<p>Returns details of a single user. Admins can see any users. Non-admins can
+only view themselves</p>
+
+
+  <h3>Supported Formats</h3>
+  json
+
+
+
+  <h3>Examples</h3>
+    <pre class="prettyprint">GET /users/59449
+200
+{
+  &quot;user&quot;: {
+    &quot;id&quot;: 59449,
+    &quot;username&quot;: &quot;adam_thiel@wisozk.com&quot;,
+    &quot;first_name&quot;: &quot;Lavinia&quot;,
+    &quot;last_name&quot;: &quot;Waters&quot;,
+    &quot;company&quot;: &quot;Adams-Funk&quot;,
+    &quot;admin&quot;: null,
+    &quot;created_at&quot;: &quot;2017-01-20T20:25:04.091Z&quot;,
+    &quot;updated_at&quot;: &quot;2017-01-20T20:25:04.091Z&quot;
+  }
+}</pre>
+
+  <h3>Params</h3>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Param name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>User ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+    </tbody>
+  </table>
+
+
+
+    </div>
+    <hr>
+    <div class='pull-right small'>
+      <a href='../apidoc/users/find.html'> >>> </a>
+    </div>
+    <div>
+        <h2>
+          <a href='#description-find'
+           class='accordion-toggle'
+           data-toggle='collapse'
+           data-parent='#accordion'>
+            GET /users/find/:username
+          </a>
+          <br>
+          <small>Find by Username</small>
+        </h2>
+    </div>
+
+
+    <div id='description-find' class='collapse accordion-body'>
+      
+<p>Returns is of a single user found by username.</p>
+
+
+  <h3>Supported Formats</h3>
+  json
+
+
+
+  <h3>Examples</h3>
+    <pre class="prettyprint">GET /users/find/clotilde.windler@maggio.org
+200
+{
+  &quot;user&quot;: {
+    &quot;id&quot;: 59450,
+    &quot;username&quot;: &quot;clotilde.windler@maggio.org&quot;
+  }
+}</pre>
+
+  <h3>Params</h3>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Param name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>username </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Username</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+    </tbody>
+  </table>
+
+
+
+    </div>
+    <hr>
+    <div class='pull-right small'>
+      <a href='../apidoc/users/valid_token.html'> >>> </a>
+    </div>
+    <div>
+        <h2>
+          <a href='#description-valid_token'
+           class='accordion-toggle'
+           data-toggle='collapse'
+           data-parent='#accordion'>
+            GET /users/token/valid
+          </a>
+          <br>
+          <small>Checks if a User-Token is valid</small>
+        </h2>
+    </div>
+
+
+    <div id='description-valid_token' class='collapse accordion-body'>
+      
+<p>Returns if a user-token is valid</p>
+
+
+
+
+
+  <h3>Examples</h3>
+    <pre class="prettyprint">GET /users/token/valid
+200
+{
+  &quot;token&quot;: &quot;Valid&quot;
+}</pre>
+
+  <h3>Params</h3>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Param name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>user_token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>User-Token</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+    </tbody>
+  </table>
+
+
+
+    </div>
+    <hr>
+    <div class='pull-right small'>
+      <a href='../apidoc/users/trigger_password_reset.html'> >>> </a>
+    </div>
+    <div>
+        <h2>
+          <a href='#description-trigger_password_reset'
+           class='accordion-toggle'
+           data-toggle='collapse'
+           data-parent='#accordion'>
+            POST /users/reset-password
+          </a>
+          <br>
+          <small>Trigger Password Reset Email</small>
+        </h2>
+    </div>
+
+
+    <div id='description-trigger_password_reset' class='collapse accordion-body'>
+      
+<p>Triggers a password reset email to the User</p>
+
+
+  <h3>Supported Formats</h3>
+  json
+
+
+
+  <h3>Examples</h3>
+    <pre class="prettyprint">POST /users/reset-password
+{
+  &quot;user&quot;: {
+    &quot;username&quot;: &quot;eleazar_langworth@howell.io&quot;
+  },
+  &quot;redirect-to&quot;: &quot;http://some.url/TOKEN&quot;
+}
+200
+{
+  &quot;success&quot;: &quot;Password reset email sent&quot;
+}</pre>
+
+  <h3>Params</h3>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Param name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Username</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+    </tbody>
+  </table>
+
+
+
+    </div>
+    <hr>
+    <div class='pull-right small'>
+      <a href='../apidoc/users/reset_password.html'> >>> </a>
+    </div>
+    <div>
+        <h2>
+          <a href='#description-reset_password'
+           class='accordion-toggle'
+           data-toggle='collapse'
+           data-parent='#accordion'>
+            POST /users/:id/reset-password/:token
+          </a>
+          <br>
+          <small>Update the User Password</small>
+        </h2>
+    </div>
+
+
+    <div id='description-reset_password' class='collapse accordion-body'>
+      
+<p>Reset a User&#39;s password.</p>
+
+
+  <h3>Supported Formats</h3>
+  json
+
+
+
+  <h3>Examples</h3>
+    <pre class="prettyprint">POST /users/59459/reset-password/kBDtn58hrqNj4bkR7ponXCey
+{
+  &quot;user&quot;: {
+    &quot;password&quot;: &quot;NoOneLikesCats&quot;
+  }
+}
+200
+{
+  &quot;user&quot;: {
+    &quot;id&quot;: 59459,
+    &quot;password_digest&quot;: &quot;$2a$04$3wS3CGcZB0/XNNydAvfXsu6yMxOp4Ee2ITR8MkgU9jyx.RwY.mzT6&quot;,
+    &quot;first_name&quot;: &quot;Taya&quot;,
+    &quot;last_name&quot;: &quot;Gutkowski&quot;,
+    &quot;username&quot;: &quot;itzel_huel@kautzer.com&quot;,
+    &quot;company&quot;: &quot;Runolfsson and Sons&quot;,
+    &quot;admin&quot;: null,
+    &quot;deleted&quot;: null,
+    &quot;created_at&quot;: &quot;2017-01-20T20:25:04.479Z&quot;,
+    &quot;updated_at&quot;: &quot;2017-01-20T20:25:04.495Z&quot;
+  }
+}</pre>
+
+  <h3>Params</h3>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Param name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>User ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Password Reset Token</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+    </tbody>
+  </table>
+
+
+
+    </div>
+    <hr>
+    <div class='pull-right small'>
+      <a href='../apidoc/users/create.html'> >>> </a>
+    </div>
+    <div>
+        <h2>
+          <a href='#description-create'
+           class='accordion-toggle'
+           data-toggle='collapse'
+           data-parent='#accordion'>
+            POST /users
+          </a>
+          <br>
+          <small>Create a new user</small>
+        </h2>
+    </div>
+
+
+    <div id='description-create' class='collapse accordion-body'>
+      
+<p>Only accessible by Admins</p>
+
+
+
+
+
+  <h3>Examples</h3>
+    <pre class="prettyprint">POST /users/
+{
+  &quot;user&quot;: {
+    &quot;first_name&quot;: &quot;Chelsie&quot;,
+    &quot;last_name&quot;: &quot;Padberg&quot;,
+    &quot;password&quot;: &quot;1234&quot;,
+    &quot;password_confirmation&quot;: &quot;1234&quot;,
+    &quot;username&quot;: &quot;tyrel.prohaska@jones.io&quot;
+  }
+}
+200
+{
+  &quot;user&quot;: {
+    &quot;id&quot;: 59453,
+    &quot;username&quot;: &quot;tyrel.prohaska@jones.io&quot;,
+    &quot;first_name&quot;: &quot;Chelsie&quot;,
+    &quot;last_name&quot;: &quot;Padberg&quot;,
+    &quot;company&quot;: null,
+    &quot;admin&quot;: null,
+    &quot;created_at&quot;: &quot;2017-01-20T20:25:04.171Z&quot;,
+    &quot;updated_at&quot;: &quot;2017-01-20T20:25:04.171Z&quot;
+  }
+}</pre>
+
+  <h3>Params</h3>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Param name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>user </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a Hash</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+    <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>user[first_name] </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>User&#39;s First name</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>user[last_name] </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>User&#39;s last name</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>user[company] </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>User&#39;s Company</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>user[username] </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>User&#39;s email address. Used to login</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>user[password] </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>User&#39;s password</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>user[admin] </strong><br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>User&#39;s permission level</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be &#39;true&#39; or &#39;false&#39; or &#39;1&#39; or &#39;0&#39;</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+
+    </tbody>
+  </table>
+
+
+
+    </div>
+    <hr>
+    <div class='pull-right small'>
+      <a href='../apidoc/users/update.html'> >>> </a>
+    </div>
+    <div>
+        <h2>
+          <a href='#description-update'
+           class='accordion-toggle'
+           data-toggle='collapse'
+           data-parent='#accordion'>
+            PUT /users/:id
+          </a>
+          <br>
+          <small>Update existing user</small>
+        </h2>
+    </div>
+
+
+    <div id='description-update' class='collapse accordion-body'>
+      
+<p>Only accessible by admin users</p>
+
+
+
+
+
+  <h3>Examples</h3>
+    <pre class="prettyprint">PUT /users/59455
+{
+  &quot;user&quot;: {
+    &quot;first_name&quot;: &quot;Tom&quot;,
+    &quot;last_name&quot;: &quot;Jones&quot;,
+    &quot;username&quot;: &quot;tom.jones@singing.com&quot;,
+    &quot;company&quot;: &quot;singing&quot;,
+    &quot;admin&quot;: true
+  }
+}
+200
+{
+  &quot;user&quot;: {
+    &quot;id&quot;: 59455,
+    &quot;username&quot;: &quot;tom.jones@singing.com&quot;,
+    &quot;first_name&quot;: &quot;Tom&quot;,
+    &quot;last_name&quot;: &quot;Jones&quot;,
+    &quot;company&quot;: &quot;singing&quot;,
+    &quot;admin&quot;: true,
+    &quot;created_at&quot;: &quot;2017-01-20T20:25:04.192Z&quot;,
+    &quot;updated_at&quot;: &quot;2017-01-20T20:25:04.205Z&quot;
+  }
+}</pre>
+
+  <h3>Params</h3>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Param name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>User ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>user </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a Hash</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+    <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>user[first_name] </strong><br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>User&#39;s First name</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>user[last_name] </strong><br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>User&#39;s last name</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>user[company] </strong><br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>User&#39;s Company</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>user[username] </strong><br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>User&#39;s email address. Used to login</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>user[password] </strong><br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>User&#39;s password</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>user[admin] </strong><br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>User&#39;s permission level</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be &#39;true&#39; or &#39;false&#39; or &#39;1&#39; or &#39;0&#39;</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+
+    </tbody>
+  </table>
+
+
+
+    </div>
+    <hr>
+    <div class='pull-right small'>
+      <a href='../apidoc/users/destroy.html'> >>> </a>
+    </div>
+    <div>
+        <h2>
+          <a href='#description-destroy'
+           class='accordion-toggle'
+           data-toggle='collapse'
+           data-parent='#accordion'>
+            DELETE /users/:id
+          </a>
+          <br>
+          <small>Delete existing user</small>
+        </h2>
+    </div>
+
+
+    <div id='description-destroy' class='collapse accordion-body'>
+      
+<p>Only accessible by admin users</p>
+
+
+
+
+
+  <h3>Examples</h3>
+    <pre class="prettyprint">DELETE /users/59457
+200
+{
+  &quot;user&quot;: &quot;Deleted&quot;
+}</pre>
+
+  <h3>Params</h3>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Param name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>User ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+    </tbody>
+  </table>
+
+
+
+    </div>
+</div>
+
+
+        
+      </div>
+    </div>
+    <hr>
+    <footer></footer>
+  </div>
+  <script type='text/javascript' src='../apidoc/javascripts/bundled/jquery.js'></script>
+<script type='text/javascript' src='../apidoc/javascripts/bundled/bootstrap-collapse.js'></script>
+<script type='text/javascript' src='../apidoc/javascripts/bundled/prettify.js'></script>
+<script type='text/javascript' src='../apidoc/javascripts/apipie.js'></script>
+</body>
+</html>

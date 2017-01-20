@@ -158,7 +158,6 @@ describe "USERS API::" , :type => :api do
     let (:admin) { FactoryGirl.create(:user, :admin) }
 
     before do
-      header 'User-Token', user.user_tokens.first.token
       get "/users/find/#{user.username}"
     end
 
@@ -168,16 +167,7 @@ describe "USERS API::" , :type => :api do
 
     it 'returns user details' do
       expect(json).to include('user')
-    end
-
-    context 'for a different user' do
-      before do
-        header 'User-Token', user.user_tokens.first.token
-        other_user = FactoryGirl.create(:user)
-        get "/users/find/#{other_user.username}"
-      end
-
-      it_behaves_like 'a forbidden request'
+      expect(json['user']).to include 'id'
     end
 
     context 'with invalid username' do
@@ -189,21 +179,6 @@ describe "USERS API::" , :type => :api do
       it_behaves_like 'a not found request'
     end
 
-    context 'as an admin' do
-      before do
-        header 'User-Token', admin.user_tokens.first.token
-        other_user = FactoryGirl.create(:user)
-        get "/users/find/#{other_user.username}"
-      end
-
-      it 'responds succesfully' do
-        expect(last_response.status).to eq 200
-      end
-
-      it 'returns user details' do
-        expect(json).to include('user')
-      end
-    end
   end
 
   describe 'check token status' do

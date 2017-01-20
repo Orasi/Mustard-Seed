@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>API documentation</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link type='text/css' rel='stylesheet' href='../../apidoc/stylesheets/bundled/bootstrap.min.css'/>
+<link type='text/css' rel='stylesheet' href='../../apidoc/stylesheets/bundled/prettify.css'/>
+<link type='text/css' rel='stylesheet' href='../../apidoc/stylesheets/bundled/bootstrap-responsive.min.css'/>
+  <link type='text/css' rel='stylesheet' href='../../apidoc/stylesheets/application.css'/>
+  <!-- IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div id='container'>
+        <ul class='breadcrumb'>
+  <li>
+    <a href='../../apidoc.html'>Mustard 1.0</a>
+    <span class='divider'>/</span>
+  </li>
+  <li>
+    <a href='../../apidoc/executions.html'>
+      Executions
+      
+    </a>
+    <span class='divider'>/</span>
+  </li>
+  <li class='active'>testcase_detail</li>
+  
+
+</ul>
+
+  <div class='page-header'>
+    <h1>
+      GET /executions/:id/testcases/:testcase_id
+      <br>
+      <small>Testcase Detail</small>
+    </h1>
+  </div>
+
+<div>
+
+  
+<p>Shows latest results in all environments for a given testcase</p>
+
+
+
+
+  <h2>Metadata</h2>
+  <pre class="prettyprint lang-yaml">--- Only accessible if project is viewable by current user
+...
+</pre>
+
+
+  <h2>Examples</h2>
+    <pre class="prettyprint">GET /executions/24528/testcases/93303
+200
+{
+  &quot;testcase&quot;: {
+    &quot;id&quot;: 93303,
+    &quot;testcase_name&quot;: &quot;Enim illum perspiciatis similique vitae.&quot;,
+    &quot;validation_id&quot;: 3676848,
+    &quot;project_id&quot;: 24487,
+    &quot;execution_id&quot;: &quot;24528&quot;,
+    &quot;reproduction_steps&quot;: [
+      {
+        &quot;step_number&quot;: 1,
+        &quot;action&quot;: &quot;Hic distinctio voluptatem magnam est iure.&quot;,
+        &quot;result&quot;: &quot;Error quia quis sit exercitationem sint iusto.&quot;
+      },
+      {
+        &quot;step_number&quot;: 2,
+        &quot;action&quot;: &quot;Cupiditate dignissimos earum quia eius praesentium.&quot;,
+        &quot;result&quot;: &quot;Alias doloremque laudantium odio enim illum.&quot;
+      },
+      {
+        &quot;step_number&quot;: 3,
+        &quot;action&quot;: &quot;Placeat voluptas sed neque velit quaerat quisquam veniam.&quot;,
+        &quot;result&quot;: &quot;Et molestiae reprehenderit voluptas quas corrupti.&quot;
+      }
+    ],
+    &quot;manual_results&quot;: [
+      {
+        &quot;id&quot;: 113930,
+        &quot;created_by_name&quot;: &quot;Keyshawn Tremblay&quot;,
+        &quot;created_by_id&quot;: 59313,
+        &quot;created_at&quot;: &quot;2017-01-20T15:24:54.347-05:00&quot;,
+        &quot;result_type&quot;: &quot;manual&quot;,
+        &quot;comment&quot;: &quot;Sint ad tempore sit maxime est.&quot;,
+        &quot;status&quot;: &quot;skip&quot;
+      },
+      {
+        &quot;id&quot;: 113930,
+        &quot;created_by_name&quot;: &quot;Keyshawn Tremblay&quot;,
+        &quot;created_by_id&quot;: 59313,
+        &quot;created_at&quot;: &quot;2017-01-20T15:24:54.347-05:00&quot;,
+        &quot;result_type&quot;: &quot;manual&quot;,
+        &quot;comment&quot;: &quot;Qui velit dolorem at repellat tenetur ab.&quot;,
+        &quot;status&quot;: &quot;fail&quot;
+      },
+      {
+        &quot;id&quot;: 113930,
+        &quot;created_by_name&quot;: &quot;Keyshawn Tremblay&quot;,
+        &quot;created_by_id&quot;: 59313,
+        &quot;created_at&quot;: &quot;2017-01-20T15:24:54.337-05:00&quot;,
+        &quot;result_type&quot;: &quot;manual&quot;,
+        &quot;comment&quot;: &quot;Consequatur quas quidem et odio quis id.&quot;,
+        &quot;status&quot;: &quot;pass&quot;
+      }
+    ],
+    &quot;automated_results&quot;: [
+      {
+        &quot;id&quot;: 113928,
+        &quot;environment_id&quot;: 109676,
+        &quot;environment_name&quot;: &quot;6cda059eea2e1ed18d3c9caa34b8dc37&quot;,
+        &quot;environment_type&quot;: &quot;Undefined&quot;,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;comment&quot;: &quot;Quaerat explicabo qui ab omnis.&quot;,
+        &quot;stacktrace&quot;: &quot;Necessitatibus est at eos tempora aut. Incidunt assumenda quod nam dolorem deserunt est. Atque reprehenderit ullam id quo occaecati praesentium. Modi vitae commodi. Quo officia mollitia veniam cum ut consectetur.&quot;,
+        &quot;link&quot;: &quot;http://waelchimills.info/elroy&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:54.320Z&quot;,
+        &quot;status&quot;: &quot;fail&quot;
+      },
+      {
+        &quot;id&quot;: 113926,
+        &quot;environment_id&quot;: 109674,
+        &quot;environment_name&quot;: &quot;34acfbae848cc6368cd20ed7b6fa2717&quot;,
+        &quot;environment_type&quot;: &quot;Undefined&quot;,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;comment&quot;: &quot;Vel cum sit adipisci qui.&quot;,
+        &quot;stacktrace&quot;: &quot;Enim fugiat repellendus tenetur illo. Magnam mollitia totam sit quis. Provident quo et impedit in velit maxime.&quot;,
+        &quot;link&quot;: &quot;http://erdmanfay.org/dahlia.schmitt&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:54.303Z&quot;,
+        &quot;status&quot;: &quot;pass&quot;
+      },
+      {
+        &quot;id&quot;: 113925,
+        &quot;environment_id&quot;: 109673,
+        &quot;environment_name&quot;: &quot;c3ca413cd07e4050efbbf21258d3c5ae&quot;,
+        &quot;environment_type&quot;: &quot;Undefined&quot;,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;comment&quot;: &quot;Voluptatem quas velit cumque possimus quos reiciendis magni debitis.&quot;,
+        &quot;stacktrace&quot;: &quot;Quidem nam doloribus labore aliquid distinctio. Omnis debitis et ea omnis eos quae. Sed quibusdam provident quia.&quot;,
+        &quot;link&quot;: &quot;http://balistreri.net/kaden.emard&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:54.294Z&quot;,
+        &quot;status&quot;: &quot;pass&quot;
+      },
+      {
+        &quot;id&quot;: 113929,
+        &quot;environment_id&quot;: 109677,
+        &quot;environment_name&quot;: &quot;5ca57d00aa20d0fa4736479f1fe01f9e&quot;,
+        &quot;environment_type&quot;: &quot;Undefined&quot;,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;comment&quot;: &quot;Est quis nesciunt nisi qui neque.&quot;,
+        &quot;stacktrace&quot;: &quot;Minus rem et ut. Non repudiandae suscipit dolorum adipisci qui est eligendi. Nam placeat eum molestias.&quot;,
+        &quot;link&quot;: &quot;http://harber.name/prince&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:54.329Z&quot;,
+        &quot;status&quot;: &quot;skip&quot;
+      },
+      {
+        &quot;id&quot;: 113927,
+        &quot;environment_id&quot;: 109675,
+        &quot;environment_name&quot;: &quot;d1b9a177ff985adf1a691cc56e00df13&quot;,
+        &quot;environment_type&quot;: &quot;Undefined&quot;,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;comment&quot;: &quot;Molestias laboriosam ipsa officiis et optio.&quot;,
+        &quot;stacktrace&quot;: &quot;Cum vitae illum nam non doloribus earum et. Recusandae tempore illum officiis assumenda rerum. Molestiae qui iusto voluptatum cupiditate consequuntur aut. Rerum velit deleniti molestias placeat. Fugiat quae dolorem hic cupiditate eaque nesciunt nulla.&quot;,
+        &quot;link&quot;: &quot;http://glover.info/tyler&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:54.311Z&quot;,
+        &quot;status&quot;: &quot;skip&quot;
+      }
+    ]
+  }
+}</pre>
+
+  <h2>Params</h2>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Param name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Execution ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>testcase_id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Testcase ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+    </tbody>
+  </table>
+
+
+
+</div>
+
+
+        
+      </div>
+    </div>
+    <hr>
+    <footer></footer>
+  </div>
+  <script type='text/javascript' src='../../apidoc/javascripts/bundled/jquery.js'></script>
+<script type='text/javascript' src='../../apidoc/javascripts/bundled/bootstrap-collapse.js'></script>
+<script type='text/javascript' src='../../apidoc/javascripts/bundled/prettify.js'></script>
+<script type='text/javascript' src='../../apidoc/javascripts/apipie.js'></script>
+</body>
+</html>

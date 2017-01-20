@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>API documentation</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link type='text/css' rel='stylesheet' href='./apidoc/stylesheets/bundled/bootstrap.min.css'/>
+<link type='text/css' rel='stylesheet' href='./apidoc/stylesheets/bundled/prettify.css'/>
+<link type='text/css' rel='stylesheet' href='./apidoc/stylesheets/bundled/bootstrap-responsive.min.css'/>
+  <link type='text/css' rel='stylesheet' href='./apidoc/stylesheets/application.css'/>
+  <!-- IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div id='container'>
+        <ul class='breadcrumb'>
+  <li class='active'><a href='./apidoc.html'>Mustard 1.0</a></li>
+  
+</ul>
+
+<div>
+<p>API documentation for the Mustard Results Server</p>
+</div>
+
+<h1 class='page-header'>Resources</h1>
+
+  <h2>
+    <a href='./apidoc/application.html'>
+      Application
+    </a><br>
+    <small></small>
+  </h2>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Resource</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+          <tr>
+            <td>
+              <a href='./apidoc/application/authenticate.html'>POST /authenticate</a>
+            </td>
+            <td width='60%'>Login</td>
+          </tr>
+    </tbody>
+  </table>
+  <h2>
+    <a href='./apidoc/downloads.html'>
+      Downloads
+    </a><br>
+    <small></small>
+  </h2>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Resource</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+          <tr>
+            <td>
+              <a href='./apidoc/downloads/show.html'>GET /downloads/:token</a>
+            </td>
+            <td width='60%'>Access download</td>
+          </tr>
+    </tbody>
+  </table>
+  <h2>
+    <a href='./apidoc/environments.html'>
+      Environments
+    </a><br>
+    <small></small>
+  </h2>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Resource</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+          <tr>
+            <td>
+              <a href='./apidoc/environments/show.html'>GET /environments/:id</a>
+            </td>
+            <td width='60%'>Environment details</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/environments/create.html'>POST /environments</a>
+            </td>
+            <td width='60%'>Create new environment</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/environments/update.html'>PUT /environments/:id</a>
+            </td>
+            <td width='60%'>Update existing environment</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/environments/destroy.html'>DELETE /environments/:id</a>
+            </td>
+            <td width='60%'>Delete existing environment</td>
+          </tr>
+    </tbody>
+  </table>
+  <h2>
+    <a href='./apidoc/executions.html'>
+      Executions
+    </a><br>
+    <small></small>
+  </h2>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Resource</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+          <tr>
+            <td>
+              <a href='./apidoc/executions/testcase_count.html'>get /executions/:id/testcase-count</a>
+            </td>
+            <td width='60%'>Testcase Count</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/executions/environment_count.html'>get /executions/:id/environment-count</a>
+            </td>
+            <td width='60%'>Environment Count</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/executions/testcase_summary.html'>GET /executions/:id/testcase_summary</a>
+            </td>
+            <td width='60%'>Testcase Summary</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/executions/environment_summary.html'>GET /executions/:id/environment_summary</a>
+            </td>
+            <td width='60%'>Environment Summary</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/executions/testcase_status.html'>GET /executions/:id/testcase_status</a>
+            </td>
+            <td width='60%'>Execution Details</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/executions/testcase_detail.html'>GET /executions/:id/testcases/:testcase_id</a>
+            </td>
+            <td width='60%'>Testcase Detail</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/executions/environment_detail.html'>GET /executions/:id/environments/:environment_id</a>
+            </td>
+            <td width='60%'>Environment Detail</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/executions/incomplete_tests.html'>GET /executions/:id/incomplete_tests</a>
+            </td>
+            <td width='60%'>List Incomplete Tests</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/executions/close.html'>POST /executions/close</a>
+            </td>
+            <td width='60%'>Close execution</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/executions/destroy.html'>DELETE /executions/:id</a>
+            </td>
+            <td width='60%'>Delete execution</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/executions/next_incomplete_test.html'>GET /executions/:id/next_test</a>
+            </td>
+            <td width='60%'>Next Incomplete Test</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/executions/failing_tests.html'>GET /executions/:project_key/failing</a>
+            </td>
+            <td width='60%'>Get all failing tests</td>
+          </tr>
+    </tbody>
+  </table>
+  <h2>
+    <a href='./apidoc/projects.html'>
+      Projects
+    </a><br>
+    <small></small>
+  </h2>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Resource</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+          <tr>
+            <td>
+              <a href='./apidoc/projects/index.html'>GET /projects</a>
+            </td>
+            <td width='60%'>All Projects</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/projects/show.html'>GET /projects/:id</a>
+            </td>
+            <td width='60%'>Project details</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/projects/create.html'>POST /projects</a>
+            </td>
+            <td width='60%'>Create new project</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/projects/update.html'>PUT /projects/:id</a>
+            </td>
+            <td width='60%'>Update existing project</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/projects/destroy.html'>DELETE /projects/:id</a>
+            </td>
+            <td width='60%'>Delete existing project</td>
+          </tr>
+    </tbody>
+  </table>
+  <h2>
+    <a href='./apidoc/results.html'>
+      Results
+    </a><br>
+    <small></small>
+  </h2>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Resource</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+          <tr>
+            <td>
+              <a href='./apidoc/results/recent.html'>GET recent-results</a>
+            </td>
+            <td width='60%'>Recent Results</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/results/show.html'>GET /results/:id</a>
+            </td>
+            <td width='60%'>Result details</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/results/screenshot.html'>GET /results/:id/screenshot/:screenshot_id</a>
+            </td>
+            <td width='60%'>Access result screenshot</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/results/create.html'>POST /results</a>
+            </td>
+            <td width='60%'>Create new result</td>
+          </tr>
+    </tbody>
+  </table>
+  <h2>
+    <a href='./apidoc/teams.html'>
+      Teams
+    </a><br>
+    <small></small>
+  </h2>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Resource</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+          <tr>
+            <td>
+              <a href='./apidoc/teams/index.html'>GET /teams</a>
+            </td>
+            <td width='60%'>All teams</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/teams/show.html'>GET /teams/:id</a>
+            </td>
+            <td width='60%'>Team details</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/teams/create.html'>POST /teams</a>
+            </td>
+            <td width='60%'>Create new team</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/teams/update.html'>PUT /teams/:id</a>
+            </td>
+            <td width='60%'>Update existing team</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/teams/destroy.html'>DELETE /teams/:id</a>
+            </td>
+            <td width='60%'>Delete existing team</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/teams/add_user.html'>POST /teams/:id/user/:user_id</a>
+            </td>
+            <td width='60%'>Add existing user to team</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/teams/add_project.html'>POST /teams/:id/projects/:project_id</a>
+            </td>
+            <td width='60%'>Add existing project to team</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/teams/remove_user.html'>DELETE /teams/:id/user/:user_id</a>
+            </td>
+            <td width='60%'>Remove user from team</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/teams/remove_project.html'>DELETE /teams/:id/projects/:project_id</a>
+            </td>
+            <td width='60%'>Remove project from team</td>
+          </tr>
+    </tbody>
+  </table>
+  <h2>
+    <a href='./apidoc/testcases.html'>
+      Testcases
+    </a><br>
+    <small></small>
+  </h2>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Resource</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+          <tr>
+            <td>
+              <a href='./apidoc/testcases/show.html'>GET /testcases/:id</a>
+            </td>
+            <td width='60%'>Testcase details</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/testcases/create.html'>POST /testcases</a>
+            </td>
+            <td width='60%'>Create new testcase</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/testcases/update.html'>PUT /testcases</a>
+            </td>
+            <td width='60%'>Update existing testcase</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/testcases/destroy.html'>DELETE /testcases/:id</a>
+            </td>
+            <td width='60%'>Delete existing testcase</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/testcases/export.html'>GET /projects/:id/testcases/export[.format]</a>
+            </td>
+            <td width='60%'>Export testcases</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/testcases/import.html'>POST /projects/:id/import</a>
+            </td>
+            <td width='60%'>Import testcases</td>
+          </tr>
+    </tbody>
+  </table>
+  <h2>
+    <a href='./apidoc/users.html'>
+      Users
+    </a><br>
+    <small></small>
+  </h2>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Resource</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+          <tr>
+            <td>
+              <a href='./apidoc/users/index.html'>GET /users</a>
+            </td>
+            <td width='60%'>All Users</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/users/show.html'>GET /users/:id</a>
+            </td>
+            <td width='60%'>User details</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/users/find.html'>GET /users/find/:username</a>
+            </td>
+            <td width='60%'>Find by Username</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/users/valid_token.html'>GET /users/token/valid</a>
+            </td>
+            <td width='60%'>Checks if a User-Token is valid</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/users/trigger_password_reset.html'>POST /users/reset-password</a>
+            </td>
+            <td width='60%'>Trigger Password Reset Email</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/users/reset_password.html'>POST /users/:id/reset-password/:token</a>
+            </td>
+            <td width='60%'>Update the User Password</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/users/create.html'>POST /users</a>
+            </td>
+            <td width='60%'>Create a new user</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/users/update.html'>PUT /users/:id</a>
+            </td>
+            <td width='60%'>Update existing user</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/users/destroy.html'>DELETE /users/:id</a>
+            </td>
+            <td width='60%'>Delete existing user</td>
+          </tr>
+    </tbody>
+  </table>
+
+
+        
+      </div>
+    </div>
+    <hr>
+    <footer></footer>
+  </div>
+  <script type='text/javascript' src='./apidoc/javascripts/bundled/jquery.js'></script>
+<script type='text/javascript' src='./apidoc/javascripts/bundled/bootstrap-collapse.js'></script>
+<script type='text/javascript' src='./apidoc/javascripts/bundled/prettify.js'></script>
+<script type='text/javascript' src='./apidoc/javascripts/apipie.js'></script>
+</body>
+</html>

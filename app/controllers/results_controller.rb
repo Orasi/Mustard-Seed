@@ -13,7 +13,6 @@ class ResultsController < ApplicationController
       param :comment, String, 'Comment'
       param :stacktrace, String, 'Stacktrace'
       param :link, String, 'Link to external result'
-      param :execution_id, :number, 'Execution ID. Required for Manual result type'
       param :screenshot, String, 'Base64 encoded screenshot'
       param :step_log, String, 'JSON Step Log of test'
     end
@@ -49,7 +48,7 @@ class ResultsController < ApplicationController
            status: :not_found and return unless @result
 
     render json: {error: 'Not authorized to access this resource'},
-           status: :unauthorized and return unless @current_user.projects.include? @result.execution.project
+           status: :forbidden and return unless @current_user.projects.include? @result.execution.project
 
   end
 
@@ -69,7 +68,7 @@ class ResultsController < ApplicationController
            status: :not_found and return unless @result
 
     render json: {error: 'Not authorized to access this resource'},
-           status: :unauthorized and return unless @current_user.projects.include? @result.execution.project
+           status: :forbidden and return unless @current_user.projects.include? @result.execution.project
 
     @result.results.each do |r|
       if r['screenshot_id'].to_s == params[:screenshot_id]
@@ -93,8 +92,7 @@ class ResultsController < ApplicationController
 
   api :POST, '/results/', 'Create new result'
   description 'Creates a result for project based on API KEY'
-  meta 'Unauthenticated path.  User-Token header is not required'
-  param 'User-Token', nil
+  meta 'Unauthenticated path for automated results,  User-Token header is not required.  For manual result User-Token header is required'
   param_group :result
   def create
 
@@ -114,6 +112,7 @@ class ResultsController < ApplicationController
       if result_params['result_type'] == 'manual'
         authenticated = require_user_token
         return unless authenticated
+
         result_params['created_by_id'] = @current_user.id
         result_params['created_by_name'] = "#{@current_user.first_name} #{@current_user.last_name}".titleize
       end
@@ -148,6 +147,10 @@ class ResultsController < ApplicationController
         # Return error if project not found
         project = execution.project
         render json: {error: 'Project not found'}, status: :not_found and return unless project
+
+        #Non-Admin users are not allowed write access to projects they don't have view access for
+        render json: {error: 'Not authorized to access this resource'},
+               status: :forbidden and return unless @current_user.projects.include? project
       else
 
         # Find project based on API Key
@@ -223,13 +226,15 @@ class ResultsController < ApplicationController
       result.current_status = result_params[:status]
 
 
-      # If result fails to save return an error to the client
-      render json: {error: result.errors},
-             status: :bad_request and return unless result.save
+      if result.save
+        # Render new result as json
+        render json: {result: result}
 
-
-      # Render new result as json
-      render json: {result: result}
+      else
+        # If result fails to save return an error to the client
+        render json: {error: result.errors},
+               status: :bad_request and return
+      end
 
     end
 

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>API documentation</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link type='text/css' rel='stylesheet' href='../../apidoc/stylesheets/bundled/bootstrap.min.css'/>
+<link type='text/css' rel='stylesheet' href='../../apidoc/stylesheets/bundled/prettify.css'/>
+<link type='text/css' rel='stylesheet' href='../../apidoc/stylesheets/bundled/bootstrap-responsive.min.css'/>
+  <link type='text/css' rel='stylesheet' href='../../apidoc/stylesheets/application.css'/>
+  <!-- IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div id='container'>
+        <ul class='breadcrumb'>
+  <li>
+    <a href='../../apidoc.html'>Mustard 1.0</a>
+    <span class='divider'>/</span>
+  </li>
+  <li>
+    <a href='../../apidoc/executions.html'>
+      Executions
+      
+    </a>
+    <span class='divider'>/</span>
+  </li>
+  <li class='active'>environment_detail</li>
+  
+
+</ul>
+
+  <div class='page-header'>
+    <h1>
+      GET /executions/:id/environments/:environment_id
+      <br>
+      <small>Environment Detail</small>
+    </h1>
+  </div>
+
+<div>
+
+  
+<p>Shows latest results in all environments for a given testcase</p>
+
+
+
+
+  <h2>Metadata</h2>
+  <pre class="prettyprint lang-yaml">--- Only accessible if project is viewable by current user
+...
+</pre>
+
+
+  <h2>Examples</h2>
+    <pre class="prettyprint">GET /executions/24529/environments/109678
+200
+{
+  &quot;environment&quot;: {
+    &quot;id&quot;: 109678,
+    &quot;uuid&quot;: &quot;18f9167ffabd6b21e9d58ea8da2b15f5&quot;,
+    &quot;environment_type&quot;: &quot;Undefined&quot;,
+    &quot;results&quot;: [
+      {
+        &quot;id&quot;: 113955,
+        &quot;testcase_id&quot;: 93308,
+        &quot;validation_id&quot;: 2693944,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;comment&quot;: &quot;Vitae et nobis nihil expedita veritatis enim quis.&quot;,
+        &quot;stacktrace&quot;: &quot;Ea eos nihil iure odio. Qui rem nihil voluptatum accusantium repellat non. Fuga rerum nobis eveniet quia. Molestias dolores nemo. Et facilis consequatur vitae dolore itaque quidem.&quot;,
+        &quot;link&quot;: &quot;http://breitenberg.org/anibal&quot;,
+        &quot;name&quot;: &quot;pass&quot;
+      },
+      {
+        &quot;id&quot;: 113961,
+        &quot;testcase_id&quot;: 93309,
+        &quot;validation_id&quot;: 8824287,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;comment&quot;: &quot;Voluptatem nulla ea placeat ipsa eos maxime laborum adipisci.&quot;,
+        &quot;stacktrace&quot;: &quot;Ea vel eum autem qui. Expedita necessitatibus facere placeat vero enim aut odio. Placeat nisi ut ea qui. Ut id corporis quo eaque dolor qui quo. Laboriosam vitae occaecati velit repudiandae.&quot;,
+        &quot;link&quot;: &quot;http://nolan.org/irwin_cruickshank&quot;,
+        &quot;name&quot;: &quot;fail&quot;
+      },
+      {
+        &quot;id&quot;: 113967,
+        &quot;testcase_id&quot;: 93310,
+        &quot;validation_id&quot;: 6574255,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;comment&quot;: &quot;Dolorem ut dicta dolores et esse qui.&quot;,
+        &quot;stacktrace&quot;: &quot;A quas dolorem alias. Ut et vel inventore et ducimus. Saepe enim numquam dicta.&quot;,
+        &quot;link&quot;: &quot;http://lehner.info/jaydon&quot;,
+        &quot;name&quot;: &quot;pass&quot;
+      },
+      {
+        &quot;id&quot;: 113973,
+        &quot;testcase_id&quot;: 93311,
+        &quot;validation_id&quot;: 7393791,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;comment&quot;: &quot;Corporis iure id fuga reiciendis et est dignissimos aperiam.&quot;,
+        &quot;stacktrace&quot;: &quot;Sint molestiae ullam. Et alias doloremque non placeat voluptatem. Molestiae sed aut voluptatem. Sequi blanditiis animi ipsum quasi facilis.&quot;,
+        &quot;link&quot;: &quot;http://stark.name/jaylen&quot;,
+        &quot;name&quot;: &quot;fail&quot;
+      },
+      {
+        &quot;id&quot;: 113979,
+        &quot;testcase_id&quot;: 93312,
+        &quot;validation_id&quot;: 5565896,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;comment&quot;: &quot;Dolores labore consectetur temporibus corrupti velit alias.&quot;,
+        &quot;stacktrace&quot;: &quot;Et omnis quo optio nihil quidem repudiandae. Expedita error corporis quisquam eius sunt nostrum sapiente. Velit recusandae consequatur ut porro. Ex non repellat vel magnam quaerat labore aut.&quot;,
+        &quot;link&quot;: &quot;http://bernier.com/jett_sporer&quot;,
+        &quot;name&quot;: &quot;skip&quot;
+      }
+    ]
+  }
+}</pre>
+
+  <h2>Params</h2>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Param name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Execution ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>environment_id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Environment ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+    </tbody>
+  </table>
+
+
+
+</div>
+
+
+        
+      </div>
+    </div>
+    <hr>
+    <footer></footer>
+  </div>
+  <script type='text/javascript' src='../../apidoc/javascripts/bundled/jquery.js'></script>
+<script type='text/javascript' src='../../apidoc/javascripts/bundled/bootstrap-collapse.js'></script>
+<script type='text/javascript' src='../../apidoc/javascripts/bundled/prettify.js'></script>
+<script type='text/javascript' src='../../apidoc/javascripts/apipie.js'></script>
+</body>
+</html>

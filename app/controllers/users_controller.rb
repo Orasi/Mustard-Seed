@@ -52,8 +52,9 @@ class UsersController < ApplicationController
 
   api :GET, '/users/find/:username', 'Find by Username'
   param :username, String, 'Username', required: true
+  param 'User-Token', nil
   formats ['json']
-  description "Returns details of a single user found by username. Admins can see any users. Non-admins can only view themselves"
+  description "Returns is of a single user found by username."
   def find
 
     @user = User.find_by_username(params[:username])
@@ -61,10 +62,7 @@ class UsersController < ApplicationController
     render json: {error: "User not found"},
            status: :not_found and return unless @user
 
-    render json: {error: 'Not authorized to access this resource'},
-           status: :forbidden and return false unless @current_user == @user
-
-    render :show
+  render json: {user: {id: @user.id, username: @user.username}}
 
   end
 
@@ -84,6 +82,7 @@ class UsersController < ApplicationController
 
     render json: {token: 'Valid'}
   end
+
 
   api :POST, '/users/reset-password', 'Trigger Password Reset Email'
   param :id, String, 'Username', required: true

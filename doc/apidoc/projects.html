@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>API documentation</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link type='text/css' rel='stylesheet' href='../apidoc/stylesheets/bundled/bootstrap.min.css'/>
+<link type='text/css' rel='stylesheet' href='../apidoc/stylesheets/bundled/prettify.css'/>
+<link type='text/css' rel='stylesheet' href='../apidoc/stylesheets/bundled/bootstrap-responsive.min.css'/>
+  <link type='text/css' rel='stylesheet' href='../apidoc/stylesheets/application.css'/>
+  <!-- IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div id='container'>
+        <ul class='breadcrumb'>
+  <li>
+    <a href='../apidoc.html'>Mustard 1.0</a>
+    <span class='divider'>/</span>
+  </li>
+  <li class='active'>
+    Projects
+    
+  </li>
+  
+</ul>
+
+<div class='page-header'>
+  <h1>
+    Projects
+    <br>
+    <small></small>
+  </h1>
+</div>
+
+
+
+
+
+
+<div class='accordion' id='accordion'>
+
+    <hr>
+    <div class='pull-right small'>
+      <a href='../apidoc/projects/index.html'> >>> </a>
+    </div>
+    <div>
+        <h2>
+          <a href='#description-index'
+           class='accordion-toggle'
+           data-toggle='collapse'
+           data-parent='#accordion'>
+            GET /projects
+          </a>
+          <br>
+          <small>All Projects</small>
+        </h2>
+    </div>
+
+
+    <div id='description-index' class='collapse accordion-body'>
+      
+<p>Returns all projects viewable by current user</p>
+
+
+
+
+
+  <h3>Examples</h3>
+    <pre class="prettyprint">GET /projects
+200
+{
+  &quot;projects&quot;: [
+    {
+      &quot;id&quot;: 24495,
+      &quot;project_name&quot;: &quot;Zulauf and Sons&quot;,
+      &quot;api_key&quot;: &quot;edddaab7ceb9335acb70a9b86d36b40f&quot;,
+      &quot;created_at&quot;: &quot;2017-01-20T20:24:57.214Z&quot;,
+      &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.273Z&quot;,
+      &quot;execution_id&quot;: 24539
+    },
+    {
+      &quot;id&quot;: 24496,
+      &quot;project_name&quot;: &quot;Lemke-Dickinson&quot;,
+      &quot;api_key&quot;: &quot;e684331faaa82d38fbdca18f4c4805d4&quot;,
+      &quot;created_at&quot;: &quot;2017-01-20T20:24:57.280Z&quot;,
+      &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.338Z&quot;,
+      &quot;execution_id&quot;: 24540
+    },
+    {
+      &quot;id&quot;: 24497,
+      &quot;project_name&quot;: &quot;Beer, Aufderhar and Abshire&quot;,
+      &quot;api_key&quot;: &quot;a2724c55ed9b743a2425c09136442741&quot;,
+      &quot;created_at&quot;: &quot;2017-01-20T20:24:57.345Z&quot;,
+      &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.414Z&quot;,
+      &quot;execution_id&quot;: 24541
+    },
+    {
+      &quot;id&quot;: 24498,
+      &quot;project_name&quot;: &quot;Okuneva Inc&quot;,
+      &quot;api_key&quot;: &quot;1afabf0d65787a9054c5dca07a260539&quot;,
+      &quot;created_at&quot;: &quot;2017-01-20T20:24:57.422Z&quot;,
+      &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.486Z&quot;,
+      &quot;execution_id&quot;: 24542
+    },
+    {
+      &quot;id&quot;: 24499,
+      &quot;project_name&quot;: &quot;Botsford LLC&quot;,
+      &quot;api_key&quot;: &quot;5155ce33f0b4d78377244097d38b5585&quot;,
+      &quot;created_at&quot;: &quot;2017-01-20T20:24:57.494Z&quot;,
+      &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.559Z&quot;,
+      &quot;execution_id&quot;: 24543
+    }
+  ]
+}</pre>
+
+  <h3>Params</h3>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Param name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+    </tbody>
+  </table>
+
+
+
+    </div>
+    <hr>
+    <div class='pull-right small'>
+      <a href='../apidoc/projects/show.html'> >>> </a>
+    </div>
+    <div>
+        <h2>
+          <a href='#description-show'
+           class='accordion-toggle'
+           data-toggle='collapse'
+           data-parent='#accordion'>
+            GET /projects/:id
+          </a>
+          <br>
+          <small>Project details</small>
+        </h2>
+    </div>
+
+
+    <div id='description-show' class='collapse accordion-body'>
+      
+<p>Only accessible if project is viewable by current user</p>
+
+
+
+
+
+  <h3>Examples</h3>
+    <pre class="prettyprint">GET /projects/24500
+200
+{
+  &quot;project&quot;: {
+    &quot;id&quot;: 24500,
+    &quot;project_name&quot;: &quot;Orn, Brekke and Turcotte&quot;,
+    &quot;api_key&quot;: &quot;3e663d59a1fa70cf737f972214698195&quot;,
+    &quot;created_at&quot;: &quot;2017-01-20T20:24:57.599Z&quot;,
+    &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.659Z&quot;,
+    &quot;testcases&quot;: [
+      {
+        &quot;id&quot;: 93371,
+        &quot;testcase_name&quot;: &quot;Repellendus id qui quod voluptates amet qui incidunt perspiciatis.&quot;,
+        &quot;testcase_id&quot;: 1983169,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.650Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.650Z&quot;,
+        &quot;version&quot;: 1
+      },
+      {
+        &quot;id&quot;: 93372,
+        &quot;testcase_name&quot;: &quot;Quibusdam atque dolorum quia.&quot;,
+        &quot;testcase_id&quot;: 4946485,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.657Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.657Z&quot;,
+        &quot;version&quot;: 1
+      },
+      {
+        &quot;id&quot;: 93370,
+        &quot;testcase_name&quot;: &quot;Reiciendis ut velit sunt quisquam.&quot;,
+        &quot;testcase_id&quot;: 5309266,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.643Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.643Z&quot;,
+        &quot;version&quot;: 1
+      },
+      {
+        &quot;id&quot;: 93369,
+        &quot;testcase_name&quot;: &quot;Sunt et aliquid velit mollitia.&quot;,
+        &quot;testcase_id&quot;: 7458654,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.635Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.635Z&quot;,
+        &quot;version&quot;: 1
+      },
+      {
+        &quot;id&quot;: 93368,
+        &quot;testcase_name&quot;: &quot;At officia nemo autem hic omnis nostrum.&quot;,
+        &quot;testcase_id&quot;: 9937402,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.628Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.628Z&quot;,
+        &quot;version&quot;: 1
+      }
+    ],
+    &quot;environments&quot;: [
+      {
+        &quot;id&quot;: 109738,
+        &quot;uuid&quot;: &quot;26cd8a5db22b2f5e4bc52f8c609a3bbc&quot;,
+        &quot;display_name&quot;: null,
+        &quot;environment_type&quot;: &quot;Undefined&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.606Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.606Z&quot;
+      },
+      {
+        &quot;id&quot;: 109739,
+        &quot;uuid&quot;: &quot;9054d8e7c285203719e68d9f943a065e&quot;,
+        &quot;display_name&quot;: null,
+        &quot;environment_type&quot;: &quot;Undefined&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.611Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.611Z&quot;
+      },
+      {
+        &quot;id&quot;: 109740,
+        &quot;uuid&quot;: &quot;ddd6dcdef98d7d707c9723959bcdfdf8&quot;,
+        &quot;display_name&quot;: null,
+        &quot;environment_type&quot;: &quot;Undefined&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.615Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.615Z&quot;
+      },
+      {
+        &quot;id&quot;: 109741,
+        &quot;uuid&quot;: &quot;971061aa6dd137e91b2e667ebafc77f7&quot;,
+        &quot;display_name&quot;: null,
+        &quot;environment_type&quot;: &quot;Undefined&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.619Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.619Z&quot;
+      },
+      {
+        &quot;id&quot;: 109742,
+        &quot;uuid&quot;: &quot;fa17f873031e661b8a347c0bc5ee2921&quot;,
+        &quot;display_name&quot;: null,
+        &quot;environment_type&quot;: &quot;Undefined&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.623Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.623Z&quot;
+      }
+    ],
+    &quot;executions&quot;: [
+      {
+        &quot;id&quot;: 24544,
+        &quot;name&quot;: &quot;Execution: 01/20/2017&quot;,
+        &quot;closed&quot;: false,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.600Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.600Z&quot;
+      }
+    ]
+  }
+}</pre>
+
+  <h3>Params</h3>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Param name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Project ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+    </tbody>
+  </table>
+
+
+
+    </div>
+    <hr>
+    <div class='pull-right small'>
+      <a href='../apidoc/projects/create.html'> >>> </a>
+    </div>
+    <div>
+        <h2>
+          <a href='#description-create'
+           class='accordion-toggle'
+           data-toggle='collapse'
+           data-parent='#accordion'>
+            POST /projects
+          </a>
+          <br>
+          <small>Create new project</small>
+        </h2>
+    </div>
+
+
+    <div id='description-create' class='collapse accordion-body'>
+      
+<p>Only accessible by admin users</p>
+
+
+
+
+
+  <h3>Examples</h3>
+    <pre class="prettyprint">POST /projects
+{
+  &quot;project&quot;: {
+    &quot;name&quot;: &quot;Goldner, Blick and Fadel&quot;
+  }
+}
+200
+{
+  &quot;project&quot;: {
+    &quot;id&quot;: 24501,
+    &quot;project_name&quot;: &quot;Goldner, Blick and Fadel&quot;,
+    &quot;api_key&quot;: &quot;81bac44969a7ba5a96ba1919f3007d5d&quot;,
+    &quot;created_at&quot;: &quot;2017-01-20T20:24:57.713Z&quot;,
+    &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.713Z&quot;,
+    &quot;testcases&quot;: [],
+    &quot;environments&quot;: [],
+    &quot;executions&quot;: [
+      {
+        &quot;id&quot;: 24545,
+        &quot;name&quot;: &quot;Execution: 01/20/2017&quot;,
+        &quot;closed&quot;: false,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.714Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.714Z&quot;
+      }
+    ]
+  }
+}</pre>
+
+  <h3>Params</h3>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Param name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>team </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a Hash</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+    <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>team[name] </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Project name</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+
+    </tbody>
+  </table>
+
+
+
+    </div>
+    <hr>
+    <div class='pull-right small'>
+      <a href='../apidoc/projects/update.html'> >>> </a>
+    </div>
+    <div>
+        <h2>
+          <a href='#description-update'
+           class='accordion-toggle'
+           data-toggle='collapse'
+           data-parent='#accordion'>
+            PUT /projects/:id
+          </a>
+          <br>
+          <small>Update existing project</small>
+        </h2>
+    </div>
+
+
+    <div id='description-update' class='collapse accordion-body'>
+      
+<p>Only accessible by admin users</p>
+
+
+
+
+
+  <h3>Examples</h3>
+    <pre class="prettyprint">PUT /projects/24502
+{
+  &quot;project&quot;: {
+    &quot;name&quot;: &quot;Some New Name&quot;
+  }
+}
+200
+{
+  &quot;project&quot;: {
+    &quot;id&quot;: 24502,
+    &quot;project_name&quot;: &quot;Some New Name&quot;,
+    &quot;api_key&quot;: &quot;6082614115d87735d8de85731b2ea453&quot;,
+    &quot;created_at&quot;: &quot;2017-01-20T20:24:57.768Z&quot;,
+    &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.919Z&quot;,
+    &quot;testcases&quot;: [
+      {
+        &quot;id&quot;: 93374,
+        &quot;testcase_name&quot;: &quot;Commodi aut exercitationem saepe id illum fuga doloribus eum.&quot;,
+        &quot;testcase_id&quot;: 3301326,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.809Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.809Z&quot;,
+        &quot;version&quot;: 1
+      },
+      {
+        &quot;id&quot;: 93373,
+        &quot;testcase_name&quot;: &quot;Facere veniam voluptas voluptatibus itaque eum quia.&quot;,
+        &quot;testcase_id&quot;: 3845106,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.802Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.802Z&quot;,
+        &quot;version&quot;: 1
+      },
+      {
+        &quot;id&quot;: 93375,
+        &quot;testcase_name&quot;: &quot;Iusto et blanditiis consequatur cupiditate repellendus assumenda.&quot;,
+        &quot;testcase_id&quot;: 4515517,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.815Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.815Z&quot;,
+        &quot;version&quot;: 1
+      },
+      {
+        &quot;id&quot;: 93377,
+        &quot;testcase_name&quot;: &quot;Aut ducimus eius officiis.&quot;,
+        &quot;testcase_id&quot;: 6167300,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.828Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.828Z&quot;,
+        &quot;version&quot;: 1
+      },
+      {
+        &quot;id&quot;: 93376,
+        &quot;testcase_name&quot;: &quot;Fuga reprehenderit non quod nostrum omnis porro et ipsam.&quot;,
+        &quot;testcase_id&quot;: 9351224,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.822Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.822Z&quot;,
+        &quot;version&quot;: 1
+      }
+    ],
+    &quot;environments&quot;: [
+      {
+        &quot;id&quot;: 109743,
+        &quot;uuid&quot;: &quot;7b81cff7e3fc65f940d3ecb5fe77ad40&quot;,
+        &quot;display_name&quot;: null,
+        &quot;environment_type&quot;: &quot;Undefined&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.776Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.776Z&quot;
+      },
+      {
+        &quot;id&quot;: 109744,
+        &quot;uuid&quot;: &quot;198434bfd1c95345b214919838793e72&quot;,
+        &quot;display_name&quot;: null,
+        &quot;environment_type&quot;: &quot;Undefined&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.779Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.779Z&quot;
+      },
+      {
+        &quot;id&quot;: 109745,
+        &quot;uuid&quot;: &quot;686d22d2e51508a83d8d50244a58a903&quot;,
+        &quot;display_name&quot;: null,
+        &quot;environment_type&quot;: &quot;Undefined&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.783Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.783Z&quot;
+      },
+      {
+        &quot;id&quot;: 109746,
+        &quot;uuid&quot;: &quot;8ae686ff01497e167fd384fc0a813b5e&quot;,
+        &quot;display_name&quot;: null,
+        &quot;environment_type&quot;: &quot;Undefined&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.786Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.786Z&quot;
+      },
+      {
+        &quot;id&quot;: 109747,
+        &quot;uuid&quot;: &quot;f14ccbadd46b19261ad271885fe83c36&quot;,
+        &quot;display_name&quot;: null,
+        &quot;environment_type&quot;: &quot;Undefined&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.797Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.797Z&quot;
+      }
+    ],
+    &quot;executions&quot;: [
+      {
+        &quot;id&quot;: 24546,
+        &quot;name&quot;: &quot;Execution: 01/20/2017&quot;,
+        &quot;closed&quot;: false,
+        &quot;created_at&quot;: &quot;2017-01-20T20:24:57.769Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-01-20T20:24:57.769Z&quot;
+      }
+    ]
+  }
+}</pre>
+
+  <h3>Params</h3>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Param name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Project ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>team </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a Hash</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+    <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>team[name] </strong><br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Project name</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+
+    </tbody>
+  </table>
+
+
+
+    </div>
+    <hr>
+    <div class='pull-right small'>
+      <a href='../apidoc/projects/destroy.html'> >>> </a>
+    </div>
+    <div>
+        <h2>
+          <a href='#description-destroy'
+           class='accordion-toggle'
+           data-toggle='collapse'
+           data-parent='#accordion'>
+            DELETE /projects/:id
+          </a>
+          <br>
+          <small>Delete existing project</small>
+        </h2>
+    </div>
+
+
+    <div id='description-destroy' class='collapse accordion-body'>
+      
+<p>Only accessible by Admins</p>
+
+
+
+
+
+  <h3>Examples</h3>
+    <pre class="prettyprint">DELETE /projects/24504
+200
+{
+  &quot;project&quot;: &quot;Deleted&quot;
+}</pre>
+
+  <h3>Params</h3>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Param name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Project ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+    </tbody>
+  </table>
+
+
+
+    </div>
+</div>
+
+
+        
+      </div>
+    </div>
+    <hr>
+    <footer></footer>
+  </div>
+  <script type='text/javascript' src='../apidoc/javascripts/bundled/jquery.js'></script>
+<script type='text/javascript' src='../apidoc/javascripts/bundled/bootstrap-collapse.js'></script>
+<script type='text/javascript' src='../apidoc/javascripts/bundled/prettify.js'></script>
+<script type='text/javascript' src='../apidoc/javascripts/apipie.js'></script>
+</body>
+</html>

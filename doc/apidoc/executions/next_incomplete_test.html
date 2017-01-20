@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>API documentation</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link type='text/css' rel='stylesheet' href='../../apidoc/stylesheets/bundled/bootstrap.min.css'/>
+<link type='text/css' rel='stylesheet' href='../../apidoc/stylesheets/bundled/prettify.css'/>
+<link type='text/css' rel='stylesheet' href='../../apidoc/stylesheets/bundled/bootstrap-responsive.min.css'/>
+  <link type='text/css' rel='stylesheet' href='../../apidoc/stylesheets/application.css'/>
+  <!-- IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div id='container'>
+        <ul class='breadcrumb'>
+  <li>
+    <a href='../../apidoc.html'>Mustard 1.0</a>
+    <span class='divider'>/</span>
+  </li>
+  <li>
+    <a href='../../apidoc/executions.html'>
+      Executions
+      
+    </a>
+    <span class='divider'>/</span>
+  </li>
+  <li class='active'>next_incomplete_test</li>
+  
+
+</ul>
+
+  <div class='page-header'>
+    <h1>
+      GET /executions/:id/next_test
+      <br>
+      <small>Next Incomplete Test</small>
+    </h1>
+  </div>
+
+<div>
+
+  
+<p>Returns the next incomplete test for this execution</p>
+
+
+
+
+  <h2>Metadata</h2>
+  <pre class="prettyprint lang-yaml">--- Marks the test as in use so it won&#39;t be retrieved by subsequent calls for 5 minutes
+...
+</pre>
+
+
+  <h2>Examples</h2>
+    <pre class="prettyprint">GET /executions/24531/next_test
+200
+{
+  &quot;testcase&quot;: {
+    &quot;id&quot;: 93318,
+    &quot;runner_touch&quot;: &quot;2017-01-20T20:24:55.667Z&quot;,
+    &quot;version&quot;: 1,
+    &quot;token&quot;: &quot;kDEpovN6Apyc3vM9oSCX8hNv&quot;,
+    &quot;name&quot;: &quot;Repellendus quia eligendi commodi deserunt aut odio repellat necessitatibus.&quot;,
+    &quot;project_id&quot;: 24490,
+    &quot;outdated&quot;: false,
+    &quot;validation_id&quot;: 1471372,
+    &quot;locked&quot;: null,
+    &quot;created_at&quot;: &quot;2017-01-20T20:24:55.602Z&quot;,
+    &quot;updated_at&quot;: &quot;2017-01-20T20:24:55.670Z&quot;,
+    &quot;reproduction_steps&quot;: [
+      {
+        &quot;step_number&quot;: 1,
+        &quot;action&quot;: &quot;Explicabo est similique exercitationem minima eligendi rem nostrum.&quot;,
+        &quot;result&quot;: &quot;Nihil incidunt neque aliquam nisi facere itaque perspiciatis.&quot;
+      },
+      {
+        &quot;step_number&quot;: 2,
+        &quot;action&quot;: &quot;Excepturi at minus voluptatum incidunt ut nihil.&quot;,
+        &quot;result&quot;: &quot;Deserunt non quo et neque molestiae in.&quot;
+      },
+      {
+        &quot;step_number&quot;: 3,
+        &quot;action&quot;: &quot;Consequatur sed soluta fugit et dolorem.&quot;,
+        &quot;result&quot;: &quot;Iure perferendis ipsa voluptas recusandae qui neque eos.&quot;
+      }
+    ],
+    &quot;revised_at&quot;: null,
+    &quot;username&quot;: null
+  }
+}</pre>
+
+  <h2>Params</h2>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Param name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Execution ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+    </tbody>
+  </table>
+
+
+
+</div>
+
+
+        
+      </div>
+    </div>
+    <hr>
+    <footer></footer>
+  </div>
+  <script type='text/javascript' src='../../apidoc/javascripts/bundled/jquery.js'></script>
+<script type='text/javascript' src='../../apidoc/javascripts/bundled/bootstrap-collapse.js'></script>
+<script type='text/javascript' src='../../apidoc/javascripts/bundled/prettify.js'></script>
+<script type='text/javascript' src='../../apidoc/javascripts/apipie.js'></script>
+</body>
+</html>

@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>API documentation</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link type='text/css' rel='stylesheet' href='../apidoc/stylesheets/bundled/bootstrap.min.css'/>
+<link type='text/css' rel='stylesheet' href='../apidoc/stylesheets/bundled/prettify.css'/>
+<link type='text/css' rel='stylesheet' href='../apidoc/stylesheets/bundled/bootstrap-responsive.min.css'/>
+  <link type='text/css' rel='stylesheet' href='../apidoc/stylesheets/application.css'/>
+  <!-- IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div id='container'>
+        <ul class='breadcrumb'>
+  <li>
+    <a href='../apidoc.html'>Mustard 1.0</a>
+    <span class='divider'>/</span>
+  </li>
+  <li class='active'>
+    Results
+    
+  </li>
+  
+</ul>
+
+<div class='page-header'>
+  <h1>
+    Results
+    <br>
+    <small></small>
+  </h1>
+</div>
+
+
+
+
+
+
+<div class='accordion' id='accordion'>
+
+    <hr>
+    <div class='pull-right small'>
+      <a href='../apidoc/results/recent.html'> >>> </a>
+    </div>
+    <div>
+        <h2>
+          <a href='#description-recent'
+           class='accordion-toggle'
+           data-toggle='collapse'
+           data-parent='#accordion'>
+            GET recent-results
+          </a>
+          <br>
+          <small>Recent Results</small>
+        </h2>
+    </div>
+
+
+    <div id='description-recent' class='collapse accordion-body'>
+      
+<p>Returns the 10 most recent results viewable by current user</p>
+
+
+
+
+
+  <h3>Examples</h3>
+    <pre class="prettyprint">GET /recent-results
+200
+{
+  &quot;results&quot;: [
+    {
+      &quot;id&quot;: 114164,
+      &quot;environment_id&quot;: -1,
+      &quot;testcase_id&quot;: 93397,
+      &quot;testcase_name&quot;: &quot;Qui qui quam nemo.&quot;,
+      &quot;testcase_validation_id&quot;: 8161018,
+      &quot;execution_id&quot;: 24550,
+      &quot;project_id&quot;: 24506,
+      &quot;project_name&quot;: &quot;Wyman-Russel&quot;,
+      &quot;result&quot;: {
+        &quot;status&quot;: &quot;fail&quot;,
+        &quot;result_type&quot;: &quot;manual&quot;,
+        &quot;comment&quot;: &quot;At consequatur et ex ducimus laboriosam.&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T15:24:58.526-05:00&quot;,
+        &quot;created_by_id&quot;: 59369,
+        &quot;created_by_name&quot;: &quot;Mckayla Romaguera&quot;
+      },
+      &quot;updated_at&quot;: &quot;2017-01-20T20:24:58.526Z&quot;
+    },
+    {
+      &quot;id&quot;: 114163,
+      &quot;environment_id&quot;: 109767,
+      &quot;environment_display_name&quot;: null,
+      &quot;environment_type&quot;: &quot;Undefined&quot;,
+      &quot;testcase_id&quot;: 93397,
+      &quot;testcase_name&quot;: &quot;Qui qui quam nemo.&quot;,
+      &quot;testcase_validation_id&quot;: 8161018,
+      &quot;execution_id&quot;: 24550,
+      &quot;project_id&quot;: 24506,
+      &quot;project_name&quot;: &quot;Wyman-Russel&quot;,
+      &quot;result&quot;: {
+        &quot;status&quot;: &quot;skip&quot;,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;stacktrace&quot;: &quot;Ut ex illum quasi molestias voluptatem asperiores vitae. Quos nostrum facilis maxime rerum velit hic. Molestiae et sit officia. Nam harum deserunt ratione vel qui veritatis consequatur. Minima ipsum consequatur qui.&quot;,
+        &quot;comment&quot;: &quot;Facere consequuntur quam est.&quot;,
+        &quot;link&quot;: &quot;http://kertzmann.info/amos&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T15:24:58.511-05:00&quot;
+      },
+      &quot;updated_at&quot;: &quot;2017-01-20T20:24:58.511Z&quot;
+    },
+    {
+      &quot;id&quot;: 114162,
+      &quot;environment_id&quot;: 109766,
+      &quot;environment_display_name&quot;: null,
+      &quot;environment_type&quot;: &quot;Undefined&quot;,
+      &quot;testcase_id&quot;: 93397,
+      &quot;testcase_name&quot;: &quot;Qui qui quam nemo.&quot;,
+      &quot;testcase_validation_id&quot;: 8161018,
+      &quot;execution_id&quot;: 24550,
+      &quot;project_id&quot;: 24506,
+      &quot;project_name&quot;: &quot;Wyman-Russel&quot;,
+      &quot;result&quot;: {
+        &quot;status&quot;: &quot;pass&quot;,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;stacktrace&quot;: &quot;Eum ratione laudantium atque. Fugiat voluptas blanditiis quas omnis minus. Rerum quis odio eum aliquam ex. Est quia voluptas quia nemo.&quot;,
+        &quot;comment&quot;: &quot;Aspernatur quia ut alias aperiam.&quot;,
+        &quot;link&quot;: &quot;http://dickinson.info/dale&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T15:24:58.504-05:00&quot;
+      },
+      &quot;updated_at&quot;: &quot;2017-01-20T20:24:58.504Z&quot;
+    },
+    {
+      &quot;id&quot;: 114161,
+      &quot;environment_id&quot;: 109765,
+      &quot;environment_display_name&quot;: null,
+      &quot;environment_type&quot;: &quot;Undefined&quot;,
+      &quot;testcase_id&quot;: 93397,
+      &quot;testcase_name&quot;: &quot;Qui qui quam nemo.&quot;,
+      &quot;testcase_validation_id&quot;: 8161018,
+      &quot;execution_id&quot;: 24550,
+      &quot;project_id&quot;: 24506,
+      &quot;project_name&quot;: &quot;Wyman-Russel&quot;,
+      &quot;result&quot;: {
+        &quot;status&quot;: &quot;skip&quot;,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;stacktrace&quot;: &quot;Dolores est consequatur aut sunt voluptas fuga aliquid. Mollitia temporibus ex. Qui explicabo sint incidunt temporibus. Voluptatibus qui totam. Consequatur velit doloribus quae dignissimos sint qui quis.&quot;,
+        &quot;comment&quot;: &quot;Iusto rem voluptas voluptatem exercitationem ea ut necessitatibus.&quot;,
+        &quot;link&quot;: &quot;http://friesen.net/asha.kirlin&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T15:24:58.497-05:00&quot;
+      },
+      &quot;updated_at&quot;: &quot;2017-01-20T20:24:58.497Z&quot;
+    },
+    {
+      &quot;id&quot;: 114160,
+      &quot;environment_id&quot;: 109764,
+      &quot;environment_display_name&quot;: null,
+      &quot;environment_type&quot;: &quot;Undefined&quot;,
+      &quot;testcase_id&quot;: 93397,
+      &quot;testcase_name&quot;: &quot;Qui qui quam nemo.&quot;,
+      &quot;testcase_validation_id&quot;: 8161018,
+      &quot;execution_id&quot;: 24550,
+      &quot;project_id&quot;: 24506,
+      &quot;project_name&quot;: &quot;Wyman-Russel&quot;,
+      &quot;result&quot;: {
+        &quot;status&quot;: &quot;skip&quot;,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;stacktrace&quot;: &quot;Minima sit nisi earum vitae sed perferendis. Rem voluptatum et expedita. Iste est culpa vel illo id cupiditate voluptate. Ipsum veniam quod quae deserunt reprehenderit.&quot;,
+        &quot;comment&quot;: &quot;Voluptas laborum mollitia omnis aut et.&quot;,
+        &quot;link&quot;: &quot;http://starkferry.info/vallie.rath&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T15:24:58.489-05:00&quot;
+      },
+      &quot;updated_at&quot;: &quot;2017-01-20T20:24:58.489Z&quot;
+    },
+    {
+      &quot;id&quot;: 114159,
+      &quot;environment_id&quot;: 109763,
+      &quot;environment_display_name&quot;: null,
+      &quot;environment_type&quot;: &quot;Undefined&quot;,
+      &quot;testcase_id&quot;: 93397,
+      &quot;testcase_name&quot;: &quot;Qui qui quam nemo.&quot;,
+      &quot;testcase_validation_id&quot;: 8161018,
+      &quot;execution_id&quot;: 24550,
+      &quot;project_id&quot;: 24506,
+      &quot;project_name&quot;: &quot;Wyman-Russel&quot;,
+      &quot;result&quot;: {
+        &quot;status&quot;: &quot;pass&quot;,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;stacktrace&quot;: &quot;Veritatis quia occaecati laborum rerum ex. Est aut temporibus delectus vel voluptas. Eum temporibus assumenda voluptatem. Occaecati temporibus qui quam ea sed voluptate. Tempora id et distinctio.&quot;,
+        &quot;comment&quot;: &quot;Minus sequi voluptates ut qui rerum dignissimos.&quot;,
+        &quot;link&quot;: &quot;http://gleasonabbott.co/nelle&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T15:24:58.482-05:00&quot;
+      },
+      &quot;updated_at&quot;: &quot;2017-01-20T20:24:58.483Z&quot;
+    },
+    {
+      &quot;id&quot;: 114158,
+      &quot;environment_id&quot;: -1,
+      &quot;testcase_id&quot;: 93396,
+      &quot;testcase_name&quot;: &quot;Nihil quis repudiandae laborum sequi.&quot;,
+      &quot;testcase_validation_id&quot;: 3519762,
+      &quot;execution_id&quot;: 24550,
+      &quot;project_id&quot;: 24506,
+      &quot;project_name&quot;: &quot;Wyman-Russel&quot;,
+      &quot;result&quot;: {
+        &quot;status&quot;: &quot;pass&quot;,
+        &quot;result_type&quot;: &quot;manual&quot;,
+        &quot;comment&quot;: &quot;Et et accusantium velit nihil doloribus vero consequatur.&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T15:24:58.476-05:00&quot;,
+        &quot;created_by_id&quot;: 59368,
+        &quot;created_by_name&quot;: &quot;Oswald Simonis&quot;
+      },
+      &quot;updated_at&quot;: &quot;2017-01-20T20:24:58.476Z&quot;
+    },
+    {
+      &quot;id&quot;: 114157,
+      &quot;environment_id&quot;: 109767,
+      &quot;environment_display_name&quot;: null,
+      &quot;environment_type&quot;: &quot;Undefined&quot;,
+      &quot;testcase_id&quot;: 93396,
+      &quot;testcase_name&quot;: &quot;Nihil quis repudiandae laborum sequi.&quot;,
+      &quot;testcase_validation_id&quot;: 3519762,
+      &quot;execution_id&quot;: 24550,
+      &quot;project_id&quot;: 24506,
+      &quot;project_name&quot;: &quot;Wyman-Russel&quot;,
+      &quot;result&quot;: {
+        &quot;status&quot;: &quot;pass&quot;,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;stacktrace&quot;: &quot;Et ut suscipit et odio quaerat. Natus autem molestiae velit dolores beatae. Corporis eius expedita deleniti et et libero et.&quot;,
+        &quot;comment&quot;: &quot;Cupiditate sit voluptas est dicta assumenda.&quot;,
+        &quot;link&quot;: &quot;http://bosco.info/douglas_orn&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T15:24:58.462-05:00&quot;
+      },
+      &quot;updated_at&quot;: &quot;2017-01-20T20:24:58.462Z&quot;
+    },
+    {
+      &quot;id&quot;: 114156,
+      &quot;environment_id&quot;: 109766,
+      &quot;environment_display_name&quot;: null,
+      &quot;environment_type&quot;: &quot;Undefined&quot;,
+      &quot;testcase_id&quot;: 93396,
+      &quot;testcase_name&quot;: &quot;Nihil quis repudiandae laborum sequi.&quot;,
+      &quot;testcase_validation_id&quot;: 3519762,
+      &quot;execution_id&quot;: 24550,
+      &quot;project_id&quot;: 24506,
+      &quot;project_name&quot;: &quot;Wyman-Russel&quot;,
+      &quot;result&quot;: {
+        &quot;status&quot;: &quot;pass&quot;,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;stacktrace&quot;: &quot;At sed in quam amet nostrum. Quia mollitia autem tenetur sunt. Aperiam quia excepturi. Voluptas nulla sunt eligendi atque quidem.&quot;,
+        &quot;comment&quot;: &quot;Harum rerum sequi accusantium exercitationem dolores dolorum.&quot;,
+        &quot;link&quot;: &quot;http://gislason.net/esta&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T15:24:58.455-05:00&quot;
+      },
+      &quot;updated_at&quot;: &quot;2017-01-20T20:24:58.455Z&quot;
+    },
+    {
+      &quot;id&quot;: 114155,
+      &quot;environment_id&quot;: 109765,
+      &quot;environment_display_name&quot;: null,
+      &quot;environment_type&quot;: &quot;Undefined&quot;,
+      &quot;testcase_id&quot;: 93396,
+      &quot;testcase_name&quot;: &quot;Nihil quis repudiandae laborum sequi.&quot;,
+      &quot;testcase_validation_id&quot;: 3519762,
+      &quot;execution_id&quot;: 24550,
+      &quot;project_id&quot;: 24506,
+      &quot;project_name&quot;: &quot;Wyman-Russel&quot;,
+      &quot;result&quot;: {
+        &quot;status&quot;: &quot;pass&quot;,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;stacktrace&quot;: &quot;Dolor repellat ut error. Consectetur officia neque aut ipsam qui. Nihil corporis dolorum asperiores natus aut occaecati adipisci. Ex consectetur nisi dignissimos repellendus. Voluptate autem vel et.&quot;,
+        &quot;comment&quot;: &quot;Dolorem non delectus doloremque velit sapiente.&quot;,
+        &quot;link&quot;: &quot;http://runolfsdottir.biz/evan_swaniawski&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T15:24:58.448-05:00&quot;
+      },
+      &quot;updated_at&quot;: &quot;2017-01-20T20:24:58.448Z&quot;
+    }
+  ]
+}</pre>
+
+  <h3>Params</h3>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Param name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+    </tbody>
+  </table>
+
+
+
+    </div>
+    <hr>
+    <div class='pull-right small'>
+      <a href='../apidoc/results/show.html'> >>> </a>
+    </div>
+    <div>
+        <h2>
+          <a href='#description-show'
+           class='accordion-toggle'
+           data-toggle='collapse'
+           data-parent='#accordion'>
+            GET /results/:id
+          </a>
+          <br>
+          <small>Result details</small>
+        </h2>
+    </div>
+
+
+    <div id='description-show' class='collapse accordion-body'>
+      
+<p>Only accessible if parent project is viewable by current user</p>
+
+
+
+
+
+  <h3>Examples</h3>
+    <pre class="prettyprint">GET /results/114165
+200
+{
+  &quot;result&quot;: {
+    &quot;id&quot;: 114165,
+    &quot;environment_id&quot;: 109778,
+    &quot;environment_display_name&quot;: null,
+    &quot;environment_type&quot;: &quot;Undefined&quot;,
+    &quot;testcase_id&quot;: 93408,
+    &quot;testcase_name&quot;: &quot;Esse aperiam expedita ab aut reprehenderit ipsam cum reiciendis.&quot;,
+    &quot;testcase_validation_id&quot;: 1097294,
+    &quot;execution_id&quot;: 24553,
+    &quot;results&quot;: [
+      {
+        &quot;status&quot;: &quot;fail&quot;,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;stacktrace&quot;: &quot;Non ipsum odit sint. Quia dolor ratione rem officia quaerat. Aut veniam similique asperiores repudiandae facere in.&quot;,
+        &quot;comment&quot;: &quot;Voluptatem repellendus optio delectus.&quot;,
+        &quot;link&quot;: &quot;http://lind.net/nyah_hudson&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T15:24:58.856-05:00&quot;
+      },
+      {
+        &quot;status&quot;: &quot;pass&quot;,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;stacktrace&quot;: &quot;Eaque vel laborum. Praesentium rerum non dolore autem omnis tempore. Voluptas sit accusantium. Similique perferendis velit inventore consequatur iure quis non. Tenetur doloribus blanditiis accusantium rerum quis.&quot;,
+        &quot;comment&quot;: &quot;Autem quod eum magni.&quot;,
+        &quot;link&quot;: &quot;http://spencer.name/verla.denesik&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T15:24:58.856-05:00&quot;
+      },
+      {
+        &quot;status&quot;: &quot;pass&quot;,
+        &quot;result_type&quot;: &quot;automated&quot;,
+        &quot;stacktrace&quot;: &quot;Eveniet odit illum sed nam. Quas modi necessitatibus dolorem inventore. Placeat non maxime voluptas ea. Fugit illum sed et. Repudiandae quam excepturi doloribus sed veniam et.&quot;,
+        &quot;comment&quot;: &quot;Consectetur eos accusantium neque et aut libero ea.&quot;,
+        &quot;link&quot;: &quot;http://willms.net/hoyt_gulgowski&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T15:24:58.856-05:00&quot;
+      }
+    ],
+    &quot;updated_at&quot;: &quot;2017-01-20T20:24:58.857Z&quot;,
+    &quot;creted_at&quot;: &quot;2017-01-20T20:24:58.857Z&quot;
+  }
+}</pre>
+
+  <h3>Params</h3>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Param name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Result ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+    </tbody>
+  </table>
+
+
+
+    </div>
+    <hr>
+    <div class='pull-right small'>
+      <a href='../apidoc/results/screenshot.html'> >>> </a>
+    </div>
+    <div>
+        <h2>
+          <a href='#description-screenshot'
+           class='accordion-toggle'
+           data-toggle='collapse'
+           data-parent='#accordion'>
+            GET /results/:id/screenshot/:screenshot_id
+          </a>
+          <br>
+          <small>Access result screenshot</small>
+        </h2>
+    </div>
+
+
+    <div id='description-screenshot' class='collapse accordion-body'>
+      
+<p>Returns a temporary url to access the screenshot directly. \</p>
+
+<pre>Includes a screenshot token that is valid for 30 seconds from \
+time of creation and destroyed after first use.  Only accessible \
+if parent project is viewable by current user</pre>
+
+
+
+
+
+
+  <h3>Params</h3>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Param name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Result ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>screenshot_id </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Screenshot ID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+    </tbody>
+  </table>
+
+
+
+    </div>
+    <hr>
+    <div class='pull-right small'>
+      <a href='../apidoc/results/create.html'> >>> </a>
+    </div>
+    <div>
+        <h2>
+          <a href='#description-create'
+           class='accordion-toggle'
+           data-toggle='collapse'
+           data-parent='#accordion'>
+            POST /results
+          </a>
+          <br>
+          <small>Create new result</small>
+        </h2>
+    </div>
+
+
+    <div id='description-create' class='collapse accordion-body'>
+      
+<p>Creates a result for project based on API KEY</p>
+
+
+
+
+  <h3>Metadata</h3>
+  <pre class="prettyprint lang-yaml">--- Unauthenticated path for automated results,  User-Token header is not required.  For
+  manual result User-Token header is required
+...
+</pre>
+
+
+  <h3>Examples</h3>
+    <pre class="prettyprint">POST /results
+{
+  &quot;result&quot;: {
+    &quot;status&quot;: &quot;pass&quot;,
+    &quot;environment_id&quot;: -1,
+    &quot;testcase_id&quot;: 9675228,
+    &quot;result_type&quot;: &quot;manual&quot;,
+    &quot;execution_id&quot;: 24554,
+    &quot;comment&quot;: &quot;Some new comment&quot;
+  }
+}
+200
+{
+  &quot;result&quot;: {
+    &quot;results&quot;: [
+      {
+        &quot;status&quot;: &quot;pass&quot;,
+        &quot;environment_id&quot;: -1,
+        &quot;testcase_id&quot;: 9675228,
+        &quot;result_type&quot;: &quot;manual&quot;,
+        &quot;comment&quot;: &quot;Some new comment&quot;,
+        &quot;execution_id&quot;: 24554,
+        &quot;created_by_id&quot;: 59378,
+        &quot;created_by_name&quot;: &quot;Abdul Schulist&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T15:24:59.501-05:00&quot;
+      },
+      {
+        &quot;status&quot;: &quot;skip&quot;,
+        &quot;result_type&quot;: &quot;manual&quot;,
+        &quot;comment&quot;: &quot;Qui aspernatur reprehenderit velit aut vitae qui consequatur.&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T15:24:59.271-05:00&quot;,
+        &quot;created_by_id&quot;: 59379,
+        &quot;created_by_name&quot;: &quot;Germaine Rath&quot;
+      },
+      {
+        &quot;status&quot;: &quot;pass&quot;,
+        &quot;result_type&quot;: &quot;manual&quot;,
+        &quot;comment&quot;: &quot;Animi quis nulla asperiores sunt.&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T15:24:59.271-05:00&quot;,
+        &quot;created_by_id&quot;: 59379,
+        &quot;created_by_name&quot;: &quot;Germaine Rath&quot;
+      },
+      {
+        &quot;status&quot;: &quot;fail&quot;,
+        &quot;result_type&quot;: &quot;manual&quot;,
+        &quot;comment&quot;: &quot;Aperiam dignissimos et nihil dolore consequatur voluptates delectus.&quot;,
+        &quot;created_at&quot;: &quot;2017-01-20T15:24:59.262-05:00&quot;,
+        &quot;created_by_id&quot;: 59379,
+        &quot;created_by_name&quot;: &quot;Germaine Rath&quot;
+      }
+    ],
+    &quot;current_status&quot;: &quot;pass&quot;,
+    &quot;id&quot;: 114200,
+    &quot;environment_id&quot;: -1,
+    &quot;testcase_id&quot;: 93413,
+    &quot;execution_id&quot;: 24554,
+    &quot;created_at&quot;: &quot;2017-01-20T20:24:59.271Z&quot;,
+    &quot;updated_at&quot;: &quot;2017-01-20T20:24:59.501Z&quot;
+  }
+}</pre>
+
+  <h3>Params</h3>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Param name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>result </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a Hash</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+    <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>result[status] </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Result status</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be one of: <code>pass</code>, <code>fail</code>, <code>skip</code>.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>result[environment_id] </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Environment UUID</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>result[testcase_id] </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Either the testcase validation id or the testcase name</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be one of: String, number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>result[result_type] </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Result type</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be one of: <code>automated</code>, <code>manual</code>.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>result[project_id] </strong><br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>Project API Key. Required for automated result type</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>result[execution_id] </strong><br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>Execution ID. Required for Manual result type</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>result[comment] </strong><br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>Comment</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>result[stacktrace] </strong><br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>Stacktrace</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>result[link] </strong><br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>Link to external result</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>result[screenshot] </strong><br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>Base64 encoded screenshot</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>result[step_log] </strong><br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>JSON Step Log of test</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+
+    </tbody>
+  </table>
+
+
+
+    </div>
+</div>
+
+
+        
+      </div>
+    </div>
+    <hr>
+    <footer></footer>
+  </div>
+  <script type='text/javascript' src='../apidoc/javascripts/bundled/jquery.js'></script>
+<script type='text/javascript' src='../apidoc/javascripts/bundled/bootstrap-collapse.js'></script>
+<script type='text/javascript' src='../apidoc/javascripts/bundled/prettify.js'></script>
+<script type='text/javascript' src='../apidoc/javascripts/apipie.js'></script>
+</body>
+</html>

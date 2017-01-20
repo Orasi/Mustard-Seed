@@ -302,7 +302,7 @@ class TestcasesController < ApplicationController
 
   def add_user_name(test)
     if @current_user
-      user_display_name = "#{@current_user.first_name}  #{@current_user.last_name}"
+      user_display_name = "#{@current_user.first_name} #{@current_user.last_name}"
       test.username = user_display_name
     end
   end

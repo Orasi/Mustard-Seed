@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>API documentation</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link type='text/css' rel='stylesheet' href='../../apidoc/stylesheets/bundled/bootstrap.min.css'/>
+<link type='text/css' rel='stylesheet' href='../../apidoc/stylesheets/bundled/prettify.css'/>
+<link type='text/css' rel='stylesheet' href='../../apidoc/stylesheets/bundled/bootstrap-responsive.min.css'/>
+  <link type='text/css' rel='stylesheet' href='../../apidoc/stylesheets/application.css'/>
+  <!-- IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div id='container'>
+        <ul class='breadcrumb'>
+  <li>
+    <a href='../../apidoc.html'>Mustard 1.0</a>
+    <span class='divider'>/</span>
+  </li>
+  <li>
+    <a href='../../apidoc/users.html'>
+      Users
+      
+    </a>
+    <span class='divider'>/</span>
+  </li>
+  <li class='active'>index</li>
+  
+
+</ul>
+
+  <div class='page-header'>
+    <h1>
+      GET /users
+      <br>
+      <small>All Users</small>
+    </h1>
+  </div>
+
+<div>
+
+  
+<p>Returns all system users. Only accessible by Admins</p>
+
+
+  <h2>Supported Formats</h2>
+  json
+
+
+
+  <h2>Examples</h2>
+    <pre class="prettyprint">GET /users
+200
+{
+  &quot;users&quot;: [
+    {
+      &quot;id&quot;: 59445,
+      &quot;username&quot;: &quot;calista@paucekheel.biz&quot;,
+      &quot;first_name&quot;: &quot;Bennett&quot;,
+      &quot;last_name&quot;: &quot;Botsford&quot;,
+      &quot;company&quot;: &quot;Mosciski-Abernathy&quot;,
+      &quot;admin&quot;: null,
+      &quot;created_at&quot;: &quot;2017-01-20T20:25:04.028Z&quot;,
+      &quot;updated_at&quot;: &quot;2017-01-20T20:25:04.028Z&quot;
+    },
+    {
+      &quot;id&quot;: 59446,
+      &quot;username&quot;: &quot;kaitlyn_kemmer@wisozk.io&quot;,
+      &quot;first_name&quot;: &quot;Dillon&quot;,
+      &quot;last_name&quot;: &quot;Pfeffer&quot;,
+      &quot;company&quot;: &quot;Price Group&quot;,
+      &quot;admin&quot;: null,
+      &quot;created_at&quot;: &quot;2017-01-20T20:25:04.036Z&quot;,
+      &quot;updated_at&quot;: &quot;2017-01-20T20:25:04.036Z&quot;
+    },
+    {
+      &quot;id&quot;: 59447,
+      &quot;username&quot;: &quot;amiya_ritchie@keeblermayer.com&quot;,
+      &quot;first_name&quot;: &quot;Hector&quot;,
+      &quot;last_name&quot;: &quot;Schoen&quot;,
+      &quot;company&quot;: &quot;Rutherford-Braun&quot;,
+      &quot;admin&quot;: null,
+      &quot;created_at&quot;: &quot;2017-01-20T20:25:04.045Z&quot;,
+      &quot;updated_at&quot;: &quot;2017-01-20T20:25:04.045Z&quot;
+    },
+    {
+      &quot;id&quot;: 59448,
+      &quot;username&quot;: &quot;kari@lesch.io&quot;,
+      &quot;first_name&quot;: &quot;Jeffrey&quot;,
+      &quot;last_name&quot;: &quot;Armstrong&quot;,
+      &quot;company&quot;: &quot;Greenfelder-Halvorson&quot;,
+      &quot;admin&quot;: true,
+      &quot;created_at&quot;: &quot;2017-01-20T20:25:04.053Z&quot;,
+      &quot;updated_at&quot;: &quot;2017-01-20T20:25:04.053Z&quot;
+    }
+  ]
+}</pre>
+
+  <h2>Params</h2>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Param name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>User-Token </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Authentication token.  Must be provided in the header of all calls unless
+otherwise indicated</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
+    </tbody>
+  </table>
+
+
+
+</div>
+
+
+        
+      </div>
+    </div>
+    <hr>
+    <footer></footer>
+  </div>
+  <script type='text/javascript' src='../../apidoc/javascripts/bundled/jquery.js'></script>
+<script type='text/javascript' src='../../apidoc/javascripts/bundled/bootstrap-collapse.js'></script>
+<script type='text/javascript' src='../../apidoc/javascripts/bundled/prettify.js'></script>
+<script type='text/javascript' src='../../apidoc/javascripts/apipie.js'></script>
+</body>
+</html>

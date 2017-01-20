@@ -1,6 +1,6 @@
 class ExecutionsController < ApplicationController
   include ActionController::MimeResponds
-  skip_before_action :require_user_token, only: [:close, :failing_tests]
+  skip_before_action :require_user_token, only: [:close, :failing_tests, :destroy]
   before_action :requires_admin, only: [:destroy]
 
 
@@ -16,7 +16,7 @@ class ExecutionsController < ApplicationController
            status: :not_found and return unless execution
 
     render json: {error: 'Not authorized to access this resource'},
-           status: :unauthorized and return unless @current_user.projects.include? execution.project
+           status: :forbidden and return unless @current_user.projects.include? execution.project
 
     count = execution.project.testcases.count
 
@@ -36,7 +36,7 @@ class ExecutionsController < ApplicationController
            status: :not_found and return unless execution
 
     render json: {error: 'Not authorized to access this resource'},
-           status: :unauthorized and return unless @current_user.projects.include? execution.project
+           status: :forbidden and return unless @current_user.projects.include? execution.project
 
     count = execution.project.environments.count
 
@@ -57,7 +57,7 @@ class ExecutionsController < ApplicationController
            status: :not_found and return unless execution
 
     render json: {error: 'Not authorized to access this resource'},
-           status: :unauthorized and return unless @current_user.projects.include? execution.project
+           status: :forbidden and return unless @current_user.projects.include? execution.project
 
     summary = execution.testcase_summary
 
@@ -78,7 +78,7 @@ class ExecutionsController < ApplicationController
            status: :not_found and return unless execution
 
     render json: {error: 'Not authorized to access this resource'},
-           status: :unauthorized and return unless @current_user.projects.include? execution.project
+           status: :forbidden and return unless @current_user.projects.include? execution.project
 
     summary = execution.environment_summary
 
@@ -98,7 +98,7 @@ class ExecutionsController < ApplicationController
            status: :not_found and return unless execution
 
     render json: {error: 'Not authorized to access this resource'},
-           status: :unauthorized and return unless @current_user.projects.include? execution.project
+           status: :forbidden and return unless @current_user.projects.include? execution.project
 
     @execution = execution
 
@@ -149,7 +149,7 @@ class ExecutionsController < ApplicationController
            status: :not_found and return unless execution
 
     render json: {error: 'Not authorized to access this resource'},
-           status: :unauthorized and return unless @current_user.projects.include? execution.project
+           status: :forbidden and return unless @current_user.projects.include? execution.project
 
     @execution_id = params[:id]
     @testcase = Testcase.find_by_id(params[:testcase_id])
@@ -177,7 +177,7 @@ class ExecutionsController < ApplicationController
            status: :not_found and return unless execution
 
     render json: {error: 'Not authorized to access this resource'},
-           status: :unauthorized and return unless @current_user.projects.include? execution.project
+           status: :forbidden and return unless @current_user.projects.include? execution.project
 
     @environment = Environment.find_by_id(params[:environment_id])
 
@@ -191,6 +191,10 @@ class ExecutionsController < ApplicationController
   end
 
 
+  api :GET, '/executions/:id/incomplete_tests', 'List Incomplete Tests'
+  description 'Lists all incomplete tests for the given execution'
+  meta 'Only accessible if project is viewable by current user'
+  param :id, :number, 'Execution ID', required: true
   def incomplete_tests
 
     execution = Execution.find_by_id(params[:id])
@@ -199,7 +203,7 @@ class ExecutionsController < ApplicationController
            status: :not_found and return unless execution
 
     render json: {error: 'Not authorized to access this resource'},
-           status: :unauthorized and return unless @current_user.projects.include? execution.project
+           status: :forbidden and return unless @current_user.projects.include? execution.project
 
     incomplete_tests = Testcase.not_run(execution)
 
@@ -223,16 +227,22 @@ class ExecutionsController < ApplicationController
 
     if params[:project_key]
 
-      project = Project.find_by_api_key(params[:project_key])
+      project = Project.where(api_key: params[:project_key])
 
-      execution = project.executions.find_by_closed(false)
+      render json: {error: 'Project not found'},
+             status: :not_found and return if project.blank?
+      project = project.first
+
+      execution = project.executions.open_execution
 
       render json: {error: 'Execution not found'},
          status: :not_found and return unless execution
 
     else
 
-      require_user_token
+      authenticated = require_user_token
+      return unless authenticated
+
       execution = Execution.find_by_id(params[:execution_id])
 
       render json: {error: 'Execution not found'},
@@ -240,7 +250,7 @@ class ExecutionsController < ApplicationController
       project = execution.project
 
       render json: {error: 'Not authorized to access this resource'},
-           status: :unauthorized and return unless @current_user.projects.include? project
+           status: :forbidden and return unless @current_user.projects.include? project
 
     end
 
@@ -253,7 +263,7 @@ class ExecutionsController < ApplicationController
       @new_execution.save!
     end
 
-    render json: @new_execution
+    render json: {execution: @new_execution}
 
   end
 
@@ -266,20 +276,23 @@ class ExecutionsController < ApplicationController
   param :id, :number, 'Execution ID', required: true
   def destroy
 
-    execution = Execution.find_by_id(params[:id])
+    execution = Execution.where(id: params[:id])
 
     render json: {error: 'Execution not found'},
-           status: :not_found and return unless execution
+           status: :not_found and return if execution.blank?
+    execution = execution.first
 
     project = execution.project
 
     ActiveRecord::Base.transaction do
       if execution.closed
-        execution.destroy
-        render json: {execution: 'Deleted'} and return if execution.destroy
-        render json: {error: "Failed to Delete Execution [#{execution.errors.full_messages}]"}
+        if execution.destroy
+          render json: {execution: 'Deleted'}
+        else
+          render json: {error: "Failed to Delete Execution [#{execution.errors.full_messages}]"}
+        end
       else
-        execution.update!(deleted: true)
+        execution.destroy
         project.executions.create!(closed: false)
       end
     end
@@ -287,6 +300,7 @@ class ExecutionsController < ApplicationController
     render json: {execution: 'Deleted'}
 
   end
+
 
   api :GET, '/executions/:id/next_test', 'Next Incomplete Test'
   description 'Returns the next incomplete test for this execution'
@@ -300,7 +314,7 @@ class ExecutionsController < ApplicationController
            status: :not_found and return unless execution
 
     render json: {error: 'Not authorized to access this resource'},
-           status: :unauthorized and return unless @current_user.projects.include? execution.project
+           status: :forbidden and return unless @current_user.projects.include? execution.project
 
     testcase = Testcase.not_run(execution).where("runner_touch <= ? or runner_touch is null", 5.minutes.ago).order(runner_touch: :desc).first
 
@@ -312,6 +326,7 @@ class ExecutionsController < ApplicationController
     render json: {testcase: testcase}
 
   end
+
 
   api :GET, '/executions/:project_key/failing', 'Get all failing tests'
   description 'Returns the complete list of failing tests/environments for the current execution'
@@ -336,7 +351,7 @@ class ExecutionsController < ApplicationController
       failed_tests.append(environment_id: fail.environment ? fail.environment.uuid : 'manual', testcase_name: fail.testcase.name, validation_id: fail.testcase.validation_id)
     end
 
-    render json: failed_tests
+    render json: {failing: failed_tests}
   end
 
 
