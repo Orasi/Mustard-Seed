@@ -79,7 +79,7 @@ class ResultsController < ApplicationController
                                      remove: false,
                                      content_type: ss.screenshot.content_type,
                                      filename: ss.screenshot_file_name)
-        puts token.errors.full_messages
+
         render json: {screenshot: download_url(token: token.token)} and return
       end
     end

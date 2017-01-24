@@ -26,7 +26,8 @@ describe "RESULTS API::" , :type => :api do
                                          project_id: project.api_key,
                                          comment: 'Some new comment',
                                          stacktrace: Faker::Lorem.paragraph,
-                                          link: Faker::Internet.url}}}
+                                         screenshot: "data:image/png;base64,#{ Base64.encode64(File.read('spec/api/test.png'))}",
+                                         link: Faker::Internet.url}}}
 
 
   describe 'get recent results' do
@@ -191,6 +192,107 @@ describe "RESULTS API::" , :type => :api do
       before do
         header 'User-Token', 'asdfasdfasdfasdf'
         get "/results/#{result.id}"
+      end
+
+      it_behaves_like 'an unauthenticated request'
+
+    end
+
+  end
+
+  describe 'get result screenshot' do
+
+    context 'with invalid results id' do
+      before do
+        team.projects << project
+        team.users << user
+        header 'User-Token', user.user_tokens.first.token
+        get "/results/-1/screenshot/1"
+      end
+
+      it_behaves_like 'a not found request'
+    end
+
+    context 'with invalid screenshot id' do
+      before do
+        team.projects << project
+        team.users << user
+        header 'User-Token', user.user_tokens.first.token
+        get "/results/#{result.id}/screenshot/-11"
+      end
+
+      it_behaves_like 'a not found request'
+    end
+
+    context 'as an admin' do
+
+      before do
+        header 'User-Token', admin.user_tokens.first.token
+        post '/results', automated_result_params.to_json , { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
+        screenshot_id = json['result']['results'][0]['screenshot_id']
+        get "/results/#{result.id}/screenshot/#{screenshot_id}"
+      end
+
+      it 'responds succesfully', :show_in_doc do
+        expect(last_response.status).to eq 200
+        expect(json).to include('screenshot')
+      end
+
+      it 'should access any result regardless of team' do
+        expect(last_response.status).to eq 200
+      end
+
+    end
+
+    context 'as a non-admin' do
+
+      before do
+        header 'User-Token', user.user_tokens.first.token
+      end
+
+      it 'should be able to access environment viewable by user' do
+        team.users << user
+        team.projects << project
+        post '/results', automated_result_params.to_json , { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
+        screenshot_id = json['result']['results'][0]['screenshot_id']
+        get "/results/#{result.id}/screenshot/#{screenshot_id}"
+        expect(last_response.status).to eq 200
+        expect(json).to include('screenshot')
+      end
+
+      it 'should not be able to access environment not viewable by user' do
+        post '/results', automated_result_params.to_json , { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
+        screenshot_id = json['result']['results'][0]['screenshot_id']
+        get "/results/#{result.id}/screenshot/#{screenshot_id}"
+        expect(last_response.status).to eq 403
+        expect(json).to include('error')
+      end
+    end
+
+    context 'without user token' do
+      before do
+        header 'User-Token', nil
+        get "/results/#{result.id}/screenshot/1"
+      end
+
+      it_behaves_like 'an unauthenticated request'
+    end
+
+    context 'with expired user token' do
+      before do
+        admin.user_tokens.first.update(expires: DateTime.now - 1.day)
+        header 'User-Token', admin.user_tokens.first.token
+        get "/results/#{result.id}/screenshot/1"
+      end
+
+      it_behaves_like 'an unauthenticated request'
+
+    end
+
+    context 'with invalid user token' do
+      before do
+        header 'User-Token', 'asdfasdfasdfasdf'
+        get "/results/#{result.id}/screenshot/1"
       end
 
       it_behaves_like 'an unauthenticated request'

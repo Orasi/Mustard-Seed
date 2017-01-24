@@ -15,10 +15,10 @@ class TestcaseStatus
         wb.add_worksheet do |sheet|
           sheet.name = s[0]
           sheet.add_row ["Test ID", 'Title', 'Steps', 'Expected Result', 'Status'], :style => tbl_header
-          puts not_run.to_json
+
 
           s[1].each do |tc|
-            # puts tc.to_json
+
             steps = []
             results = []
             if tc.reproduction_steps
