@@ -2,8 +2,11 @@ class User < ApplicationRecord
 
   has_secure_password
 
-  validates :first_name, :last_name, :password_digest, :username,  presence: true
-  validates :username, :uniqueness => true
+  validates :first_name, :last_name, :password_digest, :username, :email,  presence: true
+  validates :username, uniqueness: true
+  validates :email, uniqueness: true
+  validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
+
 
   has_many :user_tokens, dependent: :destroy
   has_one :password_token, dependent:  :destroy

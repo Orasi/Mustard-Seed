@@ -153,30 +153,58 @@ describe "USERS API::" , :type => :api do
 
   end
 
-  describe 'find user by username' do
+  describe 'find user by' do
     let (:user) { FactoryGirl.create(:user) }
     let (:admin) { FactoryGirl.create(:user, :admin) }
 
-    before do
-      get "/users/find/#{user.username}"
-    end
-
-    it 'responds succesfully', :show_in_doc do
-      expect(last_response.status).to eq 200
-    end
-
-    it 'returns user details' do
-      expect(json).to include('user')
-      expect(json['user']).to include 'id'
-    end
-
-    context 'with invalid username' do
+    context 'username' do
       before do
-        header 'User-Token', user.user_tokens.first.token
-        get "/users/find/doesnot.exist@email.com"
+        get "/users/find/#{user.username}"
       end
 
-      it_behaves_like 'a not found request'
+      it 'responds succesfully', :show_in_doc do
+        expect(last_response.status).to eq 200
+      end
+
+      it 'returns user details' do
+        expect(json).to include('user')
+        expect(json['user']).to include 'id'
+      end
+
+
+      context 'with invalid username' do
+        before do
+          header 'User-Token', user.user_tokens.first.token
+          get "/users/find/doesnot.exist"
+        end
+
+        it_behaves_like 'a not found request'
+      end
+    end
+
+    context 'email address' do
+      before do
+        get "/users/find/#{user.email}"
+      end
+
+      it 'responds succesfully' do
+        expect(last_response.status).to eq 200
+      end
+
+      it 'returns user details' do
+        expect(json).to include('user')
+        expect(json['user']).to include 'id'
+      end
+
+
+      context 'with invalid email' do
+        before do
+          header 'User-Token', user.user_tokens.first.token
+          get "/users/find/doesnot.exist@email.com"
+        end
+
+        it_behaves_like 'a not found request'
+      end
     end
 
   end
@@ -236,7 +264,8 @@ describe "USERS API::" , :type => :api do
                                  last_name: user_params2.last_name,
                                  password: '1234',
                                  password_confirmation: '1234',
-                                 username: user_params2.username}}}
+                                 username: user_params2.username,
+                                 email: user_params2.email}}}
 
 
     context 'as an admin' do
@@ -284,12 +313,47 @@ describe "USERS API::" , :type => :api do
           expect(json).to include('error')
         end
 
+        it 'email should fail' do
+          params = {user: user_params[:user].except(:email)}
+          post "/users/", params.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
+          expect(last_response.status).to eq 400
+          expect(json).to include('error')
+        end
+
         it 'password confirmation should succeed' do
           params = {user: user_params[:user].except(:password_confirmation)}
           post "/users/", params.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
           expect(last_response.status).to eq 200
           expect(json).to include('user')
         end
+      end
+
+      context 'invalid parameter' do
+
+        it 'invalid email should fail' do
+          user_params[:user][:email] = 'Not a real email.com'
+          params = {user: user_params[:user]}
+          post "/users/", params.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
+          expect(last_response.status).to eq 400
+          expect(json).to include('error')
+        end
+
+        it 'duplicated email should fail' do
+          user_params[:user][:email] = User.last.email
+          params = {user: user_params[:user]}
+          post "/users/", params.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
+          expect(last_response.status).to eq 400
+          expect(json).to include('error')
+        end
+
+        it 'duplicated username should fail' do
+          user_params[:user][:username] = User.last.username
+          params = {user: user_params[:user]}
+          post "/users/", params.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
+          expect(last_response.status).to eq 400
+          expect(json).to include('error')
+        end
+
       end
 
 

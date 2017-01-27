@@ -50,14 +50,17 @@ class UsersController < ApplicationController
   end
 
 
-  api :GET, '/users/find/:username', 'Find by Username'
-  param :username, String, 'Username', required: true
+  api :GET, '/users/find/:username', 'Find by Username or Email Address'
+  param :username, String, 'Username or Email Address', required: true
   param 'User-Token', nil
   formats ['json']
-  description "Returns is of a single user found by username."
+  description "Returns is of a single user found by username or email."
   def find
-
-    @user = User.find_by_username(params[:username])
+    if params[:username].include? '@'
+      @user = User.find_by_email(params[:username])
+    else
+      @user = User.find_by_username(params[:username])
+    end
 
     render json: {error: "User not found"},
            status: :not_found and return unless @user
@@ -200,12 +203,12 @@ class UsersController < ApplicationController
   # Do not allow password change via update users
   # Password change will require a seperate endpoint
   def update_user_params
-    params.require(:user).permit(:first_name, :last_name, :company, :username, :admin)
+    params.require(:user).permit(:first_name, :last_name, :company, :username, :admin, :email)
   end
 
 
   def create_user_params
-    params.require(:user).permit(:first_name, :last_name, :company, :username,  :password, :password_confirmation, :admin)
+    params.require(:user).permit(:first_name, :last_name, :company, :username,  :password, :password_confirmation, :admin, :email)
   end
 
   def reset_password_params

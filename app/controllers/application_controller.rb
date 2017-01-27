@@ -7,7 +7,7 @@ class ApplicationController < ActionController::API
   end
 
   api :POST, '/authenticate', 'Login'
-  description 'Returns User-Token and current user details.'
+  description 'Returns User-Token and current user details. Allows user to login with either username or email address'
   meta 'Unauthenticated path.  User-Token header is not required'
   param 'User-Token', nil
   param :username, String, 'User username', required: true
@@ -17,7 +17,12 @@ class ApplicationController < ActionController::API
     render json: {error: 'Username or Password are required'},
            status: :bad_request and return unless params[:password] && params[:username]
 
-    user = User.find_by_username(params[:username].downcase)
+
+    if params[:username].include? '@'
+      user = User.find_by_email(params[:username])
+    else
+      user = User.find_by_username(params[:username])
+    end
 
     render json: {error: 'Username or Password is invalid'},
            status: :unauthorized and return unless user && user.authenticate(params[:password])

@@ -7,7 +7,8 @@ FactoryGirl.define do
     password '12345'
     password_confirmation '12345'
     company {Faker::Company.name}
-    username  {Faker::Internet.email}
+    username  {Faker::Internet.user_name}
+    email {Faker::Internet.email}
 
     trait :admin do
       admin true

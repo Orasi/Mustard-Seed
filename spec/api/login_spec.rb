@@ -8,18 +8,40 @@ describe "LOGIN API::" , :type => :api do
   describe 'login' do
 
     context 'with valid credentials' do
-      before do
-        header 'User-Token', user.user_tokens.first.token
-        post "/authenticate/", {username: user.username, password: 12345}.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
+
+      context 'with username' do
+        before do
+          header 'User-Token', user.user_tokens.first.token
+          post "/authenticate/", {username: user.username, password: 12345}.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
+        end
+
+        it 'responds successfully', :show_in_doc do
+          expect(last_response.status).to eq 200
+          expect(json).to include('user')
+        end
+
+        it 'includes user token' do
+          expect(json['user']).to include('token')
+        end
+
       end
 
-      it 'responds successfully', :show_in_doc do
-        expect(last_response.status).to eq 200
-        expect(json).to include('user')
-      end
+      context 'with email address' do
 
-      it 'includes user token' do
-        expect(json['user']).to include('token')
+        before do
+          header 'User-Token', user.user_tokens.first.token
+          post "/authenticate/", {username: user.email, password: 12345}.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
+        end
+
+        it 'responds successfully', :show_in_doc do
+          expect(last_response.status).to eq 200
+          expect(json).to include('user')
+        end
+
+        it 'includes user token' do
+          expect(json['user']).to include('token')
+        end
+
       end
 
     end
