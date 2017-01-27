@@ -14,6 +14,7 @@ class UsersController < ApplicationController
       param :first_name, String, 'User\'s First name', :required => true
       param :last_name, String, 'User\'s last name', :required => true
       param :company, String, "User's Company", :required => true
+      param :username, String, "User's username. Used to login", :required => true
       param :username, String, "User's email address. Used to login", :required => true
       param :password, String, "User's password", :required => true
       param :admin, :boolean, "User's permission level"
@@ -65,7 +66,7 @@ class UsersController < ApplicationController
     render json: {error: "User not found"},
            status: :not_found and return unless @user
 
-  render json: {user: {id: @user.id, username: @user.username}}
+  render json: {user: {id: @user.id, username: @user.username, email: @user.email}}
 
   end
 
@@ -88,7 +89,7 @@ class UsersController < ApplicationController
 
 
   api :POST, '/users/reset-password', 'Trigger Password Reset Email'
-  param :id, String, 'Username', required: true
+  param :id, String, 'Email Address', required: true
   formats ['json']
   description "Triggers a password reset email to the User"
   def trigger_password_reset
