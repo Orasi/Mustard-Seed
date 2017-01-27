@@ -89,12 +89,12 @@ class UsersController < ApplicationController
 
 
   api :POST, '/users/reset-password', 'Trigger Password Reset Email'
-  param :id, String, 'Email Address', required: true
+  param :user, String, 'Email Address', required: true
   formats ['json']
   description "Triggers a password reset email to the User"
   def trigger_password_reset
 
-    @user = User.find_by_username(params[:user][:username])
+    @user = User.find_by_email(params[:user][:email])
 
     render json: {error: "User not found"},
            status: :not_found and return unless @user
