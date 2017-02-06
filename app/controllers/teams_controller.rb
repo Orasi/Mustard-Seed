@@ -31,9 +31,9 @@ class TeamsController < ApplicationController
   def index
 
     if @current_user.admin
-      @teams = Team.includes(:users, :projects).all
+      @teams = Team.includes(:users, :projects).all.order(:name)
     else
-      @teams = @current_user.user_teams
+      @teams = @current_user.user_teams.order(:name)
     end
 
   end

@@ -19,10 +19,14 @@ class ApplicationController < ActionController::API
 
 
     if params[:username].include? '@'
-      user = User.find_by_email(params[:username])
+      user = User.where(email: params[:username])
     else
-      user = User.find_by_username(params[:username])
+      user = User.where(username: params[:username])
     end
+
+    render json: {error: 'Username or Password is invalid'},
+           status: :unauthorized and return unless user.count > 0
+    user = user.first
 
     render json: {error: 'Username or Password is invalid'},
            status: :unauthorized and return unless user && user.authenticate(params[:password])
