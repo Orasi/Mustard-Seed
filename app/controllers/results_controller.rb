@@ -174,7 +174,7 @@ class ResultsController < ApplicationController
       # If testcase_id can NOT be converted to an INT the testcase name is used
       # If no test case is found with the give name, a new testcase is created
       testcase_identifier = result_params[:testcase_id]
-      testcase = find_or_create_testcase(testcase_identifier, project.id)
+      testcase = find_or_create_testcase(testcase_identifier, project)
       return unless testcase
       testcase_id = testcase.id
 
@@ -279,27 +279,24 @@ class ResultsController < ApplicationController
   end
 
 
-  def find_or_create_testcase(identifier, project_id)
+  def find_or_create_testcase(identifier, project)
 
     #If Result provided an integer as the id lookup testcase based on validation id
     #Else lookup result based on name
     no_id = false
-    if identifier.to_i > 0
-      identifier = identifier.to_i
-    else
-      no_id = true
-    end
+
+    no_id = true unless project.testcases.where(validation_id: identifier).count > 0
 
     if no_id
 
       #Find testcase based on name
       #If not found create a testcase with that name
-      testcase = Testcase.where(name: identifier, project_id: project_id, outdated: false)
+      testcase = project.testcases.where(name: identifier, outdated: false)
 
       unless testcase.blank?
         return testcase.first
       else
-        testcase = Testcase.new(name: identifier, project_id: project_id)
+        testcase = Testcase.new(name: identifier, project_id: project.id)
         if testcase.save
           return testcase
         else
@@ -311,7 +308,7 @@ class ResultsController < ApplicationController
 
       #Find testcase based on validation_id
       #If not found return error
-      testcase = Testcase.where(validation_id: identifier, project_id: project_id)
+      testcase = project.testcases.where(validation_id: identifier)
 
       unless testcase.blank?
         return testcase.first
