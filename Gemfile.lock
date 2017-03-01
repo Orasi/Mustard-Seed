@@ -69,6 +69,9 @@ GEM
     cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
     concurrent-ruby (1.0.2)
+    creek (1.1.2)
+      nokogiri (~> 1.6.0)
+      rubyzip (>= 1.0.0)
     diff-lcs (1.2.5)
     docile (1.1.5)
     erubis (2.7.0)
@@ -210,6 +213,7 @@ DEPENDENCIES
   axlsx_rails
   bcrypt (~> 3.1.7)
   byebug
+  creek
   factory_girl_rails
   faker!
   jbuilder (~> 2.5)

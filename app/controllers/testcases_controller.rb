@@ -162,19 +162,103 @@ class TestcasesController < ApplicationController
   end
 
 
-  api :POST, '/projects/:id/import', 'Import testcases'
-  description 'Import testcases from CSV string.  Only accessible by admin users'
+  api :POST, '/projects/:id/import', 'Import testcases from JSON'
+  description 'Import testcases from JSON.  Only accessible by admin users'
   param :project_id, :number, required: true
-  param :csv, String, required: true
-  param :preview, :boolean
-
+  param :json, String, required: true
   def import
 
     project = Project.where(id: params[:project_id])
 
     render json: {error: "Project not found"},
            status: :not_found and return if project.blank?
+
     project = project.first
+
+
+    output = {}
+    output[:success] = []
+    output[:error] = []
+
+    update = params[:update]
+
+    JSON.parse(params[:json]).each do |testcase|
+
+      #Find By Validation ID
+      tc = Testcase.where(project_id: project.id, validation_id: testcase['validation_id'])
+      if tc.count > 0
+        tc = tc.first
+        new_version = true unless tc.reproduction_steps == testcase['reproduction_steps']
+        tc.assign_attributes(reproduction_steps: testcase['reproduction_steps'], name: testcase['name'])
+        found = true
+      end
+
+      #Find by Name
+      unless found
+        tc = Testcase.where(project_id: project.id, name: testcase['name'])
+        if tc.count > 0
+          tc = tc.first
+          new_version = true unless tc.reproduction_steps == test_steps
+          tc.assign_attributes(reproduction_steps: test_steps, validation_id: testcase['validation_id'])
+          found == true
+        end
+      end
+
+      #If not found, create
+      unless found
+        tc = Testcase.new( testcase )
+        tc.validation_id = parse_vid(tc.validation_id).to_s
+        tc.project_id = project.id
+        tc.token = Testcase.generate_unique_secure_token
+        found = true
+      end
+
+      if new_version && update && update.downcase == 'true'
+        begin
+          Testcase.transaction do
+
+            old_testcase = Testcase.find(tc.id)
+            clone = tc.dup
+            old_testcase.close!
+            clone.outdated = false
+            clone.version = old_testcase.version + 1
+            add_user_name clone
+            saved = clone.save!
+
+          end
+        rescue
+
+        end
+
+      else
+        add_user_name(tc)
+        saved = tc.save
+      end
+
+      if saved
+        output[:success].append(tc)
+      else
+        output[:error].append(tc)
+      end
+    end
+
+    render :import
+
+  end
+
+  api :POST, '/projects/:id/parse', 'Parse file for testcases'
+  description 'Parse testcases from XLS or XLSX file string and returns JSON of valid and invalid testcases.  Only accessible by admin users'
+  param :project_id, :number, required: true
+  # param :file, :file, required: true
+  def parse_file
+
+    project = Project.where(id: params[:project_id])
+
+    render json: {error: "Project not found"},
+           status: :not_found and return if project.blank?
+
+    project = project.first
+
 
     output = {}
     output[:success] = []
@@ -184,32 +268,53 @@ class TestcasesController < ApplicationController
     update = params[:update]
 
     csv = params[:csv]
-
+    file = params[:file]
+    creek = Creek::Book.new file.path, check_file_extension: false
+    sheet = creek.sheets[0]
 
     titles = []
     steps = []
     results = []
     val_type = []
     test_ids = []
-    CSV.parse(csv, headers: true) do |row|
-      row_title = row['Title']
-      row_step = row['Steps'] ? row['Steps'].split("\r\n") : []
-      row_expected = row['Expected Result'] ? row['Expected Result'].split("\r\n") : []
-      row_id = row['Test ID'] ? row['Test ID'] : ''
-      if row_title.present? && row_step.present? && row_expected.present?
-        titles.append(row_title)
-        steps.append(parse_steps(row_step))
-        results.append(parse_steps(row_expected))
-        test_ids.append(row_id)
-      else
-        output[:error].append(row_title) if row_title.present?
+
+    sheet.rows.each_with_index  do |row, i|
+      unless i == 0
+        row = row.to_a
+        unless row.blank?
+          row_title = row[1][1]
+          row_step = row[2][1] ? row[2][1].split("\n") : []
+          row_expected = row[3][1] ? row[3][1].split("\n") : []
+          row_id = row[0][1] ? row[0][1] : ''
+          if row_title.present? && row_step.present? && row_expected.present?
+            titles.append(row_title)
+            steps.append(parse_steps(row_step))
+            results.append(parse_steps(row_expected))
+            test_ids.append(row_id)
+          else
+            if row_title.present?
+              reason = ''
+              reason += 'Validation ID is blank.  ' if row_id.blank?
+              reason += 'Name is blank.  ' if row_title.blank?
+              reason += 'Actions are blank.  ' if row_step.blank?
+              reason += 'Expected Results are blank.  ' if row_expected.blank?
+              reason += 'Action count does not equal expected result count' if (row_step.count != row_expected.count)
+              message = row_title.to_s if reason == ''
+              message = row_title.to_s + ' - ' + reason unless reason == ''
+              output[:error].append(message) if row_title.present?
+            end
+
+          end
+        end
+
       end
+
 
     end
 
     titles.count.times do |i|
 
-      if !titles[i].blank? && (steps[i].count == results[i].count)
+      if !test_ids[i].blank? && !titles[i].blank? && (steps[i].count == results[i].count)
         test_steps = []
 
         steps[i].count.times do |j|
@@ -243,7 +348,7 @@ class TestcasesController < ApplicationController
           unless found
             tc = Testcase.new(project_id: project.id,
                               name: titles[i],
-                              validation_id: test_ids[i],
+                              validation_id: parse_vid(test_ids[i]).to_s,
                               reproduction_steps: test_steps,
                               token: Testcase.generate_unique_secure_token
             )
@@ -252,41 +357,21 @@ class TestcasesController < ApplicationController
         else
           tc = Testcase.new(project_id: project.id,
                             name: titles[i],
-                            validation_id: test_ids[i],
+                            validation_id: parse_vid(test_ids[i]),
                             reproduction_steps: test_steps,
                             token: Testcase.generate_unique_secure_token
           )
         end
-        if preview
-          unless preview.downcase == 'true'
-            if new_version && update && update.downcase == 'true'
-              begin
-                Testcase.transaction do
-
-                  testcase = Testcase.find(tc.id)
-                  clone = tc.dup
-                  testcase.close!
-                  clone.outdated = false
-                  clone.version = testcase.version + 1
-                  add_user_name clone
-                  clone.save!
-
-                end
-              rescue
-
-              end
-
-            else
-              add_user_name(tc)
-              tc.save
-            end
-
-          end
-        end
 
         output[:success].append(tc)
       else
-        output[:error].append(titles[i])
+        reason = ''
+        reason += 'Validation ID is blank.  ' if test_ids[i].blank?
+        reason += 'Name is blank.  ' if titles[i].blank?
+        reason += 'Action count does not equal expected result count' if (steps[i].count != results[i].count)
+        message = titles[i] if reason == ''
+        message = titles[i] + ' - ' + reason unless reason == ''
+        output[:error].append(message)
       end
     end
 
@@ -294,9 +379,7 @@ class TestcasesController < ApplicationController
     @error = output[:error]
 
     render :import
-
   end
-
 
   private
 
@@ -335,4 +418,7 @@ class TestcasesController < ApplicationController
 
   end
 
+  def parse_vid(vid)
+    ((float = Float(vid)) && (float % 1.0 == 0) ? float.to_i : float) rescue vid
+  end
 end

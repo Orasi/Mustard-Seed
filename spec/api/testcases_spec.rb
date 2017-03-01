@@ -632,47 +632,47 @@ describe "TESTCASES API::" , :type => :api do
     end
   end
 
-  describe 'import testcases' do
-
-    it 'should upload testcases', :show_in_doc do
-
-      file = File.open('spec/api/test.csv', "rb")
-      contents = file.read
-
-      header 'User-Token', admin.user_tokens.first.token
-      post "/projects/#{project.id}/import", {csv: contents}.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
-      expect(last_response.status).to eq 200
-      expect(json).to include('success')
-      expect(json).to include('fail')
-
-    end
-    it 'should preview testcases', :show_in_doc do
-
-      file = File.open('spec/api/test.csv', "rb")
-      contents = file.read
-
-      header 'User-Token', admin.user_tokens.first.token
-      post "/projects/#{project.id}/import", {preview: 'true', csv: contents}.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
-      expect(last_response.status).to eq 200
-      expect(json).to include('success')
-      expect(json).to include('fail')
-
-    end
-    it 'should update testcases', :show_in_doc do
-
-      file = File.open('spec/api/test.csv', "rb")
-      contents = file.read
-
-      header 'User-Token', admin.user_tokens.first.token
-      post "/projects/#{project.id}/import", {update: 'true',csv: contents}.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
-      post "/projects/#{project.id}/import", {update: 'true',csv: contents}.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
-      expect(last_response.status).to eq 200
-      expect(json).to include('success')
-      expect(json).to include('fail')
-
-    end
-
-  end
+  # describe 'import testcases' do
+  #
+  #   it 'should upload testcases', :show_in_doc do
+  #
+  #     file = File.open('spec/api/test.csv', "rb")
+  #     contents = file.read
+  #
+  #     header 'User-Token', admin.user_tokens.first.token
+  #     post "/projects/#{project.id}/import", {csv: contents}.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
+  #     expect(last_response.status).to eq 200
+  #     expect(json).to include('success')
+  #     expect(json).to include('fail')
+  #
+  #   end
+  #   it 'should preview testcases', :show_in_doc do
+  #
+  #     file = File.open('spec/api/test.csv', "rb")
+  #     contents = file.read
+  #
+  #     header 'User-Token', admin.user_tokens.first.token
+  #     post "/projects/#{project.id}/import", {preview: 'true', csv: contents}.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
+  #     expect(last_response.status).to eq 200
+  #     expect(json).to include('success')
+  #     expect(json).to include('fail')
+  #
+  #   end
+  #   it 'should update testcases', :show_in_doc do
+  #
+  #     file = File.open('spec/api/test.csv', "rb")
+  #     contents = file.read
+  #
+  #     header 'User-Token', admin.user_tokens.first.token
+  #     post "/projects/#{project.id}/import", {update: 'true',csv: contents}.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
+  #     post "/projects/#{project.id}/import", {update: 'true',csv: contents}.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
+  #     expect(last_response.status).to eq 200
+  #     expect(json).to include('success')
+  #     expect(json).to include('fail')
+  #
+  #   end
+  #
+  # end
 
   describe 'export testcases' do
     context 'as an admin' do

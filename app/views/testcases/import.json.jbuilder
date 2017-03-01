@@ -4,4 +4,4 @@ json.success @success do |s|
   json.reproduction_steps s.reproduction_steps
 end
 
-json.fail @error
+json.failure @error
