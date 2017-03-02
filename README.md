@@ -48,7 +48,7 @@ And we can create a user in the console with the following command.
 
 `User.create(first_name: '', last_name: '', username: '', password: '', password_confirmation: '', company: '', email: '', admin: true)`
 
-Where all the relevant values have been filled in.  **Usernames should always be a valid email address so we can send Reset Password Emails.**
+Where all the relevant values have been filled in.  
 
 ### Starting Mustard
 The Mustard server should be able to be started with the following command.
