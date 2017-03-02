@@ -37,7 +37,7 @@ and then
 
 `rake db:migrate`
 
-These commands will create the database and and all the tables that are needed for Mustard.
+These commands will create the database and all the tables that are needed for Mustard.
 
 ### Adding a User
 By default, Mustard does not have any users configured and atleast one will need to be added in the Rails console to allow access.  You can access the Rails console by running the following command from the Mustard root directory.
@@ -46,9 +46,9 @@ By default, Mustard does not have any users configured and atleast one will need
 
 And we can create a user in the console with the following command.
 
-`User.create(first_name: '', last_name: '', username: '', password: '', password_confirmation: '', company: '', admin: true)`
+`User.create(first_name: '', last_name: '', username: '', password: '', password_confirmation: '', company: '', email: '', admin: true)`
 
-Where all the relevant values have been filled in.  **Usernames should always be a valid email address so we can send Reset Password Emails.**
+Where all the relevant values have been filled in.  
 
 ### Starting Mustard
 The Mustard server should be able to be started with the following command.
