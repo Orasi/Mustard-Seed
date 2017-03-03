@@ -45,7 +45,8 @@
 <div>
 
   
-<p>Returns User-Token and current user details.</p>
+<p>Returns User-Token and current user details. Allows user to login with
+either username or email address</p>
 
 
 
@@ -59,17 +60,18 @@
   <h2>Examples</h2>
     <pre class="prettyprint">POST /authenticate/
 {
-  &quot;username&quot;: &quot;eusebio_gleichner@luettgendouglas.info&quot;,
+  &quot;username&quot;: &quot;joan.wiza&quot;,
   &quot;password&quot;: 12345
 }
 200
 {
   &quot;user&quot;: {
-    &quot;id&quot;: 59354,
-    &quot;username&quot;: &quot;eusebio_gleichner@luettgendouglas.info&quot;,
-    &quot;first_name&quot;: &quot;Mariah&quot;,
-    &quot;last_name&quot;: &quot;Blick&quot;,
-    &quot;token&quot;: &quot;HjAFGf6orJWzM4rE54t2AJVb&quot;,
+    &quot;id&quot;: 30642,
+    &quot;username&quot;: &quot;joan.wiza&quot;,
+    &quot;email&quot;: &quot;ansley@dicki.name&quot;,
+    &quot;first_name&quot;: &quot;Alberta&quot;,
+    &quot;last_name&quot;: &quot;Quitzon&quot;,
+    &quot;token&quot;: &quot;vnYYFkK8F31oFHzb9MhwvFjs&quot;,
     &quot;admin&quot;: null
   }
 }</pre>

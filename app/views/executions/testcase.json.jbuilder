@@ -23,7 +23,7 @@ json.testcase do
     json.manual_results []
   end
 
-    json.automated_results @results.where.not(environment_id: -1).order(:current_status, 'environments.uuid') do |r|
+  json.automated_results @results.where.not(environment_id: -1).order(:current_status, 'environments.uuid') do |r|
     json.id r.id
     json.environment_id r.environment_id
     json.environment_name r.environment.name unless r.environment_id == -1
@@ -35,6 +35,8 @@ json.testcase do
     json.screenshot_id r.results.first['screenshot_id'] if r.results.first['screenshot_id']
     json.step_log r.results.first['step_log'] if r.results.first['step_log']
     json.created_at r.updated_at
+    json.created_by_name r.results.first['created_by_name'] if r.results.first['created_by_name']
+    json.created_by_id r.results.first['created_by_id'].to_s if r.results.first['created_by_id']
     json.status r.current_status
   end
 

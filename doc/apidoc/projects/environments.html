@@ -23,71 +23,34 @@
     <span class='divider'>/</span>
   </li>
   <li>
-    <a href='../../apidoc/teams.html'>
-      Teams
+    <a href='../../apidoc/projects.html'>
+      Projects
       
     </a>
     <span class='divider'>/</span>
   </li>
-  <li class='active'>update</li>
+  <li class='active'>environments</li>
   
 
 </ul>
 
   <div class='page-header'>
     <h1>
-      PUT /teams/:id
+      GET /projects/:id/environments
       <br>
-      <small>Update existing team</small>
+      <small>List all environments for project</small>
     </h1>
   </div>
 
 <div>
 
   
-<p>Only accessible by Admins</p>
+<p>Lists all environments for project</p>
 
 
 
 
 
-  <h2>Examples</h2>
-    <pre class="prettyprint">PUT /teams/4221
-{
-  &quot;team&quot;: {
-    &quot;name&quot;: &quot;Some New Name&quot;
-  }
-}
-200
-{
-  &quot;team&quot;: {
-    &quot;id&quot;: 4221,
-    &quot;name&quot;: &quot;Some New Name&quot;,
-    &quot;description&quot;: &quot;You can&#39;t connect the circuit without calculating the redundant EXE pixel!&quot;,
-    &quot;created_at&quot;: &quot;2017-03-03T14:34:08.666Z&quot;,
-    &quot;updated_at&quot;: &quot;2017-03-03T14:34:08.896Z&quot;,
-    &quot;projects&quot;: [
-      {
-        &quot;id&quot;: 12324,
-        &quot;project_name&quot;: &quot;Rolfson-Cassin&quot;
-      },
-      {
-        &quot;id&quot;: 12325,
-        &quot;project_name&quot;: &quot;Gutkowski and Sons&quot;
-      }
-    ],
-    &quot;users&quot;: [
-      {
-        &quot;id&quot;: 30689,
-        &quot;username&quot;: &quot;vincenza&quot;
-      },
-      {
-        &quot;id&quot;: 30690,
-        &quot;username&quot;: &quot;megane.marks&quot;
-      }
-    ]
-  }
-}</pre>
 
   <h2>Params</h2>
   <table class='table'>
@@ -133,6 +96,8 @@ otherwise indicated</p>
     </td>
     <td>
       
+<p>Project ID</p>
+
         <p><strong>Validations:</strong></p>
         <ul>
             <li>
@@ -145,76 +110,6 @@ otherwise indicated</p>
   </tr>
 
   
-  <tr style='background-color:rgb(255,255,255);'>
-    <td>
-      <strong>team </strong><br>
-      <small>
-        required
-        
-      </small>
-    </td>
-    <td>
-      
-        <p><strong>Validations:</strong></p>
-        <ul>
-            <li>
-<p>Must be a Hash</p>
-</li>
-        </ul>
-
-    </td>
-
-  </tr>
-
-    <tr style='background-color:rgb(250,250,250);'>
-    <td>
-      <strong>team[name] </strong><br>
-      <small>
-        optional
-        
-      </small>
-    </td>
-    <td>
-      
-<p>Team name</p>
-
-        <p><strong>Validations:</strong></p>
-        <ul>
-            <li>
-<p>Must be String</p>
-</li>
-        </ul>
-
-    </td>
-
-  </tr>
-
-  
-  <tr style='background-color:rgb(250,250,250);'>
-    <td>
-      <strong>team[description] </strong><br>
-      <small>
-        optional
-        
-      </small>
-    </td>
-    <td>
-      
-<p>Team Description</p>
-
-        <p><strong>Validations:</strong></p>
-        <ul>
-            <li>
-<p>Must be String</p>
-</li>
-        </ul>
-
-    </td>
-
-  </tr>
-
-  
-
 
     </tbody>
   </table>

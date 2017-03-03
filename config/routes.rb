@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
 
   resources :projects, defaults: {format: :json}
+  get 'projects/:project_id/environments', to: 'projects#environments', defaults: {format: :json}
   post 'projects/:project_id/parse', to: 'testcases#parse_file', defaults: {format: :json}
   post 'projects/:project_id/import', to: 'testcases#import', defaults: {format: :json}
   get 'projects/:project_id/testcases/export', to: 'testcases#export', defaults: {format: :json}

@@ -607,13 +607,13 @@ describe "USERS API::" , :type => :api do
 
     context 'with valid username' do
       it 'responds succesfully', :show_in_doc do
-        post '/users/reset-password', {user: {username: user.username}, 'redirect-to' => 'http://some.url/TOKEN'}.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
+        post '/users/reset-password', {user: {email: user.email}, 'redirect-to' => 'http://some.url/TOKEN'}.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
         expect(last_response.status).to eq 200
         expect(json).to include('success')
       end
 
       it 'causes email to be sent' do
-        expect { post '/users/reset-password', {user: {username: user.username}, 'redirect-to' => 'http://some.url/TOKEN'}.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' } }
+        expect { post '/users/reset-password', {user: {email: user.email}, 'redirect-to' => 'http://some.url/TOKEN'}.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' } }
             .to change { ActionMailer::Base.deliveries.count }.by(1)
       end
     end

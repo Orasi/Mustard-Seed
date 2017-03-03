@@ -38,14 +38,14 @@
     <h1>
       GET /users/find/:username
       <br>
-      <small>Find by Username</small>
+      <small>Find by Username or Email Address</small>
     </h1>
   </div>
 
 <div>
 
   
-<p>Returns is of a single user found by username.</p>
+<p>Returns is of a single user found by username or email.</p>
 
 
   <h2>Supported Formats</h2>
@@ -54,12 +54,13 @@
 
 
   <h2>Examples</h2>
-    <pre class="prettyprint">GET /users/find/clotilde.windler@maggio.org
+    <pre class="prettyprint">GET /users/find/robbie_fahey
 200
 {
   &quot;user&quot;: {
-    &quot;id&quot;: 59450,
-    &quot;username&quot;: &quot;clotilde.windler@maggio.org&quot;
+    &quot;id&quot;: 30737,
+    &quot;username&quot;: &quot;robbie_fahey&quot;,
+    &quot;email&quot;: &quot;oswald@wisozk.info&quot;
   }
 }</pre>
 
@@ -82,7 +83,7 @@
     </td>
     <td>
       
-<p>Username</p>
+<p>Username or Email Address</p>
 
         <p><strong>Validations:</strong></p>
         <ul>

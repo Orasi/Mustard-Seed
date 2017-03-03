@@ -38,51 +38,140 @@
     <h1>
       POST /projects/:id/import
       <br>
-      <small>Import testcases</small>
+      <small>Import testcases from JSON</small>
     </h1>
   </div>
 
 <div>
 
   
-<p>Import testcases from CSV string.  Only accessible by admin users</p>
+<p>Import testcases from JSON.  Only accessible by admin users</p>
 
 
 
 
 
   <h2>Examples</h2>
-    <pre class="prettyprint">POST /projects/24544/import
+    <pre class="prettyprint">POST /projects/12349/import
 {
-  &quot;csv&quot;: &quot;Test ID,Title,Steps,Expected Result\n123457,New Test Case 1,\&quot;1.  Action 1\n2.  Action 2\n3.  Action 3\&quot;,\&quot;1.  Result 1\n2.  Result 2\n3.  Result 3\&quot;\n123456,New Test Case 2,\&quot;1.  Action 1\n2.  Action 2\n3.  Action 3\&quot;,\&quot;1.  Result 1\n2.  Result 2\n3.  Result 3\&quot;\n&quot;
+  &quot;update&quot;: &quot;true&quot;,
+  &quot;json&quot;: &quot;[{\&quot;id\&quot;:null,\&quot;name\&quot;:\&quot;Dolore consequatur veniam sunt nobis iste.\&quot;,\&quot;validation_id\&quot;:\&quot;5547502\&quot;,\&quot;reproduction_steps\&quot;:[{\&quot;step_number\&quot;:1,\&quot;action\&quot;:\&quot;Some New Action\&quot;,\&quot;result\&quot;:\&quot;Eos sint dolorem odit aspernatur vero voluptatibus et quae.\&quot;},{\&quot;step_number\&quot;:2,\&quot;action\&quot;:\&quot;Dolorem itaque architecto sint corporis amet voluptas.\&quot;,\&quot;result\&quot;:\&quot;Non aut animi quam qui delectus aspernatur ut natus.\&quot;},{\&quot;step_number\&quot;:3,\&quot;action\&quot;:\&quot;Ut qui illo labore soluta veritatis aliquid omnis.\&quot;,\&quot;result\&quot;:\&quot;At qui quisquam nam facere quia nihil.\&quot;}]},{\&quot;id\&quot;:null,\&quot;name\&quot;:\&quot;Excepturi ipsum omnis repudiandae incidunt odit.\&quot;,\&quot;validation_id\&quot;:\&quot;1594924\&quot;,\&quot;reproduction_steps\&quot;:[{\&quot;step_number\&quot;:1,\&quot;action\&quot;:\&quot;Ad debitis magnam et molestiae exercitationem enim hic velit.\&quot;,\&quot;result\&quot;:\&quot;Aperiam dolores ut quia doloribus quia debitis aut.\&quot;},{\&quot;step_number\&quot;:2,\&quot;action\&quot;:\&quot;Dolorum sapiente neque voluptatum deleniti quia repudiandae.\&quot;,\&quot;result\&quot;:\&quot;Eaque perspiciatis eum quod.\&quot;},{\&quot;step_number\&quot;:3,\&quot;action\&quot;:\&quot;Porro inventore facere ea suscipit maiores id.\&quot;,\&quot;result\&quot;:\&quot;Dolorem deserunt consequatur laudantium atque qui.\&quot;}]},{\&quot;id\&quot;:null,\&quot;name\&quot;:\&quot;Iste eos sequi aut soluta culpa.\&quot;,\&quot;validation_id\&quot;:\&quot;7035755\&quot;,\&quot;reproduction_steps\&quot;:[{\&quot;step_number\&quot;:1,\&quot;action\&quot;:\&quot;Ipsum itaque qui eos rerum eveniet blanditiis est.\&quot;,\&quot;result\&quot;:\&quot;Quas blanditiis ut soluta mollitia voluptatem sunt.\&quot;},{\&quot;step_number\&quot;:2,\&quot;action\&quot;:\&quot;Provident omnis minus eius blanditiis numquam sed.\&quot;,\&quot;result\&quot;:\&quot;Sunt dolores tempore nisi aut.\&quot;},{\&quot;step_number\&quot;:3,\&quot;action\&quot;:\&quot;Molestiae explicabo quo non quia qui eligendi sint.\&quot;,\&quot;result\&quot;:\&quot;Expedita est voluptatem beatae corporis optio.\&quot;}]},{\&quot;id\&quot;:null,\&quot;name\&quot;:\&quot;Aliquid reprehenderit dolore sint eius eum asperiores cupiditate.\&quot;,\&quot;validation_id\&quot;:\&quot;7243376\&quot;,\&quot;reproduction_steps\&quot;:[{\&quot;step_number\&quot;:1,\&quot;action\&quot;:\&quot;Voluptas explicabo aut voluptate architecto quia repellendus rem tenetur.\&quot;,\&quot;result\&quot;:\&quot;Ratione distinctio fugiat hic maiores qui magni.\&quot;},{\&quot;step_number\&quot;:2,\&quot;action\&quot;:\&quot;Ipsum dolorem ullam consequatur praesentium fugit fugiat id.\&quot;,\&quot;result\&quot;:\&quot;Temporibus ducimus ipsa distinctio voluptate nesciunt.\&quot;},{\&quot;step_number\&quot;:3,\&quot;action\&quot;:\&quot;Qui non et iure itaque id et dicta aperiam.\&quot;,\&quot;result\&quot;:\&quot;Temporibus minus voluptas dolor eum nihil fugiat voluptates.\&quot;}]},{\&quot;id\&quot;:null,\&quot;name\&quot;:\&quot;Possimus qui praesentium facere culpa reprehenderit.\&quot;,\&quot;validation_id\&quot;:\&quot;4913499\&quot;,\&quot;reproduction_steps\&quot;:[{\&quot;step_number\&quot;:1,\&quot;action\&quot;:\&quot;Quod in corporis quibusdam voluptatibus aut qui iusto.\&quot;,\&quot;result\&quot;:\&quot;Nesciunt voluptatibus molestias doloremque vero quidem est qui.\&quot;},{\&quot;step_number\&quot;:2,\&quot;action\&quot;:\&quot;Doloribus aut saepe expedita quia quod deserunt.\&quot;,\&quot;result\&quot;:\&quot;Eius qui quae qui sequi.\&quot;},{\&quot;step_number\&quot;:3,\&quot;action\&quot;:\&quot;Ea modi aut id amet.\&quot;,\&quot;result\&quot;:\&quot;Quidem dolores inventore qui sed ipsa iusto natus.\&quot;}]}]&quot;
 }
 200
 {
   &quot;success&quot;: [
     {
-      &quot;validation_id&quot;: 123457,
-      &quot;name&quot;: &quot;New Test Case 1&quot;,
+      &quot;validation_id&quot;: &quot;5547502&quot;,
+      &quot;name&quot;: &quot;Dolore consequatur veniam sunt nobis iste.&quot;,
       &quot;reproduction_steps&quot;: [
         {
           &quot;step_number&quot;: 1,
-          &quot;action&quot;: &quot;Action 1\n2.  Action 2\n3.  Action 3&quot;,
-          &quot;result&quot;: &quot;Result 1\n2.  Result 2\n3.  Result 3&quot;
+          &quot;action&quot;: &quot;Some New Action&quot;,
+          &quot;result&quot;: &quot;Eos sint dolorem odit aspernatur vero voluptatibus et quae.&quot;
+        },
+        {
+          &quot;step_number&quot;: 2,
+          &quot;action&quot;: &quot;Dolorem itaque architecto sint corporis amet voluptas.&quot;,
+          &quot;result&quot;: &quot;Non aut animi quam qui delectus aspernatur ut natus.&quot;
+        },
+        {
+          &quot;step_number&quot;: 3,
+          &quot;action&quot;: &quot;Ut qui illo labore soluta veritatis aliquid omnis.&quot;,
+          &quot;result&quot;: &quot;At qui quisquam nam facere quia nihil.&quot;
         }
-      ]
+      ],
+      &quot;version&quot;: 2
     },
     {
-      &quot;validation_id&quot;: 123456,
-      &quot;name&quot;: &quot;New Test Case 2&quot;,
+      &quot;validation_id&quot;: &quot;1594924&quot;,
+      &quot;name&quot;: &quot;Excepturi ipsum omnis repudiandae incidunt odit.&quot;,
       &quot;reproduction_steps&quot;: [
         {
           &quot;step_number&quot;: 1,
-          &quot;action&quot;: &quot;Action 1\n2.  Action 2\n3.  Action 3&quot;,
-          &quot;result&quot;: &quot;Result 1\n2.  Result 2\n3.  Result 3&quot;
+          &quot;action&quot;: &quot;Ad debitis magnam et molestiae exercitationem enim hic velit.&quot;,
+          &quot;result&quot;: &quot;Aperiam dolores ut quia doloribus quia debitis aut.&quot;
+        },
+        {
+          &quot;step_number&quot;: 2,
+          &quot;action&quot;: &quot;Dolorum sapiente neque voluptatum deleniti quia repudiandae.&quot;,
+          &quot;result&quot;: &quot;Eaque perspiciatis eum quod.&quot;
+        },
+        {
+          &quot;step_number&quot;: 3,
+          &quot;action&quot;: &quot;Porro inventore facere ea suscipit maiores id.&quot;,
+          &quot;result&quot;: &quot;Dolorem deserunt consequatur laudantium atque qui.&quot;
         }
-      ]
+      ],
+      &quot;version&quot;: 1
+    },
+    {
+      &quot;validation_id&quot;: &quot;7035755&quot;,
+      &quot;name&quot;: &quot;Iste eos sequi aut soluta culpa.&quot;,
+      &quot;reproduction_steps&quot;: [
+        {
+          &quot;step_number&quot;: 1,
+          &quot;action&quot;: &quot;Ipsum itaque qui eos rerum eveniet blanditiis est.&quot;,
+          &quot;result&quot;: &quot;Quas blanditiis ut soluta mollitia voluptatem sunt.&quot;
+        },
+        {
+          &quot;step_number&quot;: 2,
+          &quot;action&quot;: &quot;Provident omnis minus eius blanditiis numquam sed.&quot;,
+          &quot;result&quot;: &quot;Sunt dolores tempore nisi aut.&quot;
+        },
+        {
+          &quot;step_number&quot;: 3,
+          &quot;action&quot;: &quot;Molestiae explicabo quo non quia qui eligendi sint.&quot;,
+          &quot;result&quot;: &quot;Expedita est voluptatem beatae corporis optio.&quot;
+        }
+      ],
+      &quot;version&quot;: 1
+    },
+    {
+      &quot;validation_id&quot;: &quot;7243376&quot;,
+      &quot;name&quot;: &quot;Aliquid reprehenderit dolore sint eius eum asperiores cupiditate.&quot;,
+      &quot;reproduction_steps&quot;: [
+        {
+          &quot;step_number&quot;: 1,
+          &quot;action&quot;: &quot;Voluptas explicabo aut voluptate architecto quia repellendus rem tenetur.&quot;,
+          &quot;result&quot;: &quot;Ratione distinctio fugiat hic maiores qui magni.&quot;
+        },
+        {
+          &quot;step_number&quot;: 2,
+          &quot;action&quot;: &quot;Ipsum dolorem ullam consequatur praesentium fugit fugiat id.&quot;,
+          &quot;result&quot;: &quot;Temporibus ducimus ipsa distinctio voluptate nesciunt.&quot;
+        },
+        {
+          &quot;step_number&quot;: 3,
+          &quot;action&quot;: &quot;Qui non et iure itaque id et dicta aperiam.&quot;,
+          &quot;result&quot;: &quot;Temporibus minus voluptas dolor eum nihil fugiat voluptates.&quot;
+        }
+      ],
+      &quot;version&quot;: 1
+    },
+    {
+      &quot;validation_id&quot;: &quot;4913499&quot;,
+      &quot;name&quot;: &quot;Possimus qui praesentium facere culpa reprehenderit.&quot;,
+      &quot;reproduction_steps&quot;: [
+        {
+          &quot;step_number&quot;: 1,
+          &quot;action&quot;: &quot;Quod in corporis quibusdam voluptatibus aut qui iusto.&quot;,
+          &quot;result&quot;: &quot;Nesciunt voluptatibus molestias doloremque vero quidem est qui.&quot;
+        },
+        {
+          &quot;step_number&quot;: 2,
+          &quot;action&quot;: &quot;Doloribus aut saepe expedita quia quod deserunt.&quot;,
+          &quot;result&quot;: &quot;Eius qui quae qui sequi.&quot;
+        },
+        {
+          &quot;step_number&quot;: 3,
+          &quot;action&quot;: &quot;Ea modi aut id amet.&quot;,
+          &quot;result&quot;: &quot;Quidem dolores inventore qui sed ipsa iusto natus.&quot;
+        }
+      ],
+      &quot;version&quot;: 1
     }
   ],
-  &quot;fail&quot;: []
+  &quot;failure&quot;: []
 }</pre>
 
   <h2>Params</h2>
@@ -143,7 +232,7 @@ otherwise indicated</p>
   
   <tr style='background-color:rgb(255,255,255);'>
     <td>
-      <strong>csv </strong><br>
+      <strong>json </strong><br>
       <small>
         required
         
@@ -155,28 +244,6 @@ otherwise indicated</p>
         <ul>
             <li>
 <p>Must be String</p>
-</li>
-        </ul>
-
-    </td>
-
-  </tr>
-
-  
-  <tr style='background-color:rgb(255,255,255);'>
-    <td>
-      <strong>preview </strong><br>
-      <small>
-        optional
-        
-      </small>
-    </td>
-    <td>
-      
-        <p><strong>Validations:</strong></p>
-        <ul>
-            <li>
-<p>Must be &#39;true&#39; or &#39;false&#39; or &#39;1&#39; or &#39;0&#39;</p>
 </li>
         </ul>
 

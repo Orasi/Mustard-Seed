@@ -244,6 +244,12 @@
             </td>
             <td width='60%'>Delete existing project</td>
           </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/projects/environments.html'>GET /projects/:id/environments</a>
+            </td>
+            <td width='60%'>List all environments for project</td>
+          </tr>
     </tbody>
   </table>
   <h2>
@@ -404,7 +410,13 @@
             <td>
               <a href='./apidoc/testcases/import.html'>POST /projects/:id/import</a>
             </td>
-            <td width='60%'>Import testcases</td>
+            <td width='60%'>Import testcases from JSON</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/testcases/parse_file.html'>POST /projects/:id/parse</a>
+            </td>
+            <td width='60%'>Parse file for testcases</td>
           </tr>
     </tbody>
   </table>
@@ -438,7 +450,7 @@
             <td>
               <a href='./apidoc/users/find.html'>GET /users/find/:username</a>
             </td>
-            <td width='60%'>Find by Username</td>
+            <td width='60%'>Find by Username or Email Address</td>
           </tr>
           <tr>
             <td>

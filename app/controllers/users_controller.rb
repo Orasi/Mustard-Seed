@@ -94,10 +94,11 @@ class UsersController < ApplicationController
   description "Triggers a password reset email to the User"
   def trigger_password_reset
 
-    @user = User.find_by_email(params[:user][:email])
+    @user = User.where(email: params[:user][:email])
 
     render json: {error: "User not found"},
-           status: :not_found and return unless @user
+           status: :not_found and return if @user.blank?
+    @user = @user.first
 
     @user.create_password_token(expiration: DateTime.now + 90.minutes)
 

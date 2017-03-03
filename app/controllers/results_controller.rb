@@ -187,14 +187,14 @@ class ResultsController < ApplicationController
       # If no environment can be found with the environment id a new environment will be created
       # Manual test results are written with a -1 environment id.
       # These checks are by passed for manual test results
-      if result_params['result_type'] == 'manual'
-        environment_id = result_params['environment_id']
-      else
+      # if result_params['result_type'] == 'manual'
+      #   environment_id = result_params['environment_id']
+      # else
         environment_identifier = result_params[:environment_id]
         environment = find_or_create_environment(environment_identifier, project.id)
         return unless environment
         environment_id = environment.id
-      end
+      # end
 
 
       # Create Screenshot if screenshot is provided

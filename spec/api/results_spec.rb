@@ -13,7 +13,7 @@ describe "RESULTS API::" , :type => :api do
   let (:admin) {FactoryGirl.create(:user, :admin)}
 
   let (:manual_result_params) {{result: {status: ['pass', 'fail', 'skip'].sample,
-                                  environment_id: -1,
+                                  environment_id: environment.uuid,
                                   testcase_id: testcase.validation_id,
                                   result_type: 'manual',
                                   execution_id: execution.id,
@@ -374,6 +374,7 @@ describe "RESULTS API::" , :type => :api do
 
           before do
             @status = manual_result_params[:result][:status]
+            manual_result_params[:result][:environment_id] = project.environments.last.id
             testcase.results.where(environment_id: -1).destroy_all
             header 'User-Token', admin.user_tokens.first.token
             post '/results', manual_result_params.to_json , { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
@@ -427,6 +428,7 @@ describe "RESULTS API::" , :type => :api do
         end
       end
 
+
       context 'without user token' do
         before do
           header 'User-Token', nil
@@ -435,6 +437,7 @@ describe "RESULTS API::" , :type => :api do
 
         it_behaves_like 'an unauthenticated request'
       end
+
 
       context 'with expired user token' do
         before do

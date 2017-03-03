@@ -14,6 +14,7 @@ class EnvironmentsController < ApplicationController
     end
   end
 
+
   api :GET, '/environments/:id', 'Environment details'
   description 'Only accessible if current user can view parent project'
   param :id, :number, 'Environment ID', required: true

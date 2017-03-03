@@ -183,12 +183,12 @@ class TestcasesController < ApplicationController
     update = params[:update]
 
     JSON.parse(params[:json]).each do |testcase|
-
+      saved = ''
       #Find By Validation ID
       tc = Testcase.where(project_id: project.id, validation_id: testcase['validation_id'])
       if tc.count > 0
         tc = tc.first
-        new_version = true unless tc.reproduction_steps == testcase['reproduction_steps']
+        new_version = true unless tc.reproduction_steps.to_json == testcase['reproduction_steps'].to_json
         tc.assign_attributes(reproduction_steps: testcase['reproduction_steps'], name: testcase['name'])
         found = true
       end
@@ -198,9 +198,9 @@ class TestcasesController < ApplicationController
         tc = Testcase.where(project_id: project.id, name: testcase['name'])
         if tc.count > 0
           tc = tc.first
-          new_version = true unless tc.reproduction_steps == test_steps
-          tc.assign_attributes(reproduction_steps: test_steps, validation_id: testcase['validation_id'])
-          found == true
+          new_version = true unless tc.reproduction_steps.to_json == testcase['reproduction_steps'].to_json
+          tc.assign_attributes(reproduction_steps: testcase['reproduction_steps'], validation_id: testcase['validation_id'])
+          found = true
         end
       end
 
@@ -224,6 +224,7 @@ class TestcasesController < ApplicationController
             clone.version = old_testcase.version + 1
             add_user_name clone
             saved = clone.save!
+            tc = clone
 
           end
         rescue
@@ -238,10 +239,12 @@ class TestcasesController < ApplicationController
       if saved
         output[:success].append(tc)
       else
-        output[:error].append(tc)
+        output[:error].append("#{tc.name} - #{tc.errors.full_messages}")
       end
     end
 
+    @success = output[:success]
+    @error = output[:error]
     render :import
 
   end

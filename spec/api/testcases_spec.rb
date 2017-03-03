@@ -632,47 +632,95 @@ describe "TESTCASES API::" , :type => :api do
     end
   end
 
-  # describe 'import testcases' do
-  #
-  #   it 'should upload testcases', :show_in_doc do
-  #
-  #     file = File.open('spec/api/test.csv', "rb")
-  #     contents = file.read
-  #
-  #     header 'User-Token', admin.user_tokens.first.token
-  #     post "/projects/#{project.id}/import", {csv: contents}.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
-  #     expect(last_response.status).to eq 200
-  #     expect(json).to include('success')
-  #     expect(json).to include('fail')
-  #
-  #   end
-  #   it 'should preview testcases', :show_in_doc do
-  #
-  #     file = File.open('spec/api/test.csv', "rb")
-  #     contents = file.read
-  #
-  #     header 'User-Token', admin.user_tokens.first.token
-  #     post "/projects/#{project.id}/import", {preview: 'true', csv: contents}.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
-  #     expect(last_response.status).to eq 200
-  #     expect(json).to include('success')
-  #     expect(json).to include('fail')
-  #
-  #   end
-  #   it 'should update testcases', :show_in_doc do
-  #
-  #     file = File.open('spec/api/test.csv', "rb")
-  #     contents = file.read
-  #
-  #     header 'User-Token', admin.user_tokens.first.token
-  #     post "/projects/#{project.id}/import", {update: 'true',csv: contents}.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
-  #     post "/projects/#{project.id}/import", {update: 'true',csv: contents}.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
-  #     expect(last_response.status).to eq 200
-  #     expect(json).to include('success')
-  #     expect(json).to include('fail')
-  #
-  #   end
-  #
-  # end
+  describe 'import testcases' do
+
+    it 'should upload testcases' do
+
+      testcases = project.testcases.select('name', 'validation_id', 'reproduction_steps')
+      testcases.first.name = 'Some New Name'
+      testcases.last.validation_id = nil
+
+      header 'User-Token', admin.user_tokens.first.token
+      post "/projects/#{project.id}/import", {json: testcases.to_json}.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
+      expect(last_response.status).to eq 200
+      expect(json).to include('success')
+      expect(json).to include('failure')
+
+    end
+
+
+    it 'should update testcases', :show_in_doc do
+
+      testcases = project.testcases.select('name', 'validation_id', 'reproduction_steps')
+      testcase_validation_id = testcases.first.validation_id
+      testcases = JSON.parse(testcases.to_json)
+      testcases.first['reproduction_steps'].first['action'] = "Some New Action"
+      old_version = project.testcases.first.version
+
+      header 'User-Token', admin.user_tokens.first.token
+      post "/projects/#{project.id}/import", {update: 'true',json: testcases.to_json}.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
+      expect(last_response.status).to eq 200
+      expect(json).to include('success')
+      expect(json).to include('failure')
+      expect( project.testcases.where(validation_id: testcase_validation_id).first['reproduction_steps'].first['action'] ).to eq('Some New Action')
+      expect( project.testcases.where(validation_id: testcase_validation_id).first['version']).to eq(old_version + 1)
+
+    end
+
+    it 'should not update unchanged testcases' do
+
+      testcases = project.testcases.select('name', 'validation_id', 'reproduction_steps')
+      testcase_validation_id = testcases.first.validation_id
+      testcases = JSON.parse(testcases.to_json)
+      old_version = project.testcases.first.version
+
+      header 'User-Token', admin.user_tokens.first.token
+      post "/projects/#{project.id}/import", {update: 'true',json: testcases.to_json}.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
+      expect(last_response.status).to eq 200
+      expect(json).to include('success')
+      expect(json).to include('failure')
+      expect( project.testcases.where(validation_id: testcase_validation_id).first['version']).to eq(old_version)
+
+    end
+
+    it 'should change name with out changing version' do
+
+      testcases = project.testcases.select('name', 'validation_id', 'reproduction_steps')
+      testcase_validation_id = testcases.first.validation_id
+      testcases = JSON.parse(testcases.to_json)
+      testcases.first['name'] = "Some New Name"
+      # testcases.first['validation_id'] = 'Some New validation id'
+      old_version = project.testcases.first.version
+
+      header 'User-Token', admin.user_tokens.first.token
+      post "/projects/#{project.id}/import", {update: 'true',json: testcases.to_json}.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
+      expect(last_response.status).to eq 200
+      expect(json).to include('success')
+      expect(json).to include('failure')
+      expect( project.testcases.where(validation_id: testcase_validation_id).first['name'] ).to eq('Some New Name')
+      expect( project.testcases.where(validation_id: testcase_validation_id).first['version']).to eq(old_version)
+
+
+    end
+
+    it 'should change validation id with out changing version' do
+
+      testcases = project.testcases.select('name', 'validation_id', 'reproduction_steps')
+      testcases = JSON.parse(testcases.to_json)
+      testcases.first['validation_id'] = "abc123"
+      # testcases.first['validation_id'] = 'Some New validation id'
+      old_version = project.testcases.first.version
+
+      header 'User-Token', admin.user_tokens.first.token
+      post "/projects/#{project.id}/import", {update: 'true',json: testcases.to_json}.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
+      expect(last_response.status).to eq 200
+      expect(json).to include('success')
+      expect(json).to include('failure')
+      expect( project.testcases.where(validation_id: "abc123").first['version']).to eq(old_version)
+
+    end
+
+  end
 
   describe 'export testcases' do
     context 'as an admin' do

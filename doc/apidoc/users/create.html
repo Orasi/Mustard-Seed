@@ -55,24 +55,26 @@
     <pre class="prettyprint">POST /users/
 {
   &quot;user&quot;: {
-    &quot;first_name&quot;: &quot;Chelsie&quot;,
-    &quot;last_name&quot;: &quot;Padberg&quot;,
+    &quot;first_name&quot;: &quot;Rebeca&quot;,
+    &quot;last_name&quot;: &quot;Ullrich&quot;,
     &quot;password&quot;: &quot;1234&quot;,
     &quot;password_confirmation&quot;: &quot;1234&quot;,
-    &quot;username&quot;: &quot;tyrel.prohaska@jones.io&quot;
+    &quot;username&quot;: &quot;aubree&quot;,
+    &quot;email&quot;: &quot;caden@oharamayert.info&quot;
   }
 }
 200
 {
   &quot;user&quot;: {
-    &quot;id&quot;: 59453,
-    &quot;username&quot;: &quot;tyrel.prohaska@jones.io&quot;,
-    &quot;first_name&quot;: &quot;Chelsie&quot;,
-    &quot;last_name&quot;: &quot;Padberg&quot;,
+    &quot;id&quot;: 30740,
+    &quot;username&quot;: &quot;aubree&quot;,
+    &quot;email&quot;: &quot;caden@oharamayert.info&quot;,
+    &quot;first_name&quot;: &quot;Rebeca&quot;,
+    &quot;last_name&quot;: &quot;Ullrich&quot;,
     &quot;company&quot;: null,
     &quot;admin&quot;: null,
-    &quot;created_at&quot;: &quot;2017-01-20T20:25:04.171Z&quot;,
-    &quot;updated_at&quot;: &quot;2017-01-20T20:25:04.171Z&quot;
+    &quot;created_at&quot;: &quot;2017-03-03T14:34:13.040Z&quot;,
+    &quot;updated_at&quot;: &quot;2017-03-03T14:34:13.040Z&quot;
   }
 }</pre>
 
@@ -190,6 +192,30 @@ otherwise indicated</p>
     <td>
       
 <p>User&#39;s Company</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>user[username] </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>User&#39;s username. Used to login</p>
 
         <p><strong>Validations:</strong></p>
         <ul>

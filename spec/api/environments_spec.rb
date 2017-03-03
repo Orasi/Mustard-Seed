@@ -11,14 +11,7 @@ describe "ENVIRONMENTS API::" , :type => :api do
 
   describe 'get environment details' do
 
-    context 'with invalid environment id' do
-      before do
-        header 'User-Token', user.user_tokens.first.token
-        get "/environments/-1"
-      end
 
-      it_behaves_like 'a not found request'
-    end
 
     context 'as an admin' do
 
@@ -37,6 +30,7 @@ describe "ENVIRONMENTS API::" , :type => :api do
       end
 
     end
+
 
     context 'as a non-admin' do
 
@@ -60,6 +54,16 @@ describe "ENVIRONMENTS API::" , :type => :api do
         expect(json).to include('error')
       end
     end
+
+    context 'with invalid environment id' do
+      before do
+        header 'User-Token', user.user_tokens.first.token
+        get "/environments/-1"
+      end
+
+      it_behaves_like 'a not found request'
+    end
+
 
     context 'without user token' do
       before do

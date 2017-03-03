@@ -86,6 +86,21 @@ class ProjectsController < ApplicationController
 
   end
 
+  api :GET, '/projects/:id/environments', 'List all environments for project'
+  description 'Lists all environments for project'
+  param :id, :number, 'Project ID', required: true
+  def environments
+
+    project = Project.find_by_id(params[:project_id])
+
+    render json: {error: "Project not found"},
+           status: :not_found and return unless project
+
+    render json: {environments: project.environments}
+
+  end
+
+
   private
 
   def project_params
