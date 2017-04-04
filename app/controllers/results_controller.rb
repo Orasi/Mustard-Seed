@@ -254,7 +254,7 @@ class ResultsController < ApplicationController
     render json: {error: 'Missing required parameter: result.result_type'},
            status: :bad_request and return false unless params[:result][:result_type]
 
-    # Manual Results are required to provde the execution id.
+    # Manual Results are required to provide the execution id.
     # All other results are required to provide the project_id
     if params['result']['result_type'] == 'manual'
       render json: {error: 'Missing required parameter: result.execution_id'},
@@ -281,8 +281,8 @@ class ResultsController < ApplicationController
 
   def find_or_create_testcase(identifier, project)
 
-    #If Result provided an integer as the id lookup testcase based on validation id
-    #Else lookup result based on name
+    # If Result provided an integer as the id lookup testcase based on validation id
+    # Else lookup result based on name
     no_id = false
 
     no_id = true unless project.testcases.where(validation_id: identifier).count > 0

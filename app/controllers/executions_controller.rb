@@ -291,6 +291,7 @@ class ExecutionsController < ApplicationController
         else
           render json: {error: "Failed to Delete Execution [#{execution.errors.full_messages}]"}
         end
+        return
       else
         execution.destroy
         project.executions.create!(closed: false)
