@@ -38,3 +38,13 @@ production:
   password: postgres
   host: localhost
   database: mustard
+
+demo:
+  adapter: postgresql
+  encoding: unicode
+  pool: 10
+  username: mustard
+  password: Orasi01!
+  host: localhost
+  database: mustard-demo
+

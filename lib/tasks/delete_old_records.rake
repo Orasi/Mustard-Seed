@@ -9,7 +9,6 @@ namespace :delete do
       rescue
         puts 'Could not be deleted'
       end
-
     end
   end
 end
