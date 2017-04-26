@@ -1,6 +1,6 @@
 class EnvironmentsController < ApplicationController
 
-  before_action :requires_admin, only: [:create, :update, :destroy]
+  before_action :requires_admin, only: [:destroy]
   skip_before_action :require_user_token, only: [:create, :update, :destroy]
 
 
@@ -34,7 +34,7 @@ class EnvironmentsController < ApplicationController
 
 
   api :POST, '/environments/', 'Create new environment'
-  description 'Only accessible by admin users'
+  description 'Only accessible if current user can view parent project'
   param_group :environment
   def create
 
@@ -49,7 +49,7 @@ class EnvironmentsController < ApplicationController
 
 
   api :PUT, '/environments/:id', 'Update existing environment'
-  description 'Only accessible by admin users'
+  description 'Only accessible if current user can view parent project'
   param :id, :number, 'Environment ID', required: true
   param_group :environment
   def update
