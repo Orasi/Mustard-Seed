@@ -1,7 +1,8 @@
 class EnvironmentsController < ApplicationController
 
+  before_action :require_user_token
   before_action :requires_admin, only: [:destroy]
-  skip_before_action :require_user_token, only: [:create, :update, :destroy]
+  skip_before_action :require_user_token, only: [:destroy]
 
 
 # Param group for api documentation
@@ -38,6 +39,11 @@ class EnvironmentsController < ApplicationController
   param_group :environment
   def create
 
+    if environment_params['project_id']
+      render json: {error: 'Not authorized to access this resource'},
+             status: :forbidden and return unless @current_user.projects.include? Project.find(environment_params['project_id'])
+    end
+
     environment = Environment.new(environment_params)
 
     render json: {error: 'Bad Request', messages: environment.errors.full_messages},
@@ -58,8 +64,11 @@ class EnvironmentsController < ApplicationController
 
     render json: {error: "Environment not found"},
            status: :not_found and return if environment.blank?
-
     environment = environment.first
+
+    render json: {error: 'Not authorized to access this resource'},
+           status: :forbidden and return unless @current_user.projects.include? environment.project
+
 
     if environment.update(environment_params)
       render json: {environment: environment}

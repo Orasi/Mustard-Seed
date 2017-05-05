@@ -3,8 +3,9 @@ class Testcase < ApplicationRecord
   serialize :reproduction_steps
 
   has_many :results, dependent: :destroy
-
-  belongs_to :project, touch: true
+  has_many :keywords_testcases, dependent: :destroy
+  has_many :keywords, through: :keywords_testcases
+  belongs_to :project
 
   before_validation :add_version
   before_validation :add_token

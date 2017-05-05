@@ -166,6 +166,8 @@ describe "TESTCASES API::" , :type => :api do
         expect(json['testcase']['version']).to eq 1
       end
 
+      it 'can associate keywords'
+
       context 'without' do
 
         it 'name should fail' do
@@ -424,6 +426,7 @@ describe "TESTCASES API::" , :type => :api do
         expect(Testcase.unscope(:where).find(testcase.id).outdated).to eq true
       end
 
+      it 'can associate keywords'
 
     end
 

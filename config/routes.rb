@@ -11,15 +11,20 @@ Rails.application.routes.draw do
 
 
   resources :projects, defaults: {format: :json}
-  get 'projects/:project_id/environments', to: 'projects#environments', defaults: {format: :json}
   post 'projects/:project_id/parse', to: 'testcases#parse_file', defaults: {format: :json}
   post 'projects/:project_id/import', to: 'testcases#import', defaults: {format: :json}
   get 'projects/:project_id/testcases/export', to: 'testcases#export', defaults: {format: :json}
+  get 'projects/:project_id/environments', to: 'projects#environments', defaults: {format: :json}
+  get 'projects/:project_id/keywords', to: 'projects#keywords', defaults: {format: :json}
+  get 'projects/:project_id/executions', to: 'projects#executions', defaults: {format: :json}
+  get 'projects/:project_id/testcases', to: 'projects#testcases', defaults: {format: :json}
 
 
   resources :environments, except: :index, defaults: {format: :json}
 
   resources :testcases, except: :index, defaults: {format: :json}
+
+  resources :keywords, except: :index, defaults: {format: :json}
 
   resources :teams, defaults: {format: :json}
   post 'teams/:id/user/:user_id', to: 'teams#add_user', defaults: {format: :json}
@@ -39,6 +44,7 @@ Rails.application.routes.draw do
   get 'executions/:id/environment-count', to: 'executions#environment_count', defaults: {format: :json}
   post 'executions/close(/:execution_id)(/:project_key)', to: 'executions#close', defaults: {format: :json}
   get 'executions/:project_key/failing', to: 'executions#failing_tests', defaults: {format: :json}
+  get 'executions/:id', to: 'executions#show', defaults: {format: :json}
   delete 'executions/:id', to: 'executions#destroy', defaults: {format: :json}
 
   get 'results/:id', to: 'results#show', defaults: {format: :json}

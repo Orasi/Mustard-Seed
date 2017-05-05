@@ -418,4 +418,332 @@ describe "PROJECTS API::" , :type => :api do
     end
   end
 
+  describe 'get all environment' do
+
+    context 'with invalid project id' do
+      before do
+        header 'User-Token', user.user_tokens.first.token
+        get "/projects/-1/environments"
+      end
+
+      it_behaves_like 'a not found request'
+    end
+
+    context 'as an admin' do
+
+      before do
+        other_project = FactoryGirl.create(:project)
+        header 'User-Token', admin.user_tokens.first.token
+        get "/projects/#{other_project.id}/environments"
+      end
+
+      it 'responds succesfully', :show_in_doc do
+        expect(last_response.status).to eq 200
+        expect(json).to include('environments')
+      end
+
+      it 'should access any project regardless of team' do
+        expect(last_response.status).to eq 200
+      end
+
+    end
+
+    context 'as a non-admin' do
+
+      before do
+        header 'User-Token', user.user_tokens.first.token
+      end
+
+      it 'should be able to access project viewable by user' do
+        get "/projects/#{project.id}/environments"
+        expect(last_response.status).to eq 200
+        expect(json).to include('environments')
+      end
+
+      it 'should not be able to access project not viewable by user' do
+        other_project = FactoryGirl.create(:project)
+        get "/projects/#{other_project.id}/environments"
+        expect(last_response.status).to eq 403
+        expect(json).to include('error')
+      end
+    end
+
+    context 'without user token' do
+      before do
+        header 'User-Token', nil
+        get "/projects/#{project.id}/environments"
+      end
+
+      it_behaves_like 'an unauthenticated request'
+    end
+
+    context 'with expired user token' do
+      before do
+        admin.user_tokens.first.update(expires: DateTime.now - 1.day)
+        header 'User-Token', admin.user_tokens.first.token
+        get "/projects/#{project.id}/environments"
+      end
+
+      it_behaves_like 'an unauthenticated request'
+
+    end
+
+    context 'with invalid user token' do
+      before do
+        header 'User-Token', 'asdfasdfasdfasdf'
+        get "/projects/#{project.id}/environments"
+      end
+
+      it_behaves_like 'an unauthenticated request'
+
+    end
+
+  end
+
+  describe 'get all executions' do
+
+    context 'with invalid project id' do
+      before do
+        header 'User-Token', user.user_tokens.first.token
+        get "/projects/-1/executions"
+      end
+
+      it_behaves_like 'a not found request'
+    end
+
+    context 'as an admin' do
+
+      before do
+        other_project = FactoryGirl.create(:project)
+        header 'User-Token', admin.user_tokens.first.token
+        get "/projects/#{other_project.id}/executions"
+      end
+
+      it 'responds succesfully', :show_in_doc do
+        expect(last_response.status).to eq 200
+        expect(json).to include('executions')
+      end
+
+      it 'should access any project regardless of team' do
+        expect(last_response.status).to eq 200
+      end
+
+    end
+
+    context 'as a non-admin' do
+
+      before do
+        header 'User-Token', user.user_tokens.first.token
+      end
+
+      it 'should be able to access project viewable by user' do
+        get "/projects/#{project.id}/executions"
+        expect(last_response.status).to eq 200
+        expect(json).to include('executions')
+      end
+
+      it 'should not be able to access project not viewable by user' do
+        other_project = FactoryGirl.create(:project)
+        get "/projects/#{other_project.id}/executions"
+        expect(last_response.status).to eq 403
+        expect(json).to include('error')
+      end
+    end
+
+    context 'without user token' do
+      before do
+        header 'User-Token', nil
+        get "/projects/#{project.id}/executions"
+      end
+
+      it_behaves_like 'an unauthenticated request'
+    end
+
+    context 'with expired user token' do
+      before do
+        admin.user_tokens.first.update(expires: DateTime.now - 1.day)
+        header 'User-Token', admin.user_tokens.first.token
+        get "/projects/#{project.id}/executions"
+      end
+
+      it_behaves_like 'an unauthenticated request'
+
+    end
+
+    context 'with invalid user token' do
+      before do
+        header 'User-Token', 'asdfasdfasdfasdf'
+        get "/projects/#{project.id}/executions"
+      end
+
+      it_behaves_like 'an unauthenticated request'
+
+    end
+
+  end
+
+  describe 'get all testcases' do
+
+    context 'with invalid project id' do
+      before do
+        header 'User-Token', user.user_tokens.first.token
+        get "/projects/-1/testcases"
+      end
+
+      it_behaves_like 'a not found request'
+    end
+
+    context 'as an admin' do
+
+      before do
+        other_project = FactoryGirl.create(:project)
+        header 'User-Token', admin.user_tokens.first.token
+        get "/projects/#{other_project.id}/testcases"
+      end
+
+      it 'responds succesfully', :show_in_doc do
+        expect(last_response.status).to eq 200
+        expect(json).to include('testcases')
+      end
+
+      it 'should access any project regardless of team' do
+        expect(last_response.status).to eq 200
+      end
+
+    end
+
+    context 'as a non-admin' do
+
+      before do
+        header 'User-Token', user.user_tokens.first.token
+      end
+
+      it 'should be able to access project viewable by user' do
+        get "/projects/#{project.id}/testcases"
+        expect(last_response.status).to eq 200
+        expect(json).to include('testcases')
+      end
+
+      it 'should not be able to access project not viewable by user' do
+        other_project = FactoryGirl.create(:project)
+        get "/projects/#{other_project.id}/testcases"
+        expect(last_response.status).to eq 403
+        expect(json).to include('error')
+      end
+    end
+
+    context 'without user token' do
+      before do
+        header 'User-Token', nil
+        get "/projects/#{project.id}/testcases"
+      end
+
+      it_behaves_like 'an unauthenticated request'
+    end
+
+    context 'with expired user token' do
+      before do
+        admin.user_tokens.first.update(expires: DateTime.now - 1.day)
+        header 'User-Token', admin.user_tokens.first.token
+        get "/projects/#{project.id}/testcases"
+      end
+
+      it_behaves_like 'an unauthenticated request'
+
+    end
+
+    context 'with invalid user token' do
+      before do
+        header 'User-Token', 'asdfasdfasdfasdf'
+        get "/projects/#{project.id}/testcases"
+      end
+
+      it_behaves_like 'an unauthenticated request'
+
+    end
+
+  end
+
+  describe 'get all keywords' do
+
+    context 'with invalid project id' do
+      before do
+        header 'User-Token', user.user_tokens.first.token
+        get "/projects/-1/keywords"
+      end
+
+      it_behaves_like 'a not found request'
+    end
+
+    context 'as an admin' do
+
+      before do
+        other_project = FactoryGirl.create(:project)
+        header 'User-Token', admin.user_tokens.first.token
+        get "/projects/#{other_project.id}/keywords"
+      end
+
+      it 'responds succesfully', :show_in_doc do
+        expect(last_response.status).to eq 200
+        expect(json).to include('keywords')
+      end
+
+      it 'should access any project regardless of team' do
+        expect(last_response.status).to eq 200
+      end
+
+    end
+
+    context 'as a non-admin' do
+
+      before do
+        header 'User-Token', user.user_tokens.first.token
+      end
+
+      it 'should be able to access project viewable by user' do
+        get "/projects/#{project.id}/keywords"
+        expect(last_response.status).to eq 200
+        expect(json).to include('keywords')
+      end
+
+      it 'should not be able to access project not viewable by user' do
+        other_project = FactoryGirl.create(:project)
+        get "/projects/#{other_project.id}/keywords"
+        expect(last_response.status).to eq 403
+        expect(json).to include('error')
+      end
+    end
+
+    context 'without user token' do
+      before do
+        header 'User-Token', nil
+        get "/projects/#{project.id}/keywords"
+      end
+
+      it_behaves_like 'an unauthenticated request'
+    end
+
+    context 'with expired user token' do
+      before do
+        admin.user_tokens.first.update(expires: DateTime.now - 1.day)
+        header 'User-Token', admin.user_tokens.first.token
+        get "/projects/#{project.id}/keywords"
+      end
+
+      it_behaves_like 'an unauthenticated request'
+
+    end
+
+    context 'with invalid user token' do
+      before do
+        header 'User-Token', 'asdfasdfasdfasdf'
+        get "/projects/#{project.id}/keywords"
+      end
+
+      it_behaves_like 'an unauthenticated request'
+
+    end
+
+  end
+
 end

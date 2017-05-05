@@ -25,7 +25,7 @@ class ProjectsController < ApplicationController
   param :id, :number, 'Project ID', required: true
   def show
 
-    @project = Project.includes(:executions, :testcases, :environments).find_by_id(params[:id])
+    @project = Project.includes(:executions, :environments, testcases: [:keywords]).find_by_id(params[:id])
 
     render json: {error: "Project not found"},
            status: :not_found and return unless @project
@@ -96,7 +96,62 @@ class ProjectsController < ApplicationController
     render json: {error: "Project not found"},
            status: :not_found and return unless project
 
+    render json: {error: 'Not authorized to access this resource'},
+           status: :forbidden and return unless @current_user.projects.include? project
+
     render json: {environments: project.environments}
+
+  end
+
+  
+  api :GET, '/projects/:id/keywords', 'List all keywords for project'
+  description 'Lists all keywordss for project'
+  param :id, :number, 'Project ID', required: true
+  def keywords
+
+    project = Project.find_by_id(params[:project_id])
+
+    render json: {error: "Project not found"},
+           status: :not_found and return unless project
+
+    render json: {error: 'Not authorized to access this resource'},
+           status: :forbidden and return unless @current_user.projects.include? project
+
+    render json: {keywords: project.keywords}
+
+  end
+
+  api :GET, '/projects/:id/testcases', 'List all testcases for project'
+  description 'Lists all testcasess for project'
+  param :id, :number, 'Project ID', required: true
+  def testcases
+
+    project = Project.find_by_id(params[:project_id])
+
+    render json: {error: "Project not found"},
+           status: :not_found and return unless project
+
+    render json: {error: 'Not authorized to access this resource'},
+           status: :forbidden and return unless @current_user.projects.include? project
+
+    render json: {testcases: project.testcases}
+
+  end
+
+  api :GET, '/projects/:id/executions', 'List all executions for project'
+  description 'Lists all executionss for project'
+  param :id, :number, 'Project ID', required: true
+  def executions
+
+    project = Project.find_by_id(params[:project_id])
+
+    render json: {error: "Project not found"},
+           status: :not_found and return unless project
+
+    render json: {error: 'Not authorized to access this resource'},
+           status: :forbidden and return unless @current_user.projects.include? project
+
+    render json: {executions: project.executions}
 
   end
 

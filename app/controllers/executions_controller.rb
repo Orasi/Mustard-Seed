@@ -4,6 +4,26 @@ class ExecutionsController < ApplicationController
   before_action :requires_admin, only: [:destroy]
 
 
+  api :get, '/executions/:id', 'Execution Details'
+  description 'Returns the details of the execution'
+  param :id, :number, 'Execution ID', required: true
+  meta  'Only accessible if project is viewable by current user'
+  def show
+
+    execution = Execution.find_by_id(params[:id])
+
+    render json: {error: 'Execution not found'},
+           status: :not_found and return unless execution
+
+    render json: {error: 'Not authorized to access this resource'},
+           status: :forbidden and return unless @current_user.projects.include? execution.project
+
+
+
+    render json: {execution: execution}
+  end
+
+
   api :get, '/executions/:id/testcase-count', 'Testcase Count'
   description 'Returns the number of testcases in this execution'
   param :id, :number, 'Execution ID', required: true
@@ -303,7 +323,7 @@ class ExecutionsController < ApplicationController
   end
 
 
-  api :GET, '/executions/:id/next_test', 'Next Incomplete Test'
+  api :GET, '/executions/:id/next_test[?keyword=:keyword]', 'Next Incomplete Test'
   description 'Returns the next incomplete test for this execution'
   meta "Marks the test as in use so it won\'t be retrieved by subsequent calls for 5 minutes"
   param :id, :number, 'Execution ID', required: true
@@ -317,10 +337,20 @@ class ExecutionsController < ApplicationController
     render json: {error: 'Not authorized to access this resource'},
            status: :forbidden and return unless @current_user.projects.include? execution.project
 
-    testcase = Testcase.not_run(execution).where("runner_touch <= ? or runner_touch is null", 5.minutes.ago).order(runner_touch: :desc).first
+    if params[:keyword]
+      keyword = execution.project.keywords.where(keyword: params[:keyword].upcase)
+      render json: {error: 'Keyword not found'},
+             status: :not_found and return unless keyword.count > 0
+      keyword = keyword.first
 
-    render json: {testcase: 'No remaining testcases'} and return  unless testcase
-    testcase = Testcase.find(testcase.id)
+      testcase = keyword.testcases.not_run(execution).where("runner_touch <= ? or runner_touch is null", 5.minutes.ago).order(runner_touch: :desc)
+    else
+      testcase = Testcase.not_run(execution).where("runner_touch <= ? or runner_touch is null", 5.minutes.ago).order(runner_touch: :desc)
+    end
+
+
+    render json: {testcase: 'No remaining testcases'} and return  if testcase.blank?
+    testcase = Testcase.find(testcase.first.id)
 
     testcase.update(runner_touch: DateTime.now)
 

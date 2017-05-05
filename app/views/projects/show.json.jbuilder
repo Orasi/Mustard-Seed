@@ -11,6 +11,7 @@ json.project do
     json.created_at tc.created_at
     json.updated_at tc.updated_at
     json.version tc.version if tc.version
+    json.keywords tc.keywords.map(&:keyword) if tc.keywords
   end
   json.environments @project.environments do |env|
     json.id env.id
@@ -26,5 +27,10 @@ json.project do
     json.closed exc.closed
     json.created_at exc.created_at
     json.updated_at exc.updated_at
+  end
+  json.keywords @project.keywords do |keyword|
+    json.id keyword.id
+    json.keyword keyword.keyword
+    json.testcase_count keyword.testcase_count
   end
 end

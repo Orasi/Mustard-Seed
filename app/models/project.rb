@@ -8,6 +8,7 @@ class Project < ApplicationRecord
   has_many :executions, dependent: :destroy
   has_many :testcases, dependent: :destroy
   has_many :environments, dependent: :destroy
+  has_many :keywords, dependent: :destroy
   has_and_belongs_to_many :teams
 
   private

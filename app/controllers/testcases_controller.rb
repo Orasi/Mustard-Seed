@@ -16,6 +16,9 @@ class TestcasesController < ApplicationController
         param :result, String, 'Expected result'
       end
     end
+    param :keywords, Hash, :action_aware => true do
+      param :ids, Array, of: Integer
+    end
   end
 
 
@@ -29,19 +32,18 @@ class TestcasesController < ApplicationController
 
     render json: {error: "Testcase not found"},
            status: :not_found and return if testcase.blank?
-    testcase = testcase.first
+    @testcase = testcase.first
 
-    other_versions = Testcase.unscope(:where).where(token: testcase.token).where.not(id: testcase.id).order(:version)
+    @other_versions = Testcase.unscope(:where).includes(:keywords).where(token: @testcase.token).where.not(id: @testcase.id).order(:version)
     render json: {error: 'Not authorized to access this resource'},
-           status: :forbidden and return unless @current_user.projects.include? testcase.project
+           status: :forbidden and return unless @current_user.projects.include? @testcase.project
 
-    render json: {testcase: testcase, other_versions: other_versions.to_a}
 
   end
 
 
   api :POST, '/testcases/', 'Create new testcase'
-  description 'Only accessible if project is viewable by current user'
+  description 'Only accessible if project is viewable by current user. Pass optional array of keyword ids to associate keywords to test'
   param_group :testcase
 
   def create
@@ -56,6 +58,9 @@ class TestcasesController < ApplicationController
     testcase.reproduction_steps = params.to_unsafe_h[:testcase][:reproduction_steps] if params[:testcase][:reproduction_steps]
     add_user_name testcase
     if testcase.save
+      if params[:keywords]
+        testcase.keywords = Keyword.find(params[:keywords])
+      end
       render json: {testcase: testcase}
     else
       render json: {error: testcase.errors.full_messages.to_sentence}, status: :bad_request
@@ -65,7 +70,7 @@ class TestcasesController < ApplicationController
 
 
   api :PUT, '/testcases/', 'Update existing testcase'
-  description 'Only accessible if project is viewable by current user'
+  description 'Only accessible if project is viewable by current user. Pass optional array of keyword ids to associate keywords to test'
   param_group :testcase
 
   def update
@@ -82,8 +87,11 @@ class TestcasesController < ApplicationController
 
     repro_steps = params.to_unsafe_h[:testcase][:reproduction_steps]
     params[:testcase].delete :reproduction_steps
-    if repro_steps.nil? || repro_steps == testcase.reproduction_steps
+    if repro_steps.nil? || same_steps?(repro_steps, testcase.reproduction_steps)
       if testcase.update(testcase_params)
+        if params[:keywords]
+          testcase.keywords = Keyword.find(params[:keywords])
+        end
         render json: {testcase: testcase}
       else
         render json: {error: testcase.errors.full_messages}, status: :bad_request
@@ -100,6 +108,9 @@ class TestcasesController < ApplicationController
           clone.version = testcase.version + 1
           add_user_name clone
           clone.save!
+          if params[:keywords]
+            clone.keywords = Keyword.find(params[:keywords])
+          end
           render json: {testcase: clone}
         rescue
           render json: {error: clone.errors.full_messages + testcase.errors.full_messages}, status: :bad_request
@@ -423,5 +434,17 @@ class TestcasesController < ApplicationController
 
   def parse_vid(vid)
     ((float = Float(vid)) && (float % 1.0 == 0) ? float.to_i : float) rescue vid
+  end
+
+  def same_steps? old_steps, new_steps
+    return false if old_steps.count != new_steps.count
+    old_steps.each_with_index do |old, i|
+      new = new_steps[i]
+
+      new.keys.each do |key|
+        return false if new[key].to_s != old[key].to_s
+      end
+    end
+    return true
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170209151813) do
+ActiveRecord::Schema.define(version: 20170504121916) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,22 @@ ActiveRecord::Schema.define(version: 20170209151813) do
     t.datetime "closed_at"
     t.boolean  "deleted"
     t.string   "name"
+  end
+
+  create_table "keywords", force: :cascade do |t|
+    t.string   "keyword"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "project_id"
+    t.integer  "testcase_count", default: 0
+  end
+
+  create_table "keywords_testcases", force: :cascade do |t|
+    t.integer  "keyword_id"
+    t.integer  "testcase_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["keyword_id", "testcase_id"], name: "index_keywords_testcases_on_keyword_id_and_testcase_id", unique: true, using: :btree
   end
 
   create_table "password_tokens", force: :cascade do |t|
