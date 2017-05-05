@@ -114,7 +114,11 @@ describe "KEYWORDS API::" , :type => :api do
             .to change { Keyword.count }.by(1)
       end
 
-      it 'can associate testcases'
+      it 'can associate testcases' do
+        id = project.id
+        expect { post "/keywords", {keyword: {keyword: 'AWESOME', project_id: project.id}, testcases: project.testcases.pluck(:id)}.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' } }
+            .to change { project.testcases.last.keywords.count }.by(1)
+      end
 
       context 'without' do
 
@@ -224,7 +228,13 @@ describe "KEYWORDS API::" , :type => :api do
         expect(json).to include 'keyword'
       end
 
-      it 'can associate testcases'
+      it 'can associate testcases' do
+        put "/keywords/#{project.keywords.last.id}", {keyword: {keyword: 'MORE AWESOME'}, testcases: project.testcases.pluck(:id)}.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
+        expect(last_response.status).to eq 200
+        expect(json).to include 'keyword'
+        expect(json['keyword']).to include 'testcase_count'
+        expect(json['keyword']['testcase_count']).to equal project.testcases.count
+      end
 
       context 'should update' do
         it 'keyword' do

@@ -11,6 +11,90 @@ describe "EXECUTIONS API::" , :type => :api do
   let (:user) {FactoryGirl.create(:user)}
   let (:admin) {FactoryGirl.create(:user, :admin)}
 
+  describe('get execution details') do
+
+    let  (:path) {"/executions/#{execution.id}"}
+    let  (:invalid_path) {"/executions/-1"}
+
+    context 'as a non-admin' do
+
+      before do
+        header 'User-Token', user.user_tokens.first.token
+      end
+
+      it 'returns succesfully if viewable', :show_in_doc do
+        team.users << user
+        team.projects << project
+        get path
+        expect(last_response.status).to eq 200
+        expect(json).to include('execution')
+      end
+
+      it 'returns error if not viewable' do
+        get path
+        expect(last_response.status).to eq 403
+        expect(json).to include('error')
+      end
+
+    end
+
+    context 'as an admin' do
+
+      before do
+        header 'User-Token', admin.user_tokens.first.token
+      end
+
+      it 'returns succesfully if even if not on team' do
+        get path
+        expect(last_response.status).to eq 200
+        expect(json).to include('execution')
+      end
+
+    end
+
+    context 'with invalid execution id' do
+
+      before do
+        header 'User-Token', user.user_tokens.first.token
+        get invalid_path
+      end
+
+      it_behaves_like 'a not found request'
+
+    end
+
+    context 'without user token' do
+      before do
+        header 'User-Token', nil
+        get path
+      end
+
+      it_behaves_like 'an unauthenticated request'
+    end
+
+    context 'with expired user token' do
+      before do
+        admin.user_tokens.first.update(expires: DateTime.now - 1.day)
+        header 'User-Token', admin.user_tokens.first.token
+        get path
+      end
+
+      it_behaves_like 'an unauthenticated request'
+
+    end
+
+    context 'with invalid user token' do
+      before do
+        header 'User-Token', 'asdfasdfasdfasdf'
+        get path
+      end
+
+      it_behaves_like 'an unauthenticated request'
+
+    end
+
+  end
+
   describe('get testcase count') do
 
     let  (:path) {"/executions/#{execution.id}/testcase-count"}

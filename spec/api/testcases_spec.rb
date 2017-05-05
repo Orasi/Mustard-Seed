@@ -166,8 +166,6 @@ describe "TESTCASES API::" , :type => :api do
         expect(json['testcase']['version']).to eq 1
       end
 
-      it 'can associate keywords'
-
       context 'without' do
 
         it 'name should fail' do
@@ -220,6 +218,25 @@ describe "TESTCASES API::" , :type => :api do
         expect(json).to include 'error'
       end
 
+    end
+
+    it 'can associte keywords' do
+        header 'User-Token', admin.user_tokens.first.token
+        id = project.id
+        @testcase_count = Testcase.count
+        post "/testcases", {testcase: {name: 'Some New Testcase',
+                                       project_id: id,
+                                       validation_id: rand(10000..99999),
+                                       reproduction_steps: [{step_number: 1,
+                                                             action: Faker::Lorem.sentence,
+                                                             result: Faker::Lorem.sentence},
+                                                            {step_number: 2,
+                                                             action: Faker::Lorem.sentence,
+                                                             result: Faker::Lorem.sentence}]}, keywords: project.keywords.pluck(:id)}.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
+        expect(last_response.status).to eq 200
+        expect(json).to include 'testcase'
+        expect(json['testcase']).to include 'id'
+        expect(Testcase.find(json['testcase']['id']).keywords.count).to equal project.keywords.count
     end
 
     context 'with duplicate validation_id' do
@@ -426,8 +443,17 @@ describe "TESTCASES API::" , :type => :api do
         expect(Testcase.unscope(:where).find(testcase.id).outdated).to eq true
       end
 
-      it 'can associate keywords'
 
+    end
+
+    it 'can associate keywords' do
+        header 'User-Token', admin.user_tokens.first.token
+        testcase_id = project.testcases.last.id
+        expect{
+          put "/testcases/#{testcase_id}", {testcase: {name: 'Renamed Testcase'}, keywords: project.keywords.pluck(:id)}.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
+        }.to change{Testcase.find(testcase_id).keywords.count}.from(1).to(project.keywords.count)
+        expect(last_response.status).to eq 200
+        expect(json).to include 'testcase'
     end
 
     context 'with invalid testcase id' do
