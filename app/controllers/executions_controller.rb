@@ -337,7 +337,14 @@ class ExecutionsController < ApplicationController
     render json: {error: 'Not authorized to access this resource'},
            status: :forbidden and return unless @current_user.projects.include? execution.project
 
-    if params[:keyword]
+    if params[:keyword] && params[:keyword] != 'FALSE'
+      puts '^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^'
+      puts '^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^'
+      puts '^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^'
+      puts params[:keyword]
+      puts '^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^'
+      puts '^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^'
+      puts '^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^'
       keyword = execution.project.keywords.where(keyword: params[:keyword].upcase)
       render json: {error: 'Keyword not found'},
              status: :not_found and return unless keyword.count > 0
@@ -384,6 +391,5 @@ class ExecutionsController < ApplicationController
 
     render json: {failing: failed_tests}
   end
-
 
 end

@@ -145,7 +145,6 @@ describe "TESTCASES API::" , :type => :api do
 
       end
 
-
       it 'responds successfully', :show_in_doc do
         expect(last_response.status).to eq 200
         expect(json).to include 'testcase'
