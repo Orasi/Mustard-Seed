@@ -748,6 +748,8 @@ describe "EXECUTIONS API::" , :type => :api do
 
   describe('get incomplete tests') do
 
+    let  (:project) { FactoryGirl.create(:project)}
+    let  (:execution) {project.executions.last}
     let  (:path) {"/executions/#{execution.id}/incomplete"}
     let  (:invalid_path) {"/executions/-1/incomplete"}
 
@@ -757,13 +759,35 @@ describe "EXECUTIONS API::" , :type => :api do
         header 'User-Token', user.user_tokens.first.token
       end
 
-      it 'returns succesfully if viewable', :show_in_doc do
+      it 'returns succesfully if viewable' do
         team.users << user
         team.projects << project
         get path
         expect(last_response.status).to eq 200
         expect(json).to include('incomplete')
       end
+
+      it 'filters by keyword' do
+        team.users << user
+        team.projects << project
+        keyword = project.keywords.first
+        get path + "?keyword[]=#{keyword.keyword}"
+        expect(last_response.status).to eq 200
+        expect(json).to include('incomplete')
+      end
+
+      it 'accepts multiple keywords', :show_in_doc do
+        team.users << user
+        team.projects << project
+        keyword = project.keywords.first
+        second_keyword = project.keywords.last
+        keyword.testcases.last.keywords << second_keyword
+        get path + "?keyword[]=#{keyword.keyword}&keyword[]=#{second_keyword.keyword}"
+        expect(last_response.status).to eq 200
+        expect(json).to include('incomplete')
+
+      end
+
 
       it 'returns all tests if all incomplete' do
         project = FactoryGirl.create(:project)
@@ -903,6 +927,14 @@ describe "EXECUTIONS API::" , :type => :api do
       end
 
       it 'return error with bad keyword' do
+        team.users << user
+        team.projects << project
+        get path + "?keyword[]=NOTREAL"
+        expect(last_response.status).to eq 404
+        expect(json).to include('error')
+      end
+
+      it 'handles non-array keyword' do
         team.users << user
         team.projects << project
         get path + "?keyword=NOTREAL"

@@ -2,6 +2,7 @@ class ExecutionsController < ApplicationController
   include ActionController::MimeResponds
   skip_before_action :require_user_token, only: [:close, :failing_tests, :destroy]
   before_action :requires_admin, only: [:destroy]
+  before_action :parse_for_keywords
 
 
   api :get, '/executions/:id', 'Execution Details'
@@ -211,7 +212,7 @@ class ExecutionsController < ApplicationController
   end
 
 
-  api :GET, '/executions/:id/incomplete_tests', 'List Incomplete Tests'
+  api :GET, '/executions/:id/incomplete[?keyword[]=:keyword]', 'List Incomplete Tests'
   description 'Lists all incomplete tests for the given execution'
   meta 'Only accessible if project is viewable by current user'
   param :id, :number, 'Execution ID', required: true
@@ -225,7 +226,18 @@ class ExecutionsController < ApplicationController
     render json: {error: 'Not authorized to access this resource'},
            status: :forbidden and return unless @current_user.projects.include? execution.project
 
-    incomplete_tests = Testcase.not_run(execution)
+    if params[:keyword] && params[:keyword] != 'FALSE' && !params[:keyword].blank?
+
+      keywords = execution.project.keywords.where(keyword: params[:keyword].map(&:upcase))
+      render json: {error: 'Keyword not found'},
+             status: :not_found and return unless keywords.count > 0
+      incomplete_tests = execution.project.testcases.not_run(execution).with_keywords(params[:keyword])
+
+    else
+      incomplete_tests = Testcase.not_run(execution)
+    end
+
+
 
     render json: {incomplete: incomplete_tests}
 
@@ -323,7 +335,7 @@ class ExecutionsController < ApplicationController
   end
 
 
-  api :GET, '/executions/:id/next_test[?keyword=:keyword]', 'Next Incomplete Test'
+  api :GET, '/executions/:id/next_test[?keyword[]=:keyword]', 'Next Incomplete Test'
   description 'Returns the next incomplete test for this execution'
   meta "Marks the test as in use so it won\'t be retrieved by subsequent calls for 5 minutes"
   param :id, :number, 'Execution ID', required: true
@@ -342,9 +354,10 @@ class ExecutionsController < ApplicationController
       keywords = execution.project.keywords.where(keyword: params[:keyword].map(&:upcase))
       render json: {error: 'Keyword not found'},
              status: :not_found and return unless keywords.count > 0
-      testcase = execution.project.testcases.not_run(execution).where("runner_touch <= ? or runner_touch is null", 5.minutes.ago).order(runner_touch: :desc).with_keys(params[:keyword])
+      testcase = execution.project.testcases.not_run(execution).where("runner_touch <= ? or runner_touch is null", 5.minutes.ago).order(runner_touch: :desc).with_keywords(params[:keyword])
 
     else
+
       testcase = Testcase.not_run(execution).where("runner_touch <= ? or runner_touch is null", 5.minutes.ago).order(runner_touch: :desc)
     end
 
@@ -383,6 +396,17 @@ class ExecutionsController < ApplicationController
     end
 
     render json: {failing: failed_tests}
+  end
+
+  private
+
+  def parse_for_keywords
+
+    return unless params[:keyword]
+
+    unless params[:keyword].kind_of?(Array)
+      params[:keyword] = [params[:keyword]]
+    end
   end
 
 end

@@ -18,7 +18,7 @@ class Testcase < ApplicationRecord
 
 
   default_scope { where(outdated: [false, nil]) }
-  scope :with_keys, -> (keywords){ keywords.blank? ? none :  find_by_sql( "SELECT testcases.* FROM testcases
+  scope :with_keywords, -> (keywords){ keywords.blank? ? none :  find_by_sql( "SELECT testcases.* FROM testcases
                                                         JOIN keywords_testcases
                                                           ON keywords_testcases.testcase_id = testcases.id
                                                         JOIN keywords
