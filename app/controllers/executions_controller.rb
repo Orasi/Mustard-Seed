@@ -337,20 +337,13 @@ class ExecutionsController < ApplicationController
     render json: {error: 'Not authorized to access this resource'},
            status: :forbidden and return unless @current_user.projects.include? execution.project
 
-    if params[:keyword] && params[:keyword] != 'FALSE'
-      puts '^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^'
-      puts '^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^'
-      puts '^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^'
-      puts params[:keyword]
-      puts '^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^'
-      puts '^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^'
-      puts '^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^'
-      keyword = execution.project.keywords.where(keyword: params[:keyword].upcase)
-      render json: {error: 'Keyword not found'},
-             status: :not_found and return unless keyword.count > 0
-      keyword = keyword.first
+    if params[:keyword] && params[:keyword] != 'FALSE' && !params[:keyword].blank?
 
-      testcase = keyword.testcases.not_run(execution).where("runner_touch <= ? or runner_touch is null", 5.minutes.ago).order(runner_touch: :desc)
+      keywords = execution.project.keywords.where(keyword: params[:keyword].map(&:upcase))
+      render json: {error: 'Keyword not found'},
+             status: :not_found and return unless keywords.count > 0
+      testcase = execution.project.testcases.not_run(execution).where("runner_touch <= ? or runner_touch is null", 5.minutes.ago).order(runner_touch: :desc).with_keys(params[:keyword])
+
     else
       testcase = Testcase.not_run(execution).where("runner_touch <= ? or runner_touch is null", 5.minutes.ago).order(runner_touch: :desc)
     end

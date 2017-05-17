@@ -102,7 +102,7 @@ describe "KEYWORDS API::" , :type => :api do
         header 'User-Token', admin.user_tokens.first.token
       end
 
-      it 'responds successfully', :show_in_doc do
+      it 'responds successfully' do
         post "/keywords", {keyword: {keyword: 'AWESOME', project_id: project.id}}.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
         expect(last_response.status).to eq 200
         expect(json).to include 'keyword'
@@ -114,7 +114,7 @@ describe "KEYWORDS API::" , :type => :api do
             .to change { Keyword.count }.by(1)
       end
 
-      it 'can associate testcases' do
+      it 'can associate testcases', :show_in_doc do
         id = project.id
         expect { post "/keywords", {keyword: {keyword: 'AWESOME', project_id: project.id}, testcases: project.testcases.pluck(:id)}.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' } }
             .to change { project.testcases.last.keywords.count }.by(1)
@@ -222,13 +222,13 @@ describe "KEYWORDS API::" , :type => :api do
         header 'User-Token', admin.user_tokens.first.token
       end
 
-      it 'responds successfully', :show_in_doc do
+      it 'responds successfully' do
         put "/keywords/#{keyword.id}", {keyword: {keyword: 'MORE AWESOME'}}.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
         expect(last_response.status).to eq 200
         expect(json).to include 'keyword'
       end
 
-      it 'can associate testcases' do
+      it 'can associate testcases', :show_in_doc do
         put "/keywords/#{project.keywords.last.id}", {keyword: {keyword: 'MORE AWESOME'}, testcases: project.testcases.pluck(:id)}.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
         expect(last_response.status).to eq 200
         expect(json).to include 'keyword'

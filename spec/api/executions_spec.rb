@@ -851,7 +851,7 @@ describe "EXECUTIONS API::" , :type => :api do
         header 'User-Token', user.user_tokens.first.token
       end
 
-      it 'returns succesfully if viewable', :show_in_doc do
+      it 'returns succesfully if viewable' do
         team.users << user
         team.projects << project
         get path
@@ -860,13 +860,54 @@ describe "EXECUTIONS API::" , :type => :api do
       end
 
       it 'returns a different test' do
-        project = FactoryGirl.create(:project)
         team.users << user
         team.projects << project
-        get "/executions/#{project.executions.last.id}/incomplete"
+        get path
         expect(last_response.status).to eq 200
-        expect(json).to include('incomplete')
-        expect(json['incomplete'].count).to eq project.testcases.count
+        expect(json).to include('testcase')
+      end
+
+      it 'accepts keyword to filter' do
+        team.users << user
+        team.projects << project
+        keyword = project.keywords.first
+        get path + "?keyword[]=#{keyword.keyword}"
+        expect(last_response.status).to eq 200
+        expect(json).to include('testcase')
+        testcase = Testcase.find(json['testcase']['id'])
+        expect(testcase.keywords).to include(keyword)
+      end
+
+      it 'accepts multiple keywords', :show_in_doc do
+        team.users << user
+        team.projects << project
+        keyword = project.keywords.first
+        second_keyword = project.keywords.last
+        keyword.testcases.last.keywords << second_keyword
+        get path + "?keyword[]=#{keyword.keyword}&keyword[]=#{second_keyword.keyword}"
+        expect(last_response.status).to eq 200
+        expect(json).to include('testcase')
+        testcase = Testcase.find(json['testcase']['id'])
+        expect(testcase.keywords).to include(keyword)
+        expect(testcase.keywords).to include(second_keyword)
+      end
+
+      it 'returns blank if not test with keyword' do
+        team.users << user
+        team.projects << project
+        keyword = project.keywords.last
+        get path + "?keyword[]=#{keyword.keyword}"
+        expect(last_response.status).to eq 200
+        expect(json).to include('testcase')
+        expect(json['testcase']).to include('No remaining testcases')
+      end
+
+      it 'return error with bad keyword' do
+        team.users << user
+        team.projects << project
+        get path + "?keyword=NOTREAL"
+        expect(last_response.status).to eq 404
+        expect(json).to include('error')
       end
 
       it 'returns error if not viewable' do
