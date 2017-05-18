@@ -18,15 +18,11 @@ class Testcase < ApplicationRecord
 
 
   default_scope { where(outdated: [false, nil]) }
-  scope :with_keywords, -> (keywords, project_id){ keywords.blank? ? none :  find_by_sql( "SELECT testcases.* FROM testcases
-                                                        JOIN keywords_testcases
-                                                          ON keywords_testcases.testcase_id = testcases.id
-                                                        JOIN keywords
-                                                          ON keywords_testcases.keyword_id = keywords.id
-                                                        WHERE keywords.keyword in (#{keywords.map{|key| "'#{key}'"}.join(',')})
-                                                          AND testcases.project_id = #{project_id}
-                                                        GROUP BY testcases.id
-                                                        HAVING count (*) = #{keywords.count}")}
+  scope :with_keywords, -> (keywords, project_id){ keywords.blank? ? none : joins("JOIN keywords_testcases ON keywords_testcases.testcase_id = testcases.id")
+                                                        .joins("JOIN keywords ON keywords_testcases.keyword_id = keywords.id")
+                                                        .where("keywords.keyword in (?)", keywords.map{|key| "'#{key}'"}.join(','))
+                                                        .group("testcases.id")
+                                                        .having("count (*) = ?", keywords.count)}
 
 
   scope :as_of_date, -> (tc_date){unscope(where: :outdated).where('"testcases"."created_at" <= ? AND ("testcases"."revised_at" >= ? OR "testcases"."revised_at" IS NULL)', tc_date, tc_date)}
