@@ -231,7 +231,7 @@ class ExecutionsController < ApplicationController
       keywords = execution.project.keywords.where(keyword: params[:keyword].map(&:upcase))
       render json: {error: 'Keyword not found'},
              status: :not_found and return unless keywords.count > 0
-      incomplete_tests = execution.project.testcases.not_run(execution).with_keywords(params[:keyword], execution.project.id)
+      incomplete_tests = execution.project.testcases.not_run(execution).with_keywords(params[:keyword])
 
     else
       incomplete_tests = Testcase.not_run(execution)
@@ -354,7 +354,7 @@ class ExecutionsController < ApplicationController
       keywords = execution.project.keywords.where(keyword: params[:keyword].map(&:upcase))
       render json: {error: 'Keyword not found'},
              status: :not_found and return unless keywords.count > 0
-      testcase = execution.project.testcases.not_run(execution).where("runner_touch <= ? or runner_touch is null", 5.minutes.ago).order(runner_touch: :desc).with_keywords(params[:keyword], execution.project.id)
+      testcase = execution.project.testcases.not_run(execution).where("runner_touch <= ? or runner_touch is null", 5.minutes.ago).order(runner_touch: :desc).with_keywords(params[:keyword])
 
     else
 

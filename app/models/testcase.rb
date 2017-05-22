@@ -18,9 +18,9 @@ class Testcase < ApplicationRecord
 
 
   default_scope { where(outdated: [false, nil]) }
-  scope :with_keywords, -> (keywords, project_id){ keywords.blank? ? none : joins("JOIN keywords_testcases ON keywords_testcases.testcase_id = testcases.id")
+  scope :with_keywords, -> (keywords){ keywords.blank? ? none : joins("JOIN keywords_testcases ON keywords_testcases.testcase_id = testcases.id")
                                                         .joins("JOIN keywords ON keywords_testcases.keyword_id = keywords.id")
-                                                        .where("keywords.keyword in (?)", keywords.map{|key| "'#{key}'"}.join(','))
+                                                        .where("keywords.keyword in (?)", keywords)
                                                         .group("testcases.id")
                                                         .having("count (*) = ?", keywords.count)}
 
