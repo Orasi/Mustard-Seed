@@ -128,6 +128,12 @@
     <tbody>
           <tr>
             <td>
+              <a href='./apidoc/executions/show.html'>get /executions/:id</a>
+            </td>
+            <td width='60%'>Execution Details</td>
+          </tr>
+          <tr>
+            <td>
               <a href='./apidoc/executions/testcase_count.html'>get /executions/:id/testcase-count</a>
             </td>
             <td width='60%'>Testcase Count</td>
@@ -170,7 +176,7 @@
           </tr>
           <tr>
             <td>
-              <a href='./apidoc/executions/incomplete_tests.html'>GET /executions/:id/incomplete_tests</a>
+              <a href='./apidoc/executions/incomplete_tests.html'>GET /executions/:id/incomplete[?keyword[]=:keyword]</a>
             </td>
             <td width='60%'>List Incomplete Tests</td>
           </tr>
@@ -188,7 +194,7 @@
           </tr>
           <tr>
             <td>
-              <a href='./apidoc/executions/next_incomplete_test.html'>GET /executions/:id/next_test</a>
+              <a href='./apidoc/executions/next_incomplete_test.html'>GET /executions/:id/next_test[?keyword[]=:keyword]</a>
             </td>
             <td width='60%'>Next Incomplete Test</td>
           </tr>
@@ -197,6 +203,46 @@
               <a href='./apidoc/executions/failing_tests.html'>GET /executions/:project_key/failing</a>
             </td>
             <td width='60%'>Get all failing tests</td>
+          </tr>
+    </tbody>
+  </table>
+  <h2>
+    <a href='./apidoc/keywords.html'>
+      Keywords
+    </a><br>
+    <small></small>
+  </h2>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Resource</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+          <tr>
+            <td>
+              <a href='./apidoc/keywords/show.html'>GET /keywords/:id</a>
+            </td>
+            <td width='60%'>Keyword details</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/keywords/create.html'>POST /keywords</a>
+            </td>
+            <td width='60%'>Create new keyword</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/keywords/update.html'>PUT /keywords/:id</a>
+            </td>
+            <td width='60%'>Update existing keyword</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/keywords/destroy.html'>DELETE /keywords/:id</a>
+            </td>
+            <td width='60%'>Delete existing keyword</td>
           </tr>
     </tbody>
   </table>
@@ -249,6 +295,24 @@
               <a href='./apidoc/projects/environments.html'>GET /projects/:id/environments</a>
             </td>
             <td width='60%'>List all environments for project</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/projects/keywords.html'>GET /projects/:id/keywords</a>
+            </td>
+            <td width='60%'>List all keywords for project</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/projects/testcases.html'>GET /projects/:id/testcases</a>
+            </td>
+            <td width='60%'>List all testcases for project</td>
+          </tr>
+          <tr>
+            <td>
+              <a href='./apidoc/projects/executions.html'>GET /projects/:id/executions</a>
+            </td>
+            <td width='60%'>List all executions for project</td>
           </tr>
     </tbody>
   </table>

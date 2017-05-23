@@ -45,29 +45,30 @@
 <div>
 
   
-<p>Only accessible if project is viewable by current user</p>
+<p>Only accessible if project is viewable by current user. Pass optional array
+of keyword ids to associate keywords to test</p>
 
 
 
 
 
   <h2>Examples</h2>
-    <pre class="prettyprint">PUT /testcases/61940
+    <pre class="prettyprint">PUT /testcases/10793
 {
   &quot;testcase&quot;: {
     &quot;name&quot;: &quot;Renamed Testcase&quot;,
-    &quot;project_id&quot;: 12343,
-    &quot;validation_id&quot;: 29086,
+    &quot;project_id&quot;: 2158,
+    &quot;validation_id&quot;: 38115,
     &quot;reproduction_steps&quot;: [
       {
         &quot;step_number&quot;: 1,
-        &quot;action&quot;: &quot;Voluptas est autem aperiam aut voluptates.&quot;,
-        &quot;result&quot;: &quot;Expedita maiores nihil fugiat est quam atque corrupti.&quot;
+        &quot;action&quot;: &quot;Voluptas accusamus minus ea ut et.&quot;,
+        &quot;result&quot;: &quot;Qui voluptatum quod qui in cumque sit dolorem.&quot;
       },
       {
         &quot;step_number&quot;: 2,
-        &quot;action&quot;: &quot;Debitis quisquam maiores minus alias nostrum quod.&quot;,
-        &quot;result&quot;: &quot;Quos aperiam et quidem eos.&quot;
+        &quot;action&quot;: &quot;Voluptas ut tempore eveniet in corrupti eum laboriosam.&quot;,
+        &quot;result&quot;: &quot;Quasi quia quo ut nemo iure.&quot;
       }
     ]
   }
@@ -75,31 +76,31 @@
 200
 {
   &quot;testcase&quot;: {
-    &quot;id&quot;: 61950,
+    &quot;id&quot;: 10803,
     &quot;name&quot;: &quot;Renamed Testcase&quot;,
-    &quot;validation_id&quot;: &quot;29086&quot;,
-    &quot;project_id&quot;: 12343,
+    &quot;validation_id&quot;: &quot;38115&quot;,
+    &quot;project_id&quot;: 2158,
     &quot;runner_touch&quot;: null,
     &quot;locked&quot;: null,
-    &quot;created_at&quot;: &quot;2017-03-03T14:34:11.439Z&quot;,
-    &quot;updated_at&quot;: &quot;2017-03-03T14:34:11.439Z&quot;,
+    &quot;created_at&quot;: &quot;2017-05-17T16:26:35.965Z&quot;,
+    &quot;updated_at&quot;: &quot;2017-05-17T16:26:35.965Z&quot;,
     &quot;reproduction_steps&quot;: [
       {
         &quot;step_number&quot;: 1,
-        &quot;action&quot;: &quot;Voluptas est autem aperiam aut voluptates.&quot;,
-        &quot;result&quot;: &quot;Expedita maiores nihil fugiat est quam atque corrupti.&quot;
+        &quot;action&quot;: &quot;Voluptas accusamus minus ea ut et.&quot;,
+        &quot;result&quot;: &quot;Qui voluptatum quod qui in cumque sit dolorem.&quot;
       },
       {
         &quot;step_number&quot;: 2,
-        &quot;action&quot;: &quot;Debitis quisquam maiores minus alias nostrum quod.&quot;,
-        &quot;result&quot;: &quot;Quos aperiam et quidem eos.&quot;
+        &quot;action&quot;: &quot;Voluptas ut tempore eveniet in corrupti eum laboriosam.&quot;,
+        &quot;result&quot;: &quot;Quasi quia quo ut nemo iure.&quot;
       }
     ],
     &quot;outdated&quot;: false,
     &quot;version&quot;: 2,
-    &quot;token&quot;: &quot;NormuPdy4RbD1quNj5oKJgXd&quot;,
+    &quot;token&quot;: &quot;TL7TjrKxLrHArHriTqvDRid8&quot;,
     &quot;revised_at&quot;: null,
-    &quot;username&quot;: &quot;Jadyn Cronin&quot;
+    &quot;username&quot;: &quot;Bernardo Weimann&quot;
   }
 }</pre>
 
@@ -300,6 +301,50 @@ otherwise indicated</p>
 
   
 
+
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>keywords </strong><br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a Hash</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+    <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>keywords[ids] </strong><br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be an array of Integer</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
 
 
     </tbody>

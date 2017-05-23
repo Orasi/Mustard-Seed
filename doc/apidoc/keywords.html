@@ -23,7 +23,7 @@
     <span class='divider'>/</span>
   </li>
   <li class='active'>
-    Environments
+    Keywords
     
   </li>
   
@@ -31,7 +31,7 @@
 
 <div class='page-header'>
   <h1>
-    Environments
+    Keywords
     <br>
     <small></small>
   </h1>
@@ -46,7 +46,7 @@
 
     <hr>
     <div class='pull-right small'>
-      <a href='../apidoc/environments/show.html'> >>> </a>
+      <a href='../apidoc/keywords/show.html'> >>> </a>
     </div>
     <div>
         <h2>
@@ -54,10 +54,10 @@
            class='accordion-toggle'
            data-toggle='collapse'
            data-parent='#accordion'>
-            GET /environments/:id
+            GET /keywords/:id
           </a>
           <br>
-          <small>Environment details</small>
+          <small>Keyword details</small>
         </h2>
     </div>
 
@@ -71,17 +71,57 @@
 
 
   <h3>Examples</h3>
-    <pre class="prettyprint">GET /environments/10364
+    <pre class="prettyprint">GET /keywords/6298
 200
 {
-  &quot;environment&quot;: {
-    &quot;id&quot;: 10364,
-    &quot;uuid&quot;: &quot;fe028cec9e85bfa304a6421e481ca225&quot;,
-    &quot;project_id&quot;: 2080,
-    &quot;created_at&quot;: &quot;2017-05-17T16:26:12.247Z&quot;,
-    &quot;updated_at&quot;: &quot;2017-05-17T16:26:12.247Z&quot;,
-    &quot;environment_type&quot;: &quot;Undefined&quot;,
-    &quot;display_name&quot;: null
+  &quot;keyword&quot;: {
+    &quot;id&quot;: 6298,
+    &quot;keyword&quot;: &quot;1692C47A8B89D34F9E083D3AA624D27F&quot;,
+    &quot;project_id&quot;: 2102,
+    &quot;created_at&quot;: &quot;2017-05-17T16:26:23.819Z&quot;,
+    &quot;updated_at&quot;: &quot;2017-05-17T16:26:23.934Z&quot;,
+    &quot;testcases&quot;: [
+      {
+        &quot;id&quot;: 10519,
+        &quot;testcase_name&quot;: &quot;Nihil quam ab officia labore id quo.&quot;,
+        &quot;testcase_id&quot;: &quot;2032221&quot;,
+        &quot;created_at&quot;: &quot;2017-05-17T16:26:23.857Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-05-17T16:26:23.857Z&quot;,
+        &quot;version&quot;: 1
+      },
+      {
+        &quot;id&quot;: 10517,
+        &quot;testcase_name&quot;: &quot;Unde odio veritatis natus ex.&quot;,
+        &quot;testcase_id&quot;: &quot;5356932&quot;,
+        &quot;created_at&quot;: &quot;2017-05-17T16:26:23.841Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-05-17T16:26:23.841Z&quot;,
+        &quot;version&quot;: 1
+      },
+      {
+        &quot;id&quot;: 10518,
+        &quot;testcase_name&quot;: &quot;Accusantium hic in est.&quot;,
+        &quot;testcase_id&quot;: &quot;6717488&quot;,
+        &quot;created_at&quot;: &quot;2017-05-17T16:26:23.849Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-05-17T16:26:23.849Z&quot;,
+        &quot;version&quot;: 1
+      },
+      {
+        &quot;id&quot;: 10516,
+        &quot;testcase_name&quot;: &quot;Architecto non cum et eum.&quot;,
+        &quot;testcase_id&quot;: &quot;7427346&quot;,
+        &quot;created_at&quot;: &quot;2017-05-17T16:26:23.833Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-05-17T16:26:23.833Z&quot;,
+        &quot;version&quot;: 1
+      },
+      {
+        &quot;id&quot;: 10520,
+        &quot;testcase_name&quot;: &quot;Rerum quis rem placeat ut eos doloribus magnam.&quot;,
+        &quot;testcase_id&quot;: &quot;7986857&quot;,
+        &quot;created_at&quot;: &quot;2017-05-17T16:26:23.864Z&quot;,
+        &quot;updated_at&quot;: &quot;2017-05-17T16:26:23.864Z&quot;,
+        &quot;version&quot;: 1
+      }
+    ]
   }
 }</pre>
 
@@ -129,7 +169,7 @@ otherwise indicated</p>
     </td>
     <td>
       
-<p>Environment ID</p>
+<p>Keyword ID</p>
 
         <p><strong>Validations:</strong></p>
         <ul>
@@ -152,7 +192,7 @@ otherwise indicated</p>
     </div>
     <hr>
     <div class='pull-right small'>
-      <a href='../apidoc/environments/create.html'> >>> </a>
+      <a href='../apidoc/keywords/create.html'> >>> </a>
     </div>
     <div>
         <h2>
@@ -160,22 +200,49 @@ otherwise indicated</p>
            class='accordion-toggle'
            data-toggle='collapse'
            data-parent='#accordion'>
-            POST /environments
+            POST /keywords
           </a>
           <br>
-          <small>Create new environment</small>
+          <small>Create new keyword</small>
         </h2>
     </div>
 
 
     <div id='description-create' class='collapse accordion-body'>
       
-<p>Only accessible if current user can view parent project</p>
+<p>Only accessible if current user can view parent project. Pass optional
+array of testcase ids to associate keyword to tests</p>
 
 
 
 
 
+  <h3>Examples</h3>
+    <pre class="prettyprint">POST /keywords
+{
+  &quot;keyword&quot;: {
+    &quot;keyword&quot;: &quot;AWESOME&quot;,
+    &quot;project_id&quot;: 2104
+  },
+  &quot;testcases&quot;: [
+    10526,
+    10527,
+    10528,
+    10529,
+    10530
+  ]
+}
+200
+{
+  &quot;keyword&quot;: {
+    &quot;id&quot;: 6310,
+    &quot;keyword&quot;: &quot;AWESOME&quot;,
+    &quot;created_at&quot;: &quot;2017-05-17T16:26:24.503Z&quot;,
+    &quot;updated_at&quot;: &quot;2017-05-17T16:26:24.568Z&quot;,
+    &quot;project_id&quot;: 2104,
+    &quot;testcase_count&quot;: 5
+  }
+}</pre>
 
   <h3>Params</h3>
   <table class='table'>
@@ -213,7 +280,7 @@ otherwise indicated</p>
   
   <tr style='background-color:rgb(255,255,255);'>
     <td>
-      <strong>environment </strong><br>
+      <strong>keyword </strong><br>
       <small>
         required
         
@@ -234,7 +301,7 @@ otherwise indicated</p>
 
     <tr style='background-color:rgb(250,250,250);'>
     <td>
-      <strong>environment[uuid] </strong><br>
+      <strong>keyword[keyword] </strong><br>
       <small>
         required
         
@@ -242,7 +309,7 @@ otherwise indicated</p>
     </td>
     <td>
       
-<p>Unique Identifier for environment.  IE “Windows_8_1_Chrome_50”</p>
+<p>The keyword</p>
 
         <p><strong>Validations:</strong></p>
         <ul>
@@ -258,7 +325,7 @@ otherwise indicated</p>
   
   <tr style='background-color:rgb(250,250,250);'>
     <td>
-      <strong>environment[project_id] </strong><br>
+      <strong>keyword[project_id] </strong><br>
       <small>
         required
         
@@ -280,9 +347,10 @@ otherwise indicated</p>
   </tr>
 
   
-  <tr style='background-color:rgb(250,250,250);'>
+
+  <tr style='background-color:rgb(255,255,255);'>
     <td>
-      <strong>environment[display_name] </strong><br>
+      <strong>testcases </strong><br>
       <small>
         optional
         , nil allowed
@@ -290,12 +358,10 @@ otherwise indicated</p>
     </td>
     <td>
       
-<p>Name of environment to be displayed</p>
-
         <p><strong>Validations:</strong></p>
         <ul>
             <li>
-<p>Must be String</p>
+<p>Must be a Hash</p>
 </li>
         </ul>
 
@@ -303,10 +369,9 @@ otherwise indicated</p>
 
   </tr>
 
-  
-  <tr style='background-color:rgb(250,250,250);'>
+    <tr style='background-color:rgb(250,250,250);'>
     <td>
-      <strong>environment[environment_type] </strong><br>
+      <strong>testcases[ids] </strong><br>
       <small>
         optional
         , nil allowed
@@ -314,13 +379,10 @@ otherwise indicated</p>
     </td>
     <td>
       
-<p>Environment type</p>
-
         <p><strong>Validations:</strong></p>
         <ul>
             <li>
-<p>Must be one of: <code>Windows</code>, <code>Mac</code>, <code>Linux</code>,
-<code>Android</code>, <code>iOS</code>, <code>Windows Phone</code>.</p>
+<p>Must be an array of Integer</p>
 </li>
         </ul>
 
@@ -339,7 +401,7 @@ otherwise indicated</p>
     </div>
     <hr>
     <div class='pull-right small'>
-      <a href='../apidoc/environments/update.html'> >>> </a>
+      <a href='../apidoc/keywords/update.html'> >>> </a>
     </div>
     <div>
         <h2>
@@ -347,40 +409,46 @@ otherwise indicated</p>
            class='accordion-toggle'
            data-toggle='collapse'
            data-parent='#accordion'>
-            PUT /environments/:id
+            PUT /keywords/:id
           </a>
           <br>
-          <small>Update existing environment</small>
+          <small>Update existing keyword</small>
         </h2>
     </div>
 
 
     <div id='description-update' class='collapse accordion-body'>
       
-<p>Only accessible if current user can view parent project</p>
+<p>Only accessible if current user can view parent project.  Pass optional
+array of testcase ids to associate keyword to tests</p>
 
 
 
 
 
   <h3>Examples</h3>
-    <pre class="prettyprint">PUT /environments/10374
+    <pre class="prettyprint">PUT /keywords/6313
 {
-  &quot;environment&quot;: {
-    &quot;uuid&quot;: &quot;987654321&quot;,
-    &quot;display_name&quot;: &quot;Some new display name&quot;
-  }
+  &quot;keyword&quot;: {
+    &quot;keyword&quot;: &quot;MORE AWESOME&quot;
+  },
+  &quot;testcases&quot;: [
+    10536,
+    10537,
+    10538,
+    10539,
+    10540
+  ]
 }
 200
 {
-  &quot;environment&quot;: {
-    &quot;project_id&quot;: 2082,
-    &quot;id&quot;: 10374,
-    &quot;uuid&quot;: &quot;987654321&quot;,
-    &quot;display_name&quot;: &quot;Some new display name&quot;,
-    &quot;environment_type&quot;: &quot;Undefined&quot;,
-    &quot;created_at&quot;: &quot;2017-05-17T16:26:12.781Z&quot;,
-    &quot;updated_at&quot;: &quot;2017-05-17T16:26:13.178Z&quot;
+  &quot;keyword&quot;: {
+    &quot;project_id&quot;: 2106,
+    &quot;id&quot;: 6313,
+    &quot;keyword&quot;: &quot;MORE AWESOME&quot;,
+    &quot;created_at&quot;: &quot;2017-05-17T16:26:24.670Z&quot;,
+    &quot;updated_at&quot;: &quot;2017-05-17T16:26:24.995Z&quot;,
+    &quot;testcase_count&quot;: 5
   }
 }</pre>
 
@@ -428,7 +496,7 @@ otherwise indicated</p>
     </td>
     <td>
       
-<p>Environment ID</p>
+<p>Keyword ID</p>
 
         <p><strong>Validations:</strong></p>
         <ul>
@@ -444,7 +512,7 @@ otherwise indicated</p>
   
   <tr style='background-color:rgb(255,255,255);'>
     <td>
-      <strong>environment </strong><br>
+      <strong>keyword </strong><br>
       <small>
         required
         
@@ -465,7 +533,7 @@ otherwise indicated</p>
 
     <tr style='background-color:rgb(250,250,250);'>
     <td>
-      <strong>environment[uuid] </strong><br>
+      <strong>keyword[keyword] </strong><br>
       <small>
         optional
         
@@ -473,7 +541,7 @@ otherwise indicated</p>
     </td>
     <td>
       
-<p>Unique Identifier for environment.  IE “Windows_8_1_Chrome_50”</p>
+<p>The keyword</p>
 
         <p><strong>Validations:</strong></p>
         <ul>
@@ -489,7 +557,7 @@ otherwise indicated</p>
   
   <tr style='background-color:rgb(250,250,250);'>
     <td>
-      <strong>environment[project_id] </strong><br>
+      <strong>keyword[project_id] </strong><br>
       <small>
         optional
         
@@ -511,9 +579,10 @@ otherwise indicated</p>
   </tr>
 
   
-  <tr style='background-color:rgb(250,250,250);'>
+
+  <tr style='background-color:rgb(255,255,255);'>
     <td>
-      <strong>environment[display_name] </strong><br>
+      <strong>testcases </strong><br>
       <small>
         optional
         , nil allowed
@@ -521,12 +590,10 @@ otherwise indicated</p>
     </td>
     <td>
       
-<p>Name of environment to be displayed</p>
-
         <p><strong>Validations:</strong></p>
         <ul>
             <li>
-<p>Must be String</p>
+<p>Must be a Hash</p>
 </li>
         </ul>
 
@@ -534,10 +601,9 @@ otherwise indicated</p>
 
   </tr>
 
-  
-  <tr style='background-color:rgb(250,250,250);'>
+    <tr style='background-color:rgb(250,250,250);'>
     <td>
-      <strong>environment[environment_type] </strong><br>
+      <strong>testcases[ids] </strong><br>
       <small>
         optional
         , nil allowed
@@ -545,13 +611,10 @@ otherwise indicated</p>
     </td>
     <td>
       
-<p>Environment type</p>
-
         <p><strong>Validations:</strong></p>
         <ul>
             <li>
-<p>Must be one of: <code>Windows</code>, <code>Mac</code>, <code>Linux</code>,
-<code>Android</code>, <code>iOS</code>, <code>Windows Phone</code>.</p>
+<p>Must be an array of Integer</p>
 </li>
         </ul>
 
@@ -570,7 +633,7 @@ otherwise indicated</p>
     </div>
     <hr>
     <div class='pull-right small'>
-      <a href='../apidoc/environments/destroy.html'> >>> </a>
+      <a href='../apidoc/keywords/destroy.html'> >>> </a>
     </div>
     <div>
         <h2>
@@ -578,10 +641,10 @@ otherwise indicated</p>
            class='accordion-toggle'
            data-toggle='collapse'
            data-parent='#accordion'>
-            DELETE /environments/:id
+            DELETE /keywords/:id
           </a>
           <br>
-          <small>Delete existing environment</small>
+          <small>Delete existing keyword</small>
         </h2>
     </div>
 
@@ -595,10 +658,10 @@ otherwise indicated</p>
 
 
   <h3>Examples</h3>
-    <pre class="prettyprint">DELETE /environments/10394
+    <pre class="prettyprint">DELETE /keywords/6323
 200
 {
-  &quot;environment&quot;: &quot;Deleted&quot;
+  &quot;keyword&quot;: &quot;Deleted&quot;
 }</pre>
 
   <h3>Params</h3>
@@ -645,7 +708,7 @@ otherwise indicated</p>
     </td>
     <td>
       
-<p>Environment ID</p>
+<p>Keyword ID</p>
 
         <p><strong>Validations:</strong></p>
         <ul>

@@ -23,95 +23,60 @@
     <span class='divider'>/</span>
   </li>
   <li>
-    <a href='../../apidoc/executions.html'>
-      Executions
+    <a href='../../apidoc/keywords.html'>
+      Keywords
       
     </a>
     <span class='divider'>/</span>
   </li>
-  <li class='active'>environment_summary</li>
+  <li class='active'>create</li>
   
 
 </ul>
 
   <div class='page-header'>
     <h1>
-      GET /executions/:id/environment_summary
+      POST /keywords
       <br>
-      <small>Environment Summary</small>
+      <small>Create new keyword</small>
     </h1>
   </div>
 
 <div>
 
   
-<p>Lists the pass, fail, and skip counts by environment</p>
+<p>Only accessible if current user can view parent project. Pass optional
+array of testcase ids to associate keyword to tests</p>
 
 
 
-
-  <h2>Metadata</h2>
-  <pre class="prettyprint lang-yaml">--- Only accessible if project is viewable by current user
-...
-</pre>
 
 
   <h2>Examples</h2>
-    <pre class="prettyprint">GET /executions/2134/environment_summary
+    <pre class="prettyprint">POST /keywords
+{
+  &quot;keyword&quot;: {
+    &quot;keyword&quot;: &quot;AWESOME&quot;,
+    &quot;project_id&quot;: 2104
+  },
+  &quot;testcases&quot;: [
+    10526,
+    10527,
+    10528,
+    10529,
+    10530
+  ]
+}
 200
 {
-  &quot;summary&quot;: [
-    {
-      &quot;id&quot;: 10424,
-      &quot;uuid&quot;: &quot;b7db0635db2537b43fc91529441f153f&quot;,
-      &quot;display_name&quot;: null,
-      &quot;environment_type&quot;: &quot;Undefined&quot;,
-      &quot;pass_count&quot;: 2,
-      &quot;fail_count&quot;: 2,
-      &quot;skip_count&quot;: 1,
-      &quot;updated_at&quot;: &quot;2017-05-17 16:26:18.805301&quot;
-    },
-    {
-      &quot;id&quot;: 10425,
-      &quot;uuid&quot;: &quot;d445184dd69583710a24352476ccfd90&quot;,
-      &quot;display_name&quot;: null,
-      &quot;environment_type&quot;: &quot;Undefined&quot;,
-      &quot;pass_count&quot;: 3,
-      &quot;fail_count&quot;: 1,
-      &quot;skip_count&quot;: 1,
-      &quot;updated_at&quot;: &quot;2017-05-17 16:26:18.820741&quot;
-    },
-    {
-      &quot;id&quot;: 10426,
-      &quot;uuid&quot;: &quot;204d0c0de3dece84c957be2cf7dda257&quot;,
-      &quot;display_name&quot;: null,
-      &quot;environment_type&quot;: &quot;Undefined&quot;,
-      &quot;pass_count&quot;: 2,
-      &quot;fail_count&quot;: 1,
-      &quot;skip_count&quot;: 2,
-      &quot;updated_at&quot;: &quot;2017-05-17 16:26:18.8365&quot;
-    },
-    {
-      &quot;id&quot;: 10427,
-      &quot;uuid&quot;: &quot;19a173ac15e2761aabe090d1b08f7333&quot;,
-      &quot;display_name&quot;: null,
-      &quot;environment_type&quot;: &quot;Undefined&quot;,
-      &quot;pass_count&quot;: 0,
-      &quot;fail_count&quot;: 3,
-      &quot;skip_count&quot;: 2,
-      &quot;updated_at&quot;: &quot;2017-05-17 16:26:18.850603&quot;
-    },
-    {
-      &quot;id&quot;: 10428,
-      &quot;uuid&quot;: &quot;b3df897d10dc47f527e6df1907f73f60&quot;,
-      &quot;display_name&quot;: null,
-      &quot;environment_type&quot;: &quot;Undefined&quot;,
-      &quot;pass_count&quot;: 2,
-      &quot;fail_count&quot;: 2,
-      &quot;skip_count&quot;: 1,
-      &quot;updated_at&quot;: &quot;2017-05-17 16:26:18.864962&quot;
-    }
-  ]
+  &quot;keyword&quot;: {
+    &quot;id&quot;: 6310,
+    &quot;keyword&quot;: &quot;AWESOME&quot;,
+    &quot;created_at&quot;: &quot;2017-05-17T16:26:24.503Z&quot;,
+    &quot;updated_at&quot;: &quot;2017-05-17T16:26:24.568Z&quot;,
+    &quot;project_id&quot;: 2104,
+    &quot;testcase_count&quot;: 5
+  }
 }</pre>
 
   <h2>Params</h2>
@@ -150,7 +115,7 @@ otherwise indicated</p>
   
   <tr style='background-color:rgb(255,255,255);'>
     <td>
-      <strong>id </strong><br>
+      <strong>keyword </strong><br>
       <small>
         required
         
@@ -158,7 +123,52 @@ otherwise indicated</p>
     </td>
     <td>
       
-<p>Execution ID</p>
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a Hash</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+    <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>keyword[keyword] </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>The keyword</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be String</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>keyword[project_id] </strong><br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Project ID</p>
 
         <p><strong>Validations:</strong></p>
         <ul>
@@ -172,6 +182,51 @@ otherwise indicated</p>
   </tr>
 
   
+
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>testcases </strong><br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a Hash</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+    <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>testcases[ids] </strong><br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be an array of Integer</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
+
 
     </tbody>
   </table>

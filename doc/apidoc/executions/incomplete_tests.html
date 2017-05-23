@@ -36,7 +36,7 @@
 
   <div class='page-header'>
     <h1>
-      GET /executions/:id/incomplete_tests
+      GET /executions/:id/incomplete[?keyword[]=:keyword]
       <br>
       <small>List Incomplete Tests</small>
     </h1>
@@ -57,10 +57,43 @@
 
 
   <h2>Examples</h2>
-    <pre class="prettyprint">GET /executions/12403/incomplete
+    <pre class="prettyprint">GET /executions/2138/incomplete?keyword[]=206A3916C30E37295A2F017ECD71B341&amp;keyword[]=A617ECFF0D69618CCDE20BC9CB2D693D
 200
 {
-  &quot;incomplete&quot;: []
+  &quot;incomplete&quot;: [
+    {
+      &quot;id&quot;: 10490,
+      &quot;name&quot;: &quot;Sed laudantium maxime quia vel odit.&quot;,
+      &quot;validation_id&quot;: &quot;3466582&quot;,
+      &quot;project_id&quot;: 2096,
+      &quot;runner_touch&quot;: null,
+      &quot;locked&quot;: null,
+      &quot;created_at&quot;: &quot;2017-05-17T16:26:21.132Z&quot;,
+      &quot;updated_at&quot;: &quot;2017-05-17T16:26:21.132Z&quot;,
+      &quot;reproduction_steps&quot;: [
+        {
+          &quot;step_number&quot;: 1,
+          &quot;action&quot;: &quot;Ducimus maiores tempora officiis.&quot;,
+          &quot;result&quot;: &quot;Quibusdam pariatur cum ut.&quot;
+        },
+        {
+          &quot;step_number&quot;: 2,
+          &quot;action&quot;: &quot;Sint soluta aliquam doloribus quasi fugit ad sint.&quot;,
+          &quot;result&quot;: &quot;Aut dignissimos voluptatem sit eos molestiae.&quot;
+        },
+        {
+          &quot;step_number&quot;: 3,
+          &quot;action&quot;: &quot;Illum odit doloremque nihil nemo.&quot;,
+          &quot;result&quot;: &quot;Suscipit aperiam consequatur et eos aut omnis non assumenda.&quot;
+        }
+      ],
+      &quot;outdated&quot;: false,
+      &quot;version&quot;: 1,
+      &quot;token&quot;: &quot;ZBL4u3C83WL6e3kE4hUga4mr&quot;,
+      &quot;revised_at&quot;: null,
+      &quot;username&quot;: null
+    }
+  ]
 }</pre>
 
   <h2>Params</h2>

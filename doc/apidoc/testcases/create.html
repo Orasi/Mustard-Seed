@@ -45,7 +45,8 @@
 <div>
 
   
-<p>Only accessible if project is viewable by current user</p>
+<p>Only accessible if project is viewable by current user. Pass optional array
+of keyword ids to associate keywords to test</p>
 
 
 
@@ -56,18 +57,18 @@
 {
   &quot;testcase&quot;: {
     &quot;name&quot;: &quot;Some New Testcase&quot;,
-    &quot;project_id&quot;: 12339,
-    &quot;validation_id&quot;: 16677,
+    &quot;project_id&quot;: 2154,
+    &quot;validation_id&quot;: 33439,
     &quot;reproduction_steps&quot;: [
       {
         &quot;step_number&quot;: 1,
-        &quot;action&quot;: &quot;Id dolorum consequatur libero.&quot;,
-        &quot;result&quot;: &quot;Quod magnam et quas aut rerum eum ad iste.&quot;
+        &quot;action&quot;: &quot;Ut corporis sed id vitae.&quot;,
+        &quot;result&quot;: &quot;Eveniet veritatis maiores enim quia et ut ut nihil.&quot;
       },
       {
         &quot;step_number&quot;: 2,
-        &quot;action&quot;: &quot;Molestias deserunt sed deleniti.&quot;,
-        &quot;result&quot;: &quot;Blanditiis necessitatibus et asperiores.&quot;
+        &quot;action&quot;: &quot;Nisi quibusdam excepturi sed nam et neque fuga quod.&quot;,
+        &quot;result&quot;: &quot;Omnis voluptates quasi accusamus iusto aperiam et.&quot;
       }
     ]
   }
@@ -75,31 +76,31 @@
 200
 {
   &quot;testcase&quot;: {
-    &quot;id&quot;: 61928,
+    &quot;id&quot;: 10781,
     &quot;name&quot;: &quot;Some New Testcase&quot;,
-    &quot;validation_id&quot;: &quot;16677&quot;,
-    &quot;project_id&quot;: 12339,
+    &quot;validation_id&quot;: &quot;33439&quot;,
+    &quot;project_id&quot;: 2154,
     &quot;runner_touch&quot;: null,
     &quot;locked&quot;: null,
-    &quot;created_at&quot;: &quot;2017-03-03T14:34:10.902Z&quot;,
-    &quot;updated_at&quot;: &quot;2017-03-03T14:34:10.902Z&quot;,
+    &quot;created_at&quot;: &quot;2017-05-17T16:26:35.230Z&quot;,
+    &quot;updated_at&quot;: &quot;2017-05-17T16:26:35.230Z&quot;,
     &quot;reproduction_steps&quot;: [
       {
         &quot;step_number&quot;: 1,
-        &quot;action&quot;: &quot;Id dolorum consequatur libero.&quot;,
-        &quot;result&quot;: &quot;Quod magnam et quas aut rerum eum ad iste.&quot;
+        &quot;action&quot;: &quot;Ut corporis sed id vitae.&quot;,
+        &quot;result&quot;: &quot;Eveniet veritatis maiores enim quia et ut ut nihil.&quot;
       },
       {
         &quot;step_number&quot;: 2,
-        &quot;action&quot;: &quot;Molestias deserunt sed deleniti.&quot;,
-        &quot;result&quot;: &quot;Blanditiis necessitatibus et asperiores.&quot;
+        &quot;action&quot;: &quot;Nisi quibusdam excepturi sed nam et neque fuga quod.&quot;,
+        &quot;result&quot;: &quot;Omnis voluptates quasi accusamus iusto aperiam et.&quot;
       }
     ],
     &quot;outdated&quot;: false,
     &quot;version&quot;: 1,
-    &quot;token&quot;: &quot;36TdmgBJs17tQNUVgo9eZnx6&quot;,
+    &quot;token&quot;: &quot;c8iB8KUakVEiahbiYgnQWUwk&quot;,
     &quot;revised_at&quot;: null,
-    &quot;username&quot;: &quot;Garrett Heller&quot;
+    &quot;username&quot;: &quot;Verda Corwin&quot;
   }
 }</pre>
 
@@ -300,6 +301,50 @@ otherwise indicated</p>
 
   
 
+
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>keywords </strong><br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a Hash</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+    <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>keywords[ids] </strong><br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be an array of Integer</p>
+</li>
+        </ul>
+
+    </td>
+
+  </tr>
+
+  
 
 
     </tbody>

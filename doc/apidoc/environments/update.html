@@ -45,14 +45,14 @@
 <div>
 
   
-<p>Only accessible by admin users</p>
+<p>Only accessible if current user can view parent project</p>
 
 
 
 
 
   <h2>Examples</h2>
-    <pre class="prettyprint">PUT /environments/61354
+    <pre class="prettyprint">PUT /environments/10374
 {
   &quot;environment&quot;: {
     &quot;uuid&quot;: &quot;987654321&quot;,
@@ -62,13 +62,13 @@
 200
 {
   &quot;environment&quot;: {
-    &quot;id&quot;: 61354,
+    &quot;project_id&quot;: 2082,
+    &quot;id&quot;: 10374,
     &quot;uuid&quot;: &quot;987654321&quot;,
     &quot;display_name&quot;: &quot;Some new display name&quot;,
-    &quot;project_id&quot;: 12286,
     &quot;environment_type&quot;: &quot;Undefined&quot;,
-    &quot;created_at&quot;: &quot;2017-03-03T14:33:59.800Z&quot;,
-    &quot;updated_at&quot;: &quot;2017-03-03T14:33:59.901Z&quot;
+    &quot;created_at&quot;: &quot;2017-05-17T16:26:12.781Z&quot;,
+    &quot;updated_at&quot;: &quot;2017-05-17T16:26:13.178Z&quot;
   }
 }</pre>
 

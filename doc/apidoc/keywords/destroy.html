@@ -23,95 +23,39 @@
     <span class='divider'>/</span>
   </li>
   <li>
-    <a href='../../apidoc/executions.html'>
-      Executions
+    <a href='../../apidoc/keywords.html'>
+      Keywords
       
     </a>
     <span class='divider'>/</span>
   </li>
-  <li class='active'>environment_summary</li>
+  <li class='active'>destroy</li>
   
 
 </ul>
 
   <div class='page-header'>
     <h1>
-      GET /executions/:id/environment_summary
+      DELETE /keywords/:id
       <br>
-      <small>Environment Summary</small>
+      <small>Delete existing keyword</small>
     </h1>
   </div>
 
 <div>
 
   
-<p>Lists the pass, fail, and skip counts by environment</p>
+<p>Only accessible by admin users</p>
 
 
 
-
-  <h2>Metadata</h2>
-  <pre class="prettyprint lang-yaml">--- Only accessible if project is viewable by current user
-...
-</pre>
 
 
   <h2>Examples</h2>
-    <pre class="prettyprint">GET /executions/2134/environment_summary
+    <pre class="prettyprint">DELETE /keywords/6323
 200
 {
-  &quot;summary&quot;: [
-    {
-      &quot;id&quot;: 10424,
-      &quot;uuid&quot;: &quot;b7db0635db2537b43fc91529441f153f&quot;,
-      &quot;display_name&quot;: null,
-      &quot;environment_type&quot;: &quot;Undefined&quot;,
-      &quot;pass_count&quot;: 2,
-      &quot;fail_count&quot;: 2,
-      &quot;skip_count&quot;: 1,
-      &quot;updated_at&quot;: &quot;2017-05-17 16:26:18.805301&quot;
-    },
-    {
-      &quot;id&quot;: 10425,
-      &quot;uuid&quot;: &quot;d445184dd69583710a24352476ccfd90&quot;,
-      &quot;display_name&quot;: null,
-      &quot;environment_type&quot;: &quot;Undefined&quot;,
-      &quot;pass_count&quot;: 3,
-      &quot;fail_count&quot;: 1,
-      &quot;skip_count&quot;: 1,
-      &quot;updated_at&quot;: &quot;2017-05-17 16:26:18.820741&quot;
-    },
-    {
-      &quot;id&quot;: 10426,
-      &quot;uuid&quot;: &quot;204d0c0de3dece84c957be2cf7dda257&quot;,
-      &quot;display_name&quot;: null,
-      &quot;environment_type&quot;: &quot;Undefined&quot;,
-      &quot;pass_count&quot;: 2,
-      &quot;fail_count&quot;: 1,
-      &quot;skip_count&quot;: 2,
-      &quot;updated_at&quot;: &quot;2017-05-17 16:26:18.8365&quot;
-    },
-    {
-      &quot;id&quot;: 10427,
-      &quot;uuid&quot;: &quot;19a173ac15e2761aabe090d1b08f7333&quot;,
-      &quot;display_name&quot;: null,
-      &quot;environment_type&quot;: &quot;Undefined&quot;,
-      &quot;pass_count&quot;: 0,
-      &quot;fail_count&quot;: 3,
-      &quot;skip_count&quot;: 2,
-      &quot;updated_at&quot;: &quot;2017-05-17 16:26:18.850603&quot;
-    },
-    {
-      &quot;id&quot;: 10428,
-      &quot;uuid&quot;: &quot;b3df897d10dc47f527e6df1907f73f60&quot;,
-      &quot;display_name&quot;: null,
-      &quot;environment_type&quot;: &quot;Undefined&quot;,
-      &quot;pass_count&quot;: 2,
-      &quot;fail_count&quot;: 2,
-      &quot;skip_count&quot;: 1,
-      &quot;updated_at&quot;: &quot;2017-05-17 16:26:18.864962&quot;
-    }
-  ]
+  &quot;keyword&quot;: &quot;Deleted&quot;
 }</pre>
 
   <h2>Params</h2>
@@ -158,7 +102,7 @@ otherwise indicated</p>
     </td>
     <td>
       
-<p>Execution ID</p>
+<p>Keyword ID</p>
 
         <p><strong>Validations:</strong></p>
         <ul>
