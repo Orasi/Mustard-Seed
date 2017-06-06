@@ -236,6 +236,7 @@ DEPENDENCIES
   rspec-rails (= 3.5.0)
   rspec_api_documentation
   rubyzip (~> 1.1.0)
+  simplecov
   spring
   spring-watcher-listen (~> 2.0.0)
   sqlite3

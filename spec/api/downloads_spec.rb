@@ -9,54 +9,56 @@ describe "DOWNLOADS API::" , :type => :api do
   let (:admin) {FactoryGirl.create(:user, :admin)}
 
 
+  if !ENV['CI']
+    describe 'download' do
 
-  describe 'download' do
+      context 'with valid token' do
 
-    context 'with valid token' do
+        before do
+          header 'User-Token', admin.user_tokens.first.token
+          get "/projects/#{project.id}/testcases/export.xlsx"
+        end
 
-      before do
-        header 'User-Token', admin.user_tokens.first.token
-        get "/projects/#{project.id}/testcases/export.xlsx"
+        it 'responds succesfully' do
+          get json['report']
+          expect(last_response.status).to eq 200
+        end
+
+
       end
 
-      it 'responds succesfully' do
-        get json['report']
-        expect(last_response.status).to eq 200
+      context 'with invalid token' do
+
+        before do
+          header 'User-Token', admin.user_tokens.first.token
+          get "/projects/#{project.id}/testcases/export.xlsx"
+        end
+
+        it 'returns an error' do
+          get json['report'] + 'asdfasd'
+          expect(last_response.status).to eq 404
+          expect(json).to include('error')
+        end
+
+
       end
 
+      context 'with expired token' do
 
-    end
+        before do
+          header 'User-Token', admin.user_tokens.first.token
+          get "/projects/#{project.id}/testcases/export.xlsx"
+        end
 
-    context 'with invalid token' do
+        it 'returns an error' do
+          DownloadToken.last.update(expiration: DateTime.now - 1.day)
+          get json['report']
+          expect(last_response.status).to eq 401
+          expect(json).to include('error')
+        end
 
-      before do
-        header 'User-Token', admin.user_tokens.first.token
-        get "/projects/#{project.id}/testcases/export.xlsx"
+
       end
-
-      it 'returns an error' do
-        get json['report'] + 'asdfasd'
-        expect(last_response.status).to eq 404
-        expect(json).to include('error')
-      end
-
-
-    end
-
-    context 'with expired token' do
-
-      before do
-        header 'User-Token', admin.user_tokens.first.token
-        get "/projects/#{project.id}/testcases/export.xlsx"
-      end
-
-      it 'returns an error' do
-        DownloadToken.last.update(expiration: DateTime.now - 1.day)
-        get json['report']
-        expect(last_response.status).to eq 401
-        expect(json).to include('error')
-      end
-
 
     end
 
