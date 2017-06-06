@@ -528,8 +528,8 @@ describe "EXECUTIONS API::" , :type => :api do
 
       end
     end
-
-    context 'as xlsx' do
+    if !ENV['CI']
+      context 'as xlsx' do
       before do
         header 'User-Token', user.user_tokens.first.token
       end
@@ -543,7 +543,7 @@ describe "EXECUTIONS API::" , :type => :api do
       end
 
     end
-
+    end
   end
 
   describe('get testcase detail') do

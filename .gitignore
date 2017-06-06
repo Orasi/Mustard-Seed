@@ -6,8 +6,6 @@ capybara-*.html
 /db/*.sqlite3
 /db/*.sqlite3-journal
 /public/
-/downloads/
-/downloads/reports/
 /downloads/reports/**
 /screenshots/
 /coverage/
@@ -51,7 +49,6 @@ bower.json
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
 # User-specific stuff:
-.idea/**/workspace.xml
 .idea/**/tasks.xml
 .idea/dictionaries
 
@@ -98,14 +95,5 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 fabric.properties
-.idea/runConfigurations/Development__Mustard_Front.xml
-.idea/runConfigurations/EXECUTIONS_API___get_incomplete_tests_as_a_non_admin_accepts_multiple_keywords__mustard2.xml
-.idea/runConfigurations/EXECUTIONS_API___get_incomplete_tests_as_a_non_admin_filters_by_keyword__mustard2.xml
-.idea/runConfigurations/EXECUTIONS_API___get_incomplete_tests_as_a_non_admin_returns_succesfully_if_viewable__mustard2.xml
-.idea/runConfigurations/EXECUTIONS_API___get_next_incomplete_test_as_a_non_admin_accepts_multiple_keywords__mustard2.xml
-.idea/runConfigurations/EXECUTIONS_API___get_next_incomplete_test_as_a_non_admin_handles_non_array_keyword__mustard2.xml
-.idea/runConfigurations/Production__Mustard_Front.xml
-.idea/runConfigurations/mustard.xml
-.idea/runConfigurations/spec__Mustard_Front.xml
-.idea/runConfigurations/test__Mustard_Front.xml
+
 

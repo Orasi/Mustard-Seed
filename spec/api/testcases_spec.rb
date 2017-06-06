@@ -764,8 +764,8 @@ describe "TESTCASES API::" , :type => :api do
         end
 
       end
-
-      context 'as xlsx' do
+      if !ENV['CI']
+        context 'as xlsx' do
         before do
           header 'User-Token', admin.user_tokens.first.token
           get "/projects/#{project.id}/testcases/export.xlsx"
@@ -777,7 +777,7 @@ describe "TESTCASES API::" , :type => :api do
         end
 
       end
-
+      end
     end
 
   end
