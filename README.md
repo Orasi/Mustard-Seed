@@ -1,4 +1,4 @@
-
+[![CircleCI](https://circleci.com/gh/Orasi/Mustard-Seed/tree/master.svg?style=svg)](https://circleci.com/gh/Orasi/Mustard-Seed/tree/master)
 
 # Mustard
 Ruby on Rails based multi-environment test results server.  Mustard collects test results from closely related tests (IE Cross Browser or Mobile Testing on Multiple Device) and groups them for easy analysis.  The Mustard-Seed is the backend server and can be combined with [Mustard-Dijon](https://github.com/Orasi/Mustard-Dijon) for viewing test results easily.

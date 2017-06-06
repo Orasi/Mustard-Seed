@@ -1,5 +1,5 @@
-require 'simplecov'
-SimpleCov.start 'rails'
+require 'coveralls'
+Coveralls.wear!
 
 require 'rails_helper'
 require 'rspec-rails'
