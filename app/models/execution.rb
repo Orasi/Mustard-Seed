@@ -62,6 +62,31 @@ class Execution < ApplicationRecord
 
   end
 
+  def keyword_summary
+
+    sql = "SELECT keywords.keyword, Count(CASE WHEN results.current_status = 'pass' THEN 1 ELSE NULL END) AS pass_count, \
+                          Count(CASE WHEN results.current_status = 'fail' THEN 1 ELSE NULL END) AS fail_count, \
+                          Count(CASE WHEN results.current_status = 'skip' THEN 1 ELSE NULL END) AS skip_count, \
+                          Count(CASE WHEN results.current_status IS NULL THEN 1 ELSE NULL END) AS not_run_count, \
+                          Count(CASE WHEN TRUE THEN 1 ELSE NULL END) AS expected_count, \
+                          MAX(results.updated_at) AS updated_at
+          FROM (SELECT testcases.id AS testcase_id, \
+                       environments.id AS environment_id \
+                FROM testcases CROSS JOIN environments \
+                WHERE testcases.project_id = #{self.project_id} AND environments.project_id = #{self.project_id} AND testcases.outdated = false) testcase_envs \
+          LEFT JOIN results ON testcase_envs.testcase_id = results.testcase_id AND testcase_envs.environment_id = results.environment_id AND results.execution_id = #{self.id} \
+          LEFT JOIN keywords_testcases on testcase_envs.testcase_id = keywords_testcases.testcase_id \
+          LEFT JOIN keywords on keywords_testcases.keyword_id = keywords.id \
+          JOIN testcases on testcase_envs.testcase_id = testcases.id \
+          JOIN environments on testcase_envs.environment_id = environments.id \
+          JOIN executions on testcases.project_id = executions.project_id \
+          WHERE executions.id = #{self.id} \
+          GROUP BY keywords.keyword"
+
+    ActiveRecord::Base.connection.select_all(sql)
+
+  end
+
   def close!
     self.update(closed: true)
     self.update(closed_at: DateTime.now)

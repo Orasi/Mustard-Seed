@@ -106,6 +106,25 @@ class ExecutionsController < ApplicationController
     render json: {summary: summary}
   end
 
+  api :GET, '/executions/:id/keyword_summary', 'Keyword Summary'
+  description 'Lists the pass, fail, and skip counts by Keyword'
+  meta 'Only accessible if project is viewable by current user'
+  param :id, :number, 'Execution ID', required: true
+  def keyword_summary
+
+    execution = Execution.find_by_id(params[:id])
+
+    render json: {error: 'Execution not found'},
+           status: :not_found and return unless execution
+
+    render json: {error: 'Not authorized to access this resource'},
+           status: :forbidden and return unless @current_user.projects.include? execution.project
+
+    summary = execution.keyword_summary
+
+    render json: {summary: summary}
+  end
+
 
   api :GET, '/executions/:id/testcase_status', 'Execution Details'
   description 'Shows details of execution'
