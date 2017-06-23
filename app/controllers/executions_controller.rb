@@ -21,6 +21,46 @@ class ExecutionsController < ApplicationController
 
   end
 
+  api :put, '/executions/:id', 'Update Execution'
+  description 'Updates the details of the execution'
+  param :id, :number, 'Execution ID', required: true
+  meta  'Only accessible if project is viewable by current user'
+  def update
+
+    @execution = Execution.find_by_id(params[:id])
+
+    render json: {error: 'Execution not found'},
+           status: :not_found and return unless @execution
+
+    render json: {error: 'Not authorized to access this resource'},
+           status: :forbidden and return unless @current_user.projects.include? @execution.project
+
+    # Name execution if name is provided
+    update_params = {}
+    update_params[:name] = params[:execution][:name] if params[:execution][:name]
+    update_params[:fast] = params[:execution][:fast] if params[:execution][:fast]
+
+    if params[:execution][:limit_keywords] == 'true'
+      update_params[:active_keywords] = params[:execution][:active_keywords]
+    else
+      update_params[:active_keywords] = []
+    end
+
+    if params[:execution][:limit_environments] == 'true'
+      update_params[:active_environments] = params[:execution][:active_environments]
+    else
+      update_params[:active_environments] = []
+    end
+
+    update_params[:active_environment] = params[:execution][:active_environments] if params[:active_environments] && params[:execution][:limit_environments]
+    if @execution.update(update_params)
+      render :show
+    else
+      render json: {error: execution.errors.full_messages}, status: :bad_request
+    end
+
+  end
+
 
   api :get, '/executions/:id/testcase-count', 'Testcase Count'
   description 'Returns the number of testcases in this execution'

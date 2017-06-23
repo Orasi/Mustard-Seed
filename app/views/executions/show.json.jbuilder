@@ -3,6 +3,8 @@ json.execution do
   json.name @execution.name
   json.project_id @execution.project_id
   json.fast true if @execution.fast
+  json.limited_keywords true unless @execution.active_keywords.blank?
+  json.limited_environments true unless @execution.active_environments.blank?
   json.closed @execution.closed
   json.closed_at @execution.closed_at if @execution.closed
   json.created_at @execution.created_at

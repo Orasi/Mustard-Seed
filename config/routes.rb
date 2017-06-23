@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   delete 'teams/:id/project/:project_id', to: 'teams#remove_project', defaults: {format: :json}
 
 
+  put 'executions/:id', to: 'executions#update', defaults: {format: :json}
   get 'executions/:id/testcase_status', to: 'executions#testcase_status', defaults: {format: :json}
   get 'executions/:id/testcases/:testcase_id', to: 'executions#testcase_detail', defaults: {format: :json}
   get 'executions/:id/environments/:environment_id', to: 'executions#environment_detail', defaults: {format: :json}
