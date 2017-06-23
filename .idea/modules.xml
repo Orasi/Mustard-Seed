@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../Mustard-Chrome-Extension/.idea/Mustard-Chrome-Extension.iml" filepath="$PROJECT_DIR$/../Mustard-Chrome-Extension/.idea/Mustard-Chrome-Extension.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../Mustard-Front/.idea/Mustard-Front.iml" filepath="$PROJECT_DIR$/../Mustard-Front/.idea/Mustard-Front.iml" />
       <module fileurl="file://$PROJECT_DIR$/../MustardClient/.idea/MustardClient.iml" filepath="$PROJECT_DIR$/../MustardClient/.idea/MustardClient.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/mustard2.iml" filepath="$PROJECT_DIR$/.idea/mustard2.iml" />
     </modules>

@@ -1,6 +1,7 @@
 json.execution do
   json.id @execution.id
   json.name @execution.name
+  json.fast true if @execution.fast
   json.project_id @execution.project_id
   json.project_name @execution.project.name
   json.closed @execution.closed

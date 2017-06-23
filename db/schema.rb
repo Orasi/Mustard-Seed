@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170504121916) do
+ActiveRecord::Schema.define(version: 20170622120543) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "ar_internal_metadata", primary_key: "key", id: :string, force: :cascade do |t|
+    t.string   "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "download_tokens", force: :cascade do |t|
     t.string   "token"
@@ -37,13 +43,16 @@ ActiveRecord::Schema.define(version: 20170504121916) do
   end
 
   create_table "executions", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.integer  "project_id"
     t.boolean  "closed"
     t.datetime "closed_at"
     t.boolean  "deleted"
     t.string   "name"
+    t.integer  "active_keywords",                  array: true
+    t.integer  "active_environments",              array: true
+    t.boolean  "fast"
   end
 
   create_table "keywords", force: :cascade do |t|
@@ -171,5 +180,24 @@ ActiveRecord::Schema.define(version: 20170504121916) do
     t.datetime "updated_at",      null: false
     t.string   "email"
   end
+
+
+  create_view :testcase_with_keywords,  sql_definition: <<-SQL
+      SELECT testcases.id,
+      testcases.project_id,
+      testcases.name,
+      testcases.validation_id,
+      testcases.updated_at,
+      testcases.version,
+      testcases.token,
+      testcases.outdated,
+      testcases.revised_at,
+      testcases.created_at,
+      array_agg(keywords.keyword) AS keywords
+     FROM ((testcases
+       LEFT JOIN keywords_testcases ON ((keywords_testcases.testcase_id = testcases.id)))
+       LEFT JOIN keywords ON ((keywords_testcases.keyword_id = keywords.id)))
+    GROUP BY testcases.id, testcases.project_id, testcases.name, testcases.validation_id, testcases.updated_at, testcases.version, testcases.token, testcases.outdated, testcases.revised_at, testcases.created_at;
+  SQL
 
 end

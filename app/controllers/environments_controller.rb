@@ -104,7 +104,7 @@ class EnvironmentsController < ApplicationController
 
 
   def environment_params
-    params.require(:environment).permit(:uuid, :project_id, :display_name, :environment_type)
+    params.require(:environment).permit(:uuid, :project_id, :display_name, :environment_type, :active_environments, :active_keywords)
   end
 
 end

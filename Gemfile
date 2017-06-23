@@ -47,6 +47,7 @@ gem 'axlsx', '2.1.0.pre'
 gem 'axlsx_rails'
 gem 'acts_as_xlsx'
 gem 'creek'
+gem 'scenic'
 group :development, :test do
 
   # Use RSpec for specs

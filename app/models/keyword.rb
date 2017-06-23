@@ -4,6 +4,7 @@ class Keyword < ApplicationRecord
   has_many :keywords_testcases, dependent: :destroy
   has_many :testcases, through: :keywords_testcases
 
+  scope :include_testcases, -> { includes(keywords_testcases: :testcase) }
   validates :project_id, :keyword, presence: true
   validates :keyword, uniqueness: {scope: :project_id}
 

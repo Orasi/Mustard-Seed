@@ -11,17 +11,14 @@ class ExecutionsController < ApplicationController
   meta  'Only accessible if project is viewable by current user'
   def show
 
-    execution = Execution.find_by_id(params[:id])
+    @execution = Execution.find_by_id(params[:id])
 
     render json: {error: 'Execution not found'},
-           status: :not_found and return unless execution
+           status: :not_found and return unless @execution
 
     render json: {error: 'Not authorized to access this resource'},
-           status: :forbidden and return unless @current_user.projects.include? execution.project
+           status: :forbidden and return unless @current_user.projects.include? @execution.project
 
-
-
-    render json: {execution: execution}
   end
 
 
@@ -39,7 +36,7 @@ class ExecutionsController < ApplicationController
     render json: {error: 'Not authorized to access this resource'},
            status: :forbidden and return unless @current_user.projects.include? execution.project
 
-    count = execution.project.testcases.count
+    count = execution.execution_testcases.count
 
     render json: {testcases: count}
   end
@@ -59,7 +56,7 @@ class ExecutionsController < ApplicationController
     render json: {error: 'Not authorized to access this resource'},
            status: :forbidden and return unless @current_user.projects.include? execution.project
 
-    count = execution.project.environments.count
+    count = execution.execution_environments.count
 
     render json: {environments: count}
 
@@ -122,6 +119,12 @@ class ExecutionsController < ApplicationController
 
     summary = execution.keyword_summary
 
+    #Remove nil keyword if execution limits keywords
+    unless execution.active_keywords.blank?
+      active_keywords = execution.execution_keywords.pluck(:keyword)
+      summary = summary.reject{|s| !active_keywords.include? s['keyword']}
+    end
+
     render json: {summary: summary}
   end
 
@@ -143,15 +146,15 @@ class ExecutionsController < ApplicationController
     @execution = execution
 
     if @execution.closed_at
-      @not_run = execution.project.testcases.as_of_date(execution.closed_at).not_run(@execution).order(:name)
-      @pass = execution.project.testcases.as_of_date(execution.closed_at).passing(@execution).order(:name)
-      @fail = execution.project.testcases.as_of_date(execution.closed_at).failing(@execution).order(:name)
-      @skip = execution.project.testcases.as_of_date(execution.closed_at).skip(@execution).order(:name)
+      @not_run = execution.execution_testcases.as_of_date(execution.closed_at).not_run(@execution).order(:name)
+      @pass = execution.execution_testcases.as_of_date(execution.closed_at).passing(@execution).order(:name)
+      @fail = execution.execution_testcases.as_of_date(execution.closed_at).failing(@execution).order(:name)
+      @skip = execution.execution_testcases.as_of_date(execution.closed_at).skip(@execution).order(:name)
     else
-      @not_run = execution.project.testcases.not_run(@execution).order(:name)
-      @pass = execution.project.testcases.passing(@execution).order(:name)
-      @fail = execution.project.testcases.failing(@execution).order(:name)
-      @skip = execution.project.testcases.skip(@execution).order(:name)
+      @not_run = execution.execution_testcases.not_run(@execution).order(:name)
+      @pass = execution.execution_testcases.passing(@execution).order(:name)
+      @fail = execution.execution_testcases.failing(@execution).order(:name)
+      @skip = execution.execution_testcases.skip(@execution).order(:name)
     end
 
 
@@ -191,11 +194,15 @@ class ExecutionsController < ApplicationController
     render json: {error: 'Not authorized to access this resource'},
            status: :forbidden and return unless @current_user.projects.include? execution.project
 
+
     @execution_id = params[:id]
     @testcase = Testcase.find_by_id(params[:testcase_id])
 
     render json: {error: 'Testcase not found'},
            status: :not_found and return unless @testcase
+
+    render json: {error: 'Testcase is not part of this execution'},
+           status: :not_found and return unless execution.execution_testcases.include? @testcase
 
     @results = @testcase.results.where(execution_id: execution.id).joins('LEFT JOIN environments ON environments.id = results.environment_id')
 
@@ -224,6 +231,9 @@ class ExecutionsController < ApplicationController
     render json: {error: 'Environment not found'},
            status: :not_found and return unless @environment
 
+    render json: {error: 'Environment not included in this execution'},
+           status: :not_found and return unless execution.execution_environments.include? @environment
+
     @results = @environment.results.where(execution_id: execution.id).joins('JOIN testcases ON testcases.id = results.testcase_id')
 
     render :environment
@@ -247,12 +257,13 @@ class ExecutionsController < ApplicationController
 
     if params[:keyword] && params[:keyword] != 'FALSE' && !params[:keyword].blank?
 
-      keywords = execution.project.keywords.where(keyword: params[:keyword].map(&:upcase))
+      keywords = execution.execution_keywords.where(keyword: params[:keyword].map(&:upcase))
       render json: {error: 'Keyword not found'},
              status: :not_found and return unless keywords.count > 0
-      incomplete_tests = execution.project.testcases.not_run(execution).with_keywords(params[:keyword])
+      incomplete_tests = execution.execution_testcases.not_run(execution).with_keywords(params[:keyword])
 
     else
+      #TODO Not compatible with active keywords
       incomplete_tests = Testcase.not_run(execution)
     end
 
@@ -307,10 +318,12 @@ class ExecutionsController < ApplicationController
 
     # Name execution if name is provided
     name = params[:execution] && params[:execution][:name] ? params[:execution][:name] : nil
-
+    active_keywords = params[:execution] && params[:execution][:active_keywords] ? params[:execution][:active_keywords] : nil
+    active_environments = params[:execution] && params[:execution][:active_environments] ? params[:execution][:active_environments] : nil
+    fast = params[:execution] && params[:execution][:fast] ? params[:execution][:fast] : nil
     ActiveRecord::Base.transaction do
       execution.close!
-      @new_execution = project.executions.new(closed: false, name: name)
+      @new_execution = project.executions.new(closed: false, name: name, active_keywords: active_keywords, active_environments: active_environments, fast: fast)
       @new_execution.save!
     end
 
@@ -368,16 +381,41 @@ class ExecutionsController < ApplicationController
     render json: {error: 'Not authorized to access this resource'},
            status: :forbidden and return unless @current_user.projects.include? execution.project
 
-    if params[:keyword] && params[:keyword] != 'FALSE' && !params[:keyword].blank?
+    unless execution.fast
+      render json: {error: 'Environment ID must be provided to get the next incomplete test for normal executions'},
+             status: :unprocessable_entity and return unless params[:environment] && !params[:environment].blank?
+    end
 
-      keywords = execution.project.keywords.where(keyword: params[:keyword].map(&:upcase))
+    # Both Keyword and Environment are present
+    if params[:keyword] && params[:keyword] != 'FALSE' && !params[:keyword].blank? && params[:environment] && !params[:environment].blank?
+      keywords = execution.execution_keywords.where(keyword: params[:keyword].map(&:upcase))
+      render json: {error: 'Keyword not found'},
+           status: :not_found and return unless keywords.count > 0
+
+      environment = execution.execution_environments.where(uuid: params[:environment])
+      render json: {error: 'Environment not found'},
+             status: :not_found and return unless environment.count > 0
+      environment = environment.first
+      testcase = execution.execution_testcases.not_run_with_environment(execution, environment).where("runner_touch <= ? or runner_touch is null", 5.minutes.ago).order(runner_touch: :desc).with_keywords(params[:keyword])
+
+      # Only Keyword is present
+    elsif params[:keyword] && params[:keyword] != 'FALSE' && !params[:keyword].blank?
+      keywords = execution.execution_keywords.where(keyword: params[:keyword].map(&:upcase))
       render json: {error: 'Keyword not found'},
              status: :not_found and return unless keywords.count > 0
-      testcase = execution.project.testcases.not_run(execution).where("runner_touch <= ? or runner_touch is null", 5.minutes.ago).order(runner_touch: :desc).with_keywords(params[:keyword])
+      testcase = execution.execution_testcases.not_run(execution).where("runner_touch <= ? or runner_touch is null", 5.minutes.ago).order(runner_touch: :desc).with_keywords(params[:keyword])
 
+    # Only Environment is present
+    elsif params[:environment] && !params[:environment].blank?
+      environment = execution.execution_environments.where(uuid: params[:environment])
+      render json: {error: 'Environment not found'},
+             status: :not_found and return unless environment.count > 0
+      environment = environment.first
+      testcase = execution.execution_testcases.not_run_with_environment(execution, environment).where("runner_touch <= ? or runner_touch is null", 5.minutes.ago).order(runner_touch: :desc)
+
+    # Neither Keyword nor environment is present
     else
-
-      testcase = Testcase.not_run(execution).where("runner_touch <= ? or runner_touch is null", 5.minutes.ago).order(runner_touch: :desc)
+      testcase = execution.execution_testcases.not_run(execution).where("runner_touch <= ? or runner_touch is null", 5.minutes.ago).order(runner_touch: :desc)
     end
 
 

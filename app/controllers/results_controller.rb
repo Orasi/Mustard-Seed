@@ -174,7 +174,7 @@ class ResultsController < ApplicationController
       # If testcase_id can NOT be converted to an INT the testcase name is used
       # If no test case is found with the give name, a new testcase is created
       testcase_identifier = result_params[:testcase_id]
-      testcase = find_or_create_testcase(testcase_identifier, project)
+      testcase = find_or_create_testcase(testcase_identifier, project, execution)
       return unless testcase
       testcase_id = testcase.id
 
@@ -191,7 +191,7 @@ class ResultsController < ApplicationController
       #   environment_id = result_params['environment_id']
       # else
         environment_identifier = result_params[:environment_id]
-        environment = find_or_create_environment(environment_identifier, project.id)
+        environment = find_or_create_environment(environment_identifier, project.id, execution)
         return unless environment
         environment_id = environment.id
       # end
@@ -279,7 +279,7 @@ class ResultsController < ApplicationController
   end
 
 
-  def find_or_create_testcase(identifier, project)
+  def find_or_create_testcase(identifier, project, execution)
 
     # If Result provided an integer as the id lookup testcase based on validation id
     # Else lookup result based on name
@@ -296,6 +296,11 @@ class ResultsController < ApplicationController
       unless testcase.blank?
         return testcase.first
       else
+
+        # If execution has active keywords block creation of new testcases
+        render json: {error: 'Execution is limited to defined testcases. Could not create new testcase'} and
+            return false unless execution.active_keywords.blank?
+
         testcase = Testcase.new(name: identifier, project_id: project.id)
         if testcase.save
           return testcase
@@ -311,6 +316,13 @@ class ResultsController < ApplicationController
       testcase = project.testcases.where(validation_id: identifier)
 
       unless testcase.blank?
+
+        #If execution has active keywords ensure test case is included in active testcases for this execution
+        unless execution.active_keywords.blank?
+          render json: {error: 'This test case is not in the list of test cases for this execution. Only accepting testcases with certain keywords'} and
+              return false unless execution.execution_testcases.include? testcase.first
+        end
+
         return testcase.first
       else
         render json: {error: 'Testcase not found'}, status: :not_found
@@ -320,14 +332,27 @@ class ResultsController < ApplicationController
   end
 
 
-  def find_or_create_environment(identifier, project_id)
+  def find_or_create_environment(identifier, project_id, execution)
 
     # Lookup environment based on UUID.
     # If not found create environment with that UUID
     environment = Environment.where(uuid: identifier, project_id: project_id)
     if environment.blank?
+
+      # If execution is limiting environments prevent new environments from being created
+      render json: {error: 'This execution is limited for which environments can be run. Can not create new environment'} and
+            return false unless execution.active_environments.blank?
+
       return Environment.create(uuid: identifier, project_id: project_id)
     else
+
+      # If execution is limiting environments check environment is in active environment list
+      unless execution.active_environments.blank?
+        render json: {error: 'The provided environment is not included in the executions environments list. Can not create results for this environment'} and
+            return false unless execution.execution_environments.include? environment.first
+      end
+
+
       return environment.first
     end
   end
