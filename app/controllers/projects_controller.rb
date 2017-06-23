@@ -25,7 +25,7 @@ class ProjectsController < ApplicationController
   param :id, :number, 'Project ID', required: true
   def show
 
-    @project = Project.includes(:executions, :environments, :keywords, testcases: [:keywords]).find_by_id(params[:id])
+    @project = Project.includes(:executions, :environments, :keywords, :testcases).find_by_id(params[:id])
     @testcases = TestcaseWithKeyword.where(project_id: @project.id)
 
     render json: {error: "Project not found"},
