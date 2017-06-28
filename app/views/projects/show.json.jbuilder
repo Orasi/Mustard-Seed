@@ -4,14 +4,18 @@ json.project do
   json.api_key @project.api_key
   json.created_at @project.created_at
   json.updated_at @project.updated_at
-  json.testcases @testcases.order(:validation_id, :id) do |tc|
-    json.id tc.id
-    json.testcase_name tc.name
-    json.testcase_id tc.validation_id if tc.validation_id
-    # json.created_at tc.created_at
-    json.updated_at tc.updated_at
-    json.version tc.version if tc.version
-    json.keywords tc.keywords if tc.keywords
+  if @testcases
+    json.testcases @testcases.order(:validation_id, :id) do |tc|
+      json.id tc.id
+      json.testcase_name tc.name
+      json.testcase_id tc.validation_id if tc.validation_id
+      # json.created_at tc.created_at
+      json.updated_at tc.updated_at
+      json.version tc.version if tc.version
+      json.keywords tc.keywords if tc.keywords
+    end
+  else
+    json.testcases []
   end
   json.environments @project.environments do |env|
     json.id env.id

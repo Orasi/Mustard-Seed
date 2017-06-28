@@ -43,16 +43,16 @@ ActiveRecord::Schema.define(version: 20170622120543) do
   end
 
   create_table "executions", force: :cascade do |t|
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.integer  "project_id"
     t.boolean  "closed"
     t.datetime "closed_at"
     t.boolean  "deleted"
     t.string   "name"
-    t.integer  "active_keywords",                  array: true
-    t.integer  "active_environments",              array: true
-    t.boolean  "fast"
+    t.integer  "active_keywords",                                 array: true
+    t.integer  "active_environments",                             array: true
+    t.boolean  "fast",                default: true
   end
 
   create_table "keywords", force: :cascade do |t|
