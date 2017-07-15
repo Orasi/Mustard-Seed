@@ -18,10 +18,23 @@
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
-      "styles": [
-        "styles.css"
+      "scripts": [
+        "./scripts/jquery.min.js",
+        "./scripts/select2/select2.min.js",
+        "./scripts/bootstrap.min.js",
+        "./scripts/luna.js"
       ],
-      "scripts": [],
+      "styles": [
+        "./styles/bootstrap/css/bootstrap.css",
+        "./styles/bootstrap/css/bootstrap-theme.css",
+        "./styles/fontawesome/css/font-awesome.min.css",
+        "./styles/pe-icons/helper.css",
+        "./styles/pe-icons/pe-icon-7-stroke.css",
+        "./styles/select2/css/select2.min.css",
+        "./styles/stroke-icons/style.css",
+        "./styles/animate.css",
+        "./styles/style.css"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
@@ -52,6 +65,7 @@
   },
   "defaults": {
     "styleExt": "css",
-    "component": {}
+    "component": {
+    }
   }
 }
