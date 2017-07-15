@@ -13,9 +13,6 @@ export class AppComponent implements OnInit {
 
   title = 'mustard';
 
-  @Input() showLogin = true;
-  @Input() showRegister = true;
-
   constructor(private metaService: Meta) {
 
     metaService.addTags([
@@ -28,10 +25,5 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-  }
-
-  toggleLogin() {
-    this.showLogin = !this.showLogin;
-    this.showRegister = !this.showRegister;
   }
 }
