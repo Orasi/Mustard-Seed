@@ -1,3 +1,3 @@
-/**
- * Created by csexton on 7/13/17.
- */
+'use strict';
+
+export const mustardUrl: string = 'http://localhost:3000';
