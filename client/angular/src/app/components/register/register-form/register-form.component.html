@@ -1,0 +1,38 @@
+<form id="registerForm" [formGroup]="registerForm" (ngSubmit)="register(registerForm.value)">
+  <div class="row">
+    <div class="form-group col-lg-12">
+      <label>Username</label>
+      <input type="" value="" id="username" class="form-control" formControlName="username" name="username">
+      <span class="help-block small">Your unique username to app</span>
+    </div>
+    <div class="form-group col-lg-6">
+      <label>First Name</label>
+      <input type="" value="" id="firstName" class="form-control" formControlName="firstName" name="firstName">
+      <span class="help-block small">Your first name</span>
+    </div>
+    <div class="form-group col-lg-6">
+      <label>Last Name</label>
+      <input type="" value="" id="lastName" class="form-control" formControlName="lastName" name="lastName">
+      <span class="help-block small">Your last name</span>
+    </div>
+    <div class="form-group col-lg-12">
+      <label>Email</label>
+      <input type="email" value="" id="email" class="form-control" formControlName="email" name="email">
+      <span class="help-block small">Your email address</span>
+    </div>
+    <div class="form-group col-lg-12">
+      <label>Password</label>
+      <input type="password" value="" id="password" class="form-control" formControlName="password" name="password">
+      <span class="help-block small">Your hard to guess password</span>
+    </div>
+    <div class="form-group col-lg-12">
+      <label>Confirm Password</label>
+      <input type="password" value="" id="confirmPassword" class="form-control" formControlName="confirmPassword" name="confirmPassword">
+      <span class="help-block small">Please confirm your pasword</span>
+    </div>
+  </div>
+  <div>
+    <button class="btn btn-accent">Register</button>
+    <a class="btn btn-default" routerLink="/">Login</a>
+  </div>
+</form>
