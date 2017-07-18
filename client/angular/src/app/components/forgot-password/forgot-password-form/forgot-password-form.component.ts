@@ -8,12 +8,14 @@ import { emailValidator } from '../../../validators/validators';
   selector: 'forgot-password-form',
   templateUrl: './forgot-password-form.component.html'
 })
-export class ForgotPasswordFormComponent {
+export class ForgotPasswordFormComponent implements OnInit {
 
   forgotPasswordForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private userService: UserService) {
-    this.forgotPasswordForm = fb.group({
+  constructor(private fb: FormBuilder, private userService: UserService) { }
+
+  ngOnInit() {
+    this.forgotPasswordForm = this.fb.group({
       'email': ['', Validators.compose([Validators.required,  emailValidator])]
     });
   }
