@@ -1,32 +1,25 @@
-<form id="loginForm" [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
+<form id="loginForm" [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)" novalidate>
+  <div *ngIf="!authenticationFlag" class="help-block error small">Username or password is incorrect.</div>
+  <div *ngIf="adminFlag" class="help-block error small">Only an admin can create a user, please login.</div>
   <div class="form-group">
     <label class="control-label" for="username">Username</label>
-    <input type="text"
-           placeholder="example@gmail.com"
-           title="Please enter you username"
-           required=""
-           value=""
-           name="username"
-           formControlName="username"
-           id="username"
-           class="form-control">
-    <span class="help-block small">Your unique username to app</span>
+    <input type="text" placeholder="Please enter your usename" title="Please enter you username" required value=""
+           id="username" class="form-control" name="username" formControlName="username">
+    <div class='form-text error' *ngIf="loginForm.controls.username.touched">
+      <div *ngIf="loginForm.controls.username.hasError('required')" class="help-block error small">Username is required.</div>
+    </div>
+    <span *ngIf="loginForm.controls.username.valid || !loginForm.controls.username.touched"  class="help-block small">Your unique username</span>
   </div>
   <div class="form-group">
     <label class="control-label" for="password">Password</label>
-    <input type="password"
-           title="Please enter your password"
-           placeholder="******"
-           required=""
-           value=""
-           name="password"
-           formControlName="password"
-           id="password"
-           class="form-control">
-    <span class="help-block small">Your strong password</span>
+    <input type="password" title="Please enter your password" placeholder="******" required value=""
+           id="password" class="form-control" name="password" formControlName="password">
+    <div class='form-text error' *ngIf="loginForm.controls.password.touched">
+      <div *ngIf="loginForm.controls.password.hasError('required')" class="help-block error small">Password is required.</div>
+    </div>
+    <span *ngIf="loginForm.controls.password.valid || !loginForm.controls.password.touched" class="help-block small">Your strong password</span>
   </div>
   <div>
     <button type="submit" class="btn btn-accent" [disabled]="!loginForm.valid">Login</button>
-    <a class="btn btn-default" routerLink="/register">Register</a>
   </div>
 </form>
