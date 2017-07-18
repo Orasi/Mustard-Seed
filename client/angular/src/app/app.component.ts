@@ -1,15 +1,14 @@
 import {Component, OnInit, Input} from '@angular/core';
-import { LoginService } from './services/login.service';
 import { Meta } from '@angular/platform-browser';
-import {RegisterService} from "./services/register.service";
+import { AuthenticationService } from './services/authentication.service';
 
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  providers: [ LoginService, RegisterService ]
+  providers: [ AuthenticationService ]
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
   title = 'mustard';
 
@@ -22,8 +21,5 @@ export class AppComponent implements OnInit {
       { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
       { rel: 'stylesheet', type: 'text/css', href: 'http://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900' }
     ]);
-  }
-
-  ngOnInit() {
   }
 }

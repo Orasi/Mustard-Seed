@@ -1,35 +1,51 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { LoginService } from "../../../services/login.service";
-import { User } from "../../../domain/user";
+import { AuthenticationService } from "../../../services/authentication.service";
+
 
 @Component({
   selector: 'login-form',
   templateUrl: './login-form.component.html'
 })
-export class LoginFormComponent {
+export class LoginFormComponent implements OnInit {
 
   loginForm: FormGroup;
-  post: any;
-  username: string;
-  password: string;
-  user: User;
-  errorMessage: string;
+  authenticationFlag: boolean = true;
+  adminFlag: boolean = false;
 
 
-  constructor(private fb: FormBuilder, private loginService: LoginService) {
-    this.loginForm = fb.group({
-      'username': [null, Validators.required],
-      'password': [null, Validators.required]
+  constructor(private route: ActivatedRoute,
+              private fb: FormBuilder,
+              private router: Router,
+              private authenticationService: AuthenticationService) { }
+
+
+  ngOnInit() {
+    this.route
+      .queryParams
+      .subscribe(params => {
+        if (params['admin'] == 'false') {
+          this.adminFlag = true; // must be an admin to perform action, show error
+        }
+      });
+
+    this.loginForm = this.fb.group({
+      'username': ['', Validators.required],
+      'password': ['', Validators.required]
     });
+
+    this.authenticationService.logout(); // reset login status
   }
 
-  login(post) {
-    this.username = post.username;
-    this.password = post.password;
 
-    this.loginService.login(this.username, this.password)
-      .subscribe(user => this.user = user,
-      error => this.errorMessage = <any> error);
+  login(values) {
+    this.authenticationService.login(values.username, values.password)
+      .subscribe(result => {
+          this.router.navigate(['']);
+      },
+      err => {
+        this.authenticationFlag = false;
+      });
   }
 }
