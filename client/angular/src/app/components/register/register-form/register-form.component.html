@@ -1,38 +1,65 @@
-<form id="registerForm" [formGroup]="registerForm" (ngSubmit)="register(registerForm.value)">
+<form id="registerForm" [formGroup]="registerForm" (ngSubmit)="registerForm.valid && register(registerForm.value)" novalidate>
   <div class="row">
-    <div class="form-group col-lg-12">
+    <div class="form-group col-lg-6">
       <label>Username</label>
-      <input type="" value="" id="username" class="form-control" formControlName="username" name="username">
-      <span class="help-block small">Your unique username to app</span>
+      <input type="text" value="" id="username" class="form-control" formControlName="username" name="username" minlength="2">
+      <div class='form-text error' *ngIf="registerForm.controls.username.touched">
+        <div *ngIf="registerForm.controls.username.hasError('minlength')" class="help-block error small">Username is too short.</div>
+        <div *ngIf="registerForm.controls.username.hasError('required')" class="help-block error small">Username is required.</div>
+      </div>
+      <span *ngIf="registerForm.controls.username.valid || !registerForm.controls.username.touched" class="help-block small">Your unique username to app</span>
     </div>
     <div class="form-group col-lg-6">
       <label>First Name</label>
-      <input type="" value="" id="firstName" class="form-control" formControlName="firstName" name="firstName">
-      <span class="help-block small">Your first name</span>
+      <input type="text" value="" id="firstName" class="form-control" formControlName="firstName" name="firstName" minlength="2">
+      <div class='form-text error' *ngIf="registerForm.controls.firstName.touched">
+        <div *ngIf="registerForm.controls.firstName.hasError('minlength')" class="help-block error small">First Name is too short.</div>
+        <div *ngIf="registerForm.controls.firstName.hasError('required')" class="help-block error small">First name is required.</div>
+      </div>
+      <span *ngIf="registerForm.controls.firstName.valid || !registerForm.controls.firstName.touched" class="help-block small">Your first name</span>
     </div>
+  </div>
+  <div class="row">
     <div class="form-group col-lg-6">
       <label>Last Name</label>
-      <input type="" value="" id="lastName" class="form-control" formControlName="lastName" name="lastName">
-      <span class="help-block small">Your last name</span>
+      <input type="text" value="" id="lastName" class="form-control" formControlName="lastName" name="lastName" minlength="2">
+      <div class='form-text error' *ngIf="registerForm.controls.lastName.touched">
+        <div *ngIf="registerForm.controls.lastName.hasError('minlength')" class="help-block error small">Last Name is too short.</div>
+        <div *ngIf="registerForm.controls.lastName.hasError('required')" class="help-block error small">Last name is required.</div>
+      </div>
+      <span *ngIf="registerForm.controls.lastName.valid || !registerForm.controls.lastName.touched" class="help-block small">Your last name</span>
     </div>
-    <div class="form-group col-lg-12">
+    <div class="form-group col-lg-6">
       <label>Email</label>
       <input type="email" value="" id="email" class="form-control" formControlName="email" name="email">
-      <span class="help-block small">Your email address</span>
+      <div class='form-text error' *ngIf="registerForm.controls.email.touched">
+        <div *ngIf="registerForm.controls.email.hasError('invalidEmail')">Email is invalid.</div>
+        <div *ngIf="registerForm.controls.email.hasError('required')" class="help-block error small">Email is required.</div>
+      </div>
+      <span *ngIf="registerForm.controls.email.valid || !registerForm.controls.email.touched" class="help-block small">Your email address</span>
     </div>
-    <div class="form-group col-lg-12">
+  </div>
+  <div class="row">
+    <div class="form-group col-lg-6">
       <label>Password</label>
-      <input type="password" value="" id="password" class="form-control" formControlName="password" name="password">
-      <span class="help-block small">Your hard to guess password</span>
+      <input type="password" value="" id="password" class="form-control" formControlName="password" name="password" minlength='8'>
+      <div class='form-text error' *ngIf="registerForm.controls.password.touched">
+        <div *ngIf="registerForm.controls.password.hasError('minlength')" class="help-block error small">Passwords must contain a minimum length of 8 characters.</div>
+        <div *ngIf="registerForm.controls.password.hasError('required')" class="help-block error small">Password is required.</div>
+      </div>
+      <span *ngIf="registerForm.controls.password.valid || !registerForm.controls.password.touched" class="help-block small">Your hard to guess password</span>
     </div>
-    <div class="form-group col-lg-12">
+    <div class="form-group col-lg-6">
       <label>Confirm Password</label>
       <input type="password" value="" id="confirmPassword" class="form-control" formControlName="confirmPassword" name="confirmPassword">
-      <span class="help-block small">Please confirm your pasword</span>
+      <div class='form-text error' *ngIf="registerForm.controls.confirmPassword.touched">
+        <div *ngIf="registerForm.hasError('mismatchedPasswords')">Passwords do not match.</div>
+      </div>
+      <span *ngIf="!registerForm.hasError('mismatchedPasswords') || !registerForm.controls.confirmPassword.touched" class="help-block small">Please confirm your pasword</span>
     </div>
   </div>
   <div>
-    <button class="btn btn-accent">Register</button>
+    <button class="btn btn-accent" !registerForm.valid>Register</button>
     <a class="btn btn-default" routerLink="/">Login</a>
   </div>
 </form>
