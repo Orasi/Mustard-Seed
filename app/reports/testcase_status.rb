@@ -70,7 +70,14 @@ class TestcaseStatus
               sheet.add_row ['', '', '', '', '']
               counter += 1
               latest_results[tc.id].each do |res|
-                sheet.add_row ['', first ? 'Test Environments:' : '', res['environment_id'] + ' - ' +  (res['comment'] != '' ? res['comment'] : 'No Comment'), '',  res['status'].capitalize], style: [left_align, wrap_text, wrap_text, wrap_text]
+                comment_line = res['environment_id'].nil?  ? '' : res['environment_id']
+                if res['comment'].nil? || res['comment'] == ''
+                  comment_line += ' - No Comment'
+                else
+                  comment_line += " - #{res['comment']}"
+                end
+
+                sheet.add_row ['', first ? 'Test Environments:' : '', comment_line, '',  res['status'].capitalize], style: [left_align, wrap_text, wrap_text, wrap_text]
                 sheet.merge_cells "C#{counter}:D#{counter}"
                 styles_array.append(["A#{counter}:E#{counter}", left_and_top])
                 styles_array.append(["B#{counter}:B#{counter}", bold, right]) if first
