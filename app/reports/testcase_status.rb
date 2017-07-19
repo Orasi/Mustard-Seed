@@ -1,26 +1,24 @@
 require 'axlsx_styler'
 class TestcaseStatus
+
+  def self.color_by_status status
+    case status.upcase
+      when 'PASS', 'PASSED'
+        return '0d7024'
+      when 'FAIL', 'FAILED'
+        return 'ff3333'
+      when 'SKIP', "SKIPPED"
+        return 'c7c806'
+      when 'NOT RUN'
+        return 'ff9900'
+      else
+        return '000000'
+    end
+  end
+
   def self.create pass, fail, skip, not_run, file_path, latest_results, file_name
 
-    # axlsx = Axlsx::Package.new
-    # workbook = axlsx.workbook
-    # workbook.add_worksheet do |sheet|
-    #   sheet.add_row
-    #   sheet.add_row ['', 'Product', 'Category',  'Price']
-    #   sheet.add_row ['', 'Butter', 'Dairy',      4.99]
-    #   sheet.add_row ['', 'Bread', 'Baked Goods', 3.45]
-    #   sheet.add_row ['', 'Broccoli', 'Produce',  2.99]
-    #   sheet.column_widths 5, 20, 20, 20
-    #
-    #   # using AxlsxStyler DSL
-    #   sheet.add_style 'B2:D2', b: true
-    #   sheet.add_style 'B2:B5', b: true
-    #   sheet.add_style 'B2:D2', bg_color: '95AFBA'
-    #   sheet.add_style 'B3:D5', bg_color: 'E2F89C'
-    #   sheet.add_style 'D3:D5', alignment: { horizontal: :left }
-    #   sheet.add_border 'B2:D5'
-    #   sheet.add_border 'B3:D3', [:top]
-    # end
+
     bold = {b: true}
     left_and_top = {alignment: {horizontal: :left, vertical: :top}}
     center_and_top = {alignment: {vertical: :top, horizontal: :left}}
@@ -44,8 +42,10 @@ class TestcaseStatus
         wb.add_worksheet do |sheet|
           light = true
           sheet.name = s[0]
-          sheet.add_row ["Test ID", 'Title', 'Steps', 'Expected Result', 'Status'], :style => tbl_header
-          # styles_array.append(["A#{counter}:E#{counter}", bold, left_and_top])
+          sheet.add_row ["Test ID", 'Title', 'Steps', 'Expected Result', 'Status', ''], :style => tbl_header
+          sheet.merge_cells "E#{counter}:F#{counter}"
+
+
           counter += 1
 
           s[1].each do |tc|
@@ -59,15 +59,18 @@ class TestcaseStatus
               end
             end
 
-            sheet.add_row [tc.validation_id, tc.name, steps.join("\n"), results.join("\n"), s[0]], style: [left_align, wrap_text, wrap_text, wrap_text]
+            sheet.add_row [tc.validation_id, tc.name, steps.join("\n"), results.join("\n"), s[0], ''], style: [left_align, wrap_text, wrap_text, wrap_text]
+            sheet.merge_cells "E#{counter}:F#{counter}"
             styles_array.append(["C#{counter}:D#{counter}", left_and_top])
             styles_array.append(["A#{counter}:A#{counter}", bold, center_and_top])
             styles_array.append(["B#{counter}:B#{counter}", bold, left_and_top])
             styles_array.append(["E#{counter}:E#{counter}", bold, center_and_top])
+            styles_array.append(["E#{counter}:E#{counter}", {fg_color: color_by_status(s[0])}])
             counter += 1
             first ||= true
             if latest_results[tc.id]
-              sheet.add_row ['', '', '', '', '']
+              start_latest_counter = counter
+              sheet.add_row ['', '', '', '', '', '']
               counter += 1
               latest_results[tc.id].each do |res|
                 comment_line = res['environment_id'].nil?  ? '' : res['environment_id']
@@ -77,18 +80,22 @@ class TestcaseStatus
                   comment_line += " - #{res['comment']}"
                 end
 
-                sheet.add_row ['', first ? 'Test Environments:' : '', comment_line, '',  res['status'].capitalize], style: [left_align, wrap_text, wrap_text, wrap_text]
+                sheet.add_row ['', first ? 'Test Environments:  ' : '', comment_line, '',  res['status'].capitalize, ''], style: [left_align, wrap_text, wrap_text, wrap_text]
                 sheet.merge_cells "C#{counter}:D#{counter}"
+                styles_array.append(["E#{counter}:E#{counter}", {fg_color: color_by_status(res['status'])}])
                 styles_array.append(["A#{counter}:E#{counter}", left_and_top])
                 styles_array.append(["B#{counter}:B#{counter}", bold, right]) if first
                 counter += 1
                 first = false
               end
+
+              borders.append(["B#{start_latest_counter + 1}:E#{counter-1}", {style: :dotted}]) unless start_latest_counter == counter - 1
             end
-            # sheet.add_row ['', '', '', ''], style: [left_align, wrap_text, wrap_text, wrap_text]
-            # styles_array.append(["A#{counter}:E#{counter}", bold, left_and_top])
-            borders.append(["A#{start_count}:E#{counter-1}"])
-            styles_array.append(["A#{start_count}:E#{counter-1}", light ? light_bg : dark_bg])
+            sheet.add_row ['', '', '', '', '', '']
+            counter += 1
+
+            borders.append(["A#{start_count}:F#{counter-1}"])
+            styles_array.append(["A#{start_count}:F#{counter-1}", light ? light_bg : dark_bg])
             light = !light
             # counter += 1
 
