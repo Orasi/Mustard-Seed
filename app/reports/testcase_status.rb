@@ -74,9 +74,7 @@ class TestcaseStatus
               counter += 1
               latest_results[tc.id].each do |res|
                 comment_line = res['environment_id'].nil?  ? '' : res['environment_id']
-                if res['comment'].nil? || res['comment'] == ''
-                  comment_line += ' - No Comment'
-                else
+                unless res['comment'].nil? || res['comment'] == ''
                   comment_line += " - #{res['comment']}"
                 end
 
