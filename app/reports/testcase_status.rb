@@ -8,9 +8,9 @@ class TestcaseStatus
       when 'FAIL', 'FAILED'
         return 'ff3333'
       when 'SKIP', "SKIPPED"
-        return 'c7c806'
+        return 'ffcc00'
       when 'NOT RUN'
-        return 'ff9900'
+        return 'b2b2b2'
       else
         return '000000'
     end
@@ -65,7 +65,7 @@ class TestcaseStatus
             styles_array.append(["A#{counter}:A#{counter}", bold, center_and_top])
             styles_array.append(["B#{counter}:B#{counter}", bold, left_and_top])
             styles_array.append(["E#{counter}:E#{counter}", bold, center_and_top])
-            styles_array.append(["E#{counter}:E#{counter}", {fg_color: color_by_status(s[0])}])
+            styles_array.append(["E#{counter}:E#{counter}", {alignment: {horizontal: :center}, fg_color: color_by_status(s[0])}])
             counter += 1
             first ||= true
             if latest_results[tc.id]
