@@ -84,7 +84,7 @@ class TestcaseStatus
                 sheet.merge_cells "C#{counter}:D#{counter}"
                 styles_array.append(["E#{counter}:E#{counter}", {fg_color: color_by_status(res['status'])}])
                 styles_array.append(["A#{counter}:E#{counter}", left_and_top])
-                styles_array.append(["B#{counter}:B#{counter}", bold, right]) if first
+                styles_array.append(["B#{counter}:B#{counter}", bold, center_and_top]) if first
                 counter += 1
                 first = false
               end
