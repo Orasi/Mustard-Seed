@@ -88,7 +88,7 @@ class TestcaseStatus
                 counter += 1
                 first = false
               end
-
+              styles_array.append(["C#{start_latest_counter + 1}:D#{counter-1}", {sz: 8}]) unless start_latest_counter == counter - 1
               borders.append(["B#{start_latest_counter + 1}:E#{counter-1}", {style: :dotted}]) unless start_latest_counter == counter - 1
             end
             sheet.add_row ['', '', '', '', '', '']
