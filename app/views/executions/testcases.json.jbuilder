@@ -11,6 +11,7 @@ json.execution do
     json.validation_id tc.validation_id if tc.validation_id
     json.name tc.name
     json.path "testcases/#{tc.id}"
+    json.latest_results @last_results[tc.id]
   end
 
   json.pass @pass do |tc|
@@ -18,6 +19,7 @@ json.execution do
     json.validation_id tc.validation_id if tc.validation_id
     json.name tc.name
     json.path "testcases/#{tc.id}"
+    json.latest_results @last_results[tc.id]
   end
 
   json.skip @skip do |tc|
@@ -25,6 +27,7 @@ json.execution do
     json.validation_id tc.validation_id if tc.validation_id
     json.name tc.name
     json.path "testcases/#{tc.id}"
+    json.latest_results @last_results[tc.id]
   end
 
   json.not_run @not_run do |tc|

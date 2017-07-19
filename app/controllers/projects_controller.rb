@@ -26,7 +26,7 @@ class ProjectsController < ApplicationController
   def show
 
     @project = Project.includes(:executions, :environments, :keywords, :testcases).find_by_id(params[:id])
-    @testcases = TestcaseWithKeyword.where(project_id: @project.id)
+
 
     render json: {error: "Project not found"},
            status: :not_found and return unless @project
@@ -34,6 +34,7 @@ class ProjectsController < ApplicationController
     render json: {error: 'Not authorized to access this resource'},
            status: :forbidden and return unless @current_user.projects.include? @project
 
+    @testcases = TestcaseWithKeyword.where(project_id: @project.id)
   end
 
 

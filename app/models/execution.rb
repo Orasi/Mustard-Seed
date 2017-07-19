@@ -20,6 +20,16 @@ class Execution < ApplicationRecord
     end
   end
 
+  def last_results_by_testcase
+    r = results.select(:id, :testcase_id, :execution_id, 'results::json->0 as results').group_by{|d| d[:testcase_id]}
+    results = Hash.new([])
+    r.each do |key, value|
+      results[key] = value.map(&:attributes)
+      results[key] = results[key].map{|i| i.merge(i['results']).without('results').without('testcase_id')}
+    end
+    results
+  end
+
   def active_keywords_exist
     return if active_keywords.blank?
     keyword_ids = project.keywords.pluck(:id)

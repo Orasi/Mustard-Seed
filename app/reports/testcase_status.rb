@@ -1,6 +1,6 @@
 
 class TestcaseStatus
-  def self.create pass, fail, skip, not_run, file_path, file_name
+  def self.create pass, fail, skip, not_run, file_path, latest_results, file_name
 
     p =  Axlsx::Package.new
     p.workbook do |wb|
@@ -29,6 +29,12 @@ class TestcaseStatus
             end
 
             sheet.add_row [tc.validation_id, tc.name, steps.join("\n"), results.join("\n"), s[0]], style: [left_align, wrap_text, wrap_text, wrap_text]
+            if latest_results[tc.id]
+              latest_results[tc.id].each do |res|
+                sheet.add_row ['', 'Test Environments:', res['environment_id'], res['comment'], res['status']], style: [left_align, wrap_text, wrap_text, wrap_text]
+              end
+            end
+            sheet.add_row ['', '', '', ''], style: [left_align, wrap_text, wrap_text, wrap_text]
           end
           sheet.column_widths 10, 30, 60, 60, 10
         end

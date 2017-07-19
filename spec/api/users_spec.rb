@@ -621,22 +621,23 @@ describe "USERS API::" , :type => :api do
     context 'with invalid username' do
 
       it 'responds not found' do
+        header 'User-Token', nil
         post '/users/reset-password', {user: {username: 'doesnot.exist'}, 'redirect-to' => 'http://some.url/TOKEN'}.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
         expect(last_response.status).to eq(404)
       end
 
       it 'returns an error' do
+        header 'User-Token', nil
         post '/users/reset-password', {user: {username: 'doesnot.exist'}, 'redirect-to' => 'http://some.url/TOKEN'}.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
         expect(json).to include('error')
       end
 
       it 'does not cause email to be sent' do
+        header 'User-Token', nil
         expect { post '/users/reset-password', {user: {username: 'doesnot.exist'}, 'redirect-to' => 'http://some.url/TOKEN'}.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' } }
             .to change { ActionMailer::Base.deliveries.count }.by(0)
       end
     end
-
-
 
   end
 

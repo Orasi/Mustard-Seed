@@ -197,6 +197,7 @@ class ExecutionsController < ApplicationController
       @skip = execution.execution_testcases.skip(@execution).order(:name)
     end
 
+    @last_results = execution.last_results_by_testcase
 
     respond_to do |format|
       format.xlsx{
@@ -204,7 +205,7 @@ class ExecutionsController < ApplicationController
         filename = "#{execution.project.name}-Testcase Status.xlsx"
         file_path =  Rails.root.join("downloads/reports/#{filename}")
 
-        TestcaseStatus.create(@pass, @fail, @skip, @not_run, file_path, filename)
+        TestcaseStatus.create(@pass, @fail, @skip, @not_run, file_path, @last_results, filename)
         token = DownloadToken.create(expiration: DateTime.now + 30.seconds,
                                      path:  file_path,
                                      disposition: 'attachment',

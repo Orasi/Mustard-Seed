@@ -90,6 +90,8 @@ class UsersController < ApplicationController
 
   api :POST, '/users/reset-password', 'Trigger Password Reset Email'
   param :user, String, 'Email Address', required: true
+  param 'redirect-to', String, 'Redirect URL.  The front-end URL that the email should direct the user to.  URL should include the string TOKEN which will be subsitutued with an authentication token for the password reset', required: true
+  param 'User-Token', nil
   formats ['json']
   description "Triggers a password reset email to the User"
   def trigger_password_reset
