@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { User } from "../../../domain/user";
-import { RegisterService } from "../../../services/register.service";
+import { UserService } from "../../../services/user.service";
+import { emailValidator, matchingPasswords } from '../../../validators/validators';
 
 
 @Component({
@@ -11,24 +12,15 @@ import { RegisterService } from "../../../services/register.service";
 export class RegisterFormComponent {
 
   registerForm: FormGroup;
-  post: any;
-  username: string;
-  email: string;
-  firstName: string;
-  lastName: string;
-  password: string;
-  confirmPassword: string;
-  user: User;
-  errorMessage: string;
 
-  constructor(private fb: FormBuilder, private registerService: RegisterService) {
+  constructor(private fb: FormBuilder, private userService: UserService) {
     this.registerForm = fb.group({
-      'username': [null, Validators.required],
-      'email': [null, Validators.required],
-      'firstName': [null, Validators.required],
-      'lastName': [null, Validators.required],
-      'password': [null, Validators.required],
-      'confirmPassword': [null, Validators.required],
-    });
+      'username': ['', Validators.required],
+      'email': ['', Validators.compose([Validators.required,  emailValidator])],
+      'firstName': ['', Validators.required],
+      'lastName': ['', Validators.required],
+      'password': ['', Validators.required],
+      'confirmPassword': ['', Validators.required],
+    }, { validator: matchingPasswords('password', 'confirmPassword') });
   }
 }

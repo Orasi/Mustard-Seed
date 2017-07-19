@@ -7,7 +7,9 @@ export class User {
     public firstName: string,
     public lastName: string,
     public token: string,
-    public admin: boolean
+    public admin: boolean,
+    public createdAt: Date,
+    public updatedAt: Date
   ) {  }
 
 }
