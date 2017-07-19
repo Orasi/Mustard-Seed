@@ -61,6 +61,9 @@ GEM
     axlsx_rails (0.5.0)
       actionpack (>= 3.1)
       axlsx (>= 2.0.1)
+    axlsx_styler (0.1.7)
+      activesupport (>= 3.1)
+      axlsx (~> 2.0)
     bcrypt (3.1.11)
     builder (3.2.2)
     byebug (9.0.5)
@@ -224,6 +227,7 @@ DEPENDENCIES
   awesome_print
   axlsx (= 2.1.0.pre)
   axlsx_rails
+  axlsx_styler
   bcrypt (~> 3.1.7)
   byebug
   coveralls
