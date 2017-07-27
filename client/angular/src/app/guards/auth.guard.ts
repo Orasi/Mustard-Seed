@@ -1,18 +1,27 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
+import { UserService } from '../services/user.service';
+import {Observable} from "rxjs";
 
 
 @Injectable()
 export class AuthenticationGuard implements CanActivate {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private userService: UserService) { }
 
-  canActivate() {
-    if (localStorage.getItem('currentUser')) {
-      return true; // user is logged in
-    }
-
-    this.router.navigate(['login']);
-    return false; // user is not logged in, send to home page
+  canActivate(): Observable<boolean> | boolean {
+    return this.userService.isTokenValid().map(data => {
+        if (data) {
+          return true;
+        }
+        else {
+          this.router.navigate(['/login']);
+          return false;
+        }
+      },
+      error => {
+        this.router.navigate(['/login']);
+        return false;
+      });
   }
 }
