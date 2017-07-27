@@ -8,6 +8,12 @@ import { AuthenticationGuard } from './guards/auth.guard';
 import { AdministrationGuard } from './guards/administration.guard';
 
 import { UserService } from "./services/user.service";
+import { ProjectService } from "./services/project.service";
+import { TeamService } from "./services/team.service";
+
+import { RegisterFormComponent } from './components/register/register-form/register-form.component';
+import { ForgotPasswordFormComponent } from './components/forgot-password/forgot-password-form/forgot-password-form.component';
+import { LoginFormComponent } from './components/login/\/login-form/login-form.component';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -15,12 +21,11 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { RegisterComponent } from './components/register/register.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { RegisterFormComponent } from './components/register/register-form/register-form.component';
-import { LoginFormComponent } from './components/login/\/login-form/login-form.component';
-import { ForgotPasswordFormComponent } from './components/forgot-password/forgot-password-form/forgot-password-form.component';
+import { HeaderComponent } from './components/header/header.component';
 
 
 const appRoutes: Routes = [
+  { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'register', component: RegisterComponent, canActivate: [AdministrationGuard] },
   { path: 'login', component: LoginComponent },
   { path: '', component: DashboardComponent, canActivate: [AuthenticationGuard] }
@@ -37,7 +42,8 @@ const appRoutes: Routes = [
     RegisterFormComponent,
     RegisterComponent,
     DashboardComponent,
-    ForgotPasswordFormComponent
+    ForgotPasswordFormComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -49,8 +55,8 @@ const appRoutes: Routes = [
       { enableTracing: true } // <-- debugging purposes only
     )
   ],
-  providers: [AuthenticationGuard, AdministrationGuard, UserService],
-  bootstrap: [AppComponent]
+  providers: [ AuthenticationGuard, AdministrationGuard, UserService, ProjectService, TeamService ],
+  bootstrap: [ AppComponent ]
 })
 
 export class AppModule { }
