@@ -7,9 +7,10 @@ export class User {
     public firstName: string,
     public lastName: string,
     public token: string,
-    public admin: boolean,
-    public createdAt: Date,
-    public updatedAt: Date
+    public admin: boolean
   ) {  }
 
+  public static create(data: any): User {
+    return new User(data.id, data.username, data.email, data.firstName, data.lastName, data.token, data.admin);
+  }
 }

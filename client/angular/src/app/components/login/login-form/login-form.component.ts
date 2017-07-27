@@ -14,12 +14,10 @@ export class LoginFormComponent implements OnInit {
   authenticationFlag: boolean = true;
   adminFlag: boolean = false;
 
-
   constructor(private route: ActivatedRoute,
               private fb: FormBuilder,
               private router: Router,
               private authenticationService: AuthenticationService) { }
-
 
   ngOnInit() {
     this.route
@@ -35,9 +33,8 @@ export class LoginFormComponent implements OnInit {
       'password': ['', Validators.required]
     });
 
-    this.authenticationService.logout(); // reset login status
+    AuthenticationService.logout(); // reset login status
   }
-
 
   login(values) {
     this.authenticationService.login(values.username, values.password)
