@@ -1,5 +1,15 @@
-<header></header>
-<nav-bar></nav-bar>
-<p>
-  dashboard works!
-</p>
+<app-header></app-header>
+<app-nav-bar></app-nav-bar>
+<router-outlet></router-outlet>
+<section *ngIf="router.url == '/'" class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-6">
+        <app-execution-overview [executionStatus]="executionStatus"></app-execution-overview>
+      </div>
+      <div class="col-lg-6">
+        <app-execution-overview [executionStatus]="executionStatus"></app-execution-overview>
+      </div>
+    </div>
+  </div>
+</section>

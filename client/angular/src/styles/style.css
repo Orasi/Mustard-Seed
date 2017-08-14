@@ -800,6 +800,8 @@ body {
   padding: 30px;
   transition: margin-left 0.3s ease-out;
   -webkit-transition: margin-left 0.3s ease-out;
+  margin-top: 60px;
+  margin-left: 200px;
 }
 .content:before {
   content: '';
@@ -1140,6 +1142,9 @@ img.image-xl {
 }
 .navbar-nav.navbar-right a .label {
   margin: -5px 0 0 5px;
+}
+.profil-link a {
+  cursor: pointer;
 }
 .profil-link img {
   height: 40px;
@@ -2353,6 +2358,9 @@ div.dt-button-info h2 {
 .table.table-vertical-align-bottom tbody > tr > td {
   vertical-align: bottom;
 }
+.row-num-label {
+  width: 35px;
+}
 .alert-success {
   color: #ffffff;
   border-color: #1bbf89;
@@ -2847,4 +2855,52 @@ fieldset[disabled] .form-control {
   color: #f53232;
   font-size: 14px;
   letter-spacing: 0.05em;
+}
+.btn-center {
+  top: 20px;
+}
+.pe-7s-trash,
+.pe-7s-add-user {
+  cursor: pointer;
+  font-size: 18px;
+}
+.pe-7s-add-user:hover,
+.pe-7s-trash:hover {
+  color: #FFFFFF;
+}
+.tooltip {
+  white-space: nowrap;
+}
+.footer-left {
+  text-align: left;
+}
+.form-group-item:not(:first-child) {
+  margin-top: 12px;
+}
+.img-sm {
+  width: 90px;
+  height: 90px;
+  border-radius: 20px;
+}
+.info {
+  display: inline-block;
+  width: 65%;
+  position: relative;
+  padding-left: 8px;
+  vertical-align: middle;
+}
+.space-5 {
+  margin-top: 5px;
+}
+.space-8 {
+  margin-top: 8px;
+}
+.space-10 {
+  margin-top: 10px;
+}
+.user-panel {
+  min-height: 190px;
+}
+.select2-container {
+  width: 100% !important;
 }

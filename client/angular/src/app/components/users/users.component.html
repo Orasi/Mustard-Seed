@@ -1,0 +1,46 @@
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="view-header">
+          <div class="pull-right text-right">
+            <button class="btn btn-default btn-sm btn-center" type="button" (click)="modalService.openModal()">
+              <i class="pe-7s-add-user"></i>
+              <span class="bold">Add User</span>
+            </button>
+          </div>
+          <div class="header-icon">
+            <i class="pe page-header-icon pe-7s-users"></i>
+          </div>
+          <div class="header-title">
+            <h1>All Users</h1>
+          </div>
+        </div>
+        <hr>
+      </div>
+    </div>
+    <div class="row">
+      <div *ngFor="let user of users; let index = index;">
+        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+          <div class="panel panel-filled panel-c-warning">
+            <div class="panel-body user-panel">
+              <h3 class="bold text-capitalize">{{ user.firstName }} {{ user.lastName }}</h3>
+              <img class="img-sm img-rounded" src="assets/default_user.jpeg" alt="Default User Image">
+              <div class="info">
+                <div class="space-15">{{ user.username }}</div>
+                <div class="space-15">{{ user.email }}</div>
+              </div>
+              <span class="text-left col-lg-6 text-capitalize space-10">{{ user.company }}</span>
+              <span class="text-right col-lg-6 space-10">{{ user.admin? "Admin" : "" }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="clearfix visible-lg" *ngIf="(index + 1) % 3 == 0"></div>
+        <div class="clearfix visible-md" *ngIf="(index + 1) % 3 == 0"></div>
+        <div class="clearfix visible-sm" *ngIf="(index + 1) % 2 == 0"></div>
+        <div class="clearfix visible-xs" *ngIf="(index + 1) % 1 == 0"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<app-add-user (onAddUserEvent)="addUser($event)"></app-add-user>

@@ -1,0 +1,96 @@
+<div *ngIf="modalService.show" class="modal fade in" id="add-user-modal" tabindex="-1" role="dialog" (click)="modalService.handleClick($event)">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h3>Register</h3>
+        <small>
+          Please enter your data to register.
+        </small>
+        <div *ngIf="errorFlag" class="help-block error small">Username or email has already been taken.</div>
+      </div>
+      <form #addUserForm="ngForm" id="addUserForm" [formGroup]="addUserFormGroup" (ngSubmit)="addUserFormGroup.valid && register(addUserForm.value)" novalidate>
+        <div class="modal-body">
+          <div class="row">
+            <div class="form-group col-lg-6">
+              <label>Username</label>
+              <input type="text" value="" id="username" class="form-control" formControlName="username" name="username" minlength="2" [value]="userNameValue">
+              <div class='form-text error' *ngIf="addUserFormGroup.controls.username.touched">
+                <div *ngIf="addUserFormGroup.controls.username.hasError('minlength')" class="help-block error small">Username is too short.</div>
+                <div *ngIf="addUserFormGroup.controls.username.hasError('required')" class="help-block error small">Username is required.</div>
+              </div>
+              <span *ngIf="addUserFormGroup.controls.username.valid || !addUserFormGroup.controls.username.touched" class="help-block small">Your unique username to app</span>
+            </div>
+            <div class="form-group col-lg-6">
+              <label>First Name</label>
+              <input type="text" value="" id="firstName" class="form-control" formControlName="firstName" name="firstName" minlength="2" [value]="firstNameValue">
+              <div class='form-text error' *ngIf="addUserFormGroup.controls.firstName.touched">
+                <div *ngIf="addUserFormGroup.controls.firstName.hasError('minlength')" class="help-block error small">First Name is too short.</div>
+                <div *ngIf="addUserFormGroup.controls.firstName.hasError('required')" class="help-block error small">First name is required.</div>
+              </div>
+              <span *ngIf="addUserFormGroup.controls.firstName.valid || !addUserFormGroup.controls.firstName.touched" class="help-block small">Your first name</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-lg-6">
+              <label>Last Name</label>
+              <input type="text" value="" id="lastName" class="form-control" formControlName="lastName" name="lastName" minlength="2" [value]="lastNameValue">
+              <div class='form-text error' *ngIf="addUserFormGroup.controls.lastName.touched">
+                <div *ngIf="addUserFormGroup.controls.lastName.hasError('minlength')" class="help-block error small">Last Name is too short.</div>
+                <div *ngIf="addUserFormGroup.controls.lastName.hasError('required')" class="help-block error small">Last name is required.</div>
+              </div>
+              <span *ngIf="addUserFormGroup.controls.lastName.valid || !addUserFormGroup.controls.lastName.touched" class="help-block small">Your last name</span>
+            </div>
+            <div class="form-group col-lg-6">
+              <label>Email</label>
+              <input type="email" value="" id="email" class="form-control" formControlName="email" name="email" [value]="emailValue">
+              <div class='form-text error' *ngIf="addUserFormGroup.controls.email.touched">
+                <div *ngIf="addUserFormGroup.controls.email.hasError('invalidEmail')">Email is invalid.</div>
+                <div *ngIf="addUserFormGroup.controls.email.hasError('required')" class="help-block error small">Email is required.</div>
+              </div>
+              <span *ngIf="addUserFormGroup.controls.email.valid || !addUserFormGroup.controls.email.touched" class="help-block small">Your email address</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-lg-6">
+              <label>Password</label>
+              <input type="password" value="" id="password" class="form-control" formControlName="password" name="password" minlength='8' [value]="passwordValue">
+              <div class='form-text error' *ngIf="addUserFormGroup.controls.password.touched">
+                <div *ngIf="addUserFormGroup.controls.password.hasError('minlength')" class="help-block error small">Passwords must contain a minimum length of 8 characters.</div>
+                <div *ngIf="addUserFormGroup.controls.password.hasError('required')" class="help-block error small">Password is required.</div>
+              </div>
+              <span *ngIf="addUserFormGroup.controls.password.valid || !addUserFormGroup.controls.password.touched" class="help-block small">Your hard to guess password</span>
+            </div>
+            <div class="form-group col-lg-6">
+              <label>Confirm Password</label>
+              <input type="password" value="" id="confirmPassword" class="form-control" formControlName="confirmPassword" name="confirmPassword" [value]="confirmPasswordValue">
+              <div class='form-text error' *ngIf="addUserFormGroup.controls.confirmPassword.touched">
+                <div *ngIf="addUserFormGroup.hasError('mismatchedPasswords')">Passwords do not match.</div>
+              </div>
+              <span *ngIf="!addUserFormGroup.hasError('mismatchedPasswords') || !addUserFormGroup.controls.confirmPassword.touched" class="help-block small">Please confirm your pasword</span>
+            </div>
+            <div class="form-group col-lg-6">
+              <label>Company</label>
+              <input type="text" value="" id="company" class="form-control" formControlName="company" name="company" [value]="companyValue">
+              <div class='form-text error' *ngIf="addUserFormGroup.controls.company.touched">
+                <div *ngIf="addUserFormGroup.controls.company.hasError('minlength')" class="help-block error small">Company is too short.</div>
+                <div *ngIf="addUserFormGroup.controls.company.hasError('required')" class="help-block error small">Company is required.</div>
+              </div>
+              <span *ngIf="addUserFormGroup.controls.company.valid || !addUserFormGroup.controls.company.touched" class="help-block small">Your company name</span>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="col-lg-2 space-5">
+            <label>Admin</label>
+            <input type="checkbox" name="admin" id="admin" value="false" formControlName="admin" style="margin-left: 10px;">
+          </div>
+          <div>
+            <button class="btn btn-accent" [disabled]="!addUserFormGroup.valid">Register</button>
+            <button (click)="modalService.closeModal(); addUserForm.reset();" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div *ngIf="modalService.show" class="modal-backdrop fade in"></div>

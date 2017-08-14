@@ -20,8 +20,8 @@ export class ResultService {
         let data = res.json();
 
         if (data) {
-          var results = [];
-          for (var result of data.results) {
+          let results = [];
+          for (let result of data.results) {
             results.push(RecentResult.create(result));
           }
           return results;

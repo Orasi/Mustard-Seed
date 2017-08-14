@@ -1,0 +1,36 @@
+<div *ngIf="modalService.show" class="modal" id="add-team-modal" tabindex="-1" role="dialog" (click)="modalService.handleClick($event)">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h3 class="modal-title">Add Team</h3>
+      </div>
+      <form #addTeamForm="ngForm" id="addTeamForm" [formGroup]="addTeamFormGroup" (ngSubmit)="createTeam(addTeamForm.value)" novalidate>
+        <div class="modal-body">
+          <div class="form-group">
+            <div *ngIf="nameFlag" class="help-block error small">Name has already been taken.</div>
+            <div class="form-group-item">
+              <label class="control-label" for="name">Name</label>
+              <input type="text" placeholder="Please enter the team name" title="Please enter the team name" required value=""
+                     id="name" class="form-control" name="name" formControlName="name" [value]="nameValue">
+              <div class='form-text error' *ngIf="addTeamFormGroup.controls.name.touched">
+                <div *ngIf="addTeamFormGroup.controls.name.hasError('required')" class="help-block error small">Team name is required.</div>
+              </div>
+            </div>
+            <div class="form-group-item">
+              <label class="control-label" for="description">Description</label>
+              <textarea name="description" id="description" class="form-control" formControlName="description"
+                        required value="" [value]="descriptionValue" placeholder="Please enter the team description..." ></textarea>
+              <div class='form-text error' *ngIf="addTeamFormGroup.controls.description.touched">
+                <div *ngIf="addTeamFormGroup.controls.description.hasError('required')" class="help-block error small">Team description is required.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer footer-left">
+          <button type="submit" class="btn btn-accent" [disabled]="!addTeamFormGroup.valid">Submit</button>
+          <button (click)="modalService.closeModal(); addTeamForm.reset();" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

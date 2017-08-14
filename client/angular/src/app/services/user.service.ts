@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import 'rxjs/add/operator/map'
 
 import { User } from '../domain/user';
@@ -11,6 +11,14 @@ import * as Globals from '../globals';
 export class UserService {
   private usersUrl: string = Globals.mustardUrl + '/users';
 
+  private usersSource = new BehaviorSubject<any>([]);
+  usersChange = this.usersSource.asObservable();
+
+  private errorSource = new BehaviorSubject<any>({});
+  errorChange = this.errorSource.asObservable();
+
+  users: User[] = [];
+
   constructor(private http: Http) { }
 
   isAdmin(): boolean {
@@ -20,15 +28,19 @@ export class UserService {
     return false;
   }
 
-  create(user: User): Observable<boolean> {
+  createUser(user: User | Object): Observable<User> {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post(this.usersUrl, user, options)
-      .map(function(res){
-        return !!res.json();
+    return this.http.post(this.usersUrl, user, Globals.getTokenHeaders())
+      .map(function(res) {
+        let data = res.json();
+
+        if (data) {
+          return User.create(data.user);
+        }
       })
-      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+      .catch((error:any) => Observable.throw(error || 'Server error'));
   }
 
   sendPasswordResetEmail(email: string) {
@@ -59,6 +71,33 @@ export class UserService {
     }
     else {
       return Observable.of(false);
+    }
+  }
+
+  getUsers() {
+    if (this.users.length > 0) {
+      this.usersSource.next(this.users);
+    }
+    else {
+      this.http.get(this.usersUrl, Globals.getTokenHeaders())
+        .map(function(res) {
+          let data = res.json();
+
+          if (data) {
+            let users = [];
+            for (let user of data.users) {
+              users.push(User.create(user));
+            }
+            return users;
+          }
+        })
+        .catch((error:any) => Observable.throw(error || 'Server error'))
+        .subscribe(result => {
+          this.usersSource.next(result);
+        },
+        error => {
+          this.errorSource.next(error);
+        });
     }
   }
 }

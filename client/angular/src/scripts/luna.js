@@ -2,10 +2,15 @@
  * LUNA - Responsive Admin Theme
  *
  */
-
 $(document).ready(function () {
 
+    $("body").tooltip({ selector: '[data-toggle=tooltip]', container: 'body' });
 
+    $.fn.modal.Constructor.prototype.enforceFocus = function() {}; // https://github.com/ivaynberg/select2/issues/1436
+    $('#select2-team_users').select2();
+    $("#select2-team_projects").select2({
+      placeholder: "Select Project"
+    });
 
     // Handle minimalize left menu
     $('.left-nav-toggle a').on('click', function(event){
