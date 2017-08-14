@@ -1,4 +1,4 @@
-import {TestCaseStatus} from "./testcase-status";
+import { TestCaseStatus } from "./testcase-status";
 
 export class ExecutionStatus {
 
@@ -15,35 +15,36 @@ export class ExecutionStatus {
   ) {  }
 
   public static create(data: any): ExecutionStatus {
+    let failures = [];
     if (data.fail) {
-      var failures = [];
-      for (var fail of data.fail) {
+      for (let fail of data.fail) {
         failures.push(TestCaseStatus.create(fail));
       }
     }
 
+    let passes = [];
     if (data.pass) {
-      var passes = [];
-      for (var pass of data.pass) {
+      for (let pass of data.pass) {
         passes.push(TestCaseStatus.create(pass));
       }
     }
 
+    let skips = [];
     if (data.skip) {
-      var skips = [];
-      for (var skip of data.skip) {
+      for (let skip of data.skip) {
         skips.push(TestCaseStatus.create(skip));
       }
     }
 
+
+    let notRuns = [];
     if (data.notRun) {
-      var notRuns = [];
-      for (var notRun of data.notRun) {
+      for (let notRun of data.notRun) {
         notRuns.push(TestCaseStatus.create(notRun));
       }
     }
 
-    return new ExecutionStatus(data.id, data.name, data.projectId, data.projectName, data.closed,
+    return new ExecutionStatus(data.id, data.name, data.project_id, data.project_name, data.closed,
       failures, passes, skips, notRuns);
   }
 }

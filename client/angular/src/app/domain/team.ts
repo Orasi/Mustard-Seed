@@ -14,16 +14,16 @@ export class Team {
   ) {  }
 
   public static create(data: any): Team {
+    let projects = [];
     if (data.projects) {
-      var projects = [];
-      for (var project of data.projects) {
+      for (let project of data.projects) {
         projects.push(Project.create(project));
       }
     }
 
+    let users = [];
     if (data.users) {
-      var users = [];
-      for (var user of users) {
+      for (let user of users) {
         users.push(User.create(user));
       }
     }

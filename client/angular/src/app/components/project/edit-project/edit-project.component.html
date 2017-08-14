@@ -1,0 +1,26 @@
+<div *ngIf="modalService.show" class="modal" id="edit-project-modal" tabindex="-1" role="dialog" (click)="modalService.handleClick($event)">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h3 class="modal-title">Add Project</h3>
+      </div>
+      <form #editProjectForm="ngForm" id="editProjectForm" [formGroup]="editProjectFormGroup" (ngSubmit)="editProject(editProjectFormGroup.value)" novalidate>
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="control-label" for="name">Name</label>
+            <input type="text" placeholder="Please enter the project name" title="Please enter the project name" required value=""
+                   id="name" class="form-control" name="name" formControlName="name" [value]="nameValue">
+            <div class='form-text error' *ngIf="editProjectFormGroup.controls.name.touched">
+              <div *ngIf="editProjectFormGroup.controls.name.hasError('required')" class="help-block error small">Project name is required.</div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer footer-left">
+          <button type="submit" class="btn btn-accent" [disabled]="!editProjectFormGroup.valid">Submit</button>
+          <button (click)="modalService.closeModal(); editProjectForm.reset();" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button (click)="modalService.closeModal(); deleteProject();" type="button" class="btn btn-accent pull-right">Delete</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

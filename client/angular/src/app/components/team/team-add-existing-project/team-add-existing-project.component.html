@@ -1,0 +1,27 @@
+<div *ngIf="modalService.show" class="modal" id="add-project-modal" tabindex="-1" role="dialog" (click)="modalService.handleClick($event)">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h3 class="modal-title">Add Project</h3>
+      </div>
+      <form #addProjectForm="ngForm" id="addProjectForm" [formGroup]="addProjectFormGroup" (ngSubmit)="addProjectToTeam(addProjectFormGroup.value)" novalidate>
+        <div class="modal-body">
+          <div class="form-group">
+            <div *ngIf="nameFlag" class="help-block error small">Name has already been taken.</div>
+            <div class="form-group-item">
+              <label class="control-label">Name</label>
+              <select2 [data]="select2Data" [cssImport]="false" [options]="options"></select2>
+              <div class='form-text error' *ngIf="addProjectFormGroup.controls.select2.touched">
+                <div *ngIf="addProjectFormGroup.controls.select2.hasError('required')" class="help-block error small">Select a project to add.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer footer-left">
+          <button type="submit" class="btn btn-accent" [disabled]="!addProjectFormGroup.valid">Submit</button>
+          <button (click)="modalService.closeModal(); addProjectFormGroup.reset();" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

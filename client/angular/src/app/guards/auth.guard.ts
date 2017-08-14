@@ -11,17 +11,17 @@ export class AuthenticationGuard implements CanActivate {
 
   canActivate(): Observable<boolean> | boolean {
     return this.userService.isTokenValid().map(data => {
-        if (data) {
-          return true;
-        }
-        else {
-          this.router.navigate(['/login']);
-          return false;
-        }
-      },
-      error => {
+      if (data) {
+        return true;
+      }
+      else {
         this.router.navigate(['/login']);
         return false;
-      });
+      }
+    },
+    error => {
+      this.router.navigate(['/login']);
+      return false;
+    });
   }
 }

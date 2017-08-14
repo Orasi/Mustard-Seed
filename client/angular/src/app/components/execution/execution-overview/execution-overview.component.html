@@ -1,0 +1,43 @@
+<section class="panel panel-filled">
+  <h3 class="panel-heading">
+    <a href="#execution_link">Some Execution Name</a>
+  </h3>
+  <div class="panel-body">
+    <div class="col-lg-6">
+      <table class="table table-hover table-striped">
+        <thead>
+          <tr>
+            <th>Status</th>
+            <th>Total</th>
+            <th>Percent</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Pass</td>
+            <td>{{ pass?.count }}</td>
+            <td>{{ pass?.percent }}&#37;</td>
+          </tr>
+          <tr>
+            <td>Fail</td>
+            <td>{{ fail?.count }}</td>
+            <td>{{ fail?.percent }}&#37;</td>
+          </tr>
+          <tr>
+            <td>Skip</td>
+            <td>{{ skip?.count }}</td>
+            <td>{{ skip?.percent }}&#37;</td>
+          </tr>
+          <tr>
+            <td>Not Run</td>
+            <td>{{ notRun?.count }}</td>
+            <td>{{ notRun?.percent }}&#37;</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-lg-6">
+      <canvas #executionChart></canvas>
+    </div>
+  </div>
+</section>

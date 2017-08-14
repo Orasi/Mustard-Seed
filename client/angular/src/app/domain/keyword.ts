@@ -10,9 +10,9 @@ export class Keyword {
   ) {  }
 
   public static create(data: any): Keyword {
+    let testcases = [];
     if (data.testcases) {
-      var testcases = [];
-      for (var testcase of data.testcases) {
+      for (let testcase of data.testcases) {
         testcases.push(testcase);
       }
     }

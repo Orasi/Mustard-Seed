@@ -1,0 +1,75 @@
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="view-header">
+          <div class="pull-right text-right">
+            <button class="btn btn-default btn-sm btn-center" type="button" (click)="modalService.openModal()">
+              <i class="pe-7s-edit"></i>
+              <span class="bold">Edit Project</span>
+            </button>
+          </div>
+          <div class="header-icon">
+            <i class="pe page-header-icon pe-7s-global"></i>
+          </div>
+          <div class="header-title">
+            <h1>{{ project?.name }} Project</h1>
+            <small class="pull-right">Api Key: {{ project.apiKey }}</small>
+          </div>
+        </div>
+        <hr>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <app-execution-overview [executionStatus]="executionStatus"></app-execution-overview>
+      </div>
+      <div class="col-lg-6">
+        <app-execution-overview [executionStatus]="executionStatus"></app-execution-overview>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <ul class="nav nav-tabs" id="project_info_tabs" role="tablist">
+          <li class="active" role="presentation">
+            <a role="tab" data-toggle="tab" href="#execution_tab" aria-expanded="true">Executions</a>
+          </li>
+          <li role="presentation" class="">
+            <a data-toggle="tab" role="tab" href="#environment_tab" aria-expanded="false">Environments</a>
+          </li>
+          <li role="presentation" class="">
+            <a data-toggle="tab" role="tab" href="#testcase_tab" aria-expanded="false">Testcases</a>
+          </li>
+          <li role="presentation" class="">
+            <a data-toggle="tab" role="tab" href="#keyword_tab" aria-expanded="false">Keywords</a>
+          </li>
+          <li role="presentation" class="">
+            <a data-toggle="tab" role="tab" href="#reports_tab" aria-expanded="false">Reports</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="tab-content">
+          <div id="execution_tab" class="tab-pane active">
+            <app-executions [executions]="executions"></app-executions>
+          </div>
+          <div id="environment_tab" class="tab-pane">
+            <app-environments [environments]="environments"></app-environments>
+          </div>
+          <div id="testcase_tab" class="tab-pane">
+            <app-testcases [testcases]="testcases"></app-testcases>
+          </div>
+          <div id="keyword_tab" class="tab-pane">
+            <app-keywords [keywords]="keywords"></app-keywords>
+          </div>
+          <div id="reports_tab" class="tab-pane">
+            <app-reports></app-reports>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<app-edit-project (onEditProjectEvent)="editProject()" (onDeleteProjectEvent)="deleteProject()" [project]="project"></app-edit-project>

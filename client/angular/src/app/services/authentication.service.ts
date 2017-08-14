@@ -21,8 +21,9 @@ export class AuthenticationService {
         let data = res.json();
 
         if (data) {
+          let fullName = data.user.first_name + " " +  data.user.last_name;
           let cookie = JSON.stringify({
-            username: data.user.username, token: data.user.token, admin: data.user.admin
+            username: data.user.username, name: fullName, token: data.user.token, admin: data.user.admin
           });
 
           localStorage.setItem('currentUser', cookie);

@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map'
 import { Execution } from "../domain/executions/execution";
 import { ExecutionStatus } from "../domain/executions/execution-status";
 import { EnvironmentSummary } from "../domain/executions/environment-summary";
+import { ExecutionSummary } from "../domain/executions/execution-summary";
 import * as Globals from '../globals';
 
 
@@ -55,15 +56,29 @@ export class ExecutionService {
       .catch((error:any) => Observable.throw(error || 'Server error'));
   }
 
-  getTestCaseSummary(id: string): Observable<ExecutionStatus> {
-    let testcaseSummaryUrl = this.executionsUrl + "/" + id + "/testcase_status";
+  getTestCaseStatus(id: string): Observable<ExecutionStatus> {
+    let testcaseStatusUrl = this.executionsUrl + "/" + id + "/testcase_status";
+
+    return this.http.get(testcaseStatusUrl, Globals.getTokenHeaders())
+      .map(function(res) {
+        let data = res.json();
+
+        if (data) {
+          return ExecutionStatus.create(data.execution);
+        }
+      })
+      .catch((error:any) => Observable.throw(error || 'Server error'));
+  }
+
+  getTestCaseSummary(id: string): Observable<ExecutionSummary> {
+    let testcaseSummaryUrl = this.executionsUrl + "/" + id + "/testcase_summary";
 
     return this.http.get(testcaseSummaryUrl, Globals.getTokenHeaders())
       .map(function(res) {
         let data = res.json();
 
         if (data) {
-          return ExecutionStatus.create(data.execution);
+          return ExecutionSummary.create(data.execution);
         }
       })
       .catch((error:any) => Observable.throw(error || 'Server error'));
@@ -77,8 +92,8 @@ export class ExecutionService {
         let data = res.json();
 
         if (data) {
-          var summary = [];
-          for (var environment of data.summary) {
+          let summary = [];
+          for (let environment of data.summary) {
             summary.push(EnvironmentSummary.create(environment));
           }
           return summary;

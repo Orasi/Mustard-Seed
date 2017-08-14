@@ -8,7 +8,7 @@ export class Project {
 
   constructor(
     public id: number,
-    public projectName: string,
+    public name: string,
     public apiKey: string,
     public executionId: string,
     public testcases: Array<TestCase>,
@@ -18,35 +18,35 @@ export class Project {
   ) {  }
 
   public static create(data: any): Project {
+    let testcases = [];
     if (data.testcases) {
-      var testcases = [];
-      for (var testcase of data.testcases) {
+      for (let testcase of data.testcases) {
         testcases.push(TestCase.create(testcase));
       }
     }
 
+    let environments = [];
     if (data.environments) {
-      var environments = [];
-      for (var environment of data.environments) {
+      for (let environment of data.environments) {
         environments.push(Environment.create(environment));
       }
     }
 
+    let executions = [];
     if (data.executions) {
-      var executions = [];
-      for (var execution of data.executions) {
+      for (let execution of data.executions) {
         executions.push(Execution.create(execution));
       }
     }
 
+    let keywords = [];
     if (data.keywords) {
-      var keywords = [];
-      for (var keyword of data.keywords) {
+      for (let keyword of data.keywords) {
         keywords.push(Keyword.create(keyword));
       }
     }
 
-    return new Project(data.id, data.projectName, data.apiKey, data.executionId,
+    return new Project(data.id, data.project_name, data.api_key, data.execution_id,
       testcases, executions, keywords, environments);
   }
 }

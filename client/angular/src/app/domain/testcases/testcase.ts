@@ -12,9 +12,9 @@ export class TestCase {
   ) {  }
 
   public static create(data: any): TestCase {
+    let keywords = [];
     if (data.keywords) {
-      var keywords = [];
-      for (var keyword of data.keywords) {
+      for (let keyword of data.keywords) {
         keywords.push(new Keyword(keyword.id, keyword.keyword, null, null, []));
       }
     }

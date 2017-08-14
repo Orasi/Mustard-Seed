@@ -4,31 +4,57 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { Select2Module } from 'ng2-select2';
+
 import { AuthenticationGuard } from './guards/auth.guard';
 import { AdministrationGuard } from './guards/administration.guard';
 
 import { UserService } from "./services/user.service";
 import { ProjectService } from "./services/project.service";
 import { TeamService } from "./services/team.service";
+import { ExecutionService } from "./services/execution.service";
 
-import { RegisterFormComponent } from './components/register/register-form/register-form.component';
 import { ForgotPasswordFormComponent } from './components/forgot-password/forgot-password-form/forgot-password-form.component';
 import { LoginFormComponent } from './components/login/\/login-form/login-form.component';
-
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
-import { RegisterComponent } from './components/register/register.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HeaderComponent } from './components/header/header.component';
+import { ExecutionStatusComponent } from './components/execution/execution-status/execution-status.component';
+import { ExecutionOverviewComponent } from './components/execution/execution-overview/execution-overview.component';
+import { ProjectListComponent } from './components/project/project-list/project-list.component';
+import { AddProjectComponent } from './components/project/add-project/add-project.component';
+import { TeamListComponent } from './components/team/team-list/team-list.component';
+import { AddTeamComponent } from './components/team/add-team/add-team.component';
+import { TeamUserListComponent } from './components/team/team-user-list/team-user-list.component';
+import { AddTeamMemberComponent } from './components/team/add-team-member/add-team-member.component';
+import { TeamComponent } from './components/team/team.component';
+import { ProjectComponent } from './components/project/project.component';
+import { UsersComponent } from './components/users/users.component';
+import { AddUserComponent } from './components/users/add-user/add-user.component';
+import { TestcasesComponent } from './components/project/testcases/testcases.component';
+import { KeywordsComponent } from './components/project/keywords/keywords.component';
+import { ReportsComponent } from './components/reports/reports.component';
+import { EditProjectComponent } from './components/project/edit-project/edit-project.component';
+import { EnvironmentsComponent } from './components/project/environments/environments.component';
+import { ExecutionsComponent } from './components/project/executions/executions.component';
+import { TeamProjectListComponent } from './components/team/team-project-list/team-project-list.component';
+import { TeamAddExistingProjectComponent } from './components/team/team-add-existing-project/team-add-existing-project.component';
 
 
 const appRoutes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent },
-  { path: 'register', component: RegisterComponent, canActivate: [AdministrationGuard] },
   { path: 'login', component: LoginComponent },
-  { path: '', component: DashboardComponent, canActivate: [AuthenticationGuard] }
+  { path: '', component: DashboardComponent, canActivate: [AuthenticationGuard],
+    children: [
+      { path: 'projects/:id', component: ProjectComponent },
+      { path: 'teams/:id', component: TeamComponent },
+      { path: 'projects', component: ProjectListComponent },
+      { path: 'users', component: UsersComponent }
+    ]
+  }
 ];
 
 
@@ -39,23 +65,42 @@ const appRoutes: Routes = [
     ForgotPasswordComponent,
     NavBarComponent,
     LoginFormComponent,
-    RegisterFormComponent,
-    RegisterComponent,
     DashboardComponent,
     ForgotPasswordFormComponent,
-    HeaderComponent
+    HeaderComponent,
+    ExecutionStatusComponent,
+    ExecutionOverviewComponent,
+    ProjectListComponent,
+    AddProjectComponent,
+    TeamListComponent,
+    AddTeamComponent,
+    TeamUserListComponent,
+    AddTeamMemberComponent,
+    TeamComponent,
+    ProjectComponent,
+    UsersComponent,
+    AddUserComponent,
+    TestcasesComponent,
+    KeywordsComponent,
+    ReportsComponent,
+    EditProjectComponent,
+    EnvironmentsComponent,
+    ExecutionsComponent,
+    TeamProjectListComponent,
+    TeamAddExistingProjectComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
     ReactiveFormsModule,
+    Select2Module,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
     )
   ],
-  providers: [ AuthenticationGuard, AdministrationGuard, UserService, ProjectService, TeamService ],
+  providers: [ AuthenticationGuard, AdministrationGuard, UserService, ProjectService, TeamService, ExecutionService ],
   bootstrap: [ AppComponent ]
 })
 

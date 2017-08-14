@@ -22,10 +22,9 @@
         <input type="text" class="form-control" placeholder="Search data for analysis" style="width: 175px">
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <li class=" profil-link">
-          <a href="login.html">
-            <span class="profile-address">luna@company.io</span>
-            <img src="images/profile.jpg" class="img-circle" alt="">
+        <li class="profil-link space-8">
+          <a (click)="logout()">
+            <span class="text-capitalize">{{ username }}</span>
           </a>
         </li>
       </ul>
