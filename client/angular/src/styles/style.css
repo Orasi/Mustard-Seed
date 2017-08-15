@@ -2904,3 +2904,6 @@ fieldset[disabled] .form-control {
 .select2-container {
   width: 100% !important;
 }
+.heading-md {
+  font-size: 24px;
+}

@@ -13,5 +13,7 @@ json.team do
   json.users @team.users do |u|
     json.id u.id
     json.username u.username
+    json.first_name u.first_name
+    json.last_name u.last_name
   end
 end

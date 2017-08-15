@@ -23,7 +23,7 @@ export class Team {
 
     let users = [];
     if (data.users) {
-      for (let user of users) {
+      for (let user of data.users) {
         users.push(User.create(user));
       }
     }

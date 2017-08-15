@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from "../../../domain/user";
-import { Router } from "@angular/router";
+import {Router, ActivatedRoute} from "@angular/router";
 import { ModalService } from "../../../services/modal.service";
+import {TeamService} from "../../../services/team.service";
 
 
 @Component({
@@ -11,12 +12,23 @@ import { ModalService } from "../../../services/modal.service";
 })
 export class TeamUserListComponent implements OnInit {
 
-  @Input() users: User[];
+  @Input() users: User[] = [];
+
+  private teamId: string;
+
 
   constructor(private router: Router,
-              public modalService: ModalService) { }
+              private teamService: TeamService,
+              private route: ActivatedRoute,
+              public modalService: ModalService) {
+    this.teamId = this.route.snapshot.params['id'];
+  }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.teamService.teamChange.subscribe(result => {
+      this.users = result;
+    });
+  }
 
   addUser(user: User) {
     this.users.push(user);
@@ -25,5 +37,11 @@ export class TeamUserListComponent implements OnInit {
   toUser($event: any, id: number) {
     // TODO add route to team
     alert("Add route to user");
+  }
+
+  deleteUserFromTeam($event, index) {
+    let userId = $event.target.id;
+    this.users.splice(index, 1);
+    this.teamService.deleteUser(this.teamId, userId);
   }
 }

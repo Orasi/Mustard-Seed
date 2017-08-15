@@ -1,0 +1,28 @@
+<div *ngIf="modalService.show" class="modal" id="add-user-modal" tabindex="-1" role="dialog" (click)="modalService.handleClick($event)">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h3 class="modal-title">Add User</h3>
+      </div>
+      <form #addUserForm="ngForm" id="addProjectForm" (ngSubmit)="addUserToTeam()" novalidate>
+        <div class="modal-body">
+          <div class="form-group">
+            <div class="form-group-item">
+              <div *ngIf="noUsersFlag">
+                <label class="control-label">Name</label>
+                <select2 [data]="select2Data" (valueChanged)="changed($event)" [cssImport]="false" [options]="options"></select2>
+              </div>
+              <div *ngIf="!noUsersFlag">
+                <h5 class="error">No Users Available for Selection</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer footer-left">
+          <button type="submit" class="btn btn-accent">Submit</button>
+          <button (click)="modalService.closeModal();" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -11,8 +11,6 @@ import { ModalService } from "../../../services/modal.service";
 })
 export class AddTeamComponent implements OnInit {
 
-  @Output() onAddTeamEvent: EventEmitter<Team> = new EventEmitter<Team>();
-
   addTeamFormGroup: FormGroup;
   nameValue : string;
   descriptionValue : string;
@@ -37,14 +35,7 @@ export class AddTeamComponent implements OnInit {
   }
 
   createTeam(values) {
-    this.teamService.createTeam(values.name, values.description).subscribe(result => {
-      this.onAddTeamEvent.emit(result);
-      this.modalService.closeModal();
-    },
-    err => {
-      if (err.messages[0] == "Name has already been taken") {
-        this.nameFlag = true;
-      }
-    });
+    this.teamService.createTeam(values.name, values.description);
+    this.modalService.closeModal();
   }
 }
