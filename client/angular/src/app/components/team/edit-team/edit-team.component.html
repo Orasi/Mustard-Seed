@@ -1,0 +1,34 @@
+<div *ngIf="modalService.show" class="modal" id="edit-team-modal" tabindex="-1" role="dialog" (click)="modalService.handleClick($event)">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h3 class="modal-title">Edit Team</h3>
+      </div>
+      <form #editTeamForm="ngForm" id="editTeamForm" [formGroup]="editTeamFormGroup" (ngSubmit)="editTeam(editTeamFormGroup.value)" novalidate>
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="control-label" for="name">Name</label>
+            <input type="text" placeholder="Please enter the team name" title="Please enter the team name" required value=""
+                   id="name" class="form-control" name="name" formControlName="name" [value]="nameValue">
+            <div class='form-text error' *ngIf="editTeamFormGroup.controls.name.touched">
+              <div *ngIf="editTeamFormGroup.controls.name.hasError('required')" class="help-block error small">Team name is required.</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label" for="name">Name</label>
+            <textarea type="text" placeholder="Please enter the team description" title="Please enter the team description" required value=""
+                      id="description" class="form-control" name="name" formControlName="description" [value]="descriptionValue"></textarea>
+            <div class='form-text error' *ngIf="editTeamFormGroup.controls.description.touched">
+              <div *ngIf="editTeamFormGroup.controls.description.hasError('required')" class="help-block error small">Team description is required.</div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer footer-left">
+          <button type="submit" class="btn btn-accent" [disabled]="!editTeamFormGroup.valid">Submit</button>
+          <button (click)="modalService.closeModal(); editTeamForm.reset();" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button (click)="modalService.closeModal(); deleteTeam();" type="button" class="btn btn-accent pull-right">Delete</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

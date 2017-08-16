@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { ProjectService } from "../../../services/project.service";
-import { Project } from "../../../domain/project";
-import { ModalService } from "../../../services/modal.service";
-import { TeamService } from "../../../services/team.service";
+import { FormGroup } from "@angular/forms";
+import { ProjectService } from "../../../../services/project.service";
+import { Project } from "../../../../domain/project";
+import { ModalService } from "../../../../services/modal.service";
+import { TeamService } from "../../../../services/team.service";
 import { Select2OptionData } from 'ng2-select2';
+import { ActivatedRoute } from "@angular/router";
 
 
 @Component({
@@ -19,27 +20,20 @@ export class TeamAddExistingProjectComponent implements OnInit {
   projects: Project[] = [];
 
   addProjectFormGroup: FormGroup;
-  nameValue : string;
-  nameFlag: boolean = false;
 
-  constructor(private fb: FormBuilder,
-              private teamService: TeamService,
+  private selectedValue: string = "";
+  private teamId: string;
+
+
+  constructor(private teamService: TeamService,
               private projectService: ProjectService,
+              private route: ActivatedRoute,
               public modalService: ModalService) {
+    this.teamId = this.route.snapshot.params['id'];
     this.projectService.getProjects();
   }
 
   ngOnInit() {
-    this.nameValue = '';
-
-    this.addProjectFormGroup = this.fb.group({
-      'select2': ['', Validators.required]
-    });
-
-    this.modalService.resetForm.subscribe(value => {
-      this.addProjectFormGroup.reset(value);
-    });
-
     this.projectService.projectsChange.subscribe(result => {
       this.projects = result;
 
@@ -56,9 +50,14 @@ export class TeamAddExistingProjectComponent implements OnInit {
     }
   }
 
+  public changed(event: any): void {
+    this.selectedValue = event.value;
+  }
 
-  addUserToTeam(values) {
-    this.teamService.addProject(values.name, values.description);
-    this.modalService.closeModal();
+  addProjectToTeam() {
+    if (this.selectedValue != "") {
+      this.teamService.addProject(this.teamId, this.selectedValue);
+      this.modalService.closeModal();
+    }
   }
 }

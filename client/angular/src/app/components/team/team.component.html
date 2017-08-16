@@ -1,1 +1,33 @@
-<app-team-project-list [projects]="projects"></app-team-project-list>
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="view-header">
+          <div class="pull-right text-right">
+            <button class="btn btn-default btn-sm btn-center" type="button" (click)="modalService.openModal()">
+              <i class="pe-7s-edit"></i>
+              <span class="bold">Edit Team</span>
+            </button>
+            <app-edit-team></app-edit-team>
+          </div>
+          <div class="header-icon">
+            <i class="pe page-header-icon pe-7s-rocket"></i>
+          </div>
+          <div class="header-title">
+            <h1>{{ team.name }} Team</h1>
+            <p>{{ team.description }}</p>
+          </div>
+        </div>
+        <hr>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <app-team-project-list [projects]="projects"></app-team-project-list>
+      </div>
+      <div class="col-lg-6">
+        <app-team-user-list [users]="users"></app-team-user-list>
+      </div>
+    </div>
+  </div>
+</section>

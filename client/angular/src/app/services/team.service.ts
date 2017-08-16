@@ -55,6 +55,13 @@ export class TeamService {
   getTeam(id: number) {
     let teamUrl = this.teamsUrl + "/" + id;
 
+    for (let team of this.teams) {
+      if (team.id == id) {
+        this.teamSource.next(team);
+        return;
+      }
+    }
+
     this.http.get(teamUrl, Globals.getTokenHeaders())
       .map(function(res) {
         let data = res.json();
@@ -96,10 +103,61 @@ export class TeamService {
       });
   }
 
+  editTeam(id: number, name: string, description: string) {
+    let teamUrl = this.teamsUrl + "/" + id;
+
+    let body = JSON.stringify({
+      "team": { "name": name, "description": description }
+    });
+
+    for (let team of this.teams) {
+      if (team.id == id) {
+        team.name = name;
+        team.description = description;
+        this.teamsSource.next(this.teams);
+      }
+    }
+
+    this.http.post(teamUrl, body, Globals.getTokenHeaders())
+      .map(function(res) {
+        return !!res.json();
+      })
+      .catch((error:any) => Observable.throw(error.json() || 'Server error'))
+      .subscribe(result => { },
+        error => {
+          this.errorSource.next(error);
+        });
+  }
+
+  deleteTeam(id: number) {
+    let teamUrl = this.teamsUrl + "/" + id;
+
+    for (var team of this.teams) {
+      if (team.id == id) {
+        let index = this.teams.indexOf(team, 0);
+
+        if (index > -1) {
+          this.teams.splice(index, 1);
+        }
+        this.teamSource.next(this.teams);
+      }
+    }
+
+    this.http.delete(teamUrl, Globals.getTokenHeaders())
+      .map(function(res) {
+        return !!res.json();
+      })
+      .catch((error:any) => Observable.throw(error.json() || 'Server error'))
+      .subscribe(result => { },
+        error => {
+          this.errorSource.next(error);
+        });
+  }
+
   addUser(teamId: string, userId: string) {
     let addUserUrl = this.teamsUrl + "/" + teamId + "/user/" + userId;
 
-    this.http.post(addUserUrl, Globals.getTokenHeaders())
+    this.http.post(addUserUrl, null, Globals.getTokenHeaders())
       .map(function(res) {
         let data = res.json();
 
@@ -109,6 +167,46 @@ export class TeamService {
       })
       .catch((error:any) => Observable.throw(error.json() || 'Server error'))
       .subscribe(result => {
+          for (var team of this.teams) {
+            if (team.id == result.id) {
+              let index = this.teams.indexOf(team, 0);
+
+              if (index > -1) {
+                this.teams.splice(index, 1);
+              }
+              this.teams.push(result);
+            }
+          }
+          this.teamSource.next(result);
+        },
+        error => {
+          this.errorSource.next(error);
+        });
+  }
+
+  deleteUser(teamId: string, userId: string) {
+    let deleteUserUrl = this.teamsUrl + "/" + teamId + "/user/" + userId;
+
+    this.http.delete(deleteUserUrl, Globals.getTokenHeaders())
+      .map(function(res) {
+        let data = res.json();
+
+        if (data) {
+          return Team.create(data.team);
+        }
+      })
+      .catch((error:any) => Observable.throw(error.json() || 'Server error'))
+      .subscribe(result => {
+          for (var team of this.teams) {
+            if (team.id == result.id) {
+              let index = this.teams.indexOf(team, 0);
+
+              if (index > -1) {
+                this.teams.splice(index, 1);
+              }
+              this.teams.push(result);
+            }
+          }
           this.teamSource.next(result);
         },
         error => {
@@ -117,9 +215,9 @@ export class TeamService {
   }
 
   addProject(teamId: string, projectId: string) {
-    let addProjectUrl = this.teamsUrl + "/" + teamId + "/projects/" + projectId;
+    let addProjectUrl = this.teamsUrl + "/" + teamId + "/project/" + projectId;
 
-    this.http.post(addProjectUrl, Globals.getTokenHeaders())
+    this.http.post(addProjectUrl, null, Globals.getTokenHeaders())
       .map(function(res) {
         let data = res.json();
 
@@ -129,6 +227,46 @@ export class TeamService {
       })
       .catch((error:any) => Observable.throw(error.json() || 'Server error'))
       .subscribe(result => {
+          for (var team of this.teams) {
+            if (team.id == result.id) {
+              let index = this.teams.indexOf(team, 0);
+
+              if (index > -1) {
+                this.teams.splice(index, 1);
+              }
+              this.teams.push(result);
+            }
+          }
+          this.teamSource.next(result);
+        },
+        error => {
+          this.errorSource.next(error);
+        });
+  }
+
+  deleteProject(teamId: string, projectId: string) {
+    let deleteProjectUrl = this.teamsUrl + "/" + teamId + "/project/" + projectId;
+
+    this.http.delete(deleteProjectUrl, Globals.getTokenHeaders())
+      .map(function(res) {
+        let data = res.json();
+
+        if (data) {
+          return Team.create(data.team);
+        }
+      })
+      .catch((error:any) => Observable.throw(error.json() || 'Server error'))
+      .subscribe(result => {
+          for (var team of this.teams) {
+            if (team.id == result.id) {
+              let index = this.teams.indexOf(team, 0);
+
+              if (index > -1) {
+                this.teams.splice(index, 1);
+              }
+              this.teams.push(result);
+            }
+          }
           this.teamSource.next(result);
         },
         error => {

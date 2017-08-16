@@ -1,8 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { ProjectService } from "../../../services/project.service";
-import { Project } from "../../../domain/project";
-import { ModalService } from "../../../services/modal.service";
+import { ProjectService } from "../../../../services/project.service";
+import { Project } from "../../../../domain/project";
+import { ModalService } from "../../../../services/modal.service";
 
 
 @Component({

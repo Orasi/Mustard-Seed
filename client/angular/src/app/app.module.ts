@@ -25,11 +25,11 @@ import { HeaderComponent } from './components/header/header.component';
 import { ExecutionStatusComponent } from './components/execution/execution-status/execution-status.component';
 import { ExecutionOverviewComponent } from './components/execution/execution-overview/execution-overview.component';
 import { ProjectListComponent } from './components/project/project-list/project-list.component';
-import { AddProjectComponent } from './components/project/add-project/add-project.component';
+import { AddProjectComponent } from './components/project/project-list/add-project/add-project.component';
 import { TeamListComponent } from './components/team/team-list/team-list.component';
 import { AddTeamComponent } from './components/team/add-team/add-team.component';
 import { TeamUserListComponent } from './components/team/team-user-list/team-user-list.component';
-import { AddTeamMemberComponent } from './components/team/add-team-member/add-team-member.component';
+import { AddTeamMemberComponent } from './components/team/team-user-list/add-team-member/add-team-member.component';
 import { TeamComponent } from './components/team/team.component';
 import { ProjectComponent } from './components/project/project.component';
 import { UsersComponent } from './components/users/users.component';
@@ -41,7 +41,8 @@ import { EditProjectComponent } from './components/project/edit-project/edit-pro
 import { EnvironmentsComponent } from './components/project/environments/environments.component';
 import { ExecutionsComponent } from './components/project/executions/executions.component';
 import { TeamProjectListComponent } from './components/team/team-project-list/team-project-list.component';
-import { TeamAddExistingProjectComponent } from './components/team/team-add-existing-project/team-add-existing-project.component';
+import { TeamAddExistingProjectComponent } from './components/team/team-project-list/team-add-existing-project/team-add-existing-project.component';
+import { EditTeamComponent } from './components/team/edit-team/edit-team.component';
 
 
 const appRoutes: Routes = [
@@ -87,7 +88,8 @@ const appRoutes: Routes = [
     EnvironmentsComponent,
     ExecutionsComponent,
     TeamProjectListComponent,
-    TeamAddExistingProjectComponent
+    TeamAddExistingProjectComponent,
+    EditTeamComponent
   ],
   imports: [
     BrowserModule,

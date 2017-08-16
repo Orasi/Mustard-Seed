@@ -1,18 +1,30 @@
-<section class="table-responsive col-lg-6">
-  <h3 class="panel-heading text-capitalize col-lg-9">Users</h3>
-  <button class="btn btn-default btn-xs btn-center col-lg-3" type="button" (click)="modalService.openModal()">
-    <i class="fa fa-industry"></i>
-    <span class="bold">Add User</span>
-  </button>
-  <div class="panel panel-filled col-lg-12">
-    <table class="table table-hover">
-      <tbody>
-        <tr *ngFor="let user of users; let index = index;" (click)="toUser(user.id)">
-          <th class="row-num-label">{{ index + 1 }}.</th>
-          <td>{{ user.name }}</td>
-        </tr>
-      </tbody>
-    </table>
+<div class="panel panel-filled">
+  <div class="panel-heading heading-md">
+    Users
+    <button class="btn btn-default btn-xs btn-center pull-right" type="button" (click)="modalService.openModal()">
+      <i class="fa pe-7s-add-user"></i>
+      <span class="bold">Add User</span>
+    </button>
   </div>
-</section>
-<app-add-team-member (onAddUserEvent)="addUser($event)"></app-add-team-member>
+  <div class="panel-body">
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <tbody>
+          <ng-container *ngIf="users.length > 0" >
+            <tr *ngFor="let user of users; let index = index;" (click)="toUser(user.id)">
+              <th class="row-num-label">{{ index + 1 }}.</th>
+              <td>{{ user.firstName }} {{ user.lastName }}</td>
+              <td>
+                <span id="{{ user.id }}" class="pe-7s-trash pull-right" data-toggle="tooltip" data-placement="bottom" title="Delete Project" (click)="deleteUserFromTeam($event, index)"></span>
+              </td>
+            </tr>
+          </ng-container>
+          <tr *ngIf="users.length == 0">
+            <h2 class="error">No Users Available for this Team.</h2>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<app-add-team-member [teamUsers]="users" (onAddUserEvent)="addUser($event)"></app-add-team-member>
