@@ -10,16 +10,21 @@
     <div class="table-responsive">
       <table class="table table-hover">
         <tbody>
-        <tr *ngFor="let project of projects; let index = index;" (click)="toProject(project.id)">
-          <th class="row-num-label">{{ index + 1 }}.</th>
-          <td>{{ project.name }}</td>
-          <td>
-            <span id="{{project.id}}" class="pe-7s-trash pull-right" data-toggle="tooltip" data-placement="bottom" title="Delete Project" (click)="deleteProject($event, index)"></span>
-          </td>
+        <ng-container *ngIf="projects?.length > 0" >
+          <tr *ngFor="let project of projects; let index = index;">
+            <th class="row-num-label">{{ index + 1 }}.</th>
+            <td class="router-link" [routerLink]="['/projects/', project.id]">{{ project.name }}</td>
+            <td>
+              <span id="{{project.id}}" class="pe-7s-trash pull-right" data-toggle="tooltip" data-placement="bottom" title="Delete Project" (click)="deleteProject($event, index)"></span>
+            </td>
+          </tr>
+        </ng-container>
+        <tr *ngIf="projects?.length == 0">
+          <h5 class="notification">No Projects Available for this Team.</h5>
         </tr>
         </tbody>
       </table>
     </div>
   </div>
 </div>
-<app-team-add-existing-project></app-team-add-existing-project>
+<app-team-add-existing-project [projects]="projects"></app-team-add-existing-project>

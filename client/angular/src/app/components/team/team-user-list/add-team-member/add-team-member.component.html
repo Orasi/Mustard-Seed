@@ -8,13 +8,8 @@
         <div class="modal-body">
           <div class="form-group">
             <div class="form-group-item">
-              <div *ngIf="noUsersFlag">
-                <label class="control-label">Name</label>
-                <select2 [data]="select2Data" (valueChanged)="changed($event)" [cssImport]="false" [options]="options"></select2>
-              </div>
-              <div *ngIf="!noUsersFlag">
-                <h5 class="error">No Users Available for Selection</h5>
-              </div>
+              <label class="control-label">Name</label>
+              <select2 [data]="select2Data" (valueChanged)="changed($event)" [cssImport]="false" [options]="options"></select2>
             </div>
           </div>
         </div>

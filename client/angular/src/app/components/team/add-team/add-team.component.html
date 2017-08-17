@@ -12,7 +12,7 @@
               <label class="control-label" for="name">Name</label>
               <input type="text" placeholder="Please enter the team name" title="Please enter the team name" required value=""
                      id="name" class="form-control" name="name" formControlName="name" [value]="nameValue">
-              <div class='form-text error' *ngIf="addTeamFormGroup.controls.name.touched">
+              <div class='form-text error' *ngIf="addTeamFormGroup.controls.name.valid">
                 <div *ngIf="addTeamFormGroup.controls.name.hasError('required')" class="help-block error small">Team name is required.</div>
               </div>
             </div>

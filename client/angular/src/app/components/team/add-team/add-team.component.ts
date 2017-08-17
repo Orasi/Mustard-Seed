@@ -14,7 +14,8 @@ export class AddTeamComponent implements OnInit {
   addTeamFormGroup: FormGroup;
   nameValue : string;
   descriptionValue : string;
-  nameFlag: boolean = false;
+  nameFlag: boolean = false; //TODO add for creating another team with the same name
+
 
   constructor(private fb: FormBuilder,
               private teamService: TeamService,

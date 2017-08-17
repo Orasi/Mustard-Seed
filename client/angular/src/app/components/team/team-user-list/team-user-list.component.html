@@ -10,7 +10,7 @@
     <div class="table-responsive">
       <table class="table table-hover">
         <tbody>
-          <ng-container *ngIf="users.length > 0" >
+          <ng-container *ngIf="users?.length > 0" >
             <tr *ngFor="let user of users; let index = index;" (click)="toUser(user.id)">
               <th class="row-num-label">{{ index + 1 }}.</th>
               <td>{{ user.firstName }} {{ user.lastName }}</td>
@@ -19,8 +19,8 @@
               </td>
             </tr>
           </ng-container>
-          <tr *ngIf="users.length == 0">
-            <h2 class="error">No Users Available for this Team.</h2>
+          <tr *ngIf="users?.length == 0">
+            <h5 class="notification">No Users Available for this Team.</h5>
           </tr>
         </tbody>
       </table>

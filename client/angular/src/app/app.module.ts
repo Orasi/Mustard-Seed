@@ -6,6 +6,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { Select2Module } from 'ng2-select2';
 
+import { DropzoneModule } from 'ngx-dropzone-wrapper';
+import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
+
 import { AuthenticationGuard } from './guards/auth.guard';
 import { AdministrationGuard } from './guards/administration.guard';
 
@@ -43,6 +46,7 @@ import { ExecutionsComponent } from './components/project/executions/executions.
 import { TeamProjectListComponent } from './components/team/team-project-list/team-project-list.component';
 import { TeamAddExistingProjectComponent } from './components/team/team-project-list/team-add-existing-project/team-add-existing-project.component';
 import { EditTeamComponent } from './components/team/edit-team/edit-team.component';
+import { ImportTestcasesComponent } from './components/project/testcases/import-testcases/import-testcases.component';
 
 
 const appRoutes: Routes = [
@@ -57,6 +61,13 @@ const appRoutes: Routes = [
     ]
   }
 ];
+
+
+const DROPZONE_CONFIG: DropzoneConfigInterface = {
+  url: '/projects/:id/parse',
+  maxFilesize: 100,
+  acceptedFiles: 'application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+};
 
 
 @NgModule({
@@ -89,7 +100,8 @@ const appRoutes: Routes = [
     ExecutionsComponent,
     TeamProjectListComponent,
     TeamAddExistingProjectComponent,
-    EditTeamComponent
+    EditTeamComponent,
+    ImportTestcasesComponent
   ],
   imports: [
     BrowserModule,
@@ -100,7 +112,8 @@ const appRoutes: Routes = [
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
-    )
+    ),
+    DropzoneModule.forRoot(DROPZONE_CONFIG)
   ],
   providers: [ AuthenticationGuard, AdministrationGuard, UserService, ProjectService, TeamService, ExecutionService ],
   bootstrap: [ AppComponent ]

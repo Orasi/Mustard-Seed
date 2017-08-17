@@ -33,8 +33,6 @@ export class EditProjectComponent implements OnInit {
   }
 
   editProject(values){
-    console.log(this.project.id);
-    console.log(values.name);
     this.projectService.editProject(this.project.id, values.name);
     this.modalService.closeModal();
   }

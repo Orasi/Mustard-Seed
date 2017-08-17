@@ -10,9 +10,9 @@
         <div class="panel panel-filled col-lg-12">
           <table class="table table-hover">
             <tbody>
-              <tr *ngFor="let project of projects; let index = index;" (click)="toProject(project.id)">
+              <tr *ngFor="let project of projects; let index = index;">
                 <th class="row-num-label">{{ index + 1 }}.</th>
-                <td>{{ project.name }}</td>
+                <td class="router-link" [routerLink]="['/projects/', project.id]">{{ project.name }}</td>
                 <td>
                   <span id="{{project.id}}" class="pe-7s-trash pull-right" data-toggle="tooltip" data-placement="bottom" title="Delete Project" (click)="deleteProject($event, index)"></span>
                 </td>

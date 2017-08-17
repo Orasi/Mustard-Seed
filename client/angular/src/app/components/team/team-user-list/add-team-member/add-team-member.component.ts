@@ -18,44 +18,33 @@ export class AddTeamMemberComponent implements OnInit {
 
   @Input() teamUsers: User[] = [];
   noUsersFlag: boolean = false;
-
-
+  
   private selectedValue: string = "";
-  private teamId: string;
 
 
   constructor(private userService: UserService,
               private teamService: TeamService,
               private route: ActivatedRoute,
-              public modalService: ModalService) {
-
-    this.teamId = this.route.snapshot.params['id'];
-    this.userService.getUsers();
-  }
+              public modalService: ModalService) { }
 
   ngOnInit() {
-    this.userService.usersChange.subscribe(result => {
-      if (result.length > 0) {
-        this.select2Data = [];
-        this.select2Data.push({ id: "-1", text: "" });
+    this.userService.getUsers();
 
-        for (let user of result) {
-          if (!this.doesTeamContainUser(user)) {
-            let name = user.firstName + " " + user.lastName;
-            this.select2Data.push({id: String(user.id), text: name});
-          }
+    this.userService.usersChange.subscribe(result => {
+      this.select2Data = [];
+      this.select2Data.push({ id: "-1", text: "" });
+
+      for (let user of result) {
+        if (!this.doesTeamContainUser(user)) {
+          let name = user.firstName + " " + user.lastName;
+          this.select2Data.push({id: String(user.id), text: name});
         }
       }
-      else {
-        this.noUsersFlag = true;
-      }
     });
-
-
+    
     this.teamService.teamChange.subscribe(result => {
       this.userService.getUsers();
     });
-
 
     this.options = {
       placeholder: { id: "-1", text: "Select Project" },
@@ -68,8 +57,9 @@ export class AddTeamMemberComponent implements OnInit {
   }
 
   addUserToTeam() {
+    let teamId = this.route.snapshot.params['id'];
     if (this.selectedValue != "") {
-      this.teamService.addUser(this.teamId, this.selectedValue);
+      this.teamService.addUser(teamId, this.selectedValue);
       this.modalService.closeModal();
       this.userService.getUsers();
     }

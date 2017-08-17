@@ -23,12 +23,12 @@ export class TeamComponent implements OnInit {
   constructor(private teamService: TeamService,
               private route: ActivatedRoute,
               private router: Router,
-              public modalService: ModalService) {
-    let id = this.route.snapshot.params['id'];
-    this.teamService.getTeam(id);
-  }
+              public modalService: ModalService) { }
 
   ngOnInit() {
+    let id = this.route.snapshot.params['id'];
+    this.teamService.getTeam(id);
+
     this.route.params.subscribe(params => {
       this.teamService.getTeam(params['id']);
     });

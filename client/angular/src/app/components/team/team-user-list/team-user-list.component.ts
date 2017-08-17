@@ -13,20 +13,18 @@ import {TeamService} from "../../../services/team.service";
 export class TeamUserListComponent implements OnInit {
 
   @Input() users: User[] = [];
-
+  
   private teamId: string;
-
+  
 
   constructor(private router: Router,
               private teamService: TeamService,
               private route: ActivatedRoute,
-              public modalService: ModalService) {
-    this.teamId = this.route.snapshot.params['id'];
-  }
+              public modalService: ModalService) { }
 
   ngOnInit() {
     this.teamService.teamChange.subscribe(result => {
-      this.users = result;
+        this.users = result.users;
     });
   }
 
@@ -40,8 +38,9 @@ export class TeamUserListComponent implements OnInit {
   }
 
   deleteUserFromTeam($event, index) {
+    let teamId = this.route.snapshot.params['id'];
     let userId = $event.target.id;
     this.users.splice(index, 1);
-    this.teamService.deleteUser(this.teamId, userId);
+    this.teamService.deleteUser(teamId, userId);
   }
 }
