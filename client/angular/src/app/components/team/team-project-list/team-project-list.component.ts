@@ -14,7 +14,7 @@ import { TeamService } from "../../../services/team.service";
 export class TeamProjectListComponent implements OnInit {
 
   @Input() projects: Project[] = [];
-
+  
 
   constructor(private projectService: ProjectService,
               private teamService: TeamService,

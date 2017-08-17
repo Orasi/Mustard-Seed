@@ -18,8 +18,9 @@ export class AddTeamMemberComponent implements OnInit {
 
   @Input() teamUsers: User[] = [];
   noUsersFlag: boolean = false;
-
+  
   private selectedValue: string = "";
+
 
   constructor(private userService: UserService,
               private teamService: TeamService,
@@ -40,7 +41,7 @@ export class AddTeamMemberComponent implements OnInit {
         }
       }
     });
-
+    
     this.teamService.teamChange.subscribe(result => {
       this.userService.getUsers();
     });

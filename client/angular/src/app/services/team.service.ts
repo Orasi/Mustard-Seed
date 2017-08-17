@@ -56,6 +56,13 @@ export class TeamService {
   getTeam(id: number) {
     let teamUrl = this.teamsUrl + "/" + id;
 
+    for (let team of this.teams) {
+      if (team.id == id) {
+        this.teamSource.next(team);
+        return;
+      }
+    }
+
     this.http.get(teamUrl, Globals.getTokenHeaders())
       .map(function(res) {
         let data = res.json();
@@ -136,6 +143,7 @@ export class TeamService {
         if (index > -1) {
           this.teams.splice(index, 1);
         }
+        
         this.sortTeamsAlphabetically();
         this.teamSource.next(this.teams);
       }
@@ -175,6 +183,7 @@ export class TeamService {
               this.teams.push(result);
             }
           }
+      
           this.sortTeamsAlphabetically();
           this.teamSource.next(result);
         },
@@ -206,6 +215,7 @@ export class TeamService {
               this.teams.push(result);
             }
           }
+      
           this.sortTeamsAlphabetically();
           this.teamSource.next(result);
         },
@@ -267,6 +277,7 @@ export class TeamService {
               this.teams.push(result);
             }
           }
+
           this.sortTeamsAlphabetically();
           this.teamSource.next(result);
         },

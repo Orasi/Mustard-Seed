@@ -19,7 +19,7 @@ export class EditTeamComponent implements OnInit {
   nameValue : string = '';
   descriptionValue: string = '';
   nameFlag: boolean = false; //TODO add for creating another team with the same name
-
+  
 
   constructor(private fb: FormBuilder,
               private teamService: TeamService,

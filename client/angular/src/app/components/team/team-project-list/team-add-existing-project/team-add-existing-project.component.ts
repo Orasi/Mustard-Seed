@@ -18,9 +18,9 @@ export class TeamAddExistingProjectComponent implements OnInit {
   options: Select2Options;
 
   @Input() projects: Project[] = [];
-
   private selectedValue: string = "";
 
+  
   constructor(private teamService: TeamService,
               private projectService: ProjectService,
               private route: ActivatedRoute,
@@ -43,7 +43,7 @@ export class TeamAddExistingProjectComponent implements OnInit {
       this.projects = result.projects;
       this.projectService.getProjects();
     });
-
+    
     this.options = {
       placeholder: { id: "-1", text: "Select Project" },
       minimumResultsForSearch: 5

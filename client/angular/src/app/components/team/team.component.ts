@@ -34,6 +34,7 @@ export class TeamComponent implements OnInit {
     });
 
     this.teamService.teamChange.subscribe(result => {
+      console.log(result);
       this.team = result;
       this.projects = this.team.projects;
       this.users = this.team.users;
