@@ -2918,3 +2918,15 @@ fieldset[disabled] .form-control {
 .router-link:focus {
   outline: none;
 }
+.dz-message {
+  background: #2f323b !important;
+  height: 125px !important;
+}
+.dz-text {
+  margin-top: 6% !important;
+  font-size: 18px !important;
+  color: #f6a821;
+}
+.modal-lg {
+  width: 75%;
+}

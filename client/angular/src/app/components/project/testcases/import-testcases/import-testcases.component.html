@@ -1,10 +1,72 @@
 <div *ngIf="modalService.show" class="modal" id="add-team-modal" tabindex="-1" role="dialog" (click)="modalService.handleClick($event)">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header text-center">
         <h3 class="modal-title">Import Testcases</h3>
       </div>
-      <dropzone [config]="config" [message]="'Click or drag images here to upload'" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></dropzone>
+      <div class="modal-body">
+        <dropzone [config]="config" [message]="'Click or drag file here to upload'" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></dropzone>
+        <div class="panel panel-filled panel-c-success panel-collapse">
+          <div class="panel-heading">
+            <div class="panel-tools" (click)="onClick($event)">
+              <a class="panel-toggle"><i class="fa fa-chevron-up"></i></a>
+            </div>
+            Successful Testcases Imported
+          </div>
+          <div class="panel-body" style="display: none;">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                <tr>
+                  <th>Validation ID</th>
+                  <th>Name</th>
+                </tr>
+                </thead>
+                <tbody>
+                <ng-container *ngIf="successTestcases?.length > 0" >
+                  <tr *ngFor="let testcase of successTestcases; let index = index;">
+                    <td>{{ testcase.validationId }}</td>
+                    <td>{{ testcase.name }}</td>
+                  </tr>
+                </ng-container>
+                <tr *ngIf="successTestcases?.length == 0">
+                  <h5 class="notification">No Testcases Found</h5>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-filled panel-c-danger panel-collapse">
+          <div class="panel-heading">
+            <div class="panel-tools" (click)="onClick($event)">
+              <a class="panel-toggle"><i class="fa fa-chevron-up"></i></a>
+            </div>
+            Failed Testcases Imported
+          </div>
+          <div class="panel-body" style="display: none;">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                <tr>
+                  <th>Error Message</th>
+                </tr>
+                </thead>
+                <tbody>
+                <ng-container *ngIf="failureTestcases?.length > 0">
+                  <tr *ngFor="let message of failureTestcases; let index = index;">
+                    <td>{{ message.error }}</td>
+                  </tr>
+                </ng-container>
+                <tr *ngIf="failureTestcases?.length == 0">
+                  <h5 class="notification">No Testcases Found with Errors</h5>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="modal-footer footer-left">
         <button (click)="modalService.closeModal();" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>

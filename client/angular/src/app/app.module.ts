@@ -65,7 +65,7 @@ const appRoutes: Routes = [
 
 const DROPZONE_CONFIG: DropzoneConfigInterface = {
   url: '/projects/:id/parse',
-  maxFilesize: 100,
+  maxFilesize: 50,
   acceptedFiles: 'application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
 };
 
