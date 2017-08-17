@@ -42,7 +42,6 @@ export class LoginFormComponent implements OnInit {
           this.router.navigate(['']);
       },
       err => {
-        console.log(err);
         this.authenticationFlag = false;
       });
   }

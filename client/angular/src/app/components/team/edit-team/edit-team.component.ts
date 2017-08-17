@@ -18,6 +18,8 @@ export class EditTeamComponent implements OnInit {
   editTeamFormGroup: FormGroup;
   nameValue : string = '';
   descriptionValue: string = '';
+  nameFlag: boolean = false; //TODO add for creating another team with the same name
+
 
   constructor(private fb: FormBuilder,
               private teamService: TeamService,
@@ -39,8 +41,6 @@ export class EditTeamComponent implements OnInit {
   }
 
   editProject(values){
-    console.log(this.team.id);
-    console.log(values.name);
     this.teamService.editTeam(this.team.id, values.name, values.description);
     this.modalService.closeModal();
   }

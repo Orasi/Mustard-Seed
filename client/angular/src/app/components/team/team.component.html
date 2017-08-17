@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-lg-12">
         <div class="view-header">
-          <div class="pull-right text-right">
+          <div class="pull-right">
             <button class="btn btn-default btn-sm btn-center" type="button" (click)="modalService.openModal()">
               <i class="pe-7s-edit"></i>
               <span class="bold">Edit Team</span>
@@ -23,7 +23,7 @@
     </div>
     <div class="row">
       <div class="col-lg-6">
-        <app-team-project-list [projects]="projects"></app-team-project-list>
+        <app-team-project-list></app-team-project-list>
       </div>
       <div class="col-lg-6">
         <app-team-user-list [users]="users"></app-team-user-list>

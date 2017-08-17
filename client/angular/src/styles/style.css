@@ -2907,3 +2907,14 @@ fieldset[disabled] .form-control {
 .heading-md {
   font-size: 24px;
 }
+.notification {
+  color: #f6a821;
+  letter-spacing: 1px;
+}
+.router-link {
+  cursor: pointer;
+  outline: none;
+}
+.router-link:focus {
+  outline: none;
+}

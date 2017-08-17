@@ -44,6 +44,7 @@ export class TeamService {
         .catch((error: any) => Observable.throw(error.json().error || 'Server error'))
         .subscribe(result => {
             this.teams = result;
+            this.sortTeamsAlphabetically();
             this.teamsSource.next(this.teams);
         },
         error => {
@@ -55,13 +56,6 @@ export class TeamService {
   getTeam(id: number) {
     let teamUrl = this.teamsUrl + "/" + id;
 
-    for (let team of this.teams) {
-      if (team.id == id) {
-        this.teamSource.next(team);
-        return;
-      }
-    }
-
     this.http.get(teamUrl, Globals.getTokenHeaders())
       .map(function(res) {
         let data = res.json();
@@ -72,6 +66,7 @@ export class TeamService {
       })
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'))
       .subscribe(result => {
+        this.sortTeamsAlphabetically();
         this.teamSource.next(result);
       },
       error => {
@@ -96,6 +91,7 @@ export class TeamService {
       .catch((error:any) => Observable.throw(error.json() || 'Server error'))
       .subscribe(result => {
         this.teams.push(result);
+        this.sortTeamsAlphabetically();
         this.teamsSource.next(this.teams);
       },
       error => {
@@ -114,6 +110,7 @@ export class TeamService {
       if (team.id == id) {
         team.name = name;
         team.description = description;
+        this.sortTeamsAlphabetically();
         this.teamsSource.next(this.teams);
       }
     }
@@ -139,6 +136,7 @@ export class TeamService {
         if (index > -1) {
           this.teams.splice(index, 1);
         }
+        this.sortTeamsAlphabetically();
         this.teamSource.next(this.teams);
       }
     }
@@ -177,6 +175,7 @@ export class TeamService {
               this.teams.push(result);
             }
           }
+          this.sortTeamsAlphabetically();
           this.teamSource.next(result);
         },
         error => {
@@ -207,6 +206,7 @@ export class TeamService {
               this.teams.push(result);
             }
           }
+          this.sortTeamsAlphabetically();
           this.teamSource.next(result);
         },
         error => {
@@ -237,6 +237,7 @@ export class TeamService {
               this.teams.push(result);
             }
           }
+          this.sortTeamsAlphabetically();
           this.teamSource.next(result);
         },
         error => {
@@ -260,17 +261,30 @@ export class TeamService {
           for (var team of this.teams) {
             if (team.id == result.id) {
               let index = this.teams.indexOf(team, 0);
-
               if (index > -1) {
                 this.teams.splice(index, 1);
               }
               this.teams.push(result);
             }
           }
+          this.sortTeamsAlphabetically();
           this.teamSource.next(result);
         },
         error => {
           this.errorSource.next(error);
         });
+  }
+
+
+
+  sortTeamsAlphabetically() {
+    this.teams.sort(function(a, b){
+      var nameA = a.name.toLowerCase(), nameB = b.name.toLowerCase();
+      if (nameA < nameB) //sort string ascending
+        return -1;
+      if (nameA > nameB)
+        return 1;
+      return 0; //default return value (no sorting)
+    });
   }
 }
