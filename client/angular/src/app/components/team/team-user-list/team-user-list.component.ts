@@ -13,7 +13,9 @@ import {TeamService} from "../../../services/team.service";
 export class TeamUserListComponent implements OnInit {
 
   @Input() users: User[] = [];
-
+  
+  private teamId: string;
+  
 
   constructor(private router: Router,
               private teamService: TeamService,
