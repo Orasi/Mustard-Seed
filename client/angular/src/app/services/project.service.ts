@@ -50,7 +50,7 @@ export class ProjectService {
             this.projectsSource.next(this.projects);
           },
           error => {
-            this.errorSource.next(true);
+            this.errorSource.next(error);
           });
     }
   }
@@ -79,7 +79,7 @@ export class ProjectService {
           this.projectSource.next(result);
         },
         error => {
-          this.errorSource.next(true);
+          this.errorSource.next(error);
         });
   }
 
@@ -100,7 +100,7 @@ export class ProjectService {
           this.projectsSource.next(this.projects);
         },
         error => {
-          this.errorSource.next(true);
+          this.errorSource.next(error);
         });
   }
 
@@ -125,7 +125,7 @@ export class ProjectService {
       .subscribe(
         result => { },
         error => {
-          this.errorSource.next(true);
+          this.errorSource.next(error);
         });
   }
 
@@ -146,7 +146,8 @@ export class ProjectService {
           this.projectSource.next(result);
         },
         error => {
-          this.errorSource.next(true);
+          console.log(error);
+          this.errorSource.next(error);
         });
   }
 }

@@ -17,6 +17,10 @@ export class Keyword {
       }
     }
 
+    if (data.id == null) {
+      return new Keyword(null, null, null, 0, []);
+    }
+
     return new Keyword(data.id, data.keyword, data.projectId, data.testcaseCount, []);
   }
 }

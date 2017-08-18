@@ -8,6 +8,7 @@ import { TestCase } from "../../domain/testcases/testcase";
 import { Keyword } from "../../domain/keyword";
 import { ModalService } from "../../services/modal.service";
 import { Execution } from "../../domain/executions/execution";
+import { Environment } from "../../domain/environment";
 
 
 @Component({
@@ -20,6 +21,8 @@ export class ProjectComponent implements OnInit {
   project: Project;
   testcases: TestCase[];
   executions: Execution[];
+  keywords: Keyword[];
+  environments: Environment[];
   executionStatus: ExecutionStatus;
 
   constructor(private projectService: ProjectService,
@@ -40,7 +43,9 @@ export class ProjectComponent implements OnInit {
     });
 
     this.projectService.projectChange.subscribe(result => {
+      console.log("change value from project parent");
       this.project = result;
+      this.testcases = result.testcases;
     });
   }
 
