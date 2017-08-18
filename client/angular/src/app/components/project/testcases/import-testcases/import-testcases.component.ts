@@ -1,9 +1,11 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import {Component, OnInit, ChangeDetectorRef, Inject} from '@angular/core';
 import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 import { ModalService } from "../../../../services/modal.service";
 import { ActivatedRoute } from "@angular/router";
 import * as Globals from '../../../../globals';
 import * as $ from 'jquery';
+import {ProjectService} from "../../../../services/project.service";
+import {TestCaseService} from "../../../../services/testcase.service";
 
 
 @Component({
@@ -23,49 +25,56 @@ export class ImportTestcasesComponent implements OnInit {
     cancelReset: null
   };
 
-  successTestcases: ImportedTestcase[] = [];
+  successTestcases = [];
   failureTestcases = [];
+  hasPreview: boolean = false;
 
 
   constructor(private changeDetector: ChangeDetectorRef,
               private route: ActivatedRoute,
-              public modalService: ModalService) { }
+              private testcaseService: TestCaseService,
+              private projectService: ProjectService,
+              @Inject('ImportTestCaseModalService') public importTestCaseModalService: ModalService) { }
 
   ngOnInit() {
     let id = this.route.snapshot.params['id'];
     this.config.url = Globals.mustardUrl + "/projects/" + id + "/parse";
   }
 
-
-  onUploadError(args: any) {
-    console.log(this.config.url);
-    console.log('onUploadError:', args);
-  }
-
   onUploadSuccess(args: any) {
-    console.log('onUploadSuccess:', args);
-    console.log(args[1].success);
     for (let testcase of args[1].success) {
-      this.successTestcases.push({ name: testcase.name, validationId: testcase.validation_id });
+      this.successTestcases.push({
+        name: testcase.name,
+        validation_id: testcase.validation_id,
+        reproduction_steps: testcase.reproduction_steps
+      });
     }
 
     for (let message of args[1].failure) {
       this.failureTestcases.push({ error: message });
     }
 
+    // Sort numerically and trigger changes for template
     this.sortTestcasesByValidationId(this.successTestcases);
+    this.hasPreview = true;
     this.changeDetector.detectChanges();
+  }
+
+  importTestcases() {
+    let id = this.route.snapshot.params['id'];
+    this.testcaseService.importTestcases(id, JSON.stringify(this.successTestcases));
+    this.projectService.getProject(Number(id));
   }
 
   onClick(event) {
     let $target = $(event.target);
     let $panel = $target.closest('div.panel');
-    let $icon = $target.closest('i');
+    let $icon = $target.find('i');
     let $panelBody = $panel.find('.panel-body');
 
     $panelBody.slideToggle(300);
 
-    $icon.toggleClass('fa-chevron-up').toggleClass('fa-chevron-down');
+    $icon.toggleClass('fa-chevron-down').toggleClass('fa-chevron-up');
     $panel.toggleClass('').toggleClass('panel-collapse');
     setTimeout(function () {
       $panel.resize();
@@ -82,9 +91,4 @@ export class ImportTestcasesComponent implements OnInit {
       return 0; //default return value (no sorting)
     });
   }
-}
-
-interface ImportedTestcase {
-  name: string;
-  validationId: string;
 }

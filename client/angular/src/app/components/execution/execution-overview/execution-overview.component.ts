@@ -12,10 +12,10 @@ export class ExecutionOverviewComponent implements OnChanges {
   @Input() executionStatus: ExecutionStatus;
   @ViewChild('executionChart') chart: ElementRef;
 
-  private pass: Summary;
-  private fail: Summary;
-  private skip: Summary;
-  private notRun: Summary;
+  pass: Summary;
+  fail: Summary;
+  skip: Summary;
+  notRun: Summary;
 
   constructor() { }
 

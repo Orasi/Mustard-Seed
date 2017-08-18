@@ -1835,6 +1835,21 @@ h6 .small,
   font-weight: 300;
   color: #aaacb5;
 }
+.badge-error {
+  border: 1px solid #db524b;
+  margin-left: 10px;
+}
+.badge-success {
+  border: 1px solid #1bbf89;
+  margin-left: 10px;
+}
+.badge-info {
+  border: 1px solid #f6a821;
+  margin-left: 10px;
+}
+.active .badge {
+  color: #ffffff;
+}
 .vertical-container {
   /* this class is used to give a max-width to the element it is applied to, and center it horizontally when it reaches that max-width */
   width: 98%;
