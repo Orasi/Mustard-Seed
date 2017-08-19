@@ -17,8 +17,8 @@ export class TestCaseDetails {
 
   public static create(data: any): TestCaseDetails {
     let reproductionSteps = [];
-    if (data.reproductionSteps) {
-      for (let step of data.reproductionSteps) {
+    if (data.reproduction_steps) {
+      for (let step of data.reproduction_steps) {
         reproductionSteps.push(ReproductionStep.create(step));
       }
     }
@@ -30,7 +30,14 @@ export class TestCaseDetails {
       }
     }
 
-    return new TestCaseDetails(data.id, data.name, data.testcaseId, data.projectId, data.outdated, data.version,
-      reproductionSteps, keywords);
+    return new TestCaseDetails(
+      data.id,
+      data.testcase_name,
+      data.testcase_id,
+      data.project_id,
+      data.outdated,
+      data.version,
+      reproductionSteps,
+      keywords);
   }
 }

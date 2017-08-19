@@ -4,8 +4,8 @@ import { ModalService } from "../../../../services/modal.service";
 import { ActivatedRoute } from "@angular/router";
 import * as Globals from '../../../../globals';
 import * as $ from 'jquery';
-import {ProjectService} from "../../../../services/project.service";
-import {TestCaseService} from "../../../../services/testcase.service";
+import { ProjectService } from "../../../../services/project.service";
+import { TestCaseService } from "../../../../services/testcase.service";
 
 
 @Component({

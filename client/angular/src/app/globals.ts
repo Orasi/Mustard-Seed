@@ -4,7 +4,7 @@ import { Headers, RequestOptions } from '@angular/http';
 
 //<editor-fold desc="Global Constants">
 
-export const mustardUrl: string = 'http://localhost:3000';
+export const mustardUrl: string = 'https://api.clmustard.orasi.com';
 
 //</editor-fold>
 

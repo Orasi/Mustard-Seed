@@ -14,16 +14,19 @@ export class TestCaseService {
   private testcasesSource = new BehaviorSubject<any>([]);
   testcasesChange = this.testcasesSource.asObservable();
 
+  private testcaseSource = new BehaviorSubject<any>([]);
+  testcaseChange = this.testcaseSource.asObservable();
+
   private errorSource = new BehaviorSubject<any>({});
   errorChange = this.errorSource.asObservable();
 
 
   constructor(private http: Http) { }
 
-  getTestCaseDetails(id: string): Observable<TestCaseDetails> {
+  getTestCaseDetails(id: string) {
     let testcaseUrl = this.testcasesUrl + "/" + id;
 
-    return this.http.get(testcaseUrl, Globals.getTokenHeaders())
+    this.http.get(testcaseUrl, Globals.getTokenHeaders())
       .map(function(res) {
         let data = res.json();
 
@@ -31,7 +34,14 @@ export class TestCaseService {
           return TestCaseDetails.create(data.testcase);
         }
       })
-      .catch((error:any) => Observable.throw(error || 'Server error'));
+      .catch((error:any) => Observable.throw(error || 'Server error'))
+      .subscribe(result => {
+        this.testcaseSource.next(result);
+      },
+      error => {
+        console.log(error);
+        this.errorSource.next(error);
+      });
   }
 
   importTestcases(id: string, jsonString: string) {

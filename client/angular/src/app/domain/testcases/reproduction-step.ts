@@ -7,6 +7,6 @@ export class ReproductionStep {
   ) {  }
 
   public static create(data: any): ReproductionStep {
-    return new ReproductionStep(data.stepNumber, data.action, data.result);
+    return new ReproductionStep(data.step_number, data.action, data.result);
   }
 }
