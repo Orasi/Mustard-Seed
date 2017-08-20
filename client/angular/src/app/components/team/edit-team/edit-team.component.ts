@@ -14,12 +14,11 @@ import * as Globals from '../../../globals';
 export class EditTeamComponent implements OnInit {
 
   team: Team;
-
   editTeamFormGroup: FormGroup;
   nameValue : string = '';
   descriptionValue: string = '';
   nameFlag: boolean = false; //TODO add for creating another team with the same name
-  
+
 
   constructor(private fb: FormBuilder,
               private teamService: TeamService,
@@ -33,7 +32,7 @@ export class EditTeamComponent implements OnInit {
       this.descriptionValue = this.team.description;
 
       this.editTeamFormGroup = this.fb.group({
-        'name': [ this.nameValue, Validators.required ],
+        'name':        [ this.nameValue, Validators.required ],
         'description': [ this.descriptionValue, Validators.required ]
       });
     });

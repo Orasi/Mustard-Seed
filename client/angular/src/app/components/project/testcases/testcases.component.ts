@@ -1,7 +1,10 @@
-import {Component, OnInit, Input, Inject} from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { TestCase } from "../../../domain/testcases/testcase";
 import { ModalService } from "../../../services/modal.service";
-import {ProjectService} from "../../../services/project.service";
+import { ProjectService } from "../../../services/project.service";
+import { TestCaseService } from "../../../services/testcase.service";
+import { TestCaseDetails } from "../../../domain/testcases/testcase-details";
+import * as $ from 'jquery';
 
 
 @Component({
@@ -13,9 +16,12 @@ import {ProjectService} from "../../../services/project.service";
 })
 export class TestcasesComponent implements OnInit {
 
-  @Input() testcases: TestCase[];
+  testcases: TestCase[];
+  testcase: TestCaseDetails;
+
 
   constructor(private projectService: ProjectService,
+              private testcaseService: TestCaseService,
               @Inject('ImportTestCaseModalService') public importTestCaseModalService: ModalService,
               @Inject('EditTestCaseModalService') public editTestCaseModalService: ModalService) { }
 
@@ -27,11 +33,20 @@ export class TestcasesComponent implements OnInit {
         this.sortTestcasesById(this.testcases);
       }
     });
+
+    this.testcaseService.testcaseChange.subscribe(result => {
+      this.testcase = result;
+    });
+  }
+
+  setTargetedTestCase(event: any) {
+    let testcaseId = $(event.target).closest('tr').attr('id');
+    this.testcaseService.getTestCaseDetails(testcaseId);
   }
 
   sortTestcasesById(array) {
     array.sort(function(a, b){
-      var aId = Number(a.id), bId = Number(b.id);
+      var aId = Number(a.testcaseId), bId = Number(b.testcaseId);
       if (aId < bId) //sort string ascending
         return -1;
       if (aId > bId)

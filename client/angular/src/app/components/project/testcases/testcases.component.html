@@ -17,15 +17,16 @@
         </thead>
         <tbody>
         <ng-container *ngIf="testcases?.length > 0" >
-          <tr *ngFor="let testcase of testcases; let index = index;">
-            <td>{{ testcase.id }}</td>
+          <tr *ngFor="let testcase of testcases; let index = index;" [attr.id]="testcase.id">
+            <td>{{ testcase.testcaseId }}</td>
             <td>{{ testcase.name }}</td>
             <td>{{ testcase.version }}</td>
             <td>{{ testcase.keywords }}</td>
-            <td>{{ testcase.id }}</td>
+            <td>{{ testcase.updatedAt }}</td>
             <td>
-              <button class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="bottom" title="Edit Testcase" type="button" (click)="editTestCaseModalService.openModal()">
-                <i [attr.id]="testcase.id" class="pe-7s-edit"></i>
+              <button class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="bottom" title="Edit Testcase" type="button"
+                      (click)="setTargetedTestCase($event); editTestCaseModalService.openModal();">
+                <i class="pe-7s-edit"></i>
               </button>
             </td>
           </tr>

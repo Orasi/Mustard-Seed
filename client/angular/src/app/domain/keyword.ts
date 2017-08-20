@@ -21,6 +21,6 @@ export class Keyword {
       return new Keyword(null, null, null, 0, []);
     }
 
-    return new Keyword(data.id, data.keyword, data.projectId, data.testcaseCount, []);
+    return new Keyword(data.id, data.keyword, data.project_id, data.testcase_count, []);
   }
 }

@@ -43,9 +43,9 @@ export class ProjectComponent implements OnInit {
     });
 
     this.projectService.projectChange.subscribe(result => {
-      console.log("change value from project parent");
       this.project = result;
       this.testcases = result.testcases;
+      this.keywords = result.keywords;
     });
   }
 

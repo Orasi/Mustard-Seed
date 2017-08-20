@@ -1028,6 +1028,10 @@ sup {
   display: block;
   font-size: 11px;
 }
+.icon-lg {
+  font-size: 28px;
+  font-weight: 800;
+}
 .back-link {
   float: left;
   width: 100%;
@@ -2892,6 +2896,22 @@ fieldset[disabled] .form-control {
 .form-group-item:not(:first-child) {
   margin-top: 12px;
 }
+.form-group-inline-lg {
+  display: inline-block;;
+  width: 77%;
+}
+.form-group-inline-sm {
+  display: inline-block;
+  width: 21%;
+}
+.form-group-controls {
+  width: 100px;
+  text-align: center;
+  vertical-align: middle;
+}
+.form-group-inline {
+  display: inline-block;
+}
 .img-sm {
   width: 90px;
   height: 90px;
@@ -2944,4 +2964,16 @@ fieldset[disabled] .form-control {
 }
 .modal-lg {
   width: 75%;
+}
+.push-10 {
+  margin-left: 10px;
+}
+.inner-panel-group {
+  width: 80%;
+  margin: 20px;
+  display: inline-block;
+}
+.inner-panel-group .form-group {
+  margin-left: 15px;
+  margin-top: 20px;
 }
