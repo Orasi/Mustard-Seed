@@ -335,7 +335,7 @@ describe "RESULTS API::" , :type => :api do
           end
 
           it 'should mark creator of result' do
-            expect(json['result']['results'][0]['created_by_name'].downcase).to eq ("#{admin.first_name} #{admin.last_name}".downcase)
+            expect(json['result']['results'][0]['created_by_name'].downcase.gsub(/\s+/, "")).to eq ("#{admin.first_name} #{admin.last_name}".gsub(/\s+/, "").downcase)
             expect(json['result']['results'][0]['created_by_id']).to eq (admin.id)
           end
 
