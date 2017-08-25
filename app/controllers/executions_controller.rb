@@ -427,36 +427,32 @@ class ExecutionsController < ApplicationController
              status: :unprocessable_entity and return unless params[:environment] && !params[:environment].blank?
     end
 
-    # Both Keyword and Environment are present
-    if params[:keyword] && params[:keyword] != 'FALSE' && !params[:keyword].blank? && params[:environment] && !params[:environment].blank?
+    time_delay = 5.minutes.ago
+    if execution.fast
+      testcase = execution.execution_testcases.not_run(execution).where("runner_touch <= ? or runner_touch is null", time_delay).order(runner_touch: :desc)
+    elsif params[:keyword] && params[:keyword] != 'FALSE' && !params[:keyword].blank? && params[:environment] && !params[:environment].blank?
+      # Both Keyword and Environment are present
       keywords = execution.execution_keywords.where(keyword: params[:keyword].map(&:upcase))
       render json: {error: 'Keyword not found'},
            status: :not_found and return unless keywords.count > 0
-
       environment = execution.execution_environments.where(uuid: params[:environment])
       render json: {error: 'Environment not found'},
              status: :not_found and return unless environment.count > 0
       environment = environment.first
-      testcase = execution.execution_testcases.not_run_with_environment(execution, environment).where("runner_touch <= ? or runner_touch is null", 5.minutes.ago).order(runner_touch: :desc).with_keywords(params[:keyword])
-
-      # Only Keyword is present
+      testcase = execution.execution_testcases.not_run_with_environment(execution, environment).where("runner_touch <= ? or runner_touch is null",time_delay).order(runner_touch: :desc).with_keywords(params[:keyword])
     elsif params[:keyword] && params[:keyword] != 'FALSE' && !params[:keyword].blank?
+      # Only Keyword is present
       keywords = execution.execution_keywords.where(keyword: params[:keyword].map(&:upcase))
       render json: {error: 'Keyword not found'},
              status: :not_found and return unless keywords.count > 0
-      testcase = execution.execution_testcases.not_run(execution).where("runner_touch <= ? or runner_touch is null", 5.minutes.ago).order(runner_touch: :desc).with_keywords(params[:keyword])
-
-    # Only Environment is present
+      testcase = execution.execution_testcases.not_run(execution).where("runner_touch <= ? or runner_touch is null", time_delay).order(runner_touch: :desc).with_keywords(params[:keyword])
     elsif params[:environment] && !params[:environment].blank?
+      # Only Environment is present
       environment = execution.execution_environments.where(uuid: params[:environment])
       render json: {error: 'Environment not found'},
              status: :not_found and return unless environment.count > 0
       environment = environment.first
-      testcase = execution.execution_testcases.not_run_with_environment(execution, environment).where("runner_touch <= ? or runner_touch is null", 5.minutes.ago).order(runner_touch: :desc)
-
-    # Neither Keyword nor environment is present
-    else
-      testcase = execution.execution_testcases.not_run(execution).where("runner_touch <= ? or runner_touch is null", 5.minutes.ago).order(runner_touch: :desc)
+      testcase = execution.execution_testcases.not_run_with_environment(execution, environment).where("runner_touch <= ? or runner_touch is null", time_delay).order(runner_touch: :desc)
     end
 
 

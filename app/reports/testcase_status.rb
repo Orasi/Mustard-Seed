@@ -101,12 +101,11 @@ class TestcaseStatus
           end
           sheet.column_widths 10, 30, 60, 60, 10
           styles_array.each do |style|
-            puts style
+
             sheet.add_style *style
           end
 
           borders.each do |border|
-            puts border
             sheet.add_border *border
           end
         end

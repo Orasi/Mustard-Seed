@@ -39,6 +39,15 @@ production:
   host: localhost
   database: mustard
 
+docker:
+  adapter: postgresql
+  encoding: unicode
+  pool: 10
+  username: postgres
+  password: postgres
+  host: db
+  database: mustard
+
 demo:
   adapter: postgresql
   encoding: unicode
