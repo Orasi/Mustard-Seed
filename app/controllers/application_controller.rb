@@ -6,7 +6,7 @@ class ApplicationController < ActionController::API
     param 'User-Token', String, 'Authentication token.  Must be provided in the header of all calls unless otherwise indicated', required: true
   end
 
-  api :get, '/version', 'Version'
+  api :GET, '/version', 'Version'
   description 'Returns the version of Mustard-Seed'
   meta 'Unauthenticated path.  User-Token header is not required'
   param 'User-Token', nil
