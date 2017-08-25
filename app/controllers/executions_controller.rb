@@ -428,7 +428,7 @@ class ExecutionsController < ApplicationController
     end
 
     time_delay = 5.minutes.ago
-    if execution.fast
+    if execution.fast && !(params[:keyword] && params[:keyword] != 'FALSE' && !params[:keyword].blank?)
       testcase = execution.execution_testcases.not_run(execution).where("runner_touch <= ? or runner_touch is null", time_delay).order(runner_touch: :desc)
     elsif params[:keyword] && params[:keyword] != 'FALSE' && !params[:keyword].blank? && params[:environment] && !params[:environment].blank?
       # Both Keyword and Environment are present

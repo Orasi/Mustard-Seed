@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   apipie
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get 'version', to: 'application#version', defaults: {format: :json}
   post 'authenticate', to: 'application#authenticate', defaults: {format: :json}
 
   resources :users, defaults: {format: :json}

@@ -1,10 +1,19 @@
 class ApplicationController < ActionController::API
 
-  before_action :require_user_token, except: [:authenticate, :create]
+  before_action :require_user_token, except: [:version, :authenticate, :create]
 
   resource_description do
     param 'User-Token', String, 'Authentication token.  Must be provided in the header of all calls unless otherwise indicated', required: true
   end
+
+  api :get, '/version', 'Version'
+  description 'Returns the version of Mustard-Seed'
+  meta 'Unauthenticated path.  User-Token header is not required'
+  param 'User-Token', nil
+  def version
+    render json: {version: Rails.application.config.version}
+  end
+
 
   api :POST, '/authenticate', 'Login'
   description 'Returns User-Token and current user details. Allows user to login with either username or email address'
