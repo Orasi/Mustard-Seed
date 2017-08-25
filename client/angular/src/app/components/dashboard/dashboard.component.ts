@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from "../../services/project.service";
-import { ExecutionService } from "../../services/execution.service";
 import { TeamService } from "../../services/team.service";
 import { Project } from "../../domain/project";
 import { ExecutionStatus } from "../../domain/executions/execution-status";
 import { Team } from "../../domain/team";
-import { Router } from "@angular/router";
 import * as Globals from '../../globals';
+import { Router } from "@angular/router";
 
 
 @Component({
@@ -21,8 +20,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(private projectService: ProjectService,
               private teamService: TeamService,
-              private executionService: ExecutionService,
-              private router : Router) {
+              public router: Router) {
 
     this.projectService.getProjects();
     this.teamService.getTeams();

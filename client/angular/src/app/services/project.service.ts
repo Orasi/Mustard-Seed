@@ -5,6 +5,7 @@ import 'rxjs/add/operator/map'
 
 import { Project } from "../domain/project";
 import * as Globals from '../globals';
+import {Keyword} from "../domain/keyword";
 
 
 @Injectable()
@@ -16,6 +17,9 @@ export class ProjectService {
 
   private projectSource = new BehaviorSubject<any>({});
   projectChange = this.projectSource.asObservable();
+
+  private keywordsSource = new BehaviorSubject<any>({});
+  keywordsChange = this.keywordsSource.asObservable();
 
   private errorSource = new BehaviorSubject<any>({});
   errorChange = this.errorSource.asObservable();
@@ -50,7 +54,7 @@ export class ProjectService {
             this.projectsSource.next(this.projects);
           },
           error => {
-            this.errorSource.next(true);
+            this.errorSource.next(error);
           });
     }
   }
@@ -79,7 +83,7 @@ export class ProjectService {
           this.projectSource.next(result);
         },
         error => {
-          this.errorSource.next(true);
+          this.errorSource.next(error);
         });
   }
 
@@ -100,7 +104,7 @@ export class ProjectService {
           this.projectsSource.next(this.projects);
         },
         error => {
-          this.errorSource.next(true);
+          this.errorSource.next(error);
         });
   }
 
@@ -125,7 +129,7 @@ export class ProjectService {
       .subscribe(
         result => { },
         error => {
-          this.errorSource.next(true);
+          this.errorSource.next(error);
         });
   }
 
@@ -146,7 +150,34 @@ export class ProjectService {
           this.projectSource.next(result);
         },
         error => {
-          this.errorSource.next(true);
+          console.log(error);
+          this.errorSource.next(error);
+        });
+  }
+
+  getKeywords(id: number) {
+    let projectUrl = this.projectsUrl + "/" + id + "/keywords";
+
+    this.http.get(projectUrl, Globals.getTokenHeaders())
+      .map(function (res) {
+        let data = res.json();
+
+        if (data) {
+          let keywords = [];
+          for (let keyword of data.keywords) {
+            keywords.push(Keyword.create(keyword));
+          }
+          return keywords;
+        }
+      })
+      .catch((error: any) => Observable.throw(error || 'Server error'))
+      .subscribe(
+        result => {
+          this.keywordsSource.next(result);
+        },
+        error => {
+          console.log(error);
+          this.errorSource.next(error);
         });
   }
 }

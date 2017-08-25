@@ -2,35 +2,37 @@
   <div class="table-responsive">
     <a class="btn btn-default fa fa-check-square-o small bold" data-toggle="modal" data-target="#new_testcase_modal" href=""> Add Testcase</a>
     <a class="btn btn-default fa fa-check-square-o small bold" target="_blank" href="/projects/15/testcases/export"> Export Testcase</a>
-    <button class="btn btn-default fa fa-check-square-o small bold" (click)="modalService.openModal()">Import Testcases</button>
-    <div class="space-10">
-      <table class="table table-striped table-hover dataTable no-footer">
+    <button class="btn btn-default fa fa-check-square-o small bold" (click)="importTestCaseModalService.openModal()">Import Testcases</button>
+    <div class="table-responsive space-10">
+      <table class="table table-hover">
         <thead>
-        <tr>
-          <th>ID</th>
-          <th>Testcase Name</th>
-          <th>Version #</th>
-          <th>Keywords</th>
-          <th>Last Updated</th>
-          <th>Actions</th>
-        </tr>
+          <tr>
+            <th>ID</th>
+            <th>Testcase Name</th>
+            <th>Version</th>
+            <th>Keywords</th>
+            <th>Last Updated</th>
+            <th>Actions</th>
+          </tr>
         </thead>
-        <tbody id="testcases">
-        <tr>
-          <td class="table-number">1.</td>
-          <td>
-            <a href="/testcases/3788">Content Detail - Content Detail Element Verification</a>
-          </td>
-          <td>1</td>
-          <td><div class="label label-info"></div></td>
-          <td>
-            <div class="small overview-time">
-              4 months ago
-            </div>
-          </td>
-          <td>
-            <span class="testcase-link fa fa-pencil link-like small" data-path="/testcases/3788/edit" data-target="#testcase_modal" data-toggle="modal"></span>
-          </td>
+        <tbody>
+        <ng-container *ngIf="testcases?.length > 0" >
+          <tr *ngFor="let testcase of testcases; let index = index;" [attr.id]="testcase.id">
+            <td>{{ testcase.testcaseId }}</td>
+            <td>{{ testcase.name }}</td>
+            <td>{{ testcase.version }}</td>
+            <td>{{ testcase.keywords }}</td>
+            <td>{{ testcase.updatedAt }}</td>
+            <td>
+              <button class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="bottom" title="Edit Testcase" type="button"
+                      (click)="setTargetedTestCase($event); editTestCaseModalService.openModal();">
+                <i class="pe-7s-edit"></i>
+              </button>
+            </td>
+          </tr>
+        </ng-container>
+        <tr *ngIf="testcases?.length == 0">
+          <h5 class="notification">No Testcases Available</h5>
         </tr>
         </tbody>
       </table>
@@ -38,3 +40,4 @@
   </div>
 </div>
 <app-import-testcases></app-import-testcases>
+<app-edit-testcase></app-edit-testcase>

@@ -1,0 +1,86 @@
+<div *ngIf="editTestCaseModalService.show" class="modal" id="edit-team-modal" tabindex="-1" role="dialog" (click)="editTestCaseModalService.handleClick($event)">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h3 class="modal-title">Edit Testcase</h3>
+      </div>
+      <form #editTestCaseForm="ngForm" id="editTestCaseForm" [formGroup]="editTestCaseFormGroup" (ngSubmit)="editTestcase(editTestCaseFormGroup.value)" novalidate>
+        <div class="modal-body">
+          <div class="form-group form-group-inline-lg">
+            <label class="control-label" for="name">Name</label>
+            <input tabindex="0" type="text" placeholder="Please enter the testcase name" title="Please enter the testcase name" required value=""
+                   id="name" class="form-control" name="name" formControlName="name" [value]="nameValue">
+            <div class='form-text error' *ngIf="editTestCaseFormGroup.controls.name.touched">
+              <div *ngIf="editTestCaseFormGroup.controls.name.hasError('required')" class="help-block error small">Testcase name is required.</div>
+            </div>
+          </div>
+          <div class="form-group form-group-inline-sm push-10">
+            <label class="control-label" for="validationId">Validation ID</label>
+            <input type="text" placeholder="Please enter the validation id" title="Please enter the validation id" required value=""
+                      id="validationId" class="form-control" name="name" formControlName="validationId" [value]="validationIdValue">
+            <div class='form-text error' *ngIf="editTestCaseFormGroup.controls.validationId.touched">
+              <div *ngIf="editTestCaseFormGroup.controls.validationId.hasError('required')" class="help-block error small">Validation ID is required.</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label">Keywords</label>
+            <select2 [data]="keywordOptionsData"
+                     [options]="options"
+                     [width]="500"
+                     [value]="value"
+                     [cssImport]="false"
+                     (valueChanged)="changed($event)"
+            ></select2>
+          </div>
+          <div class="form-group">
+            <label class="control-label">Reproduction Steps</label>
+            <ul class="list-unstyled">
+              <li *ngFor="let step of testcase.reproductionSteps; let index = index;">
+                <div class="panel panel-filled">
+                  <div class="inner-panel-group">
+                    <h5>Step {{ index + 1 }}</h5>
+                    <div class="form-group">
+                      <h5>Action</h5>
+                      <input type="text" placeholder="Please enter the action" title="Action" required value=""
+                                class="form-control" name="name" [value]="step.action">
+                    </div>
+                    <div class="form-group">
+                      <h5>Result</h5>
+                      <textarea type="text" placeholder="Please enter the result" title="Result" required value=""
+                                class="form-control" name="name" [value]="step.result"></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group-inline form-group-controls">
+                    <div class="space-20">
+                      <button class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="bottom" title="Move Up" type="button"
+                              (click)="moveStepUp($event);">
+                        <i class="pe-7s-angle-up icon-lg"></i>
+                      </button>
+                    </div>
+                    <div class="space-20">
+                      <button class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="bottom" title="Delete" type="button"
+                              (click)="deleteStep($event);">
+                        <i class="pe-7s-trash icon-lg"></i>
+                      </button>
+                    </div>
+                    <div class="space-20">
+                      <button class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="bottom" title="Move Down" type="button"
+                              (click)="moveStepDown($event);">
+                        <i class="pe-7s-angle-down icon-lg"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="modal-footer footer-left">
+          <button type="submit" class="btn btn-accent" [disabled]="!editTestCaseFormGroup.valid">Submit</button>
+          <button (click)="editTestCaseModalService.closeModal(); editTeamForm.reset();" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button (click)="editTestCaseModalService.closeModal(); deleteTeam();" type="button" class="btn btn-accent pull-right">Delete</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

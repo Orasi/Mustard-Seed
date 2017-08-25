@@ -8,7 +8,7 @@
         <div class="modal-body">
           <div class="form-group">
             <label class="control-label" for="name">Name</label>
-            <input type="text" placeholder="Please enter the project name" title="Please enter the project name" required value=""
+            <input tabindex="0" type="text" placeholder="Please enter the project name" title="Please enter the project name" required value=""
                    id="name" class="form-control" name="name" formControlName="name" [value]="nameValue">
             <div class='form-text error' *ngIf="editProjectFormGroup.controls.name.touched">
               <div *ngIf="editProjectFormGroup.controls.name.hasError('required')" class="help-block error small">Project name is required.</div>

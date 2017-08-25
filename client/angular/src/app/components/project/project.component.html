@@ -38,7 +38,10 @@
             <a data-toggle="tab" role="tab" href="#environment_tab" aria-expanded="false">Environments</a>
           </li>
           <li role="presentation" class="">
-            <a data-toggle="tab" role="tab" href="#testcase_tab" aria-expanded="false">Testcases</a>
+            <a data-toggle="tab" role="tab" href="#testcase_tab" aria-expanded="false">
+              Testcases
+              <span class="badge badge-info">{{ testcases?.length }}</span>
+            </a>
           </li>
           <li role="presentation" class="">
             <a data-toggle="tab" role="tab" href="#keyword_tab" aria-expanded="false">Keywords</a>
@@ -59,7 +62,7 @@
             <app-environments [environments]="environments"></app-environments>
           </div>
           <div id="testcase_tab" class="tab-pane">
-            <app-testcases [testcases]="testcases"></app-testcases>
+            <app-testcases></app-testcases>
           </div>
           <div id="keyword_tab" class="tab-pane">
             <app-keywords [keywords]="keywords"></app-keywords>
@@ -72,4 +75,4 @@
     </div>
   </div>
 </section>
-<app-edit-project (onEditProjectEvent)="editProject()" (onDeleteProjectEvent)="deleteProject()" [project]="project"></app-edit-project>
+<app-edit-project (onEditProjectEvent)="editProject(project)" (onDeleteProjectEvent)="deleteProject()" [project]="project"></app-edit-project>

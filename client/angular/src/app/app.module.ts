@@ -16,6 +16,7 @@ import { UserService } from "./services/user.service";
 import { ProjectService } from "./services/project.service";
 import { TeamService } from "./services/team.service";
 import { ExecutionService } from "./services/execution.service";
+import { TestCaseService } from "./services/testcase.service";
 
 import { ForgotPasswordFormComponent } from './components/forgot-password/forgot-password-form/forgot-password-form.component';
 import { LoginFormComponent } from './components/login/\/login-form/login-form.component';
@@ -47,6 +48,7 @@ import { TeamProjectListComponent } from './components/team/team-project-list/te
 import { TeamAddExistingProjectComponent } from './components/team/team-project-list/team-add-existing-project/team-add-existing-project.component';
 import { EditTeamComponent } from './components/team/edit-team/edit-team.component';
 import { ImportTestcasesComponent } from './components/project/testcases/import-testcases/import-testcases.component';
+import { EditTestcaseComponent } from './components/project/testcases/edit-testcase/edit-testcase.component';
 
 
 const appRoutes: Routes = [
@@ -65,7 +67,7 @@ const appRoutes: Routes = [
 
 const DROPZONE_CONFIG: DropzoneConfigInterface = {
   url: '/projects/:id/parse',
-  maxFilesize: 100,
+  maxFilesize: 50,
   acceptedFiles: 'application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
 };
 
@@ -101,7 +103,8 @@ const DROPZONE_CONFIG: DropzoneConfigInterface = {
     TeamProjectListComponent,
     TeamAddExistingProjectComponent,
     EditTeamComponent,
-    ImportTestcasesComponent
+    ImportTestcasesComponent,
+    EditTestcaseComponent
   ],
   imports: [
     BrowserModule,
@@ -115,7 +118,15 @@ const DROPZONE_CONFIG: DropzoneConfigInterface = {
     ),
     DropzoneModule.forRoot(DROPZONE_CONFIG)
   ],
-  providers: [ AuthenticationGuard, AdministrationGuard, UserService, ProjectService, TeamService, ExecutionService ],
+  providers: [
+    AuthenticationGuard,
+    AdministrationGuard,
+    TestCaseService,
+    UserService,
+    ProjectService,
+    TeamService,
+    ExecutionService
+  ],
   bootstrap: [ AppComponent ]
 })
 
