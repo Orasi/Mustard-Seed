@@ -437,6 +437,8 @@ class TestcasesController < ApplicationController
   end
 
   def same_steps? old_steps, new_steps
+    return true if old_steps.nil? && new_steps.nil?
+    return false if old_steps.nil? || new_steps.nil?
     return false if old_steps.count != new_steps.count
     old_steps.each_with_index do |old, i|
       new = new_steps[i]
